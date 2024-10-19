@@ -66,9 +66,12 @@ window.loop=function(){
     case 1:
       scene1();
       break;
+    case 2:
+      level1();
+      break;
   }
 
   _context.fillStyle=_versionText.color;
-  _context.font=_versionText.font;
+  _context.font=_versionText.debug;
   _context.fillText(_versionText.value,_versionText.x,_versionText.y);
 }

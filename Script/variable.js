@@ -10,9 +10,9 @@
 
 let resolutionError=false,ratio=16/9,scale=1.00;
 let fpsLimit=60,lastFrame=0;
-let canStart=false;
+let canStart=false,canClick=true;
 let scene=0,sceneTimer=0,nextScene=0;
-let shouldClose=false;
+let sfxOn=true,musicOn=false,fullscreenOn=false;
 
 let _html=document.getElementById("html");
 
@@ -66,7 +66,7 @@ let _background={
 };
 
 let _versionText={
-  value:"Test 2",
+  value:"Test 3",
 
   size:36,
   on:false,
@@ -125,14 +125,13 @@ let _menuStart={
 let _menuStartText={
   value:"Start",
 
-  size:12,
+  size:24,
   font:"orangeKid",
   debug:"",
   color:"white",
 
   x:0,y:0,
 };
-
 let _menuLevel={
   width:32,height:32,
 
@@ -141,6 +140,7 @@ let _menuLevel={
   hover:false,
   on:false,
   animation:false,
+  lateanimation:false,
 
   img:new Image(),
   imgOn:new Image(),
@@ -148,14 +148,13 @@ let _menuLevel={
 let _menuLevelText={
   value:"Poziomy",
 
-  size:12,
+  size:24,
   font:"orangeKid",
   debug:"",
   color:"white",
 
   x:0,y:0,
 };
-
 let _menuSetting={
   width:32,height:32,
 
@@ -164,6 +163,7 @@ let _menuSetting={
   hover:false,
   on:false,
   animation:false,
+  lateanimation:false,
 
   img:new Image(),
   imgOn:new Image(),
@@ -171,14 +171,13 @@ let _menuSetting={
 let _menuSettingText={
   value:"Opcje",
 
-  size:12,
+  size:24,
   font:"orangeKid",
   debug:"",
   color:"white",
 
   x:0,y:0,
 };
-
 let _menuAbout={
   width:32,height:32,
 
@@ -187,6 +186,7 @@ let _menuAbout={
   hover:false,
   on:false,
   animation:false,
+  lateanimation:false,
 
   img:new Image(),
   imgOn:new Image(),
@@ -194,7 +194,7 @@ let _menuAbout={
 let _menuAboutText={
   value:"O grze",
 
-  size:12,
+  size:24,
   font:"orangeKid",
   debug:"",
   color:"white",
@@ -202,14 +202,179 @@ let _menuAboutText={
   x:0,y:0,
 };
 
-let _menuClipboard={
+let _clipboard={
   width:128,height:184,
 
   x:0,y:0,
 
   on:false,
+  close:false,
 
   img:new Image(),
+};
+let _clipboardBack={
+  width:24,height:24,
+
+  x:0,y:0,
+
+  hover:false,
+
+  img:new Image(),
+  imgOn:new Image(),
+};
+
+let _clipboardLevelText={
+  value:"Poziomy",
+
+  size:24,
+  font:"orangeKid",
+  debug:"",
+  color:"black",
+
+  x:0,y:0,
+};
+let _clipboardSettingText={
+  value:"Opcje",
+
+  size:24,
+  font:"orangeKid",
+  debug:"",
+  color:"black",
+
+  x:0,y:0,
+};
+let _clipboardAboutText={
+  value:"O grze",
+
+  size:24,
+  font:"orangeKid",
+  debug:"",
+  color:"black",
+
+  x:0,y:0,
+};
+
+let _clipboardLevel1={
+  width:16,height:16,
+
+  x:0,y:0,
+
+  img:new Image(),
+};
+let _clipboardLevel2={
+  width:16,height:16,
+
+  x:0,y:0,
+
+  img:new Image(),
+};
+let _clipboardLevel3={
+  width:16,height:16,
+
+  x:0,y:0,
+
+  img:new Image(),
+};
+let _clipboardLevel4={
+  width:16,height:16,
+
+  x:0,y:0,
+
+  img:new Image(),
+};
+let _clipboardLevel5={
+  width:16,height:16,
+
+  x:0,y:0,
+
+  img:new Image(),
+};
+let _clipboardLevel6={
+  width:16,height:16,
+
+  x:0,y:0,
+
+  img:new Image(),
+};
+let _clipboardLevel7={
+  width:16,height:16,
+
+  x:0,y:0,
+
+  img:new Image(),
+};
+let _clipboardLevel8={
+  width:16,height:16,
+
+  x:0,y:0,
+
+  img:new Image(),
+};
+
+let _clipboardSetting1={
+  width:32,height:32,
+
+  x:0,y:0,
+
+  img:new Image(),
+  imgOn:new Image(),
+};
+let _clipboardSetting2={
+  width:32,height:32,
+
+  x:0,y:0,
+
+  img:new Image(),
+  imgOn:new Image(),
+};
+let _clipboardSetting3={
+  width:32,height:32,
+
+  x:0,y:0,
+
+  img:new Image(),
+  imgOn:new Image(),
+};
+let _clipboardSetting4={
+  value:"Dźwięk",
+
+  size:16,
+  font:"orangeKid",
+  debug:"",
+  color:"black",
+
+  x:0,y:0,
+};
+let _clipboardSetting5={
+  value:"Muzyka",
+
+  size:16,
+  font:"orangeKid",
+  debug:"",
+  color:"black",
+
+  x:0,y:0,
+};
+let _clipboardSetting6={
+  value:"Pełne Okno",
+
+  size:16,
+  font:"orangeKid",
+  debug:"",
+  color:"black",
+
+  x:0,y:0,
+};
+
+let _clipboardAbout1={
+  value:"Some random game\ndescription here!",
+
+  size:12,
+  font:"orangeKid",
+  debug:"",
+  color:"black",
+
+  x:0,y:0,
 };
 
 _audio.load1.load();
@@ -229,14 +394,29 @@ _menuTitle.img.src="Source/title.png";
 
 _menuStart.img.src="Source/UI/Button/start.png";
 _menuStart.imgOn.src="Source/UI/Button/startOn.png";
-
 _menuLevel.img.src="Source/UI/Button/level.png";
 _menuLevel.imgOn.src="Source/UI/Button/levelOn.png";
-
 _menuSetting.img.src="Source/UI/Button/setting.png";
 _menuSetting.imgOn.src="Source/UI/Button/settingOn.png";
-
 _menuAbout.img.src="Source/UI/Button/about.png";
 _menuAbout.imgOn.src="Source/UI/Button/aboutOn.png";
 
-_menuClipboard.img.src="Source/UI/clipboard.png";
+_clipboard.img.src="Source/UI/clipboard.png";
+_clipboardBack.img.src="Source/UI/back.png";
+_clipboardBack.imgOn.src="Source/UI/backOn.png";
+
+_clipboardLevel1.img.src="Source/UI/Level/1.png";
+_clipboardLevel2.img.src="Source/UI/Level/2.png";
+_clipboardLevel3.img.src="Source/UI/Level/3.png";
+_clipboardLevel4.img.src="Source/UI/Level/4.png";
+_clipboardLevel5.img.src="Source/UI/Level/5.png";
+_clipboardLevel6.img.src="Source/UI/Level/6.png";
+_clipboardLevel7.img.src="Source/UI/Level/7.png";
+_clipboardLevel8.img.src="Source/UI/Level/8.png";
+
+_clipboardSetting1.img.src="Source/UI/O.png";
+_clipboardSetting1.imgOn.src="Source/UI/X.png";
+_clipboardSetting2.img.src="Source/UI/O.png";
+_clipboardSetting2.imgOn.src="Source/UI/X.png";
+_clipboardSetting3.img.src="Source/UI/O.png";
+_clipboardSetting3.imgOn.src="Source/UI/X.png";

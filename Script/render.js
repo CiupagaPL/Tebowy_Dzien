@@ -60,46 +60,120 @@ window.updateValue=function(){
   _menuStart.height=32*scale;
   _menuStart.x=_render.width/2-_menuStart.width/2+32*scale;
   _menuStart.y=_render.height-168*scale;
-
   _menuStartText.x=_menuStart.x-48*scale;
   _menuStartText.y=_menuStart.y+24*scale;
   _menuStartText.size=Math.ceil(24*scale);
   _menuStartText.debug=_menuStartText.size+"px "+_menuStartText.font;
-
   _menuLevel.width=32*scale;
   _menuLevel.height=32*scale;
   _menuLevel.x=_render.width/2-_menuStart.width/2-32*scale;
   _menuLevel.y=_render.height-128*scale;
-
   _menuLevelText.x=_menuLevel.x+38*scale;
   _menuLevelText.y=_menuLevel.y+24*scale;
   _menuLevelText.size=Math.ceil(24*scale);
   _menuLevelText.debug=_menuLevelText.size+"px "+_menuLevelText.font;
-
   _menuSetting.width=32*scale;
   _menuSetting.height=32*scale;
   _menuSetting.x=_render.width/2-_menuStart.width/2+32*scale;
   _menuSetting.y=_render.height-88*scale;
-
   _menuSettingText.x=_menuSetting.x-48*scale;
   _menuSettingText.y=_menuSetting.y+24*scale;
   _menuSettingText.size=Math.ceil(24*scale);
   _menuSettingText.debug=_menuSettingText.size+"px "+_menuSettingText.font;
-
   _menuAbout.width=32*scale;
   _menuAbout.height=32*scale;
   _menuAbout.x=_render.width/2-_menuStart.width/2-32*scale;
   _menuAbout.y=_render.height-48*scale;
-
   _menuAboutText.x=_menuAbout.x+38*scale;
   _menuAboutText.y=_menuAbout.y+24*scale;
   _menuAboutText.size=Math.ceil(24*scale);
   _menuAboutText.debug=_menuAboutText.size+"px "+_menuAboutText.font;
 
-  _menuClipboard.width=128*scale;
-  _menuClipboard.height=184*scale;
-  _menuClipboard.x=-_menuClipboard.width;
-  _menuClipboard.y=_render.height/2-_menuClipboard.height/2;
+  _clipboard.width=128*scale;
+  _clipboard.height=184*scale;
+  _clipboard.x=-280*scale;
+  _clipboard.y=_render.height/2-_clipboard.height/2;
+
+  _clipboardBack.width=24*scale;
+  _clipboardBack.height=24*scale;
+  _clipboardBack.x=_clipboard.x+4*scale;
+  _clipboardBack.y=_clipboard.y+4*scale;
+
+  _clipboardLevelText.x=0;
+  _clipboardLevelText.y=_clipboard.y+48*scale;
+  _clipboardLevelText.size=Math.ceil(24*scale);
+  _clipboardLevelText.debug=_clipboardLevelText.size+"px "+_clipboardLevelText.font;
+  _clipboardSettingText.x=0;
+  _clipboardSettingText.y=_clipboard.y+48*scale;
+  _clipboardSettingText.size=Math.ceil(24*scale);
+  _clipboardSettingText.debug=_clipboardSettingText.size+"px "+_clipboardSettingText.font;
+  _clipboardAboutText.x=0;
+  _clipboardAboutText.y=_clipboard.y+48*scale;
+  _clipboardAboutText.size=Math.ceil(24*scale);
+  _clipboardAboutText.debug=_clipboardAboutText.size+"px "+_clipboardAboutText.font;
+
+  _clipboardLevel1.width=16*scale;
+  _clipboardLevel1.height=16*scale;
+  _clipboardLevel1.x=0;
+  _clipboardLevel1.y=_clipboard.y+70*scale;
+  _clipboardLevel2.width=16*scale;
+  _clipboardLevel2.height=16*scale;
+  _clipboardLevel2.x=0;
+  _clipboardLevel2.y=_clipboard.y+92*scale;
+  _clipboardLevel3.width=16*scale;
+  _clipboardLevel3.height=16*scale;
+  _clipboardLevel3.x=0;
+  _clipboardLevel3.y=_clipboard.y+114*scale;
+  _clipboardLevel4.width=16*scale;
+  _clipboardLevel4.height=16*scale;
+  _clipboardLevel4.x=0;
+  _clipboardLevel4.y=_clipboard.y+136*scale;
+  _clipboardLevel5.width=16*scale;
+  _clipboardLevel5.height=16*scale;
+  _clipboardLevel5.x=0;
+  _clipboardLevel5.y=_clipboard.y+70*scale;
+  _clipboardLevel6.width=16*scale;
+  _clipboardLevel6.height=16*scale;
+  _clipboardLevel6.x=0;
+  _clipboardLevel6.y=_clipboard.y+92*scale;
+  _clipboardLevel7.width=16*scale;
+  _clipboardLevel7.height=16*scale;
+  _clipboardLevel7.x=0;
+  _clipboardLevel7.y=_clipboard.y+114*scale;
+  _clipboardLevel8.width=16*scale;
+  _clipboardLevel8.height=16*scale;
+  _clipboardLevel8.x=0;
+  _clipboardLevel8.y=_clipboard.y+136*scale;
+
+  _clipboardSetting1.width=16*scale;
+  _clipboardSetting1.height=16*scale;
+  _clipboardSetting1.x=0;
+  _clipboardSetting1.y=_clipboard.y+70*scale;
+  _clipboardSetting2.width=16*scale;
+  _clipboardSetting2.height=16*scale;
+  _clipboardSetting2.x=0;
+  _clipboardSetting2.y=_clipboard.y+102*scale;
+  _clipboardSetting3.width=16*scale;
+  _clipboardSetting3.height=16*scale;
+  _clipboardSetting3.x=0;
+  _clipboardSetting3.y=_clipboard.y+134*scale;
+  _clipboardSetting4.x=0;
+  _clipboardSetting4.y=_clipboard.y+83*scale;
+  _clipboardSetting4.size=Math.ceil(16*scale);
+  _clipboardSetting4.debug=_clipboardSetting4.size+"px "+_clipboardSetting4.font;
+  _clipboardSetting5.x=0;
+  _clipboardSetting5.y=_clipboard.y+115*scale;
+  _clipboardSetting5.size=Math.ceil(16*scale);
+  _clipboardSetting5.debug=_clipboardSetting5.size+"px "+_clipboardSetting5.font;
+  _clipboardSetting6.x=0;
+  _clipboardSetting6.y=_clipboard.y+147*scale;
+  _clipboardSetting6.size=Math.ceil(16*scale);
+  _clipboardSetting6.debug=_clipboardSetting6.size+"px "+_clipboardSetting6.font;
+
+  _clipboardAbout1.x=0;
+  _clipboardAbout1.y=_clipboard.y+68*scale;
+  _clipboardAbout1.size=Math.ceil(12*scale);
+  _clipboardAbout1.debug=_clipboardAbout1.size+"px "+_clipboardAbout1.font;
 }
 
 // window.defaultValue=function(){

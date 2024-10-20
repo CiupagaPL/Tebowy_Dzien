@@ -44,64 +44,49 @@ animatemenu=function(){
 
 animateclipboard=function(){
   if(_menuLevel.animation||_menuSetting.animation||_menuAbout.animation){
-    _menuLevel.on=false; _menuSetting.on=false; _menuAbout.on=false;
-    if(_menuClipboard.on&&!shouldClose){
-      if(_menuClipboard.x>-_menuClipboard.width*1.5&&_menuClipboard.on){
-          _menuClipboard.x-=_menuClipboard.width/8;
-          if(_menuLevel.animation){
-
-          } if(_menuSetting.animation){
-
-          } if(_menuAbout.animation){
-
-          }
-        } if(_menuClipboard.x<=-_menuClipboard.width*1.5){
-          _menuClipboard.on=false;
-        } if(!_menuClipboard.on){
-          if(_menuClipboard.x<_menuClipboard.width/8){
-          _menuClipboard.x+=_menuClipboard.width/8;
-          if(_menuLevel.animation){
-
-          } if(_menuSetting.animation){
-
-          } if(_menuAbout.animation){
-  
-          } else if(_menuClipboard.x>=_menuClipboard.width/8){
-            if(_menuLevel.animation){ _menuLevel.animation=false; _menuLevel.on=true; _menuClipboard.on=true; }
-            if(_menuSetting.animation){ _menuSetting.animation=false; _menuSetting.on=true; _menuClipboard.on=true; }
-            if(_menuAbout.animation){ _menuAbout.animation=false; _menuAbout.on=true; _menuClipboard.on=true; }
-          }
-        }
+    if(_clipboard.on&&_clipboard.close){
+      if(_clipboard.x>-280*scale){
+        _clipboard.x-=20*scale;
+        _clipboardBack.x-=20*scale;
+      } else if(_clipboard.x<=-280*scale){
+        if(_menuLevel.animation){ _menuLevel.animation=false; _menuLevel.on=false; _clipboard.on=false; _clipboard.close=false; canClick=true; }
+        if(_menuSetting.animation){ _menuSetting.animation=false; _menuSetting.on=false; _clipboard.on=false; _clipboard.close=false; canClick=true; }
+        if(_menuAbout.animation){ _menuAbout.animation=false; _menuAbout.on=false; _clipboard.on=false; _clipboard.close=false; canClick=true; }
       }
-    } if(!_menuClipboard.on&&!shouldClose){
-      if(_menuClipboard.x<_menuClipboard.width/8){
-        _menuClipboard.x+=_menuClipboard.width/8;
-        if(_menuLevel.animation){
+    } if(_clipboard.on&&!_clipboard.close){
+      _menuLevel.on=false;
+      _menuSetting.on=false;
+      _menuAbout.on=false;
+      if(_clipboard.x>-280*scale&&_clipboard.on){
+          _clipboard.x-=20*scale;
+          _clipboardBack.x-=20*scale;
+        } if(_clipboard.x<=-280*scale){
+          _clipboard.on=false;
+          _menuLevel.animation=false;
+          _menuSetting.animation=false;
+          _menuAbout.animation=false;
 
-        } if(_menuSetting.animation){
-
-        } if(_menuAbout.animation){
-
+          if(_menuLevel.lateanimation){ _menuLevel.animation=true; _menuLevel.lateanimation=false; }
+          if(_menuSetting.lateanimation){ _menuSetting.animation=true; _menuSetting.lateanimation=false; }
+          if(_menuAbout.lateanimation){ _menuAbout.animation=true; _menuAbout.lateanimation=false; }
+        } if(!_clipboard.on){
+          if(_clipboard.x<25*scale){
+          _clipboard.x+=20*scale;
+          _clipboardBack.x+=20*scale;
+          } else if(_clipboard.x>=25*scale){
+            if(_menuLevel.animation){ _menuLevel.animation=false; _clipboard.on=true; canClick=true; _menuLevel.on=true; }
+            if(_menuSetting.animation){ _menuSetting.animation=false; _clipboard.on=true; canClick=true; _menuSetting.on=true; }
+            if(_menuAbout.animation){ _menuAbout.animation=false; _clipboard.on=true; canClick=true; _menuAbout.on=true; }
+          }
         }
-      } else if(_menuClipboard.x>=_menuClipboard.width/8){
-        if(_menuLevel.animation){ _menuLevel.animation=false; _menuLevel.on=true; _menuClipboard.on=true; }
-        if(_menuSetting.animation){ _menuSetting.animation=false; _menuSetting.on=true; _menuClipboard.on=true; }
-        if(_menuAbout.animation){ _menuAbout.animation=false; _menuAbout.on=true; _menuClipboard.on=true; }
-      }
-    } else if(_menuClipboard.on&&shouldClose){
-      if(_menuClipboard.x>-_menuClipboard.width*1.5){
-        _menuClipboard.x-=_menuClipboard.width/8;
-        if(_menuLevel.animation){
-
-        } if(_menuSetting.animation){
-
-        } if(_menuAbout.animation){
-
-        }
-      } else if(_menuClipboard.x<=-_menuClipboard.width*1.5){
-        if(_menuLevel.animation){ _menuLevel.animation=false; _menuLevel.on=false; _menuClipboard.on=false; shouldClose=false; }
-        if(_menuSetting.animation){ _menuSetting.animation=false; _menuSetting.on=false; _menuClipboard.on=false; shouldClose=false; }
-        if(_menuAbout.animation){ _menuAbout.animation=false; _menuAbout.on=false; _menuClipboard.on=false; shouldClose=false; }
+      } if(!_clipboard.on&&!_clipboard.close){
+      if(_clipboard.x<25*scale){
+        _clipboard.x+=20*scale;
+        _clipboardBack.x+=20*scale;
+      } else if(_clipboard.x>=25*scale){
+        if(_menuLevel.animation){ _menuLevel.animation=false; _menuLevel.on=true; _clipboard.on=true; canClick=true; }
+        if(_menuSetting.animation){ _menuSetting.animation=false; _menuSetting.on=true; _clipboard.on=true; canClick=true; }
+        if(_menuAbout.animation){ _menuAbout.animation=false; _menuAbout.on=true; _clipboard.on=true; canClick=true; }
       }
     }
   }

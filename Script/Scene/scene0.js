@@ -14,5 +14,6 @@ scene0=function(){
   animateloading();
   if(nextScene!=scene){
     scene=nextScene;
+    sceneTimer=0;
   }
 }

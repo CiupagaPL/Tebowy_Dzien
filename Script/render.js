@@ -36,6 +36,9 @@ window.updateValue=function(){
   _background.width=_currentResolution.width;
   _background.height=_currentResolution.height;
 
+  _change.width=_currentResolution.width;
+  _change.height=_currentResolution.height;
+
   _versionText.x=32*scale;
   _versionText.y=48*scale;
   _versionText.size=Math.ceil(36*scale);
@@ -72,6 +75,14 @@ window.updateValue=function(){
   _menuLevelText.y=_menuLevel.y+24*scale;
   _menuLevelText.size=Math.ceil(24*scale);
   _menuLevelText.debug=_menuLevelText.size+"px "+_menuLevelText.font;
+  _menuMenu.width=32*scale;
+  _menuMenu.height=32*scale;
+  _menuMenu.x=_render.width/2-_menuStart.width/2-32*scale;
+  _menuMenu.y=_render.height-128*scale;
+  _menuMenuText.x=_menuLevelText.x;
+  _menuMenuText.y=_menuLevelText.y;
+  _menuMenuText.size=Math.ceil(24*scale);
+  _menuMenuText.debug=_menuMenuText.size+"px "+_menuMenuText.font;
   _menuSetting.width=32*scale;
   _menuSetting.height=32*scale;
   _menuSetting.x=_render.width/2-_menuStart.width/2+32*scale;
@@ -174,6 +185,16 @@ window.updateValue=function(){
   _clipboardAbout1.y=_clipboard.y+68*scale;
   _clipboardAbout1.size=Math.ceil(12*scale);
   _clipboardAbout1.debug=_clipboardAbout1.size+"px "+_clipboardAbout1.font;
+
+  _gamePause.width=16*scale;
+  _gamePause.height=16*scale;
+  _gamePause.x=4*scale;
+  _gamePause.y=4*scale;
+
+  _player.width=48*scale;
+  _player.height=81*scale;
+  _player.x=_render.width/2-_player.width/2;
+  _player.y=_render.height/2-_player.height/2;
 }
 
 // window.defaultValue=function(){

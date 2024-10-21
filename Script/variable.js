@@ -10,9 +10,10 @@
 
 let resolutionError=false,ratio=16/9,scale=1.00;
 let fpsLimit=60,lastFrame=0;
-let canStart=false,canClick=true;
-let scene=0,sceneTimer=0,nextScene=0;
+let canStart=false,canClick=true,changeScene=false;
+let scene=0,sceneTimer=0,changeTimer=0,nextScene=0;
 let sfxOn=true,musicOn=false,fullscreenOn=false;
+let pauseOn=false,pauseChange=false,pauseAnimation=false;
 
 let _html=document.getElementById("html");
 
@@ -50,8 +51,7 @@ let _render={
 let _context=_render.base.getContext("2d");
 
 let _background={
-  width:_currentResolution.width,
-  height:_currentResolution.height,
+  width:640,height:360,
 
   x:0,y:0,
 
@@ -65,8 +65,19 @@ let _background={
   color7:"#601373",
 };
 
+let _change={
+  width:640,height:360,
+
+  x:0,y:0,
+
+  img1:new Image(),
+  img2:new Image(),
+  img3:new Image(),
+  img4:new Image()
+}
+
 let _versionText={
-  value:"Test 3",
+  value:"Test 4",
 
   size:36,
   on:false,
@@ -147,6 +158,26 @@ let _menuLevel={
 };
 let _menuLevelText={
   value:"Poziomy",
+
+  size:24,
+  font:"orangeKid",
+  debug:"",
+  color:"white",
+
+  x:0,y:0,
+};
+let _menuMenu={
+  width:32,height:32,
+
+  x:0,y:0,
+
+  hover:false,
+
+  img:new Image(),
+  imgOn:new Image(),
+};
+let _menuMenuText={
+  value:"Menu",
 
   size:24,
   font:"orangeKid",
@@ -377,9 +408,33 @@ let _clipboardAbout1={
   x:0,y:0,
 };
 
+let _gamePause={
+  width:16,height:16,
+
+  x:0,y:0,
+
+  hover:false,
+
+  img:new Image(),
+  imgOn:new Image(),
+};
+
+let _player={
+  width:32,height:54,
+
+  x:0,y:0,
+
+  img:new Image(),
+};
+
 _audio.load1.load();
 _audio.load2.load();
 _audio.load3.load();
+
+_change.img1.src="Source/UI/Transition/1.png";
+_change.img2.src="Source/UI/Transition/2.png";
+_change.img3.src="Source/UI/Transition/3.png";
+_change.img4.src="Source/UI/Transition/4.png";
 
 _startTEB.img0.src="Source/TEB/teb0.png";
 _startTEB.img1.src="Source/TEB/teb1.png";
@@ -394,6 +449,8 @@ _menuTitle.img.src="Source/title.png";
 
 _menuStart.img.src="Source/UI/Button/start.png";
 _menuStart.imgOn.src="Source/UI/Button/startOn.png";
+_menuMenu.img.src="Source/UI/Button/menu.png";
+_menuMenu.imgOn.src="Source/UI/Button/menuOn.png";
 _menuLevel.img.src="Source/UI/Button/level.png";
 _menuLevel.imgOn.src="Source/UI/Button/levelOn.png";
 _menuSetting.img.src="Source/UI/Button/setting.png";
@@ -420,3 +477,8 @@ _clipboardSetting2.img.src="Source/UI/O.png";
 _clipboardSetting2.imgOn.src="Source/UI/X.png";
 _clipboardSetting3.img.src="Source/UI/O.png";
 _clipboardSetting3.imgOn.src="Source/UI/X.png";
+
+_gamePause.img.src="Source/UI/Button/pause.png";
+_gamePause.imgOn.src="Source/UI/Button/pauseOn.png";
+
+_player.img.src="Source/Player/test.png";

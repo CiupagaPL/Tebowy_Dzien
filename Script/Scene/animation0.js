@@ -13,7 +13,6 @@ animateloading=function(){
     if(sceneTimer<=15){
       _context.fillStyle=_background.color0;
       _context.fillRect(_background.x,_background.y,_background.width,_background.height);
-
       _html.style.backgroundColor=_background.color0;
 
       _context.drawShortImage(_startTEB.img0,_startTEB);
@@ -101,6 +100,6 @@ animateloading=function(){
       _context.drawShortImage(_startTEB.img7,_startTEB);
 
       _audio.load2.play();
-    } if(sceneTimer>70){ nextScene=1; sceneTimer=0; _audio.load3.play(); }
+    } if(sceneTimer>70){ nextScene=1; _audio.load3.play(); }
   }
 }

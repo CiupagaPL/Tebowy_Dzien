@@ -38,6 +38,7 @@ scene1=function(){
 
   _context.fillStyle=_background.color6;
   _context.fillRect(_background.x,_background.y,_background.width,_background.height);
+  _html.style.backgroundColor=_background.color6;
 
   _context.drawShortImage(_menuTitle.img,_menuTitle);
 
@@ -92,5 +93,9 @@ scene1=function(){
     _context.fillSingleText(_clipboardAboutText);
 
     _context.fillMultiText(_clipboardAbout1);
+  }
+
+  if(changeScene){
+    transitionOn();
   }
 }

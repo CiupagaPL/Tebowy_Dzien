@@ -2,19 +2,20 @@
 # TEBOWY DZIEŃ
 
 ## Zmiany
-- Przeprogramowałem animacje dwustronne,
-- Dodałem obsługę kilkuliniowych tekstów,
-- Utworzyłem funkcje mające na celu ułatwić dalszą pracę (i znacznie skrócić kod),
-- Dodałem obsługę śledzenia jednego obiektu przez drugi w czasie rzeczywistym,
-- Dodałem opcję wyłączenia dźwięku, muzyki i włączenia pełnego ekranu (zmiana rozdzielczości dalej psuje wyświetlacz),
-- Dodałem drobny przycisk służący do zamykania okna bocznego,
-- Dodałem wybieracz poziomów, który pełną funkcjonalność otrzyma wkrótce,
-- Oraz dużo innych poprawek i dodatków.
-> Uwaga! Zmiana rozdzielczości ekranu jest niedopracowana i na 100% będzie zbugowana O.o
+- Od teraz spamienie w przyciski nie powinno ich zepsuć,
+- Dodałem przejście między poziomami,
+- Dodałem możliwość zapauzowania gry z elementami z menu,
+- Dodałem przycisk menu pozwalający do niego powrócić,
+- Naprawiłem błędy międzyscenowe z przyciskami,
+- Utworzyłem schemat kodu każdego poziomu,
+- Od teraz przycisk zmieniające scenę minimalizują najpierw panel boczny,
+- Kontynuowałem wczorajsze skracanie kodu,
+- Oraz wprowadziłem kilka mniejszych poprawek.
+> Uwaga! Zmiana rozdzielczości ekranu jest niedopracowana i na 100% będzie zbugowana O.o (naprawię to gdy ukończę pracę nad scenami)
 
 ## Status
-> Newest Version: **Test 3**;
-> Last Updated: **20-10-2024**;
+> Newest Version: **Test 4**;
+> Last Updated: **21-10-2024**;
 
 ## License
 For now this project doesn't have any license.
@@ -23,19 +24,8 @@ Again for this project I'm using [Orange Kid](https://www.1001fonts.com/orange-k
 ## Have a Nice and Happy Day!
 - Ciupaga >_o
 
-## PS.
-Dzięki za miłe słowa :- )
-Dzisiaj trochę mniejsza aktualizacja jako iż dużo czasu mnie nie było w domu i musiałem przepisać kod paru rzeczy.
-Jutro skupię się na przejściach między poziomami i zacznę pracę nad graczem i grawitacją.
-
-## SUGESTIE
-Międzi poziomami warto zrobić scenę dzięki ktorej gracz dowie się kilka informacji o swoim przeciwniku jakimś nauczycielu który będzie na planszy myślę ze max 2 do 3 nauczycieli na poziom. 
-Dodatkowo przygotujemy w plikach png postaci nauczycieli. Napisz mi proszę w jakich rozmiarach w pixelach mają być pliki. Postać będzie wpisana w kwadrat lub prostokąt tylko potrzebuję wymiary tej grafiki.
-
-Pomyślalem, też o takiej funkcjonalności że każdy nauczyciel zadaje 20pkt obrażeń (i jest informacja "-20 pkt do zachowania!") Na końcu na ostatnim poziomie będzie przeciwnikiem dyrekcja i wtedy obrażenia wynoszą -50pkt do zachowania. Pani Dyrektor zadaje -100pkt do zachowania :)
-
-## Have a Nice and Happy Day!
-- Tom2edu :D
-
-## Opisy nauczycieli
-- w katalogu głównym wgrałem opisy nauczycieli w dokumencie pdf do wykorzystania w grze.
+## Dzisiejsza Notka
+Bardzo podoba mi się pomysł z punktami ujemnymi i napewno go wykorzystamy :- )
+Sprite'y gracza i nauczycieli powinny wynosić 32x54 (zeskalowane przez grę do 48x81), rozmiar ten ukazany jest na przykładowym ludziku w grze (przypominam tylko że gra symulowana jest w oknie 640x360).
+Plik z opisem nauczycieli już sobie zapisałem.
+Jeżeli chodzi o sam motyw oraz koncept gry dogadamy się jutro na zajęciach (i wymienimy się wspólnymi pomysłami).

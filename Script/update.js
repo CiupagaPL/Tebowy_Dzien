@@ -67,7 +67,7 @@ window.loop=function(){
       scene1();
       break;
     case 2:
-      level1();
+      level();
       break;
   }
 

@@ -9,6 +9,7 @@
 - Można zagrać w każdy poziom (*o ile wszystkie są identyczne*),
 - Platformy mają od teraz swoją teksturę (*oczywiście kolce i rogi również*),
 - Kontynuowałem dalszą pracę nad kolcami oraz napisałem pełen generator rogów,
+- Gracz otrzymuje pojedyncze obrażenie i nie przegrywa od razu,
 - Poprawiłem generator platform (w trakcie generowania powstawało ok. 50 platform dolnych),
 - Oraz naprawiłem dużo błędów logicznych w kodzie.
 > Oczywiście dalej będą występować pojedyncze błędy

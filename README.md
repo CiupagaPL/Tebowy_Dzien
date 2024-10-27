@@ -2,24 +2,17 @@
 # TEBOWY DZIEŃ
 
 ## Zmiany
-- Dokonałem wielu zmian w html i css,
-- Dodałem tekst podczas ładowania,
-- Dodałem obramkę dla informacyjnych tekstów,
-- Naprawiłem odwieczny błąd przez który zmiana rozdzielczości psuła skalę,
-- Od teraz wielkości w css są regulowane przez skrypty ładujące,
-- Gracz ma możliwość obrotu w lewo i prawo (*sprite'm*),
-- Od teraz przyciski zamiast do animacji wstępnej od razu przenoszą do menu,
-- Naprawiłem wiele błędów związanych z UI,
-- Od teraz gra zapauzowywuje się gdy jest ukryta,
-- Dodałem muzykę do menu i gry (**specjalne podziękowania i pozdrowienia dla ekipy dźwiękowej**),
-- Naprawiłem wartość wyświetlaną przez przycisk fullscreen,
-- Poprawiłem generator platform by opierał się o cały ekran,
-- Naprawiłem generator kolców (*jeszcze nie dokończony*),
-- Oraz dodałem i poprawiłem kilka drobnostek.
+- Dodałem efekty dźwiękowe (**ponownie specjalne pozdrowienia dla was chłopaki**),
+- Dodałem możliwość zmiany głośności dźwięku/muzyki,
+- Przepracowałem gracza i wszystkie zmienne go opisujące,
+- Zmieniłem obiekty kolizyjne i naprawiłem zepsutą grawitację postaci,
+- Dokończyłem generator kolców oraz przygotowałem go pod różne poziomy trudności,
+- Stworzyłem lasery, ich pełen generator oraz wiadomo ich źródło ataku,
+- Oraz zacząłem przygotowywać kod na rework walki z nauczycielem.
 
 ## Status
-> Newest Version: **Test 9**;
-> Last Updated: **26-10-2024**;
+> Newest Version: **Test 10**;
+> Last Updated: **27-10-2024**;
 
 ## License
 For now this project doesn't have any license.
@@ -29,6 +22,7 @@ Again for this project I'm using [Orange Kid](https://www.1001fonts.com/orange-k
 - Ciupaga >_o
 
 ## Dzisiejsza Notka
-Nic dodać nic ująć :- )
-
-Simple text here.
+Generatory wszystkich obiektów są przygotowane pod zmienne wartości w trakcie gry.
+Moim pomysłem byłoby aby każdy poziom rozpoczynał się podobnie i wraz z każdym etapem stawał się po woli trudniejszy.
+Oczywiście obecne ustawienie jest jedym z trudniejszych.
+Jeżeli chodzi o bossa mam już w miarę opracowany plan i pomysł dlatego zabieram się jutro do pracy.

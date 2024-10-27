@@ -30,7 +30,7 @@ drawplayer=function(){
       if(skin==1&&_player.left){ _context.drawShortImage(_player.img1left,_player); }
       if(skin==2&&_player.left){ _context.drawShortImage(_player.img2left,_player); }
       if(skin==3&&_player.left){ _context.drawShortImage(_player.img3left,_player); }
-    } if(_player.invisible>=60){
+    } if(_player.invisible>=_player.max){
       _player.invisible=0;
     }
   }

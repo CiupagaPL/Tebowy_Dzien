@@ -39,6 +39,13 @@ let _audio={
   load1:new Audio("Source/Sound/load1.mp3"),
   load2:new Audio("Source/Sound/load2.mp3"),
   load3:new Audio("Source/Sound/load3.mp3"),
+
+  click:new Audio("Source/Sound/click.wav"),
+  die:new Audio("Source/Sound/die.wav"),
+  hit:new Audio("Source/Sound/hit.wav"),
+  jump:new Audio("Source/Sound/jump.wav"),
+  laser:new Audio("Source/Sound/laser.wav"),
+  paper:new Audio("Source/Sound/paper.wav"),
 };
 
 let _mouse={
@@ -67,7 +74,7 @@ let _keyState={
   right:false,
 };
 
-let _currentPlatform,_currentSpike,_currentCorner;
+let _currentPlatform,_currentSpike,_currentCorner,_currentLaser,_currentLight;
 
 let _background={
   width:640,height:360,
@@ -94,7 +101,7 @@ let _change={
 }
 
 let _versionText={
-  value:"Test 9",
+  value:"Test 10",
 
   size:36,
   on:false,
@@ -583,16 +590,16 @@ let _player={
 
   gravity:0.5,
   fallentimer:0,
-  checkTimer:0,
   upTimer:0,
   invisible:0,
+  max:90,
 
   touched:false,
-  stay:false,
+  active:false,
   grounded:false,
-  checked:false,
   jumped:false,
   left:false,
+  fly:false,
 
   img0:new Image(),
   img1:new Image(),
@@ -604,46 +611,24 @@ let _player={
   img3left:new Image(),
 };
 let _playerTop={
-  w:24,h:12,
+  w:40,h:4,
 
   x:0,y:0,
-
-  color:"green",
 };
 let _playerBottom={
-  w:24,h:12,
+  w:40,h:4,
 
   x:0,y:0,
-
-  color:"green",
 };
 let _playerLeft={
-  w:12,h:105,
+  w:4,h:69,
 
   x:0,y:0,
-
-  color:"red",
 };
 let _playerRight={
-  w:12,h:105,
+  w:4,h:69,
 
   x:0,y:0,
-
-  color:"red",
-};
-let _playerCheckTop={
-  w:24,h:24,
-
-  x:0,y:0,
-
-  color:"blue",
-};
-let _playerCheckBottom={
-  w:24,h:24,
-
-  x:0,y:0,
-
-  color:"white",
 };
 
 let _platform={
@@ -682,6 +667,37 @@ let _corner={
   img1:new Image(),
 };
 
+let _laser={
+  array:[],
+
+  w:12,h:12,
+
+  x:0,y:0,
+
+  lenght:-1,
+  currentlenght:0,
+  timer:0,
+  max:60,
+
+  left:false,
+
+  img0:new Image(),
+  img1:new Image(),
+};
+
+let _light={
+  array:[],
+
+  w:120,h:6,
+
+  x:0,y:0,
+
+  lenght:-1,
+  currentlenght:0,
+
+  color:"white",
+};
+
 let _spike={
   array:[],
 
@@ -692,10 +708,9 @@ let _spike={
   lenght:-1,
   currentlenght:0,
   random:0,
-  count:3,
-  currentcount:0,
-  first:0,
-  second:0,
+
+  checked:false,
+  detected:false,
   
   img:new Image(),
 };
@@ -733,6 +748,24 @@ _audio.game.volume=0.25;
 _audio.load1.load();
 _audio.load2.load();
 _audio.load3.load();
+
+_audio.load1.volume=1;
+_audio.load2.volume=1;
+_audio.load3.volume=1;
+
+_audio.click.load();
+_audio.die.load();
+_audio.hit.load();
+_audio.jump.load();
+_audio.laser.load();
+_audio.paper.load();
+
+_audio.click.volume=1;
+_audio.die.volume=0.25;
+_audio.hit.volume=0.25;
+_audio.jump.volume=0.5;
+_audio.laser.volume=0.25;
+_audio.paper.volume=0.25;
 
 _background.img0.src="Source/Object/background.png";
 _background.img1.src="Source/Object/gameground.png";
@@ -817,6 +850,9 @@ _platform.img.src="Source/Object/platform.png";
 
 _corner.img0.src="Source/Object/Corner/left.png";
 _corner.img1.src="Source/Object/Corner/right.png";
+
+_laser.img0.src="Source/Object/Laser/left.png";
+_laser.img1.src="Source/Object/Laser/right.png";
 
 _spike.img.src="Source/Object/spike.png";
 

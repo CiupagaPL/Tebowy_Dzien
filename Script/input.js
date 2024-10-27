@@ -41,7 +41,7 @@ document.addEventListener("keyup",function(_event){
       break;
     case 1:
       if(_event.key=="Enter"&&canClick){
-        console.log(_blueprint.on);
+        if(sfxOn){ _audio.click.load(); _audio.click.play(); }
         if(_clipboard.on){
         autoScene=true;
         nextAutoScene=2;
@@ -70,7 +70,8 @@ document.addEventListener("keyup",function(_event){
           changeScene=true;
         }
       }
-      if(_event.key=="Escape"&&canClick&&_clipboard.on||_event.key=="Escape"&&canClick&&_blueprint.on){
+      if(_event.key=="Escape"&&canClick&&_clipboard.on||_event.key=="Escape"&&canClick&&_blueprint.on){ 
+        if(sfxOn){ _audio.click.load(); _audio.click.play(); }
         if(_clipboard.on){ _clipboard.close=true; }
         if(_blueprint.on){ _blueprint.close=true; }
         if(_menuLevel.on){ _menuLevel.animation=true; }
@@ -89,6 +90,7 @@ document.addEventListener("keyup",function(_event){
     case 8:
     case 9:
       if(_event.key=="Escape"&&canClick&&pauseOn){
+        if(sfxOn){ _audio.click.load(); _audio.click.play(); }
         if(_clipboard.on){
           autoUnpause=true;
           if(_menuSetting.on){
@@ -105,8 +107,11 @@ document.addEventListener("keyup",function(_event){
           canClick=false;
         }
       }
-      if(_event.key=="Escape"&&canClick&&!pauseOn){ pauseOn=true; pauseChange=true; }
-      if(!pauseOn&&hp!=0){
+      if(_event.key=="Escape"&&canClick&&!pauseOn){
+        if(sfxOn){ _audio.click.load(); _audio.click.play(); }
+        pauseOn=true;
+        pauseChange=true;
+      } if(!pauseOn&&hp!=0){
         if(_event.key=="a"||_event.key=="ArrowLeft"){
           _keyState.a=_keyState.left=false;
           if(!_keyState.d&&!_keyState.right){
@@ -125,7 +130,11 @@ document.addEventListener("keyup",function(_event){
           }
         }
       }
-      if(_event.key==" "&&!pauseOn&&hp!=0&&_player.grounded||_event.key=="ArrowUp"&&!pauseOn&&hp!=0&&_player.grounded){ _player.jumped=true; _player.vy=_player.initialvy; }
+      if(_event.key==" "&&!pauseOn&&hp!=0&&_player.grounded||_event.key=="ArrowUp"&&!pauseOn&&hp!=0&&_player.grounded){
+        _player.jumped=true;
+        _player.vy=_player.initialvy;
+        if(sfxOn){ _audio.jump.load(); _audio.jump.play(); }
+      }
       break;
   }
 });
@@ -160,24 +169,29 @@ document.addEventListener("mousemove",function(_event){
 
 window.addEventListener("click",function(_event){
   if(window.detectcollision(_menuLevel,_mouse)&&_menuLevel.on&&canClick){
+    if(sfxOn){ _audio.click.load(); _audio.click.play(); }
     _clipboard.close=true;
     _menuLevel.animation=true;
     canClick=false;
   } if(window.detectcollision(_menuSetting,_mouse)&&_menuSetting.on&&canClick){
+    if(sfxOn){ _audio.click.load(); _audio.click.play(); }
     _clipboard.close=true;
     _menuSetting.animation=true;
     canClick=false;
   } if(window.detectcollision(_menuAbout,_mouse)&&_menuAbout.on&&canClick){
+    if(sfxOn){ _audio.click.load(); _audio.click.play(); }
     _clipboard.close=true;
     _menuAbout.animation=true;
     canClick=false;
   } if(window.detectcollision(_menuCustom,_mouse)&&_menuCustom.on&&canClick){
+    if(sfxOn){ _audio.click.load(); _audio.click.play(); }
     _blueprint.close=true;
     _menuCustom.animation=true;
     canClick=false;
   }
 
   if(window.detectcollision(_menuStart,_mouse)&&canClick&&scene==1){
+    if(sfxOn){ _audio.click.load(); _audio.click.play(); }
     if(_clipboard.on){
       autoScene=true;
       nextAutoScene=2;
@@ -206,6 +220,7 @@ window.addEventListener("click",function(_event){
       changeScene=true;
     }
   } if(window.detectcollision(_menuLevel,_mouse)&&canClick&&scene==1){
+    if(sfxOn){ _audio.click.load(); _audio.click.play(); }
     if(!_menuSetting.on&&!_menuAbout.on){ _menuLevel.animation=true; }
     else if(_menuSetting.on||_menuAbout.on){
       _menuLevel.lateanimation=true;
@@ -214,6 +229,7 @@ window.addEventListener("click",function(_event){
     }
     canClick=false;
   } if(window.detectcollision(_menuSetting,_mouse)&&scene==1&&canClick||window.detectcollision(_menuSetting,_mouse)&&scene!=1&&scene!=0&&canClick&&pauseOn){
+    if(sfxOn){ _audio.click.load(); _audio.click.play(); }
     if(!_menuLevel.on&&!_menuAbout.on){ _menuSetting.animation=true; }
     else if(_menuLevel.on||_menuAbout.on){
       _menuSetting.lateanimation=true;
@@ -222,6 +238,7 @@ window.addEventListener("click",function(_event){
     }
     canClick=false;
   } if(window.detectcollision(_menuAbout,_mouse)&&canClick&&scene==1||window.detectcollision(_menuAbout,_mouse)&&scene!=1&&scene!=0&&canClick&&pauseOn){
+    if(sfxOn){ _audio.click.load(); _audio.click.play(); }
     if(!_menuLevel.on&&!_menuSetting.on){ _menuAbout.animation=true; }
     else if(_menuLevel.on||_menuSetting.on){
       _menuAbout.lateanimation=true;
@@ -230,6 +247,7 @@ window.addEventListener("click",function(_event){
     }
     canClick=false;
   } if(window.detectcollision(_menuCustom,_mouse)&&canClick&&scene==1){
+    if(sfxOn){ _audio.click.load(); _audio.click.play(); }
     if(!_menuCustom.on&&!_menuCustom.on){ _menuCustom.animation=true; }
     else if(_menuCustom.on){
       _menuCustom.lateanimation=true;
@@ -239,6 +257,7 @@ window.addEventListener("click",function(_event){
   }
 
   if(window.detectcollision(_clipboardBack,_mouse)){
+    if(sfxOn){ _audio.paper.load(); _audio.paper.play(); }
     _clipboard.close=true;
     if(_menuLevel.on){ _menuLevel.animation=true; }
     if(_menuSetting.on){ _menuSetting.animation=true; }
@@ -247,16 +266,20 @@ window.addEventListener("click",function(_event){
   }
 
   if(window.detectcollision(_blueprintBack,_mouse)){
+    if(sfxOn){ _audio.paper.load(); _audio.paper.play(); }
     _blueprint.close=true;
     _menuCustom.animation=true;
     canClick=false;
   } if(window.detectcollision(_blueprintLeft,_mouse)&&canClick){
+    if(sfxOn){ _audio.paper.load(); _audio.paper.play(); }
     if(skin>0){ skin--; }
   } if(window.detectcollision(_blueprintRight,_mouse)&&canClick){
+    if(sfxOn){ _audio.paper.load(); _audio.paper.play(); }
     if(skin<3){ skin++; }
   }
 
   if(window.detectcollision(_clipboardLevel1,_mouse)&&_menuLevel.on){
+    if(sfxOn){ _audio.paper.load(); _audio.paper.play(); }
     autoScene=true;
     nextAutoScene=2;
     if(_clipboard.on){
@@ -279,6 +302,7 @@ window.addEventListener("click",function(_event){
       canClick=false;
     }
   } if(window.detectcollision(_clipboardLevel2,_mouse)&&_menuLevel.on){
+    if(sfxOn){ _audio.paper.load(); _audio.paper.play(); }
     autoScene=true;
     nextAutoScene=3;
     if(_clipboard.on){
@@ -301,6 +325,7 @@ window.addEventListener("click",function(_event){
       canClick=false;
     }
   } if(window.detectcollision(_clipboardLevel3,_mouse)&&_menuLevel.on){
+    if(sfxOn){ _audio.paper.load(); _audio.paper.play(); }
     autoScene=true;
     nextAutoScene=4;
     if(_clipboard.on){
@@ -323,6 +348,7 @@ window.addEventListener("click",function(_event){
       canClick=false;
     }
   } if(window.detectcollision(_clipboardLevel4,_mouse)&&_menuLevel.on){
+    if(sfxOn){ _audio.paper.load(); _audio.paper.play(); }
     autoScene=true;
     nextAutoScene=5;
     if(_clipboard.on){
@@ -345,6 +371,7 @@ window.addEventListener("click",function(_event){
       canClick=false;
     }
   } if(window.detectcollision(_clipboardLevel5,_mouse)&&_menuLevel.on){
+    if(sfxOn){ _audio.paper.load(); _audio.paper.play(); }
     autoScene=true;
     nextAutoScene=6;
     if(_clipboard.on){
@@ -367,6 +394,7 @@ window.addEventListener("click",function(_event){
       canClick=false;
     }
   } if(window.detectcollision(_clipboardLevel6,_mouse)&&_menuLevel.on){
+    if(sfxOn){ _audio.paper.load(); _audio.paper.play(); }
     autoScene=true;
     nextAutoScene=7;
     if(_clipboard.on){
@@ -389,6 +417,7 @@ window.addEventListener("click",function(_event){
       canClick=false;
     }
   } if(window.detectcollision(_clipboardLevel7,_mouse)&&_menuLevel.on){
+    if(sfxOn){ _audio.paper.load(); _audio.paper.play(); }
     autoScene=true;
     nextAutoScene=8;
     if(_clipboard.on){
@@ -411,6 +440,7 @@ window.addEventListener("click",function(_event){
       canClick=false;
     }
   } if(window.detectcollision(_clipboardLevel8,_mouse)&&_menuLevel.on){
+    if(sfxOn){ _audio.paper.load(); _audio.paper.play(); }
     autoScene=true;
     nextAutoScene=9;
     if(_clipboard.on){
@@ -436,19 +466,23 @@ window.addEventListener("click",function(_event){
 
   if(window.detectcollision(_clipboardSetting1,_mouse)&&_menuSetting.on){
     if(sfxOn){ sfxOn=false; }
-    else if(!sfxOn){ sfxOn=true; }
+    else if(!sfxOn){ sfxOn=true; _audio.paper.load(); _audio.paper.play(); }
   } if(window.detectcollision(_clipboardSetting2,_mouse)&&_menuSetting.on){
+    if(sfxOn){ _audio.paper.load(); _audio.paper.play(); }
     if(musicOn){ musicOn=false; }
     else if(!musicOn){ musicOn=true; }
   } if(window.detectcollision(_clipboardSetting3,_mouse)&&_menuSetting.on){
+    if(sfxOn){ _audio.paper.load(); _audio.paper.play(); }
     if(fullscreenOn){ fullscreenOn=false; document.exitFullscreen(); }
     else if(!fullscreenOn){ fullscreenOn=true; document.documentElement.requestFullscreen(); }
   }
 
   if(window.detectcollision(_gamePause,_mouse)&&canClick&&!pauseOn){
+    if(sfxOn){ _audio.click.load(); _audio.click.play(); }
     pauseOn=true;
     pauseChange=true;
   } if(window.detectcollision(_menuStart,_mouse)&&canClick&&scene!=1&&scene!=0&&pauseOn){
+    if(sfxOn){ _audio.click.load(); _audio.click.play(); }
     if(_clipboard.on){
       autoUnpause=true;
       if(_menuSetting.on){
@@ -465,6 +499,7 @@ window.addEventListener("click",function(_event){
       canClick=false;
     }
   } if(window.detectcollision(_menuMenu,_mouse)&&canClick&&pauseOn&&scene!=1&&scene!=0){
+    if(sfxOn){ _audio.click.load(); _audio.click.play(); }
     if(_clipboard.on){
       autoScene=true;
       nextAutoScene=1;

@@ -41,7 +41,7 @@ level=function(){
 
   handlePlayer();
 
-  if(score==24){ handleBoss(); }
+  // if(score==24){ handleBoss(); }
 
   _context.fillShortRect(_gameUI.color,_gameUI);
   _gameLevel.value="Poziom: "+Number(scene-1)+"-"+round;
@@ -61,7 +61,7 @@ level=function(){
   if(hp<=4){ _context.drawShortImage(_gameHP3.img2,_gameHP3); }
   _context.drawShortImage(_gamePause.img,_gamePause);
 
-  if(hp==0){ dead=true; }
+  if(hp==0){ dead=true; _audio.die.play(); }
   if(dead){
     if(hp==0){
       transitiondead();

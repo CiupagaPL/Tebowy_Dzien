@@ -30,3 +30,4 @@ Again for this project I'm using [Orange Kid](https://www.1001fonts.com/orange-k
 
 ## Dzisiejsza Notka
 Nic dodać nic ująć :- )
+Simple text here.

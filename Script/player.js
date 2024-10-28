@@ -99,7 +99,7 @@ handlePlayer=function(){
 
     if(!pauseOn&&hp!=0){ _laser.timer=_laser.timer+1/_laser.lenght; }
 
-    if(_laser.timer>=_laser.max&&_laser.timer<_laser.max+3&&!pauseOn&&hp!=0&&sfxOn){ _audio.laser.play(); }
+    if(_laser.timer>=_laser.max&&_laser.timer<_laser.max+3&&!pauseOn&&hp!=0&&sfxOn&&!boss&&!defeat){ _audio.laser.play(); }
     if(_laser.timer>=_laser.max+20){ _laser.timer=0; }
 
     _laser.currentlenght+=1;

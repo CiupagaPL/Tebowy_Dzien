@@ -26,3 +26,4 @@ Generatory wszystkich obiektów są przygotowane pod zmienne wartości w trakcie
 Moim pomysłem byłoby aby każdy poziom rozpoczynał się podobnie i wraz z każdym etapem stawał się po woli trudniejszy.
 Oczywiście obecne ustawienie jest jedym z trudniejszych.
 Jeżeli chodzi o bossa mam już w miarę opracowany plan i pomysł dlatego zabieram się jutro do pracy.
+C 🔥

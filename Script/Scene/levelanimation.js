@@ -93,127 +93,31 @@ drawattack=function(_object){
 
 drawboss=function(){
   if(_boss.invisible==0||bossHp==0){
-    if(_boss.left){
-      _context.drawShortImage(_boss.img1,_boss);
-    } else if(!_boss.left){
-      _context.drawShortImage(_boss.img0,_boss);
-    }
+      if(scene==2){ _context.drawShortImage(_boss.img0,_boss); }
+      if(scene==3){ _context.drawShortImage(_boss.img1,_boss); }
+      if(scene==4){ _context.drawShortImage(_boss.img2,_boss); }
+      if(scene==5){ _context.drawShortImage(_boss.img3,_boss); }
+      if(scene==6){ _context.drawShortImage(_boss.img4,_boss); }
+      if(scene==7){ _context.drawShortImage(_boss.img0,_boss); }
+      if(scene==8){ _context.drawShortImage(_boss.img1,_boss); }
+      if(scene==9){ _context.drawShortImage(_boss.img2,_boss); }
+      if(scene==10){ _context.drawShortImage(_boss.img3,_boss); }
+      if(scene==11){ _context.drawShortImage(_boss.img4,_boss); }
   } if(_boss.invisible!=0){
     if(!pauseOn&&hp!=0){ _boss.invisible++; }
     if(_boss.invisible%2==0||pauseOn){
-      if(_boss.left){
-        _context.drawShortImage(_boss.img1,_boss);
-      } else if(!_boss.left){
-        _context.drawShortImage(_boss.img0,_boss);
-      }
+      if(scene==2){ _context.drawShortImage(_boss.img0,_boss); }
+      if(scene==3){ _context.drawShortImage(_boss.img1,_boss); }
+      if(scene==4){ _context.drawShortImage(_boss.img2,_boss); }
+      if(scene==5){ _context.drawShortImage(_boss.img3,_boss); }
+      if(scene==6){ _context.drawShortImage(_boss.img4,_boss); }
+      if(scene==7){ _context.drawShortImage(_boss.img0,_boss); }
+      if(scene==8){ _context.drawShortImage(_boss.img1,_boss); }
+      if(scene==9){ _context.drawShortImage(_boss.img2,_boss); }
+      if(scene==10){ _context.drawShortImage(_boss.img3,_boss); }
+      if(scene==11){ _context.drawShortImage(_boss.img4,_boss); }
     } if(_boss.invisible>=_boss.max){
       _boss.invisible=0;
-    }
-  }
-}
-
-drawcloud=function(){
-  if(_boss.left){
-    if(!_cloud.attack){ _context.drawShortImage(_cloud.img0,_cloud); }
-    else if(_cloud.attack){
-      if(!pauseOn&&hp!=0){ _cloud.timer++; }
-      if(_cloud.timer<15){ _context.drawShortImage(_cloud.img0,_cloud); }
-      if(_cloud.timer>=15&&_cloud.timer<30){ _context.drawShortImage(_cloud.img1,_cloud); }
-      if(_cloud.timer>=30&&_cloud.timer<145){ _context.drawShortImage(_cloud.img2,_cloud); }
-      if(_cloud.timer>=145&&_cloud.timer<160){ _context.drawShortImage(_cloud.img1,_cloud); }
-      if(_cloud.timer>=160){ _context.drawShortImage(_cloud.img0,_cloud); }
-
-      if(_cloud.timer==30){
-        if(sfxOn){ _audio.lightning.load(); _audio.lightning.play(); }
-        _lightning.y=_cloud.y+_cloud.height-8*scale;
-        _lightning.x=_cloud.width-16*scale+_cloud.x;
-        _lightning.unused=false;
-      } if(_cloud.timer==50){
-        if(sfxOn){ _audio.lightning.load(); _audio.lightning.play(); }
-        _lightning.y=_cloud.y+_cloud.height-8*scale;
-        _lightning.x=16*scale+_cloud.x;
-        _lightning.unused=false;
-      } if(_cloud.timer==110){
-        if(sfxOn){ _audio.lightning.load(); _audio.lightning.play(); }
-        _lightning.y=_cloud.y+_cloud.height-8*scale;
-        _lightning.x=16*scale+_cloud.x;
-        _lightning.unused=false;
-      } if(_cloud.timer==130){
-        if(sfxOn){ _audio.lightning.load(); _audio.lightning.play(); }
-        _lightning.y=_cloud.y+_cloud.height-8*scale;
-        _lightning.x=16*scale+_cloud.x;
-        _lightning.unused=false;
-      }
-
-      if(bossHp>0){
-        if(_cloud.timer>=30&&_cloud.timer<35){ _context.fillShortRect(_lightning.color1,_lightning); }
-        if(_cloud.timer>=35&&_cloud.timer<40){ _context.fillShortRect(_lightning.color0,_lightning); }
-        if(_cloud.timer>=40&&_cloud.timer<45){ _context.fillShortRect(_lightning.color1,_lightning); }
-        if(_cloud.timer>=45&&_cloud.timer<50){ _lightning.unused=true; }
-        if(_cloud.timer>=50&&_cloud.timer<55){ _context.fillShortRect(_lightning.color1,_lightning); }
-        if(_cloud.timer>=55&&_cloud.timer<60){ _context.fillShortRect(_lightning.color0,_lightning); }
-        if(_cloud.timer>=60&&_cloud.timer<65){ _context.fillShortRect(_lightning.color1,_lightning); }
-        if(_cloud.timer>=65&&_cloud.timer<110){ _lightning.unused=true; }
-        if(_cloud.timer>=110&&_cloud.timer<115){ _context.fillShortRect(_lightning.color1,_lightning); }
-        if(_cloud.timer>=115&&_cloud.timer<120){ _context.fillShortRect(_lightning.color0,_lightning); }
-        if(_cloud.timer>=120&&_cloud.timer<125){ _context.fillShortRect(_lightning.color1,_lightning); }
-        if(_cloud.timer>=125&&_cloud.timer<130){ _lightning.unused=true; }
-        if(_cloud.timer>=130&&_cloud.timer<135){ _context.fillShortRect(_lightning.color1,_lightning); }
-        if(_cloud.timer>=135&&_cloud.timer<140){ _context.fillShortRect(_lightning.color0,_lightning); }
-        if(_cloud.timer>=140&&_cloud.timer<145){ _context.fillShortRect(_lightning.color1,_lightning); }
-        if(_cloud.timer>=150){ _lightning.unused=true; }
-      }
-    }
-  } else if(!_boss.left){
-    if(!_cloud.attack){ _context.drawShortImage(_cloud.img0left,_cloud); }
-    else if(_cloud.attack){
-      if(!pauseOn&&hp!=0){ _cloud.timer++; }
-      if(_cloud.timer<15){ _context.drawShortImage(_cloud.img0left,_cloud); }
-      if(_cloud.timer>=15&&_cloud.timer<30){ _context.drawShortImage(_cloud.img1left,_cloud); }
-      if(_cloud.timer>=30&&_cloud.timer<145){ _context.drawShortImage(_cloud.img2left,_cloud); }
-      if(_cloud.timer>=145&&_cloud.timer<160){ _context.drawShortImage(_cloud.img1left,_cloud); }
-      if(_cloud.timer>=160){ _context.drawShortImage(_cloud.img0left,_cloud); }
-
-      if(_cloud.timer==30){
-        if(sfxOn){ _audio.lightning.load(); _audio.lightning.play(); }
-        _lightning.y=_cloud.y+_cloud.height-8*scale;
-        _lightning.x=16*scale+_cloud.x;
-        _lightning.unused=false;
-      } if(_cloud.timer==50){
-        if(sfxOn){ _audio.lightning.load(); _audio.lightning.play(); }
-        _lightning.y=_cloud.y+_cloud.height-8*scale;
-        _lightning.x=_cloud.width-16*scale+_cloud.x;
-        _lightning.unused=false;
-      } if(_cloud.timer==110){
-        if(sfxOn){ _audio.lightning.load(); _audio.lightning.play(); }
-        _lightning.y=_cloud.y+_cloud.height-8*scale;
-        _lightning.x=_cloud.width-16*scale+_cloud.x;
-        _lightning.unused=false;
-      } if(_cloud.timer==130){
-        if(sfxOn){ _audio.lightning.load(); _audio.lightning.play(); }
-        _lightning.y=_cloud.y+_cloud.height-8*scale;
-        _lightning.x=_cloud.width-16*scale+_cloud.x;
-        _lightning.unused=false;
-      }
-
-      if(bossHp>0){
-        if(_cloud.timer>=30&&_cloud.timer<35){ _context.fillShortRect(_lightning.color1,_lightning); }
-        if(_cloud.timer>=35&&_cloud.timer<40){ _context.fillShortRect(_lightning.color0,_lightning); }
-        if(_cloud.timer>=40&&_cloud.timer<45){ _context.fillShortRect(_lightning.color1,_lightning); }
-        if(_cloud.timer>=45&&_cloud.timer<50){ _lightning.unused=true; }
-        if(_cloud.timer>=50&&_cloud.timer<55){ _context.fillShortRect(_lightning.color1,_lightning); }
-        if(_cloud.timer>=55&&_cloud.timer<60){ _context.fillShortRect(_lightning.color0,_lightning); }
-        if(_cloud.timer>=60&&_cloud.timer<65){ _context.fillShortRect(_lightning.color1,_lightning); }
-        if(_cloud.timer>=65&&_cloud.timer<110){ _lightning.unused=true; }
-        if(_cloud.timer>=110&&_cloud.timer<115){ _context.fillShortRect(_lightning.color1,_lightning); }
-        if(_cloud.timer>=115&&_cloud.timer<120){ _context.fillShortRect(_lightning.color0,_lightning); }
-        if(_cloud.timer>=120&&_cloud.timer<125){ _context.fillShortRect(_lightning.color1,_lightning); }
-        if(_cloud.timer>=125&&_cloud.timer<130){ _lightning.unused=true; }
-        if(_cloud.timer>=130&&_cloud.timer<135){ _context.fillShortRect(_lightning.color1,_lightning); }
-        if(_cloud.timer>=135&&_cloud.timer<140){ _context.fillShortRect(_lightning.color0,_lightning); }
-        if(_cloud.timer>=140&&_cloud.timer<145){ _context.fillShortRect(_lightning.color1,_lightning); }
-        if(_cloud.timer>=150){ _lightning.unused=true; }
-      }
     }
   }
 }

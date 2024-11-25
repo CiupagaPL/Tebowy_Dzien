@@ -37,36 +37,21 @@ level=function(){
     musicTimer=0;
   }
 
-  animateclipboard();
+  _context.drawShortImage(_background.img2,_background);
+  _context.drawShortImage(_backgroundTop.img2,_backgroundTop);
 
-  _clipboardSettingText.x=_clipboard.x+42*scale;
-  _clipboardAboutText.x=_clipboard.x+38*scale;
+  if(_background.y>=_render.height){ _background.y=_backgroundTop.y-_render.height; }
+  if(_backgroundTop.y>=_render.height){ _backgroundTop.y=_background.y-_render.height; }
 
-  _clipboardSetting1.x=_clipboard.x+24*scale;
-  _clipboardSetting2.x=_clipboard.x+88*scale;
-  _clipboardSetting3.x=_clipboard.x+24*scale;
-  _clipboardSetting4.x=_clipboard.x+42*scale;
-  _clipboardSetting5.x=_clipboard.x+46*scale;
-  _clipboardSetting6.x=_clipboard.x+42*scale;
-
-  _clipboardAbout1.x=_clipboard.x+18*scale;
-
-  _menuTitle.y=-32*scale;
-  _menuStart.y=_render.height-168*scale;
-  _menuLevel.y=_render.height-128*scale;
-  _menuSetting.y=_render.height-88*scale;
-  _menuAbout.y=_render.height-48*scale;
-  _menuCustom.y=312*scale;
-
-  _context.drawShortImage(_background.img1,_background);
   _html.style.backgroundColor=_background.color0;
 
+  animateclipboard();
+
+  handleplayer();
   if(boss){ handleboss(); }
 
-  handlePlayer();
-
   _context.fillShortRect(_gameUI.color,_gameUI);
-  _gameLevel.value="Poziom: "+Number(scene-1)+"-"+round;
+  _gameLevel.value="Poziom: "+Number(scene-1);
   _context.fillShortText(_gameLevel.color,_gameLevel,_gameLevel.value);
   _gameScore.value="Wynik: "+score;
   _context.fillShortText(_gameScore.color,_gameScore,_gameScore.value);
@@ -110,22 +95,33 @@ level=function(){
     }
   }
 
-  if(autoScene&&!_clipboard.on&&!_menuLevel.on&&!_menuSetting.on&&!_menuAbout.on){ nextScene=nextAutoScene; changeScene=true; canClick=false; }
-  if(autoUnpause&&!_clipboard.on&&!_menuLevel.on&&!_menuSetting.on&&!_menuAbout.on){ pauseChange=true; canClick=false; }
+  if(autoScene&&!_clipboard.on){
+    nextScene=nextAutoScene;
+    changeScene=true;
+    canClick=false;
+  } if(autoUnpause&&!_clipboard.on){
+    pauseChange=true;
+    canClick=false;
+  } if(autoRestart&&!_clipboard.on){
+    restart=true;
+    canClick=false;
+  }
+
   if(nextScene!=scene){ transitionshorton(); }
 
   if(pauseChange){
     if(!pauseAnimation){
-      transitionPauseon();
+      transitionpauseon();
     } else if(pauseAnimation){
-      transitionPauseoff();
+      transitionpauseoff();
     }
   }
 
   if(pauseAnimation&&nextScene!=1){
     if(!pauseChange){ _context.drawShortImage(_change.img3,_change); }
 
-    _context.drawShortImage(_menuTitle.img,_menuTitle);
+    if(!_menuTitle.hover){ _context.drawShortImage(_menuTitle.img,_menuTitle); }
+    else if(_menuTitle.hover){ _context.drawShortImage(_menuTitle.imgOn,_menuTitle); }
 
     if(!tutorial&&!teacher){
       _context.drawShortImage(_clipboard.img,_clipboard);
@@ -144,50 +140,88 @@ level=function(){
       if(!_menuAbout.hover){ _context.drawShortImage(_menuAbout.img,_menuAbout); }
       else if(_menuAbout.hover){ _context.drawShortImage(_menuAbout.imgOn,_menuAbout); } 
       _context.fillShortText(_menuAboutText.color,_menuAboutText,_menuAboutText.value);
-    } if(tutorial&&!teacher){
+      if(!_menuRestart.hover){ _context.drawShortImage(_menuRestart.img,_menuRestart); }
+      else if(_menuRestart.hover){ _context.drawShortImage(_menuRestart.imgOn,_menuRestart); } 
+      _context.fillShortText(_menuRestartText.color,_menuRestartText,_menuRestartText.value);
+    } if(tutorial){
       _context.drawShortImage(_wideClipboard.img,_wideClipboard);
       if(!_wideClipboardForward.hover){ _context.drawShortImage(_wideClipboardForward.img,_wideClipboardForward); }
       else if(_wideClipboardForward.hover){ _context.drawShortImage(_wideClipboardForward.imgOn,_wideClipboardForward); }
 
       _context.fillShortText(_tutorialTitle.color,_tutorialTitle,_tutorialTitle.value);
       _context.fillShortText(_tutorialText.color,_tutorialText,_tutorialText.value);
-    } else if(!tutorial&&teacher){
+    } else if(teacher){
       _context.drawShortImage(_wideBlueprint.img,_wideBlueprint);
       if(!_wideBlueprintForward.hover){ _context.drawShortImage(_wideBlueprintForward.img,_wideBlueprintForward); }
       else if(_wideBlueprintForward.hover){ _context.drawShortImage(_wideBlueprintForward.imgOn,_wideBlueprintForward); }
 
-      _context.fillShortText(_bossTitle.color,_bossTitle,_bossTitle.value0);
-      _context.fillShortText(_bossDescription.color,_bossDescription,_bossDescription.value0);
+      if(scene==2){
+        _context.fillShortText(_bossTitle.color,_bossTitle,_bossTitle.value0);
+        _context.fillShortText(_bossDescription.color,_bossDescription,_bossDescription.value0);
+      } if(scene==3){
+        _context.fillShortText(_bossTitle.color,_bossTitle,_bossTitle.value1);
+        _context.fillShortText(_bossDescription.color,_bossDescription,_bossDescription.value1);
+      } if(scene==4){
+        _context.fillShortText(_bossTitle.color,_bossTitle,_bossTitle.value2);
+        _context.fillShortText(_bossDescription.color,_bossDescription,_bossDescription.value2);
+      } if(scene==5){
+        _context.fillShortText(_bossTitle.color,_bossTitle,_bossTitle.value3);
+        _context.fillShortText(_bossDescription.color,_bossDescription,_bossDescription.value3);
+      } if(scene==6){
+        _context.fillShortText(_bossTitle.color,_bossTitle,_bossTitle.value4);
+        _context.fillShortText(_bossDescription.color,_bossDescription,_bossDescription.value4);
+      } if(scene==7){
+        _context.fillShortText(_bossTitle.color,_bossTitle,_bossTitle.value0);
+        _context.fillShortText(_bossDescription.color,_bossDescription,_bossDescription.value0);
+      } if(scene==8){
+        _context.fillShortText(_bossTitle.color,_bossTitle,_bossTitle.value1);
+        _context.fillShortText(_bossDescription.color,_bossDescription,_bossDescription.value1);
+      } if(scene==9){
+        _context.fillShortText(_bossTitle.color,_bossTitle,_bossTitle.value2);
+        _context.fillShortText(_bossDescription.color,_bossDescription,_bossDescription.value2);
+      } if(scene==10){
+        _context.fillShortText(_bossTitle.color,_bossTitle,_bossTitle.value3);
+        _context.fillShortText(_bossDescription.color,_bossDescription,_bossDescription.value3);
+      } if(scene==11){
+        _context.fillShortText(_bossTitle.color,_bossTitle,_bossTitle.value4);
+        _context.fillShortText(_bossDescription.color,_bossDescription,_bossDescription.value4);
+      }
     }
   }
 
   if(_menuSetting.animation||_menuSetting.on){
     _context.fillShortText(_clipboardSettingText.color,_clipboardSettingText,_clipboardSettingText.value);
 
-    if(!sfxOn){
-      _context.drawShortImage(_clipboardSetting1.img,_clipboardSetting1);
-    } else if(sfxOn){
-      _context.drawShortImage(_clipboardSetting1.imgOn,_clipboardSetting1);
-    } if(!musicOn){
-      _context.drawShortImage(_clipboardSetting2.img,_clipboardSetting2);
-    } else if(musicOn){
-      _context.drawShortImage(_clipboardSetting2.imgOn,_clipboardSetting2);
-    } if(!fullscreenOn){
-      _context.drawShortImage(_clipboardSetting3.img,_clipboardSetting3);
-    } else if(fullscreenOn){
-      _context.drawShortImage(_clipboardSetting3.imgOn,_clipboardSetting3);
-    }
-    _context.fillShortText(_clipboardSetting4.color,_clipboardSetting4,_clipboardSetting4.value);
-    _context.fillShortText(_clipboardSetting5.color,_clipboardSetting5,_clipboardSetting5.value);
+    if(!sfxOn){ _context.drawShortImage(_clipboardSetting1.img,_clipboardSetting1); }
+    else if(sfxOn){ _context.drawShortImage(_clipboardSetting1.imgOn,_clipboardSetting1); }
+    if(!musicOn){ _context.drawShortImage(_clipboardSetting2.img,_clipboardSetting2); }
+    else if(musicOn){ _context.drawShortImage(_clipboardSetting2.imgOn,_clipboardSetting2); }
+    if(!tutorialOn){ _context.drawShortImage(_clipboardSetting3.img,_clipboardSetting3); }
+    else if(tutorialOn){ _context.drawShortImage(_clipboardSetting3.imgOn,_clipboardSetting3); }
+    if(!teacherOn){ _context.drawShortImage(_clipboardSetting4.img,_clipboardSetting4); }
+    else if(teacherOn){ _context.drawShortImage(_clipboardSetting4.imgOn,_clipboardSetting4); }
+    if(!addonOn){ _context.drawShortImage(_clipboardSetting5.img,_clipboardSetting5); }
+    else if(addonOn){ _context.drawShortImage(_clipboardSetting5.imgOn,_clipboardSetting5); }
+
     _context.fillShortText(_clipboardSetting6.color,_clipboardSetting6,_clipboardSetting6.value);
+    _context.fillShortText(_clipboardSetting7.color,_clipboardSetting7,_clipboardSetting7.value);
+    _context.fillShortText(_clipboardSetting8.color,_clipboardSetting8,_clipboardSetting8.value);
+    _context.fillShortText(_clipboardSetting9.color,_clipboardSetting9,_clipboardSetting9.value);
+    _context.fillShortText(_clipboardSetting10.color,_clipboardSetting10,_clipboardSetting10.value);
   } if(_menuAbout.animation||_menuAbout.on){
     _context.fillShortText(_clipboardAboutText.color,_clipboardAboutText,_clipboardAboutText.value);
-
     _context.fillShortText(_clipboardAbout1.color,_clipboardAbout1,_clipboardAbout1.value);
   }
 
   if(changeScene){ transitionoff(); }
-  if(defeat&&round!=7){ transitiondead(); }
-  if(defeat&&round==7&&scene!=9){ nextScene=scene+1; round=1; transitionmenu(); }
-  if(defeat&&round==7&&scene==9){ nextScene=1; round=1; transitionmenu(); }
+  if(restart){ transitionrestart(); }
+  if(defeat&&scene!=11){
+    nextScene=scene+1;
+    round=1;
+    transitionmenu();
+  } if(defeat&&scene==11){
+    nextScene=1;
+    round=1;
+    transitionmenu();
+  }
 }

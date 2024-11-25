@@ -73,7 +73,7 @@ lastplatformgenerator=function(){
 
 signgenerator=function(){
   _currentSign={
-    x:0,y:_render.height-12*scale-_sign.height,
+    x:0,y:_render.height-12*scale-_sign.height+(1*scale),
 
     width:_sign.width,height:_sign.height,
   
@@ -83,7 +83,7 @@ signgenerator=function(){
   _sign.array[0]=_currentSign;
 
   _currentSign={
-    x:_render.width-_sign.width,y:_platform.besty-_sign.height,
+    x:_render.width-_sign.width,y:_platform.besty-_sign.height+(1*scale),
 
     width:_sign.width,height:_sign.height,
   
@@ -97,7 +97,7 @@ signgenerator=function(){
 
 cornergenerator=function(){
   _currentCorner={
-    x:_platform.random-_corner.width,y:_currentPlatform.y,
+    x:_platform.random-_corner.width+(1*scale),y:_currentPlatform.y,
 
     width:_corner.width,height:_corner.height,
 
@@ -108,7 +108,7 @@ cornergenerator=function(){
   _corner.lenght++;
 
   _currentCorner={
-    x:_platform.random+128*scale,y:_currentPlatform.y,
+    x:_platform.random+128*scale-(1*scale),y:_currentPlatform.y,
 
     width:_corner.width,height:_corner.height,
 
@@ -206,7 +206,7 @@ spikegenerator=function(){
       if(_spike.random+_spike.width>_platform.random){ _spike.random=_platform.random-_spike.width; }
 
       _currentSpike={
-        x:_spike.random,y:_platform.lasty-_spike.height,
+        x:_spike.random,y:(_platform.lasty-_spike.height)+(1*scale),
 
         width:_spike.width,height:_spike.height,
       };
@@ -218,7 +218,7 @@ spikegenerator=function(){
       if(_spike.random+_spike.width*3>_platform.lastx){ _spike.random=_platform.lastx-_spike.width*4; }
 
       _currentSpike={
-        x:_spike.random,y:_platform.lasty-_spike.height,
+        x:_spike.random,y:(_platform.lasty-_spike.height)+(1*scale),
 
         width:_spike.width,height:_spike.height,
       };
@@ -230,7 +230,7 @@ spikegenerator=function(){
       if(_spike.random+_spike.width>_render.width){ _spike.random=_render.width-_spike.width; }
 
       _currentSpike={
-        x:_spike.random,y:_platform.lasty-_spike.height,
+        x:_spike.random,y:(_platform.lasty-_spike.height)+(1*scale),
 
         width:_spike.width,height:_spike.height,
       };
@@ -244,7 +244,7 @@ spikegenerator=function(){
       if(_spike.random+_spike.width>_platform.lastx){ _spike.random=_platform.lastx-_spike.width; }
 
       _currentSpike={
-        x:_spike.random,y:_platform.lasty-_spike.height,
+        x:_spike.random,y:(_platform.lasty-_spike.height)+(1*scale),
 
         width:_spike.width,height:_spike.height,
       };
@@ -257,7 +257,7 @@ spikegenerator=function(){
       if(_spike.random+_spike.width*3>_platform.lastx+128*scale){ _spike.random=_platform.lastx+128*scale+_spike.width*4; }
 
       _currentSpike={
-        x:_spike.random,y:_platform.lasty-_spike.height,
+        x:_spike.random,y:(_platform.lasty-_spike.height)+(1*scale),
 
         width:_spike.width,height:_spike.height,
       };
@@ -269,7 +269,7 @@ spikegenerator=function(){
       if(_spike.random+_spike.width>_render.width){ _spike.random=_render.width-_spike.width; }
 
       _currentSpike={
-        x:_spike.random,y:_platform.lasty-_spike.height,
+        x:_spike.random,y:(_platform.lasty-_spike.height)+(1*scale),
 
         width:_spike.width,height:_spike.height,
       };

@@ -8,7 +8,7 @@
     || |-_\__   /
    ((_/`(____,-' */
 
-handlePlayer=function(){
+handleplayer=function(){
   _playerLeft.x=_player.x+_player.vx;
   _playerLeft.y=_player.y+8*scale+_player.vy;
   _playerRight.x=_player.x+44*scale+_player.vx;
@@ -16,14 +16,31 @@ handlePlayer=function(){
   _playerTop.x=_player.x+4*scale+_player.vx;
   _playerTop.y=_player.y+_player.vy;
   _playerBottom.x=_player.x+4*scale+_player.vx;
-  _playerBottom.y=_player.y+81*scale+_player.vy;
+
+  if(skin==0||skin==2){
+    _player.height=81*scale;
+    _playerLeft.height=69*scale;
+    _playerRight.height=69*scale;
+    _playerBottom.y=_player.y+81*scale+_player.vy;
+  } else if(skin==1||skin==3){
+    _player.height=75*scale;
+    _playerLeft.height=63*scale;
+    _playerRight.height=63*scale;
+    _playerBottom.y=_player.y+75*scale+_player.vy;
+  }
 
   if(!pauseOn&&hp!=0){
     _player.y+=_player.vy;
-    if(!_player.grounded){ _player.y+=globalMove; }
+    if(!_player.cloud){ _player.vy+=_player.gravity; }
+    if(!_player.grounded&&!_player.cloud){ _player.y+=globalMove; }
+
     _player.x+=localMove;
     _player.x+=_player.vx;
-    _player.vy+=_player.gravity;
+
+    if(!_player.move){
+      _player.vx=0;
+      if(_player.grounded){ _player.vy=0; }
+    }
   }
 
   window.generatelevel();
@@ -47,8 +64,10 @@ handlePlayer=function(){
 
   if(!pauseOn&&hp!=0){ _laser.timer++; }
 
-  if(_laser.timer>=_laser.max&&_laser.timer<_laser.max+1&&!pauseOn&&hp!=0&&sfxOn&&!boss&&!defeat){ _audio.laser.load(); _audio.laser.play(); }
-  if(_laser.timer>=_laser.max+25){ _laser.timer=0; }
+  if(_laser.timer>=_laser.max&&_laser.timer<_laser.max+1&&!pauseOn&&hp!=0&&sfxOn&&!boss&&!defeat){
+    _audio.laser.load();
+    _audio.laser.play();
+  } if(_laser.timer>=_laser.max+25){ _laser.timer=0; }
 
   drawplayer();
 
@@ -59,6 +78,9 @@ handlePlayer=function(){
     _currentPlatform.y+=globalMove;
     _currentPlatform.x+=localMove;
 
+    _background.y+=globalMove/64;
+    _backgroundTop.y+=globalMove/64;
+
     if(window.detectcollision(_currentPlatform,_playerTop)&&!_player.touched){
       _player.fly=true;
       _player.touched=true;
@@ -67,7 +89,7 @@ handlePlayer=function(){
     if(window.detectcollision(_currentPlatform,_playerBottom)&&!_player.touched){
       if(_player.y<=_currentPlatform.y){ score=_currentPlatform.level+1; }
 
-      _player.y=_currentPlatform.y-_player.height;
+      if(!_player.cloud){ _player.y=_currentPlatform.y-_player.height; }
       _player.vy=globalMove;
       _player.touched=true;
     } if(window.detectcollision(_currentPlatform,_playerLeft)&&!_player.touched){
@@ -101,7 +123,7 @@ handlePlayer=function(){
 
     if(window.detectcollision(_currentLight,_player)&&_player.invisible==0&&!boss&&_laser.timer>=_laser.max&&!_player.touched){ 
       hp-=2;
-      _playerText.value="-50 punktów\nz zachowania";
+      if(addonOn){ _playerText.value="-50 punktów\nz zachowania"; }
       if(hp>0){ _player.invisible=1; }
       _player.touched=true;
       if(sfxOn){ _audio.hit.load(); _audio.hit.play(); }
@@ -119,7 +141,7 @@ handlePlayer=function(){
 
     if(window.detectcollision(_currentSpike,_player)&&_player.invisible==0&&!boss){
       hp--;
-      _playerText.value="-25 punktów\nz zachowania";
+      if(addonOn){ _playerText.value="-25 punktów\nz zachowania"; }
       if(hp>0){ _player.invisible=1; }
       if(sfxOn){ _audio.hit.load(); _audio.hit.play(); }
     }
@@ -141,12 +163,16 @@ handlePlayer=function(){
     _sign.currentLenght+=1;
   }
 
-  drawplayertext();
+  if(addonOn){ drawplayertext(); }
 
   if(!pauseOn&&_player.hp!=0&&_player.y<_currentResolution.height*3/8&&_platform.array[_platform.lenght].y+3*scale<0){ globalMove=+3*scale; }
   if(!pauseOn&&_player.hp!=0&&_player.y+_player.height>_currentResolution.height-12*scale){ globalMove=-3*scale; }
   else if(pauseOn||_player.hp==0||_player.y>=_currentResolution.height*3/8||_player.y>=_currentResolution.height||_platform.array[_platform.lenght].y+3*scale>0){ globalMove=0; }
 
+  if(_player.cloud&&!pauseOn&&hp!=0){
+    if(_player.x+_player.width>=_render.width*4/5){ _player.x-=8*scale; }
+    if(_player.y<=_render.height*1/8){ _player.y+=4*scale }
+  }
   if(_player.x<=0){ _player.x+=4*scale; }
   if(_player.x>=_currentResolution.width-_player.width&&score!=14||_player.x>=_currentResolution.width-_player.width&&boss){ _player.x-=4*scale; }
   if(_player.x>=_currentResolution.width&&score==14&&!boss){

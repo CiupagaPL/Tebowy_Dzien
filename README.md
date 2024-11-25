@@ -1,32 +1,35 @@
 ![Banner](https://github.com/CiupagaPL/Tebowy_Dzien/blob/release/Github/banner.png)
 # TEBOWY DZIEŃ
 
-## Zmiany
-- Od teraz nie możliwe jest zbugowanie platformy od bossfightu,
-- Usunąłem mały odstęp od najwyższej platformy,
-- Ponownie ulepszyłem system renderowania tekstu,
-- Doszedł i zmienił się po jeden dźwięk (**do 4 razy sztuka dźwiękowa ekipo**),
-- Dodałem opis nauczyciela przez każdym bossfightem,
-- Od teraz chmurka jest również naszym przeciwnikiem,
-- Dodałem jej animacje oraz atak, czyli piorun,
-- Zmieniłem lekko system życia nauczyciela,
-- Boss posiada swój tekst obrażeń,
-- Od teraz nauczyciel rzuca 2-3 obiektami na raz,
-- Naprawiłem 90% błędów związanych z bossfightem,
-- Oraz wiele innych.
+## Notka
+
+### Wstęp
+Wraz z najnowszą wersją przechodzimy do fazy <i>Alphy</i>.
+Aktualizacje będą większe, ale będą wychodzić wolniej.
+Za to regularnie wprowadzane będą patche naprawiające drobne błędy.
+
+### Ogólny Przegląd
+Postanowiłem przerobić większość tekstur, w tym same logo.
+Zostało ono mocno zmodyfikowane, skupiłem się na pozycji i wyglądzie tekstów.
+Większość tekstur w grze od teraz będzie bardziej rozpikselowane, skupiłem się na równych proporcjach obrazków.
+Rozpocząłem pracę nad przerobieniem bossfightu i jest on na grywalnym poziomie.
+Całe UI zostało zmienione, wygląda nowocześniej i wszystkie elementy się ze sobą łączą.
+<b>Wersja ta nie zawiera wszystkich planowanych funckji, lecz zostaną one dodane w najbliższych patch'ach</b>.
+> [!WARNING]
+> Na ten moment gra zawiera wiele błędów, zostanę one naprawione wkrótce.
+
+### Github
+Doszło do wielu zmian na tej platformie.
+Od teraz zmiany wszystkich patchy i alph będą zapisywane w <i>CHANGELOG.md</i>
+Przygotowałem <i>LICENSE.md</i> o ile nie posiadamy jeszcze licencji więc jest nie ważny.
+Do repozytorium dodałem zakładkę <i>Issues</i>, która posłuży alphatesterom.
+Wszystko opisane będzie w przykładowym problemie.
+> [!NOTE]
+> Witamy Nazwę w ekipie alphatesterów! :-D
 
 ## Status
-> Newest Version: **Test 15**;
-> Last Updated: **01-11-2024**;
-
-## License
-For now this project doesn't have any license.
-Again for this project I'm using [Orange Kid](https://www.1001fonts.com/orange-kid-font.html) which is great for projects like this :- )
+> Newest Version: **Alpha 1.00**;
+> Last Updated: **25-11-2024**;
 
 ## Have a Nice and Happy Day!
-- Ciupaga >_o
-
-## Dzisiejsza Notka
-Bossfight o ile może wydawać się trudny na pierwszy rzut oka, jest banalny i wystarczy zapamiętać dobre pozycje na omijanie obiektów wroga.
-Tak na prawdę cała gra (*oprócz wymaganych poprawek*) jest skończona i czekam na kolejne sprite'y nauczycieli.
-Również nie wiem jak licenciujemy ten projekt oraz do kiedy oficjalnie mam czas O.o
+- Ciupaga and probably all the devs >_o

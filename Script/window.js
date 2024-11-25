@@ -12,7 +12,7 @@ window.onload=function(){
   _render.base.style.visibility="visible";
   _load.style.visibility="hidden";
   _error.style.visibility="hidden";
-  _info.style.visibility="hidden";
+  _about.style.visibility="visible";
 
   window.resolution();
 
@@ -84,17 +84,17 @@ window.resolution=function(){
   if(_window.width<960||_window.height<540){
     _render.base.style.visibility="hidden";
     _error.style.visibility="visible";
-    _info.style.visibility="visible";
+    _about.style.visibility="hidden";
     resolutionError=true;
   } else if(_window.width>=960&&_window.height>=540){
     _render.base.style.visibility="visible";
     _error.style.visibility="hidden";
-    _info.style.visibility="hidden";
+    _about.style.visibility="visible";
     resolutionError=false;
   }
 
-  while(_window.width*0.95>_currentResolution.width){ _currentResolution.width+=16; _currentResolution.height+=9; }
-  while(_window.width*0.95<_currentResolution.width||_window.height*0.95<_currentResolution.height){ _currentResolution.width-=16; _currentResolution.height-=9; }
+  while(_window.width*0.9>_currentResolution.width){ _currentResolution.width+=16; _currentResolution.height+=9; }
+  while(_window.width*0.9<_currentResolution.width||_window.height*0.8<_currentResolution.height){ _currentResolution.width-=16; _currentResolution.height-=9; }
 
   _render.width=_currentResolution.width;
   _render.height=_currentResolution.height;
@@ -103,11 +103,19 @@ window.resolution=function(){
 
   _render.base.style.width=_currentResolution.width+"px";
   _render.base.style.height=_currentResolution.height+"px";
-  _render.base.style.left=(_window.width-_currentResolution.width)/2-12+"px";
-  _render.base.style.top=(_window.height-_currentResolution.height)/2-12+"px";
+  _render.base.style.left=((_window.width-_currentResolution.width)/2)-12+"px";
+  _render.base.style.top=(((_window.height-_currentResolution.height)-(24*scale))/2)-12+"px";
   _render.base.style.border=4*scale+"px solid white";
-  _render.base.style.borderRadius=12*scale+"px";
-  _render.base.style.boxShadow="0px "+2*scale+"px "+10*scale+"px "+2*scale+"px white";
+  _render.base.style.borderRadius=7*scale+"px";
+  _render.base.style.boxShadow=0+"px "+0+"px "+10*scale+"px "+2*scale+"px white";
+
+  _about.style.width=_window.width+"px";
+  _about.style.height=(24*scale)+"px";
+  _about.style.top=(_window.height-(24*scale))+"px";
+  _about.style.left=0+"px";
+  _about.style.fontSize=(16*scale)+"px";
+  _about.style.borderTop=(2*scale)+"px solid white";
+  _about.style.boxShadow=0+"px "+0+"px "+10*scale+"px "+2*scale+"px white";
 
   window.defaultvalue();
 }
@@ -122,6 +130,7 @@ window.detectcollision=function(_object1,_object2){
 window.onupdate=function(timeStamp){
   if(timeStamp-lastFrame>=1000/fpsLimit){
     lastFrame=timeStamp;
+
     window.loop();
   }
   requestAnimationFrame(window.onupdate);
@@ -146,9 +155,9 @@ window.loop=function(){
     case 7:
     case 8:
     case 9:
+    case 10:
+    case 11:
       level();
       break;
   }
-
-  _context.fillShortText(_versionText.color,_versionText,_versionText.value);
 }

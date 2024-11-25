@@ -7,6 +7,8 @@
 Wraz z najnowszą wersją przechodzimy do fazy <i>Alphy</i>.
 Aktualizacje będą większe, ale będą wychodzić wolniej.
 Za to regularnie wprowadzane będą patche naprawiające drobne błędy.
+Kod wymaga masywnej przebudowy, dlatego wiele patch'ów opierać się będzie na przepisanych funkcjach.
+Powinienem również postarać się go bardziej zoptymalizować.
 
 ### Ogólny Przegląd
 Postanowiłem przerobić większość tekstur, w tym same logo.

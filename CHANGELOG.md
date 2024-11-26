@@ -1,7 +1,31 @@
 ![Banner](https://github.com/CiupagaPL/Tebowy_Dzien/blob/release/Github/banner.png)
 # TEBOWY DZIEŃ
 
-## Changelog
+### Obecny Stan Skryptów
+- [x] site.html
+- [x] style.css
+- [x] Script/window.js
+- [ ] Script/variable.js
+- [ ] Script/transition.js
+- [ ] Script/player.js
+- [ ] Script/input.js
+- [ ] Script/generator.js
+- [ ] Script/default.js
+- [ ] Script/boss.js
+- [ ] Script/Scene/level.js
+- [ ] Script/Scene/levelanimation.js
+- [ ] Script/Scene/menu.js
+- [ ] Script/Scene/menuanimation.js
+> [!NOTE]
+> Będę tu zamieszczał progress trwającego od pierwszej alphy przepisywania skryptów.
+
+## Changelog: Alpha 1.01
+
+### Ogólny
+- Naprawiłem Alpha 1.0 - 8 (#9),
+- Przepisałem i znacznie skróciłem <i>window.js</i>.
+
+## Changelog: Alpha 1.00
 
 ### Ogólny
 - Naprawiłem odchylenie oświetlenia przy ramkach obiektów,
@@ -12,6 +36,7 @@
 - Ulepszyłem animację migania tekstu na starcie,
 - Dodałem animację dla tła w menu,
 - Zmieniłem layout przycisków w menu,
+- Naprawiłem niepoprawne kolizje myszy,
 - Od teraz panele boczne na siebie reagują,
 - Naprawiłem błąd animacji przy wyłączaniu sekcji planu,
 - Naprawiłem zbugowane animacje obiektów na sekcjach,
@@ -23,18 +48,36 @@
 - Dodałem przycisk restartu,
 - Usunąłem opcję zmaksymalizowania ekranu,
 - Dodałem opcje wyłączenia tutorialu, opisu nauczycieli i efektów specjalnych,
+- Od teraz po pauzie gracz nie będzie się sam poruszał,
 - Dodałem animację dla tła w grze,
 - Usunąłem animację chmurki i piorun,
 - Zmodyfikowałem wygląd walki i jej mechanikę,
 - Dodałem nowe sposoby poruszania z chmurką,
+- Od teraz wysokość gracza dostosywuje się do postaci,
 - Od teraz można podstakiwać za pomocą klawisza w,
 - Dodałem pozostałych nauczycieli,
 - Uzupełniłem opisy dla nowych nauczycieli,
 - Zmieniłem przedział trudności poziomów,
 - Naprawiłem proporcję chmurki,
-- Przepisałem część kodu,
 - Oraz przerysowałem dużą większość sprite'ów.
 
 ### Techniczny
-> [!IMPORTANT]
-> Zostanie on dopisany przy następnym patchu.
+- Zmienione zostało wiele katalogów plików,
+- Skrypty <i>scene0.js</i> i <i>animation0.js</i> zostały zintegrowane ze skryptami menu (obecnie <i>menu.js</i> i <i>menuanimation.js</i>),
+- Usunięto atrybut <i>round</i>, zamiast niego dodano dwie możliwe sceny gry,
+- Całkowicie usunięto <i>_lightning</i> oraz związane z nim dźwięki i kolizje,
+- Dodano przycisk <i>_menuRestart</i> oraz funckję <i>transitionrestart</i> i napis <i>_menuRestartText</i>,
+- Wszystkie nazwy funkcji przejść zapisane są prawidłowo z małych liter,
+- Dodano dla <i>_keyState</i> atrybuty <i>top</i> i <i>bottom</i> oraz rozszerzono możliwości inputu,
+- Rozszerzono keydown o inny system poruszania podczas bossa,
+- Dodano dodatkowe obiekty dla tła: <i>_backgroundTop</i>, <i>_backgroundRight</i> i <i>_backgroundTopRight</i> oraz dodano im nowe tekstury,
+- Rozszerzono <i>_bossTitle</i>, <i>_bossDescription</i> i <i>_boss</i> o nowych nauczycieli,
+- Pozbyto się wielu niepotrzebnych atrybutów dla bossa,
+- Dodano nowe ustawienia z numerami kolejno, podobnie nowe 2 poziomy,
+- Zmodyfikowano nazwy selektorów poziomów na <i>_blueprint[...]</i>,
+- Dodano atrybuty mówiący o tym czy gracz jest na chmurce oraz czy może się przemieszczać,
+- Dodano <i>_playerCloud</i> oraz mocno zmodyfikowano <i>_cloud</i> (od teraz zwany <i>_bossCloud</i>),
+- Dodano <i>_menuUI</i>; usunięto <i>_versionText</i>,
+- Oraz dodano dużą ilość nowych sprite'ów.
+> [!NOTE]
+> Zmiany techniczne wypisywane będą co wersję (nie licząc patchy), będą one opisywać najważniejsze zmiany w skrypcie.

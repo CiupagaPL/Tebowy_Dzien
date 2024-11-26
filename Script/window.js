@@ -14,16 +14,16 @@ window.onload=function(){
   _error.style.visibility="hidden";
   _about.style.visibility="visible";
 
-  window.resolution();
+  window.onsetup();
 
   _window.width=window.innerWidth;
   _window.height=window.innerHeight;
-
   _render.base.width=_render.width;
   _render.base.height=_render.height;
 
   _context=_render.base.getContext("2d");
   _context.imageSmoothingEnabled=false;
+
   window.onupdate();
 }
 
@@ -34,39 +34,18 @@ window.onresize=function(){
   _render.width=_window.width;
   _render.height=_window.height;
 
-  window.resolution();
-
+  window.onsetup();
   _render.base.width=_render.width;
   _render.base.height=_render.height;
 
   _context=_render.base.getContext("2d");
   _context.imageSmoothingEnabled=false;
 
-  if(scene!=0&&scene!=1&&!pauseOn){
-    pauseOn=true;
-    pauseChange=true;
-    canClick=false;
-    nextScene=1;
+  if(scene!=0){
+    scene=1;
+
+    menuLoad=true;
     changeScene=true;
-  } if(scene!=0&&scene!=1&&pauseOn){
-    if(_clipboard.on){
-      autoScene=true;
-      nextAutoScene=1;
-      if(_menuSetting.on){
-        _menuSetting.animation=true;
-        _clipboard.close=true;
-        canClick=false;
-      } if(_menuAbout.on){
-        _menuAbout.animation=true;
-        _clipboard.close=true;
-        canClick=false;
-      }
-    } else if(!_clipboard.on){
-      canClick=false;
-      nextScene=1;
-      changeScene=true;
-    }
-  } if(scene==1){
     _blueprint.on=false;
     _clipboard.on=false;
     _menuLevel.on=false;
@@ -80,7 +59,7 @@ window.onresize=function(){
   }
 }
 
-window.resolution=function(){
+window.onsetup=function(){
   if(_window.width<960||_window.height<540){
     _render.base.style.visibility="hidden";
     _error.style.visibility="visible";
@@ -93,21 +72,26 @@ window.resolution=function(){
     resolutionError=false;
   }
 
-  while(_window.width*0.9>_currentResolution.width){ _currentResolution.width+=16; _currentResolution.height+=9; }
-  while(_window.width*0.9<_currentResolution.width||_window.height*0.8<_currentResolution.height){ _currentResolution.width-=16; _currentResolution.height-=9; }
+  while(_window.width*0.9>_currentResolution.width){
+    _currentResolution.width+=16;
+    _currentResolution.height+=9;
+  } while(_window.width*0.9<_currentResolution.width||
+          _window.height*0.8<_currentResolution.height){
+    _currentResolution.width-=16;
+    _currentResolution.height-=9;
+  }
 
   _render.width=_currentResolution.width;
   _render.height=_currentResolution.height;
-
   scale=_render.width/640;
 
   _render.base.style.width=_currentResolution.width+"px";
   _render.base.style.height=_currentResolution.height+"px";
-  _render.base.style.left=((_window.width-_currentResolution.width)/2)-12+"px";
-  _render.base.style.top=(((_window.height-_currentResolution.height)-(24*scale))/2)-12+"px";
-  _render.base.style.border=4*scale+"px solid white";
-  _render.base.style.borderRadius=7*scale+"px";
-  _render.base.style.boxShadow=0+"px "+0+"px "+10*scale+"px "+2*scale+"px white";
+  _render.base.style.left=((_window.width-_currentResolution.width)/2)-(2*scale)+"px";
+  _render.base.style.top=(((_window.height-_currentResolution.height)-(24*scale))/2)-(2*scale)+"px";
+  _render.base.style.border=(4*scale)+"px solid white";
+  _render.base.style.borderRadius=(7*scale)+"px";
+  _render.base.style.boxShadow=0+"px "+0+"px "+(10*scale)+"px "+(2*scale)+"px white";
 
   _about.style.width=_window.width+"px";
   _about.style.height=(24*scale)+"px";
@@ -115,7 +99,7 @@ window.resolution=function(){
   _about.style.left=0+"px";
   _about.style.fontSize=(16*scale)+"px";
   _about.style.borderTop=(2*scale)+"px solid white";
-  _about.style.boxShadow=0+"px "+0+"px "+10*scale+"px "+2*scale+"px white";
+  _about.style.boxShadow=0+"px "+0+"px "+(10*scale)+"px "+(2*scale)+"px white";
 
   window.defaultvalue();
 }
@@ -131,33 +115,18 @@ window.onupdate=function(timeStamp){
   if(timeStamp-lastFrame>=1000/fpsLimit){
     lastFrame=timeStamp;
 
-    window.loop();
+    window.onloop();
   }
   requestAnimationFrame(window.onupdate);
 }
 requestAnimationFrame(window.onupdate);
 
-window.loop=function(){
+window.onloop=function(){
   _context.clearRect(0,0,_render.width,_render.height);
 
-  switch(scene){
-    case 0:
-      scene0();
-      break;
-    case 1:
-      scene1();
-      break;
-    case 2:
-    case 3:
-    case 4:
-    case 5:
-    case 6:
-    case 7:
-    case 8:
-    case 9:
-    case 10:
-    case 11:
-      level();
-      break;
-  }
+  if(scene==0){ start(); }
+  if(scene==1){ menu(); }
+  if(scene==2||scene==3||scene==4||
+     scene==5||scene==6||scene==7||
+     scene==8||scene==9||scene==10||scene==11){ level(); }
 }

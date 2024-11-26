@@ -28,10 +28,12 @@ Do repozytorium dodałem zakładkę <i>Issues</i>, która posłuży alphatestero
 Wszystko opisane będzie w przykładowym problemie.
 > [!NOTE]
 > Witamy Nazwę w ekipie alphatesterów! :-D
+> [!IMPORTANT]
+> Wszystkie informacje o testowaniu zapisane są we wcześniej wymienionej zakładce.
 
 ## Status
-> Newest Version: **Alpha 1.00**;
-> Last Updated: **25-11-2024**;
+> Newest Version: **Alpha 1.01**;
+> Last Updated: **26-11-2024**;
 
 ## Have a Nice and Happy Day!
 - Ciupaga and probably all the devs >_o

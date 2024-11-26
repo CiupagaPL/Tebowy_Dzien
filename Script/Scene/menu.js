@@ -353,6 +353,6 @@ menu=function(){
   }
 
   if(autoScene&&!_clipboard.on&&!_menuLevel.on&&!_menuSetting.on&&!_menuAbout.on&&!_menuCustom.on){ nextScene=nextAutoScene; changeScene=true; canClick=false; }
-  if(changeScene&&!menuLoad){ sceneoff(); }
-  if(changeScene&&menuLoad){ sceneon(); }
+  if(changeScene&&!menuLoad){ transitionon(); }
+  if(changeScene&&menuLoad){ transitionoff(); }
 }

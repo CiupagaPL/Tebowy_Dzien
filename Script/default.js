@@ -26,6 +26,70 @@ _context.fillShortRect=function(_color,_object){
   _context.fillRect(_object.x,_object.y,_object.width,_object.height);
 }
 
+window.defaultgame=function(){
+  dead=false;
+  hp=6;
+  score=0;
+  sceneTimer=0;
+
+  _player.x=64*scale;
+  _player.y=(_render.height-(12*scale))-_player.height;
+  _player.invisible=0;
+  _player.vx=0;
+  _player.vy=0;
+  _player.move=true;
+  _player.cloud=false;
+
+  autoScene=false;
+
+  _keyState.left=false;
+  _keyState.right=false;
+  _keyState.up=false;
+  _keyState.down=false;
+
+  _background.x=0;
+  _background.y=0;
+  _backgroundTop.x=0;
+  _backgroundTop.y=-_render.height;
+  _backgroundRight.x=_render.width;
+  _backgroundRight.y=0;
+  _backgroundTopRight.x=_render.width;
+  _backgroundTopRight.y=-_render.height;
+
+  _tebulinek.unused=true;
+  _computer.unused=true;
+  _keyboard.unused=true;
+  _coffe.unused=true;
+  _dove.unused=true;
+
+  boss=false;
+  bossHp=10;
+  _boss.timer=0;
+  _boss.y=104*scale;
+  _boss.x=_render.width+_boss.width+(32*scale);
+
+  _bossCloud.y=174*scale;
+  _bossCloud.x=_render.width+_boss.width+(16*scale);
+  _boss.left=false;
+
+  teacher=false;
+  _laser.timer=0;
+
+  if(scene>=2&&scene<=4){
+    _laser.max=120;
+    _player.max=90;
+    _spike.count=1;
+  } if(scene>=5&&scene<=8){
+    _laser.max=90;
+    _player.max=75;
+    _spike.count=2;
+  } if(scene>=9&&scene<=11){
+    _laser.max=60;
+    _player.max=60;
+    _spike.count=3;
+  }
+}
+
 window.defaultvalue=function(){
   _background.width=_currentResolution.width;
   _background.height=_currentResolution.height;

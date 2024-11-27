@@ -29,7 +29,7 @@ handleplayer=function(){
     _playerBottom.y=_player.y+75*scale+_player.vy;
   }
 
-  if(!pauseOn&&hp!=0){
+  if(!pause&&hp!=0){
     _player.y+=_player.vy;
     if(!_player.cloud){ _player.vy+=_player.gravity; }
     if(!_player.grounded&&!_player.cloud){ _player.y+=globalMove; }
@@ -62,9 +62,9 @@ handleplayer=function(){
     _laser.currentLenght+=1;
   }
 
-  if(!pauseOn&&hp!=0){ _laser.timer++; }
+  if(!pause&&hp!=0){ _laser.timer++; }
 
-  if(_laser.timer>=_laser.max&&_laser.timer<_laser.max+1&&!pauseOn&&hp!=0&&sfxOn&&!boss&&!defeat){
+  if(_laser.timer>=_laser.max&&_laser.timer<_laser.max+1&&!pause&&hp!=0&&sfxOn&&!boss&&!defeat){
     _audio.laser.load();
     _audio.laser.play();
   } if(_laser.timer>=_laser.max+25){ _laser.timer=0; }
@@ -165,11 +165,11 @@ handleplayer=function(){
 
   if(addonOn){ drawplayertext(); }
 
-  if(!pauseOn&&_player.hp!=0&&_player.y<_currentResolution.height*3/8&&_platform.array[_platform.lenght].y+3*scale<0){ globalMove=+3*scale; }
-  if(!pauseOn&&_player.hp!=0&&_player.y+_player.height>_currentResolution.height-12*scale){ globalMove=-3*scale; }
-  else if(pauseOn||_player.hp==0||_player.y>=_currentResolution.height*3/8||_player.y>=_currentResolution.height||_platform.array[_platform.lenght].y+3*scale>0){ globalMove=0; }
+  if(!pause&&_player.hp!=0&&_player.y<_currentResolution.height*3/8&&_platform.array[_platform.lenght].y+3*scale<0){ globalMove=+3*scale; }
+  if(!pause&&_player.hp!=0&&_player.y+_player.height>_currentResolution.height-12*scale){ globalMove=-3*scale; }
+  else if(pause||_player.hp==0||_player.y>=_currentResolution.height*3/8||_player.y>=_currentResolution.height||_platform.array[_platform.lenght].y+3*scale>0){ globalMove=0; }
 
-  if(_player.cloud&&!pauseOn&&hp!=0){
+  if(_player.cloud&&!pause&&hp!=0){
     if(_player.x+_player.width>=_render.width*4/5){ _player.x-=8*scale; }
     if(_player.y<=_render.height*1/8){ _player.y+=4*scale }
   }

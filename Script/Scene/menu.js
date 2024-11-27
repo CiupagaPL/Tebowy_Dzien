@@ -42,6 +42,9 @@ menu=function(){
   if(!changeScene){
     _html.style.backgroundColor=_background.color0a;
     _about.style.backgroundColor=_background.color0b;
+    _audio.menu.volume=0.25;
+  } else if(changeScene){
+    _audio.menu.volume=0;
   }
 
   if(skin==0||skin==2){
@@ -87,7 +90,7 @@ menu=function(){
     if(skin==0){ _context.drawShortImage(_blueprintSkin.img0,_blueprintSkin); }
     if(skin==1){ _context.drawShortImage(_blueprintSkin.img1,_blueprintSkin); }
     if(skin==2){ _context.drawShortImage(_blueprintSkin.img2,_blueprintSkin); }
-    if(skin==3){ _context.drawShortImage(_blueprintSkin.img3,_blueprintSkin); }
+    if(skin==3){ _context.drawShortImage(_blueprintSkin.img3_blueprintSkin); }
 
     if(!_blueprintLeft.hover){ _context.drawShortImage(_blueprintLeft.img,_blueprintLeft); }
     else if(_blueprintLeft.hover){ _context.drawShortImage(_blueprintLeft.imgOn,_blueprintLeft); }
@@ -136,7 +139,7 @@ menu=function(){
     _context.fillShortText(_clipboardAbout1.color,_clipboardAbout1,_clipboardAbout1.value);
   }
 
-  if(autoScene&&!_clipboard.on&&!_menuLevel.on&&!_menuSetting.on&&!_menuAbout.on&&!_menuCustom.on){ nextScene=nextAutoScene; changeScene=true; canClick=false; }
-  if(changeScene&&!menuLoad){ transitionon(); }
-  if(changeScene&&menuLoad){ transitionoff(); }
+  if(autoScene&&!_clipboard.on&&!_menuLevel.on&&!_menuSetting.on&&!_menuAbout.on&&!_menuCustom.on){ nextScene=nextAutoScene; autoScene=false; changeScene=true; }
+  if(changeScene&&!menuLoad){ sceneoff(); }
+  if(changeScene&&menuLoad){ sceneon(); }
 }

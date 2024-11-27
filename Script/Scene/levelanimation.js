@@ -19,8 +19,8 @@ drawplayer=function(){
     if(skin==2&&_player.left){ _context.drawShortImage(_player.img2left,_player); }
     if(skin==3&&_player.left){ _context.drawShortImage(_player.img3left,_player); }
   } if(_player.invisible!=0){
-    if(!pauseOn&&hp!=0){ _player.invisible++; }
-    if(_player.invisible%2==0||pauseOn){
+    if(!pause&&hp!=0){ _player.invisible++; }
+    if(_player.invisible%2==0||pause){
       if(skin==0&&!_player.left){ _context.drawShortImage(_player.img0,_player); }
       if(skin==1&&!_player.left){ _context.drawShortImage(_player.img1,_player); }
       if(skin==2&&!_player.left){ _context.drawShortImage(_player.img2,_player); }
@@ -78,7 +78,7 @@ drawlight=function(){
 }
 
 drawattack=function(_object){
-  if(!pauseOn&&hp!=0){ _object.timer++; }
+  if(!pause&&hp!=0){ _object.timer++; }
   
   if(_object.timer<10){
     _context.drawShortImage(_object.img0,_object);
@@ -104,8 +104,8 @@ drawboss=function(){
       if(scene==10){ _context.drawShortImage(_boss.img3,_boss); }
       if(scene==11){ _context.drawShortImage(_boss.img4,_boss); }
   } if(_boss.invisible!=0){
-    if(!pauseOn&&hp!=0){ _boss.invisible++; }
-    if(_boss.invisible%2==0||pauseOn){
+    if(!pause&&hp!=0){ _boss.invisible++; }
+    if(_boss.invisible%2==0||pause){
       if(scene==2){ _context.drawShortImage(_boss.img0,_boss); }
       if(scene==3){ _context.drawShortImage(_boss.img1,_boss); }
       if(scene==4){ _context.drawShortImage(_boss.img2,_boss); }
@@ -133,8 +133,8 @@ drawplayer=function(){
     if(skin==2&&_player.left){ _context.drawShortImage(_player.img2left,_player); }
     if(skin==3&&_player.left){ _context.drawShortImage(_player.img3left,_player); }
   } if(_player.invisible!=0){
-    if(!pauseOn&&hp!=0){ _player.invisible++; }
-    if(_player.invisible%2==0||pauseOn){
+    if(!pause&&hp!=0){ _player.invisible++; }
+    if(_player.invisible%2==0||pause){
       if(skin==0&&!_player.left){ _context.drawShortImage(_player.img0,_player); }
       if(skin==1&&!_player.left){ _context.drawShortImage(_player.img1,_player); }
       if(skin==2&&!_player.left){ _context.drawShortImage(_player.img2,_player); }

@@ -9,7 +9,7 @@
    ((_/`(____,-' */
 
 handleboss=function(){
-  if(!pauseOn&&hp!=0){
+  if(!pause&&hp!=0){
     sceneTimer++;
 
     if(sceneTimer<60){ _playerCloud.y=_render.height+_playerCloud.height; }
@@ -21,10 +21,13 @@ handleboss=function(){
       _boss.x-=5*scale;
       _bossCloud.x-=5*scale;
       _playerCloud.y-=2*scale;
-    } if(sceneTimer>=99&&sceneTimer<100&&teacherOn){
-      pauseChange=true;
-      pauseOn=true;
-      teacher=true;
+    } if(sceneTimer>=99&&sceneTimer<100){
+      if(teacherOn){
+        pauseChange=true;
+        pause=true;
+        pauseAnimation=true;
+        teacher=true;
+      }
       _player.move=true;
       _player.cloud=true;
       _playerCloud.y=_player.y+_playerCloud.height;
@@ -69,10 +72,11 @@ handleboss=function(){
       } _boss.load=true;
       _playerCloud.y=_player.y+_playerCloud.height;
     } if(sceneTimer>=260&&sceneTimer<261){ _boss.y-=4*scale; _bossCloud.y-=4*scale; sceneTimer=100; }
-    if(sceneTimer>=440&&sceneTimer<470){
+    if(sceneTimer>=300&&sceneTimer<330){
       _boss.x+=6*scale;
       _bossCloud.x+=6*scale;
-    } if(sceneTimer>=470){ boss=false; defeat=true; }
+      _playerCloud.y=_player.y+_playerCloud.height;
+    } if(sceneTimer>=330){ defeat=true; boss=false; }
 
     if(_tebulinek.unused){ _tebulinek.x=-_tebulinek.width; }
     if(!_tebulinek.unused){ _tebulinek.x-=8*scale; }
@@ -114,7 +118,7 @@ handleboss=function(){
     if(sfxOn&&bossHp!=0){ _audio.bossHit.load(); _audio.bossHit.play(); }
     if(sfxOn&&bossHp==0){ _audio.bossDie.load(); _audio.bossDie.play(); }
     if(bossHp>0){ _boss.invisible=1; }
-    if(bossHp<=0){ sceneTimer=440; }
+    if(bossHp<=0){ sceneTimer=300; }
   }
 
   if(window.detectcollision(_player,_computer)&&_player.invisible==0){

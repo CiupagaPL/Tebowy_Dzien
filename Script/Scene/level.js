@@ -37,6 +37,16 @@ level=function(){
     musicTimer=0;
   }
 
+  if(!pause){
+    _html.style.backgroundColor=_background.color0a;
+    _about.style.backgroundColor=_background.color0b;
+    _audio.game.volume=0.25;
+    _audio.boss.volume=0.25;
+  } else if(pause){
+    _audio.game.volume=0;
+    _audio.boss.volume=0;
+  }
+
   _context.drawShortImage(_background.img2,_background);
   _context.drawShortImage(_backgroundTop.img2,_backgroundTop);
 
@@ -89,35 +99,29 @@ level=function(){
 
   if(dead){
     if(hp==0){
-      transitiondead();
+      sceneoff();
     } else if(hp==6){
-      transitionoff();
+      sceneon();
     }
   }
 
   if(autoScene&&!_clipboard.on){
     nextScene=nextAutoScene;
     changeScene=true;
-    canClick=false;
+    pauseAnimation=false;
+    pauseChange=true;
   } if(autoUnpause&&!_clipboard.on){
     pauseChange=true;
-    canClick=false;
-  } if(autoRestart&&!_clipboard.on){
-    restart=true;
-    canClick=false;
-  }
+    pauseAnimation=false;
+  } if(autoRestart&&!_clipboard.on){ restart=true; }
 
-  if(nextScene!=scene){ transitionshorton(); }
-
+  if(nextScene!=scene&&pauseChange||restart){ pauseend(); }
   if(pauseChange){
-    if(!pauseAnimation){
-      transitionpauseon();
-    } else if(pauseAnimation){
-      transitionpauseoff();
-    }
+    if(!pauseAnimation){ pauseoff(); }
+    else if(pauseAnimation){ pauseon(); }
   }
 
-  if(pauseAnimation&&nextScene!=1){
+  if(pauseAnimation&&!pauseChange&&pause&&changeTimer==0&&nextScene!=1){
     if(!pauseChange){ _context.drawShortImage(_change.img3,_change); }
 
     if(!_menuTitle.hover){ _context.drawShortImage(_menuTitle.img,_menuTitle); }
@@ -213,15 +217,16 @@ level=function(){
     _context.fillShortText(_clipboardAbout1.color,_clipboardAbout1,_clipboardAbout1.value);
   }
 
-  if(changeScene){ transitionoff(); }
-  if(restart){ transitionrestart(); }
+  if(changeScene&&hp!=0&&!defeat){ sceneon(); }
   if(defeat&&scene!=11){
     nextScene=scene+1;
     round=1;
-    transitionmenu();
+    changeScene=true;
+    sceneoff();
   } if(defeat&&scene==11){
     nextScene=1;
+    changeScene=true;
     round=1;
-    transitionmenu();
+    sceneoff();
   }
 }

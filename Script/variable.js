@@ -13,7 +13,7 @@ let canStart=false,canClick=true,changeScene=false;
 let scene=0,sceneTimer=0,changeTimer=0,nextScene=0,musicTimer=0;
 let autoScene=false,nextAutoScene=0,autoUnpause=false,autoRestart=false;
 let sfxOn=true,musicOn=true,tutorialOn=true,teacherOn=true,addonOn=true,
-    tempSfxOn=true,tempMusicOn=true,pauseOn=false,pauseChange=false,
+    tempSfxOn=true,tempMusicOn=true,pause=false,pauseChange=false,
     pauseAnimation=false,menuLoad=false,tutorial=true,teacher=true;
 let skin=0,hp=6,dead=false,restart=false,bossHp=10;
 let globalMove=0,localMove=0,score=0,boss=false,defeat=false;
@@ -44,7 +44,6 @@ let _audio={
   jump:new Audio("Source/Sound/jump.wav"),
   laser:new Audio("Source/Sound/laser.wav"),
   paper:new Audio("Source/Sound/paper.wav"),
-  lightning:new Audio("Source/Sound/lightning.mp3"),
 
   bossDie:new Audio("Source/Sound/bossDie.wav"),
   bossHit:new Audio("Source/Sound/bossHit.wav"),

@@ -16,14 +16,15 @@ document.addEventListener("visibilitychange",function(_event){
     sfxOn=false;
     musicOn=false;
     musicTimer=0;
-  } if(!pauseOn&&scene!=0&&scene!=1){
+  } if(!pause&&scene!=0&&scene!=1){
     pauseChange=true;
-    pauseOn=true;
+    pause=true;
+    pauseAnimation=true;
   }
 });
 
 document.addEventListener("keydown",function(_event){
-  if(!pauseOn&&hp!=0&&scene>=2){
+  if(!pause&&hp!=0&&scene>=2){
     if(_event.key=="a"||_event.key=="ArrowLeft"){
       _keyState.left=true;
       _keyState.right=false;
@@ -106,7 +107,7 @@ document.addEventListener("keyup",function(_event){
     case 9:
     case 10:
     case 11:
-      if(_event.key=="Escape"&&canClick&&pauseOn){
+      if(_event.key=="Escape"&&canClick&&pause){
         if(sfxOn){
           _audio.click.load();
           _audio.click.play();
@@ -120,17 +121,18 @@ document.addEventListener("keyup",function(_event){
           if(_menuAbout.on){ _menuAbout.animation=true; }
         } else if(!_clipboard.on){
           pauseChange=true;
-          canClick=false;
+          pauseAnimation=false;
         }
       }
-      if(_event.key=="Escape"&&canClick&&!pauseOn){
+      if(_event.key=="Escape"&&canClick&&!pause){
         if(sfxOn){
           _audio.click.load();
           _audio.click.play();
         }
-        pauseOn=true;
+
         pauseChange=true;
-      } if(!pauseOn&&hp!=0){
+        pauseAnimation=true;
+      } if(!pause&&hp!=0){
         if(_event.key=="a"||_event.key=="ArrowLeft"){
           _keyState.left=false;
           if(!_keyState.right){
@@ -165,9 +167,9 @@ document.addEventListener("keyup",function(_event){
           }
         }
       }
-      if(_event.key==" "&&!pauseOn&&hp!=0&&_player.grounded&&!_player.cloud||
-         _event.key=="ArrowUp"&&!pauseOn&&hp!=0&&_player.grounded&&!_player.cloud||
-         _event.key=="w"&&!pauseOn&&hp!=0&&_player.grounded&&!_player.cloud){
+      if(_event.key==" "&&!pause&&hp!=0&&_player.grounded&&!_player.cloud||
+         _event.key=="ArrowUp"&&!pause&&hp!=0&&_player.grounded&&!_player.cloud||
+         _event.key=="w"&&!pause&&hp!=0&&_player.grounded&&!_player.cloud){
         _player.jumped=true;
         _player.vy=_player.initialvy;
         if(sfxOn){
@@ -221,7 +223,7 @@ document.addEventListener("mousemove",function(_event){
 
 window.addEventListener("click",function(_event){
   if(window.detectcollision(_menuTitle,_mouse)&&scene==1&&canClick||window.detectcollision(_menuTitle,_mouse)&&
-     scene!=0&&scene!=1&&canClick&&pauseOn){ window.open("https://teb.pl","_blank").focus(); }
+     scene!=0&&scene!=1&&canClick&&pause){ window.open("https://teb.pl","_blank").focus(); }
 
   if(window.detectcollision(_menuStart,_mouse)&&canClick&&scene==1){
     if(sfxOn){
@@ -313,7 +315,7 @@ window.addEventListener("click",function(_event){
     canClick=false;
   }
   if(window.detectcollision(_menuSetting,_mouse)&&scene==1&&canClick&&!_menuSetting.on||window.detectcollision(_menuSetting,_mouse)&&
-     scene!=1&&scene!=0&&canClick&&pauseOn&&!_menuSetting.on){
+     scene!=1&&scene!=0&&canClick&&pause&&!_menuSetting.on){
     if(sfxOn){
       _audio.click.load();
       _audio.click.play();
@@ -334,7 +336,7 @@ window.addEventListener("click",function(_event){
     canClick=false;
   }
   if(window.detectcollision(_menuAbout,_mouse)&&canClick&&scene==1||window.detectcollision(_menuAbout,_mouse)&&
-     scene!=1&&scene!=0&&canClick&&pauseOn){
+     scene!=1&&scene!=0&&canClick&&pause){
     if(sfxOn){
       _audio.click.load();
       _audio.click.play();
@@ -429,8 +431,8 @@ window.addEventListener("click",function(_event){
     }
 
     pauseChange=true;
+    pauseAnimation=false;
     canClick=false;
-    tutorialOn=false;
   }
   if(window.detectcollision(_wideBlueprintForward,_mouse)&&canClick){
     if(sfxOn){
@@ -439,6 +441,7 @@ window.addEventListener("click",function(_event){
     }
 
     pauseChange=true;
+    pauseAnimation=false;
     canClick=false;
   }
 
@@ -527,15 +530,16 @@ window.addEventListener("click",function(_event){
     else if(!addonOn){ addonOn=true; }
   }
 
-  if(window.detectcollision(_gamePause,_mouse)&&canClick&&!pauseOn){
+  if(window.detectcollision(_gamePause,_mouse)&&canClick&&!pause){
     if(sfxOn){
       _audio.click.load();
       _audio.click.play();
     }
 
-    pauseOn=true;
+    pause=true;
     pauseChange=true;
-  } if(window.detectcollision(_menuStart,_mouse)&&canClick&&scene!=1&&scene!=0&&pauseOn){
+    pauseAnimation=true;
+  } if(window.detectcollision(_menuStart,_mouse)&&canClick&&scene!=1&&scene!=0&&pause){
     if(sfxOn){
       _audio.click.load();
       _audio.click.play();
@@ -549,9 +553,10 @@ window.addEventListener("click",function(_event){
       if(_menuAbout.on){ _menuAbout.animation=true; }
     } else if(!_clipboard.on){
       pauseChange=true;
+      pauseAnimation=false;
       canClick=false;
     }
-  } if(window.detectcollision(_menuMenu,_mouse)&&canClick&&pauseOn){
+  } if(window.detectcollision(_menuMenu,_mouse)&&canClick&&pause){
     if(sfxOn){
       _audio.click.load();
       _audio.click.play();
@@ -565,11 +570,11 @@ window.addEventListener("click",function(_event){
       if(_menuSetting.on){ _menuSetting.animation=true; } 
       if(_menuAbout.on){ _menuAbout.animation=true; }
     } else if(!_clipboard.on){
-      canClick=false;
       nextScene=1;
       changeScene=true;
+      pauseChange=true;
     }
-  } if(window.detectcollision(_menuRestart,_mouse)&&canClick&&pauseOn){
+  } if(window.detectcollision(_menuRestart,_mouse)&&canClick&&pause){
     if(sfxOn){
       _audio.click.load();
       _audio.click.play();
@@ -583,7 +588,6 @@ window.addEventListener("click",function(_event){
       if(_menuAbout.on){ _menuAbout.animation=true; }
     } else if(!_clipboard.on){
       restart=true;
-      canClick=false;
     }
   }
 });

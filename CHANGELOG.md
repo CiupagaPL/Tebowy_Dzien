@@ -6,7 +6,7 @@
 - [x] style.css
 - [x] Script/window.js
 - [ ] Script/variable.js
-- [ ] Script/transition.js
+- [x] Script/transition.js
 - [ ] Script/player.js
 - [ ] Script/input.js
 - [ ] Script/generator.js
@@ -18,6 +18,19 @@
 - [ ] Script/Scene/menuanimation.js
 > [!NOTE]
 > Będę tu zamieszczał progress trwającego od pierwszej alphy przepisywania skryptów.
+
+## Changelog: Alpha 1.02
+- Poprawiłem resztę błędów z poprzedniego patcha,
+- Poprawiłem kilka sprite'ów,
+- Przepisałem <i>transition.js</i> i skróciłem go o około połowę linijek kodu,
+- Doszła dodatkowa funkcja resetująca w pełni poziom,
+- Liczba funkcji w przejściach została zmiejszona,
+- Naprawiłem Alpha 1.0 - 3 (#4),
+- Naprawiłem Alpha 1.0 - 4 (#5),
+- Naprawiłem Alpha 1.0 - 6 (#7),
+- Naprawiłem Alpha 1.0 - 9 (#10),
+- Naprawiłem Alpha 1.0 - 10 (#11),
+- Naprawiłem Alpha 1.0 - 11 (#12).
 
 ## Changelog: Alpha 1.01
 

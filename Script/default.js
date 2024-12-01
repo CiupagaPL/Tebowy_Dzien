@@ -40,8 +40,8 @@ window.defaultgame=function(){
   _player.invisible=0;
   _player.vx=0;
   _player.vy=0;
-  _player.move=true;
   _player.cloud=false;
+  _player.left=false;
 
   _playerGun.x=_player.x+(36*scale);
   _playerGun.y=_player.y+(40*scale);
@@ -84,6 +84,8 @@ window.defaultgame=function(){
 
   teacher=false;
   _laser.timer=0;
+
+  reward=false;
 
   if(scene>=2&&scene<=4){
     _laser.max=120;
@@ -439,6 +441,19 @@ window.defaultvalue=function(){
   _tutorialText.y=_wideClipboard.y+50*scale;
   _tutorialText.size=Math.ceil(12*scale);
   _tutorialText.debug=_tutorialText.size+"px "+_tutorialText.font;
+
+  _rewardTitle.x=_wideClipboard.x+62*scale;
+  _rewardTitle.y=_wideClipboard.y+32*scale;
+  _rewardTitle.size=Math.ceil(28*scale);
+  _rewardTitle.debug=_tutorialTitle.size+"px "+_tutorialTitle.font;
+  _rewardIcon.width=24*scale;
+  _rewardIcon.height=24*scale;
+  _rewardIcon.x=_wideClipboard.x+162*scale;
+  _rewardIcon.y=_wideClipboard.y+12*scale;
+  _rewardText.x=_wideClipboard.x+18*scale;
+  _rewardText.y=_wideClipboard.y+50*scale;
+  _rewardText.size=Math.ceil(12*scale);
+  _rewardText.debug=_tutorialText.size+"px "+_tutorialText.font;
 
   _wideBlueprint.width=264*scale;
   _wideBlueprint.height=184*scale;

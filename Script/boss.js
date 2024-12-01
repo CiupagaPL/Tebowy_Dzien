@@ -16,7 +16,6 @@ handleboss=function(){
     if(sceneTimer>=60&&sceneTimer<61&&sfxOn){
       _audio.bossStart.load();
       _audio.bossStart.play();
-      _player.move=false;
     } if(sceneTimer>=60&&sceneTimer<99){
       _boss.x-=5*scale;
       _bossCloud.x-=5*scale;
@@ -31,7 +30,6 @@ handleboss=function(){
         pauseAnimation=true;
         teacher=true;
       }
-      _player.move=true;
       _player.cloud=true;
       _playerCloud.y=_player.y+_playerCloud.height;
       _playerGun.x=_player.x+(36*scale);
@@ -81,9 +79,28 @@ handleboss=function(){
       _boss.x+=6*scale;
       _bossCloud.x+=6*scale;
       _playerCloud.y=_player.y+_playerCloud.height;
-    } if(sceneTimer>=330&&scene!=11||sceneTimer>=330&&scene==11&&_boss.round==2){ defeat=true; boss=false; }
-    if(sceneTimer>=330&&scene==11&&_boss.round<2){ _boss.round++; _boss.hp=250; sceneTimer=60; _boss.y=104*scale; 
-      _boss.x=_render.width+_boss.width+(32*scale); _bossCloud.y=174*scale; _bossCloud.x=_render.width+_boss.width+(16*scale); }
+    } if(sceneTimer>=330&&sceneTimer<360&&scene!=11){
+      defeat=true;
+      boss=false;
+    } if(sceneTimer>=330&&sceneTimer<360&&scene==11&&_boss.round==2){
+      pause=true;
+      pauseChange=true;
+      pauseAnimation=true;
+      reward=true;
+      sceneTimer=360;
+    } if(sceneTimer>=330&&sceneTimer<360&&scene==11&&_boss.round<2){
+      _boss.round++;
+      _boss.hp=250;
+      sceneTimer=60;
+      _boss.y=104*scale; 
+      _boss.x=_render.width+_boss.width+(32*scale);
+      _bossCloud.y=174*scale;
+      _bossCloud.x=_render.width+_boss.width+(16*scale);
+    } if(sceneTimer>=360&&scene==11&&_boss.round==2&&!pause){
+      reward=false;
+      defeat=true;
+      boss=false;
+    }
 
     if(_tebulinek.unused){ _tebulinek.x=-_tebulinek.width; }
     if(!_tebulinek.unused){ _tebulinek.x-=8*scale; }
@@ -121,11 +138,11 @@ handleboss=function(){
   if(_player.left){ _context.drawShortImage(_playerCloud.img0,_playerCloud); }
   else if(!_player.left){ _context.drawShortImage(_playerCloud.img1,_playerCloud); }
 
-  if(sceneTimer>=99&&!_playerGun.power){ _context.drawShortImage(_playerGun.img0,_playerGun); }
-  else if(sceneTimer>=99&&_playerGun.power){ _context.drawShortImage(_playerGun.img1,_playerGun); }
+  if(sceneTimer>=99&&!_playerGun.power||_boss.round>=1&&!_playerGun.power){ _context.drawShortImage(_playerGun.img0,_playerGun); }
+  else if(sceneTimer>=99&&_playerGun.power||_boss.round>=1&&_playerGun.power){ _context.drawShortImage(_playerGun.img1,_playerGun); }
 
-  if(sceneTimer>=99&&!_playerAmmo.power){ _context.drawShortImage(_playerAmmo.img0,_playerAmmo); }
-  else if(sceneTimer>=99&&_playerAmmo.power){ _context.drawShortImage(_playerAmmo.img1,_playerAmmo); }
+  if(sceneTimer>=99&&!_playerAmmo.power||_boss.round>=1&&!_playerAmmo.power){ _context.drawShortImage(_playerAmmo.img0,_playerAmmo); }
+  else if(sceneTimer>=99&&_playerAmmo.power||_boss.round>=1&&_playerAmmo.power){ _context.drawShortImage(_playerAmmo.img1,_playerAmmo); }
 
   if(sceneTimer>=99){
     if(!_playerGun.on){ _playerGun.timer++; }

@@ -30,8 +30,8 @@ Między etapami ukazuje się napis następnej sceny.
 > Nie wyrobiłem się z dodaniem różnych przedmiotów dla nauczycieli, lecz każdy inny aspekt został skończony.
 
 ## Status
-> Newest Version: **Alpha 1.10**;
-> Last Updated: **30-11-2024**;
+> Newest Version: **Alpha 1.11**;
+> Last Updated: **01-12-2024**;
 
 ## Have a Nice and Happy Day!
 - Ciupaga and probably all the devs >_o

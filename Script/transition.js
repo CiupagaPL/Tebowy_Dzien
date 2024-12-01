@@ -49,6 +49,8 @@ sceneon=function(){
     _audio.game.load();
     _audio.boss.load();
     musicTimer=0;
+
+    pause=true;
   }
 
   if(changeTimer<=50){ _html.style.backgroundColor=_background.color4; }

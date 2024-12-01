@@ -143,7 +143,7 @@ level=function(){
     if(fullScreen){ _context.drawShortImage(_menuResolution.imgOn,_menuResolution); }
     else if(!fullScreen){ _context.drawShortImage(_menuResolution.img,_menuResolution); }
 
-    if(!tutorial&&!teacher){
+    if(!tutorial&&!teacher&&!reward){
       _context.drawShortImage(_clipboard.img,_clipboard);
       if(!_clipboardBack.hover){ _context.drawShortImage(_clipboardBack.img,_clipboardBack); }
       else if(_clipboardBack.hover){ _context.drawShortImage(_clipboardBack.imgOn,_clipboardBack); }
@@ -166,13 +166,19 @@ level=function(){
       if(!_menuRestart.hover){ _context.drawShortImage(_menuRestart.img,_menuRestart); }
       else if(_menuRestart.hover){ _context.drawShortImage(_menuRestart.imgOn,_menuRestart); } 
       _context.fillShortText(_menuRestartText.color,_menuRestartText,_menuRestartText.value);
-    } if(tutorial){
+    } if(tutorial||reward){
       _context.drawShortImage(_wideClipboard.img,_wideClipboard);
       if(!_wideClipboardForward.hover){ _context.drawShortImage(_wideClipboardForward.img,_wideClipboardForward); }
       else if(_wideClipboardForward.hover){ _context.drawShortImage(_wideClipboardForward.imgOn,_wideClipboardForward); }
 
-      _context.fillShortText(_tutorialTitle.color,_tutorialTitle,_tutorialTitle.value);
-      _context.fillShortText(_tutorialText.color,_tutorialText,_tutorialText.value);
+      if(tutorial){
+        _context.fillShortText(_tutorialTitle.color,_tutorialTitle,_tutorialTitle.value);
+        _context.fillShortText(_tutorialText.color,_tutorialText,_tutorialText.value);
+      } else if(reward){
+        _context.fillShortText(_rewardTitle.color,_rewardTitle,_rewardTitle.value);
+        _context.drawShortImage(_rewardIcon.img,_rewardIcon);
+        _context.fillShortText(_rewardText.color,_rewardText,_rewardText.value);
+      }
     } else if(teacher){
       _context.drawShortImage(_wideBlueprint.img,_wideBlueprint);
       if(!_wideBlueprintForward.hover){ _context.drawShortImage(_wideBlueprintForward.img,_wideBlueprintForward); }

@@ -108,10 +108,10 @@ document.addEventListener("keyup",function(_event){
     case 10:
     case 11:
       if(_event.key=="Escape"&&canClick&&pause){
-        if(sfxOn&&!_clipboard.on&&!tutorial){
+        if(sfxOn&&!_clipboard.on&&!tutorial&&!reward){
           _audio.click.load();
           _audio.click.play();
-        } if(sfxOn&&_clipboard.on||sfxOn&&tutorial){
+        } if(sfxOn&&_clipboard.on||sfxOn&&tutorial||sfxOn&&reward){
           _audio.paper.load();
           _audio.paper.play();
         }
@@ -171,10 +171,10 @@ document.addEventListener("keyup",function(_event){
           }
         }
       }
-      if(_event.key==" "&&!pause&&_player.hp>0&&_player.grounded&&!_player.cloud||
-         _event.key=="ArrowUp"&&!pause&&_player.hp>0&&_player.grounded&&!_player.cloud||
-         _event.key=="w"&&!pause&&_player.hp>0&&_player.grounded&&!_player.cloud||
-         _event.key=="W"&&!pause&&_player.hp>0&&_player.grounded&&!_player.cloud){
+      if(_event.key==" "&&!pause&&_player.hp>0&&_player.grounded&&!boss||
+         _event.key=="ArrowUp"&&!pause&&_player.hp>0&&_player.grounded&&!boss||
+         _event.key=="w"&&!pause&&_player.hp>0&&_player.grounded&&!boss||
+         _event.key=="W"&&!pause&&_player.hp>0&&_player.grounded&&!boss){
         _player.jumped=true;
         _player.vy=_player.initialvy;
         if(sfxOn){
@@ -372,7 +372,7 @@ window.addEventListener("click",function(_event){
     canClick=false;
   }
   if(window.detectcollision(_menuSetting,_mouse)&&scene==1&&canClick&&!_menuSetting.on||window.detectcollision(_menuSetting,_mouse)&&
-     scene!=1&&scene!=0&&canClick&&pause&&!_menuSetting.on){
+     scene!=1&&scene!=0&&canClick&&pause&&!tutorial&&!teacher&&!reward&&!_menuSetting.on){
     if(sfxOn){
       _audio.click.load();
       _audio.click.play();
@@ -396,7 +396,7 @@ window.addEventListener("click",function(_event){
     canClick=false;
   }
   if(window.detectcollision(_menuAbout,_mouse)&&canClick&&scene==1||window.detectcollision(_menuAbout,_mouse)&&
-     scene!=1&&scene!=0&&canClick&&pause){
+     scene!=1&&scene!=0&&canClick&&pause&&!tutorial&&!reward&&!teacher){
     if(sfxOn){
       _audio.click.load();
       _audio.click.play();
@@ -420,7 +420,7 @@ window.addEventListener("click",function(_event){
     canClick=false;
   }
   if(window.detectcollision(_menuVersion,_mouse)&&canClick&&scene==1||window.detectcollision(_menuVersion,_mouse)&&
-     scene!=1&&scene!=0&&canClick&&pause){
+     scene!=1&&scene!=0&&canClick&&pause&&!tutorial&&!reward&&!teacher){
     if(sfxOn){
       _audio.click.load();
       _audio.click.play();
@@ -465,7 +465,7 @@ window.addEventListener("click",function(_event){
     canClick=false;
   }
 
-  if(window.detectcollision(_clipboardBack,_mouse)){
+  if(window.detectcollision(_clipboardBack,_mouse)&&_clipboard.on){
     if(sfxOn){
       _audio.paper.load();
       _audio.paper.play();
@@ -478,7 +478,7 @@ window.addEventListener("click",function(_event){
     canClick=false;
   }
 
-  if(window.detectcollision(_blueprintBack,_mouse)){
+  if(window.detectcollision(_blueprintBack,_mouse)&&_blueprint.on){
     if(sfxOn){
       _audio.paper.load();
       _audio.paper.play();
@@ -489,7 +489,7 @@ window.addEventListener("click",function(_event){
     if(_menuCustom.on){ _menuCustom.animation=true; }
     canClick=false;
   }
-  if(window.detectcollision(_blueprintLeft,_mouse)&&canClick){
+  if(window.detectcollision(_blueprintLeft,_mouse)&&canClick&&_menuCustom.on){
     if(sfxOn){
       _audio.paper.load();
       _audio.paper.play();
@@ -500,7 +500,7 @@ window.addEventListener("click",function(_event){
       _blueprintCustom1.value=Number(_player.skin+1)+"/4";
     }
   }
-  if(window.detectcollision(_blueprintRight,_mouse)&&canClick){
+  if(window.detectcollision(_blueprintRight,_mouse)&&canClick&&_menuCustom.on){
     if(sfxOn){
       _audio.paper.load();
       _audio.paper.play();
@@ -511,7 +511,7 @@ window.addEventListener("click",function(_event){
       _blueprintCustom1.value=Number(_player.skin+1)+"/4";
     }
   }
-  if(window.detectcollision(_wideClipboardForward,_mouse)&&canClick){
+  if(window.detectcollision(_wideClipboardForward,_mouse)&&canClick&&pause&&tutorial||window.detectcollision(_wideClipboardForward,_mouse)&&canClick&&pause&&reward){
     if(sfxOn){
       _audio.paper.load();
       _audio.paper.play();
@@ -519,9 +519,11 @@ window.addEventListener("click",function(_event){
 
     pauseChange=true;
     pauseAnimation=false;
+    if(tutorial){ tutorial=false; }
+    if(reward){ reward=false; }
     canClick=false;
   }
-  if(window.detectcollision(_wideBlueprintForward,_mouse)&&canClick){
+  if(window.detectcollision(_wideBlueprintForward,_mouse)&&canClick&&pause&&teacher){
     if(sfxOn){
       _audio.paper.load();
       _audio.paper.play();
@@ -626,7 +628,7 @@ window.addEventListener("click",function(_event){
     pause=true;
     pauseChange=true;
     pauseAnimation=true;
-  } if(window.detectcollision(_menuStart,_mouse)&&canClick&&scene!=1&&scene!=0&&pause){
+  } if(window.detectcollision(_menuStart,_mouse)&&canClick&&scene!=1&&scene!=0&&pause&&!tutorial&&!teacher&&!reward){
     if(sfxOn){
       _audio.click.load();
       _audio.click.play();
@@ -644,7 +646,7 @@ window.addEventListener("click",function(_event){
       pauseAnimation=false;
       canClick=false;
     }
-  } if(window.detectcollision(_menuMenu,_mouse)&&canClick&&pause){
+  } if(window.detectcollision(_menuMenu,_mouse)&&canClick&&pause&&!tutorial&&!teacher&&!reward){
     if(sfxOn){
       _audio.click.load();
       _audio.click.play();
@@ -663,7 +665,7 @@ window.addEventListener("click",function(_event){
       changeScene=true;
       pauseChange=true;
     }
-  } if(window.detectcollision(_menuRestart,_mouse)&&canClick&&pause){
+  } if(window.detectcollision(_menuRestart,_mouse)&&canClick&&pause&&!tutorial&&!teacher&&!reward){
     if(sfxOn){
       _audio.click.load();
       _audio.click.play();

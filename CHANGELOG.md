@@ -19,6 +19,21 @@
 > [!NOTE]
 > Będę tu zamieszczał progress trwającego od pierwszej alphy przepisywania skryptów.
 
+## Changelog Alpha 1.11
+
+### Ogólny
+- Naprawiłem Alpha 1.0 - 7 (#8),
+- Naprawiłem Alpha 1.0 - 13 (#14),
+- Naprawiłem Alpha 1.1 - 1 (#20),
+- Naprawiłem Alpha 1.1 - 2 (#21),
+- Naprawiłem Alpha 1.1 - 3 (#22),
+- Naprawiłem Alpha 1.1 - 5 (#24),
+- Naprawiłem Alpha 1.1 - 6 (#25),
+- Naprawiłem Alpha 1.1 - 7 (#26),
+- Dodałem nową sekcję po wygraniu ostatniego poziomu,
+- Dodałem możliwość dodania ikonek do paneli,
+- Wprowadziłem kilka mniejszych poprawek.
+
 ## Changelog Alpha 1.10
 
 ### Ogólny

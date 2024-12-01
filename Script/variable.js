@@ -16,7 +16,7 @@ let autoScene=false,nextAutoScene=0,autoUnpause=false,autoRestart=false;
 let sfxOn=true,musicOn=true,tutorialOn=true,teacherOn=true,addonOn=true,
     tempSfxOn=true,tempMusicOn=true,pause=false,pauseChange=false,
     pauseAnimation=false,fullScreen=false,menuLoad=false;
-let tutorial=true,teacher=true,dead=false,restart=false;
+let tutorial=true,teacher=true,reward=false,dead=false,restart=false;
 let globalMove=0,localMove=0,score=0,boss=false,defeat=false;
 
 let _html=document.getElementById("html");
@@ -319,7 +319,7 @@ let _menuVersion={
   imgOn:new Image(),
 };
 let _menuVersionText={
-  value:"Alpha 1.10;\n30-11-2024",
+  value:"Alpha 1.11;\n01-12-2024",
 
   size:16,
   font:"orangeKid",
@@ -855,6 +855,33 @@ let _tutorialText={
 
   x:0,y:0,
 };
+let _rewardTitle={
+  value:"Gratulacje!",
+
+  size:24,
+  font:"orangeKid",
+  debug:"",
+  color:"black",
+
+  x:0,y:0,
+};
+let _rewardIcon={
+  width:16,height:16,
+
+  x:0,y:0,
+
+  img:new Image(),
+};
+let _rewardText={
+  value:"Udało się Tobie przejść całą\ngrę. Mamy nadzieję że zabawa była\nudana i przy okazji nauczyciele\nwystępujący w grze nie będą straszni\njuż w realu >_o",
+
+  size:12,
+  font:"orangeKid",
+  debug:"",
+  color:"black",
+
+  x:0,y:0,
+};
 
 let _wideBlueprint={
   width:264,height:184,
@@ -949,7 +976,6 @@ let _player={
   jumped:false,
   left:false,
   fly:false,
-  move:true,
   cloud:false,
 
   img0:new Image(),
@@ -1392,6 +1418,8 @@ _wideClipboardForward.imgOn.src="Source/UI/Clipboard/rightOn.png";
 _wideBlueprint.img.src="Source/UI/Blueprint/wideBlueprint.png";
 _wideBlueprintForward.img.src="Source/UI/Blueprint/right.png";
 _wideBlueprintForward.imgOn.src="Source/UI/Blueprint/rightOn.png";
+
+_rewardIcon.img.src="Source/UI/Icons/trophy.png";
 
 _player.img0.src="Source/Object/Player/boy0.png";
 _player.img1.src="Source/Object/Player/boy1.png";

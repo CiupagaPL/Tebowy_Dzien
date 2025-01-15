@@ -106,10 +106,6 @@ window.onsetup=function(){
     resolutionError=false;
   }
 
-  if(Math.abs(_window.outWidth-screen.width)<=4&&Math.abs(_window.outHeight-screen.height)<=4||
-     Math.abs(_window.width-screen.width)<=4&&Math.abs(_window.height-screen.height)<=4){ fullScreen=true; }
-  else{ fullScreen=false; }
-
   changeTimer=0;
 
   _render.base.style.border=0+"px solid white";

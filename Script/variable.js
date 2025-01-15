@@ -21,7 +21,7 @@ let scene=0,sceneTimer=0,changeTimer=0,nextScene=0,musicTimer=0;
 let autoScene=false,nextAutoScene=0,autoUnpause=false,autoRestart=false;
 let sfxOn=true,musicOn=true,tutorialOn=true,teacherOn=true,addonOn=true,
     tempSfxOn=true,tempMusicOn=true,pause=false,pauseChange=false,
-    pauseAnimation=false,fullScreen=false,menuLoad=false;
+    pauseAnimation=false,menuLoad=false;
 let tutorial=true,teacher=true,reward=false,dead=false,restart=false;
 let globalMove=0,localMove=0,score=0,boss=false,defeat=false;
 

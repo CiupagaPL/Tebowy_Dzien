@@ -77,8 +77,6 @@ const _info={
   size:80,
   rotation:25,
 
-  enabled:true,
-  
   color0:"rgb(255,255,255)",
   alpha:50,
 }
@@ -184,10 +182,11 @@ const _hud={
       y:18,
 
       width:12,
-      height:12,
+      line:1,
 
       value0:"ıı",
       size:28,
+      alpha:100,
     },
 
     water:{
@@ -261,8 +260,8 @@ const _hud={
         height:16,
       },
 
-      img0:Object.assign(new Image(),{src:"tex/ui/heart/bossHeart.png"}),
-      img1:Object.assign(new Image(),{src:"tex/ui/heart/bossHalf.png"}),
+      img0:Object.assign(new Image(),{src:"tex/ui/heart/teacherHeart.png"}),
+      img1:Object.assign(new Image(),{src:"tex/ui/heart/teacherHalf.png"}),
       img2:Object.assign(new Image(),{src:"tex/ui/heart/empty.png"}),
     },
   },
@@ -285,9 +284,11 @@ const _button={
       x:64+48,
       y:(360-192)+18,
 
+      width:54,
+      line:2,
+
       value0:"Rozpocznij\nPoziom: 01",
       size:16,
-      line:2,
 	    alpha:100,
     },
   }, level:{
@@ -304,9 +305,11 @@ const _button={
       x:64+48,
       y:(360-128)+18,
 
+      width:54,
+      line:2,
+
       value0:"Selektor\nPoziomów",
       size:16,
-      line:2,
 	    alpha:100,
     },
 
@@ -327,9 +330,11 @@ const _button={
       x:64+48,
       y:(360-128)+18,
 
+      width:40,
+      line:2,
+
       value0:"Menu\nGłówne",
       size:16,
-      line:2,
 	    alpha:100,
     },
   }, custom:{
@@ -345,6 +350,9 @@ const _button={
     }, text:{
       x:64+48,
       y:(360-64)+28,
+
+      width:54,
+      line:1,
 
       value0:"Postać",
       size:24,
@@ -368,9 +376,11 @@ const _button={
       x:64+48,
       y:(360-64)+18,
 
+      width:42,
+      line:2,
+
       value0:"Powtórz\nPoziom",
       size:16,
-      line:2,
 	    alpha:100,
     },
   }, setting:{
@@ -386,6 +396,9 @@ const _button={
     }, text:{
       x:((64+264)-42)-48,
       y:(360-192)+28,
+
+      width:42,
+      line:1,
 
       value0:"Opcje",
       size:24,
@@ -409,9 +422,11 @@ const _button={
       x:((64+264)-42)-60,
       y:(360-128)+18,
 
+      width:54,
+      line:2,
+
       value0:" Na Temat\nRozgrywki",
       size:16,
-      line:2,
 	    alpha:100,
     },
 	
@@ -429,12 +444,14 @@ const _button={
       img0:Object.assign(new Image(),{src:"tex/ui/button/version.png"}),
       img1:Object.assign(new Image(),{src:"tex/ui/button/versionOn.png"}),
     }, text:{
-      x:((64+264)-42)-64,
+      x:((64+264)-42)-62,
       y:(360-64)+18,
 
-      value0:"    Unstable\n09-03-2025",
-      size:16,
+      width:56,
       line:2,
+
+      value0:"   Unstable\n16-03-2025",
+      size:16,
 	    alpha:100,
     },
   },
@@ -616,7 +633,7 @@ const _clipboard={
 
       value0:"Poruszaj się za pomocą [A]|[D] lub [Lewo]|[Prawo].\nPodskakuj za pomocą [W]|[Góra]|[Spacja]. Będąc\n"+
             "na chmurce do poruszania używaj [W]|[A]|[S]|[D] lub\n[Góra]|[Lewo]|[Dół]|[Prawo]. Strzelaj za pomocą\n"+
-            "[Shift]. Twoim celem jest dostać się na górę poziomu\ni pokonać danego nauczyciela. Po drodze musisz\n"+
+            "[E]. Twoim celem jest dostać się na górę poziomu i\npokonać danego nauczyciela. Po drodze musisz\n"+
             "omijać przeszkody w postaci kolców i laserów.\nW trudnej sytuacji użyj Tebulinka. Życzymy szczęścia!",
       size:12,
     },
@@ -642,7 +659,7 @@ const _clipboard={
       width:24,
       height:24,
 
-      img0:Object.assign(new Image(),{src:"tex/ui/icon/trophy.png"}),
+      img0:Object.assign(new Image(),{src:"tex/ui/trophy.png"}),
     },
   },
 
@@ -747,7 +764,7 @@ const _blueprint={
       y:((360/2)-(240/2))+92,
 
       width:52,
-      height:14,
+      line:1,
 
       value0:"Poziom  1",
       size:18,
@@ -756,7 +773,7 @@ const _blueprint={
       y:((360/2)-(240/2))+120,
 
       width:52,
-      height:14,
+      line:1,
 
       value0:"Poziom  2",
       size:18,
@@ -765,7 +782,8 @@ const _blueprint={
       y:((360/2)-(240/2))+148,
 
       width:52,
-      height:14,
+      line:1,
+
       value0:"Poziom  3",
       size:18,
     }, button4:{
@@ -773,7 +791,7 @@ const _blueprint={
       y:((360/2)-(240/2))+176,
 
       width:52,
-      height:14,
+      line:1,
       
       value0:"Poziom  4",
       size:18,
@@ -782,7 +800,7 @@ const _blueprint={
       y:((360/2)-(240/2))+204,
 
       width:52,
-      height:14,
+      line:1,
       
       value0:"Poziom  5",
       size:18,
@@ -791,7 +809,7 @@ const _blueprint={
       y:((360/2)-(240/2))+92,
 
       width:52,
-      height:14,
+      line:1,
       
       value0:"Poziom  6",
       size:18,
@@ -800,7 +818,7 @@ const _blueprint={
       y:((360/2)-(240/2))+120,
 
       width:52,
-      height:14,
+      line:1,
       
       value0:"Poziom  7",
       size:18,
@@ -809,7 +827,7 @@ const _blueprint={
       y:((360/2)-(240/2))+148,
 
       width:52,
-      height:14,
+      line:1,
       
       value0:"Poziom  8",
       size:18,
@@ -818,7 +836,7 @@ const _blueprint={
       y:((360/2)-(240/2))+176,
 
       width:52,
-      height:14,
+      line:1,
       
       value0:"Poziom  9",
       size:18,
@@ -827,7 +845,7 @@ const _blueprint={
       y:((360/2)-(240/2))+204,
 
       width:52,
-      height:14,
+      line:1,
       
       value0:"Poziom 10",
       size:18,
@@ -863,9 +881,9 @@ const _blueprint={
       value5:"Anna Świtoń",
       value6:"Piotr Łojek",
       value7:"Iwo Musiałowski",
-      valueAdd0:"Iwona Bury Sierzchuła",
-      valueAdd1:"Wojciech Złotowski",
-      valueAdd2:"Anna Niklas",
+      valueAdd0:"Wojciech Złotowski",
+      valueAdd1:"Anna Niklas",
+      valueAdd2:"Iwona Bury Sierzchuła",
       size:20,
     }, text:{
       x:(64-2)+14,
@@ -891,12 +909,12 @@ const _blueprint={
              "może Cię potraktować ulgowo… pod\nwarunkiem, że go słuchasz! Walka\nnie będzie łatwa.",
       value7:"To jest dopiero #nauczycielzpasją!\nNie stroni od historycznych przebieranek\n"+
              "i inscenizacji, a jego lekcje historii\npoparte są żywym przykładem. Kolekcjoner\nuzbrojenia i mundrów. Walka nie\nbędzie łatwa.",
-      valueAdd0:"[...] To jeszcze nie koniec!",
-      valueAdd1:"Bezpieczeństwo i higiena to przedmiot,\nktóry uczy nasz Dyrektor. Pan\n"+
+      valueAdd0:"Bezpieczeństwo i higiena to przedmiot,\nktóry uczy nasz Dyrektor. Pan\n"+
                 "Wojtek zarządza Liceum, a jednocześnie\nprzekazuje praktyczną wiedzę. To jeszcze\nnie koniec!",
-      valueAdd2:"Groźna Pani Dyrektor! A skąd!\nWie kiedy pogrozić palcem, mimo\nto uwielbia swoją młodzież\n"+
+      valueAdd1:"Groźna Pani Dyrektor! A skąd!\nWie kiedy pogrozić palcem, mimo\nto uwielbia swoją młodzież\n"+
                 "i stara się robić wszystko by\nspełnić ich marzenia. Pod warunkiem,\nże akurat nie dostałeś/aś drugiej nagany.\n"+
-                "Daj z siebie wszystko!",
+                "To jeszcze nie koniec!",
+      valueAdd2:"Główna Pani Dyrektor TEB TORUŃ\n Nadzoruje aby wszystko działało jak należy\n To już ostateczna walka!",
       size:12,
     },
   },
@@ -1094,26 +1112,6 @@ const _spike={
   update:function(){},
 };
 
-const _sign={
-  base:{
-    x:0,
-    y:0,
-
-    width:64,
-    height:48,
-
-    img0:Object.assign(new Image(),{src:"tex/obj/next.png"}),
-  }, teacher:{
-    x:0,
-    y:0,
-
-    width:64,
-    height:48,
-
-    img0:Object.assign(new Image(),{src:"tex/obj/teacher.png"}),
-  },
-};
-
 const _teacher={
   base:{
     x:0,
@@ -1130,9 +1128,9 @@ const _teacher={
     img5:Object.assign(new Image(),{src:"tex/obj/people/AS.png"}),
     img6:Object.assign(new Image(),{src:"tex/obj/people/PL.png"}),
     img7:Object.assign(new Image(),{src:"tex/obj/people/IM.png"}),
-    imgAdd0:Object.assign(new Image(),{src:"tex/obj/people/ISB.png"}),
-    imgAdd1:Object.assign(new Image(),{src:"tex/obj/people/WZ.png"}),
-    imgAdd2:Object.assign(new Image(),{src:"tex/obj/people/AN.png"}),
+    imgAdd0:Object.assign(new Image(),{src:"tex/obj/people/WZ.png"}),
+    imgAdd1:Object.assign(new Image(),{src:"tex/obj/people/AN.png"}),
+    imgAdd2:Object.assign(new Image(),{src:"tex/obj/people/ISB.png"}),
   }, text:{
     x:0,
     y:0,

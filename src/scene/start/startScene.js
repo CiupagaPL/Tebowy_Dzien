@@ -12,6 +12,10 @@
  *   | |    | | /
  *  (_(_)--(_(_) */
 
+if(global.stable){ console.log("Pamiętaj, że grając wspierasz rozwój gry! Dzięki :-D"); }
+else{ console.log("Grasz na wersji niestabilnej, pamiętaj by wszelkie błędy zgłaszać na GitHubie! >.<"); }
+html.classList.add("black-blue");
+
 scene.startRender=function(){
   if(scene.timer<context.time(70)){
     context.render(_background.base,_background.color0);
@@ -24,12 +28,20 @@ scene.startRender=function(){
   } else{
     if(scene.timer>=context.time(70)&&scene.timer<context.time(90)){
       context.render(_background.base,_background.color1);
-      html.style.backgroundColor=_background.color1;
+
+      if(html.classList.contains("black-blue")){
+        html.classList.remove("black-blue");
+        html.classList.add("blue-cyan");
+      }
 
       context.render(_start.base,_start.base.img1);
     } else{
       context.render(_background.base,_background.color2);
-      html.style.backgroundColor=_background.color2;
+
+      if(html.classList.contains("blue-cyan")){
+        html.classList.remove("blue-cyan");
+        html.classList.add("cyan-red");
+      }
 
       context.render(_start.base,_start.base.img2);
     }
@@ -44,15 +56,20 @@ scene.startRender=function(){
 scene.startUpdate=function(){
   scene.timer++;
 
-  if(scene.timer==context.time(72)){
+  if(scene.timer==context.time(72)&&global.sfx){
     audio.load1.load();
     audio.load1.play();
-  } else if(scene.timer==context.time(92)){
+  } else if(scene.timer==context.time(92)&&global.sfx){
     audio.load2.load();
     audio.load2.play();
   } else if(scene.timer==context.time(112)){
-    audio.load3.load();
-    audio.load3.play();
+    if(global.sfx){
+      audio.load3.load();
+      audio.load3.play();
+    }
+
+    html.classList.remove("cyan-red");
+    html.classList.add("red-blue");
 
 	  _background.base.alpha=100;
     scene.timer=0;

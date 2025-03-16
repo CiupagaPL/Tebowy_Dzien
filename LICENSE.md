@@ -1,4 +1,4 @@
-![Banner](https://github.com/CiupagaPL/Tebowy_Dzien/blob/stable/Source/banner.png)
+![banner](https://github.com/CiupagaPL/Tebowy_Dzien/blob/unstable/tex/banner.png)
 # LICENSE
 
 ## MIT

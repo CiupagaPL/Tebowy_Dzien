@@ -138,16 +138,20 @@ scene.menuRender=function(){
 
   if(scene.change){
     if(!global.menuLoad){
-      // if(changeTimer<=10){ _html.style.backgroundColor=_background.color3; }
-      // if(changeTimer>10){ _html.style.backgroundColor=_background.color4; }
+      html.classList.remove("red-blue");
+      html.classList.remove("black-blue");
+      html.classList.add("blue-black");
 
       _transition.base.alpha+=context.frame(8);
       context.render(_transition.base,_transition.base.color0);
     } else{
-      // if(_transition.timer<=50){ _html.style.backgroundColor=_background.color4; }
-      // if(_transition.timer>50){ _html.style.backgroundColor=_background.color3; }
+      if(_transition.timer>=context.time(65)){
+        html.classList.remove("cyan-black");
+        html.classList.remove("red-black");
+        html.classList.add("black-blue");
 
-      if(_transition.timer>=context.time(65)){ _transition.base.alpha-=context.frame(8); }
+        _transition.base.alpha-=context.frame(8);
+      }
       context.render(_transition.base,_transition.base.color0);
 
       if(_transition.timer<context.time(65)){ context.render(_start.arrow,_start.arrow.img0); }

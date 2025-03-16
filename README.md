@@ -1,4 +1,4 @@
-![Banner](https://github.com/CiupagaPL/Tebowy_Dzien/blob/stable/Source/banner.png)
+![banner](https://github.com/CiupagaPL/Tebowy_Dzien/blob/unstable/tex/banner.png)
 # TEBOWY DZIEŃ
 
 ## Notka
@@ -10,11 +10,10 @@ Przełącz się na gałęź stabilną aby znaleźć najnowsze najbezpieczniejsze
 
 ## Status
 > Newest Version: **Unstable**;
-> Last Updated: **09-03-2025**;
+> Last Updated: **16-03-2025**;
 
 ## License
-**This project uses MIT License**. You can read about it in **LICENSE.md** file.<br><br>
-
+**This project uses MIT License**. You can read about it in **LICENSE.md** file.<br>
 Main font of this project is [orangeKid](https://www.1001fonts.com/orange-kid-font.html).
 
 ## Domain

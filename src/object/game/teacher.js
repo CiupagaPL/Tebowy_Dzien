@@ -46,7 +46,15 @@ _teacher.update=function(){
   if(!global.pause&&_player.hp!=0){
     scene.timer++;
 
-    if(scene.timer<context.time(60)){ _player.cloud.y=canvas.height+_player.cloud.height; }
+    if(scene.timer==context.time(1)){
+      html.classList.remove("black-cyan"); 
+      html.classList.remove("black-red"); 
+      html.classList.add("cyan-red");
+    }
+    if(scene.timer<context.time(60)){
+      _player.cloud.y=canvas.height+_player.cloud.height;
+      audio.current=0;
+    }
     else if(scene.timer==context.time(60)&&global.sfx){
       // _audio.bossStart.load();
       // _audio.bossStart.play();
@@ -107,9 +115,6 @@ _teacher.update=function(){
     } else if(scene.timer>=context.time(300)&&scene.timer<context.time(330)){
       _teacher.base.x+=context.move(6);
       _teacher.cloud.x+=context.move(6);
-    } else if(scene.timer>=context.time(330)&&scene.timer<context.time(360)&&scene.value!=11){
-      scene.win=true;
-      _teacher.on=false;
     } else if(scene.timer>=context.time(330)&&scene.timer<context.time(360)&&scene.value==11&&_teacher.round==2){
       global.pause=true;
       global.pauseChange=true;
@@ -128,7 +133,6 @@ _teacher.update=function(){
       _teacher.cloud.x=canvas.width+_teacher.base.width+context.scale(16);
     } else if(scene.timer>=context.time(360)&&scene.value==11&&_teacher.round==2&&!global.pause){
       scene.win=true;
-
       global.currentReward=false;
       _teacher.on=false;
     }

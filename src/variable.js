@@ -13,6 +13,7 @@
  *  (_(_)--(_(_) */
 
 const html=document.getElementById("html");
+const body=document.getElementById("body");
 const load=document.getElementById("load");
 const error=document.getElementById("error");
 const render=document.getElementById("render",{
@@ -55,7 +56,6 @@ const canvas={
   prevScale:1.00,
   timeScale:1.00,
   prevTimeScale:1.00,
-
   limitFps:120,
   currentFps:40,
   countFps:0,
@@ -66,7 +66,7 @@ const canvas={
 
   error:false,
   resize:true,
-  start:false,
+  first:false,
   minimize:false,
 
   setup:function(){},
@@ -83,16 +83,10 @@ const scene={
   value:0,
   next:0,
   nextAuto:0,
-
   timer:0,
   score:0,
 
-  teacher:false,
-  win:false,
-  defeat:false,
-
   generated:false,
-
   change:false,
   blocked:false,
   auto:false,
@@ -106,27 +100,28 @@ const scene={
 };
 
 const global={
+  stable:false,
   pause:false,
   pauseChange:false,
   pauseAnimation:false,
-
   restart:false,
-
   autoUnpause:false,
   autoRestart:false,
-
   menuLoad:false,
-
   currentTutorial:false,
   currentTeacher:false,
   currentReward:false,
 
-  sfx:true,
-  music:true,
+  sfx:localStorage.getItem("sfx"),
+  music:localStorage.getItem("music"),
   tutorial:true,
   teacher:true,
   addon:true,
 };
+if(global.sfx==null||global.sfx=="true"){ global.sfx=true; }
+else{ global.sfx=false; }
+if(global.music==null||global.music=="true"){ global.music=true; }
+else{ global.music=false; }
 
 const keyDown={
   left:false,
@@ -136,9 +131,13 @@ const keyDown={
 };
 
 const audio={
-  menu:new Audio("sfx/music/menu.mp3"),
-  game:new Audio("sfx/music/game.mp3"),
-  teacher:new Audio("sfx/music/teacher.mp3"),
+  menu1_music:new Audio("sfx/music/menu1.mp3"),
+  menu2_music:new Audio("sfx/music/menu2.mp3"),
+  level1_music:new Audio("sfx/music/level1.mp3"),
+  level2_music:new Audio("sfx/music/level2.mp3"),
+  level3_music:new Audio("sfx/music/level3.mp3"),
+  teacher1_music:new Audio("sfx/music/teacher1.mp3"),
+  teacher2_music:new Audio("sfx/music/teacher2.mp3"),
 
   load1:new Audio("sfx/load1.mp3"),
   load2:new Audio("sfx/load2.mp3"),
@@ -155,43 +154,13 @@ const audio={
   teacherHit:new Audio("sfx/teacherHit.wav"),
   teacherStart:new Audio("sfx/teacherStart.mp3"),
 
-  timer:0,
+  current:0,
 };
 
-// audio.menu.load();
-// audio.game.load();
-// audio.teacher.load();
-
-// audio.menu.volume=0.25;
-// audio.game.volume=0.25;
-// audio.teacher.volume=0.25;
-
-audio.load1.load();
-audio.load2.load();
-audio.load3.load();
-
-audio.load1.volume=1;
-audio.load2.volume=1;
-audio.load3.volume=1;
-
-// audio.click.load();
-// audio.die.load();
-// audio.hit.load();
-// audio.jump.load();
-// audio.laser.load();
-// audio.paper.load();
-
-// audio.click.volume=1;
-// audio.die.volume=0.25;
-// audio.hit.volume=0.25;
-// audio.jump.volume=0.25;
-// audio.laser.volume=0.25;
-// audio.paper.volume=0.25;
-
-// audio.teacherDefeat.load();
-// audio.teacherHit.load();
-// audio.teacherStart.load();
-
-// audio.teacherDefeat.volume=0.25;
-// audio.teacherHit.volume=0.25;
-// audio.teacherStart.volume=0.25;
+audio.menu1_music.volume=0.25;
+audio.menu2_music.volume=0.15;
+audio.level1_music.volume=0;
+audio.level2_music.volume=0;
+audio.level3_music.volume=0;
+audio.teacher1_music.volume=0;
+audio.teacher2_music.volume=0;

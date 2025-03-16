@@ -18,16 +18,11 @@ context.collision=function(object0,object1){
            object0.x+object0.width>object1.x&&
            object0.y<object1.y+object1.height&&
            object0.y+object0.height>object1.y;
-  } else if(object0.size!=undefined&&object0.line==undefined){
-    return object0.x<object1.x+object1.width&&
-           object0.x+object0.width>object1.x&&
-           object0.y-object0.height<object1.y+object1.height&&
-           object0.y-object0.height+object0.height>object1.y;
   } else{
     return object0.x<object1.x+object1.width&&
            object0.x+object0.width>object1.x&&
-           object0.y-object0.height<object1.y+object1.height&&
-           object0.y-object0.height+object0.height>object1.y;
+           object0.y-object0.size<object1.y+object1.height&&
+           object0.y+(object0.size*(object0.line-1))>object1.y;
   }
 }
 
@@ -43,10 +38,9 @@ context.setup=function(object){
     object.y=Math.round((context.scale(object.y)/canvas.prevScale)*100)/100;
   }
 
-  if(object.width!=undefined&&object.height!=undefined){
-    object.width=Math.round((context.scale(object.width)/canvas.prevScale)*100)/100;
-    object.height=Math.round((context.scale(object.height)/canvas.prevScale)*100)/100;
-  } if(object.size!=undefined){ object.size=Math.round((Math.round(context.scale(object.size)/canvas.prevScale))*100)/100; }
+  if(object.width!=undefined){ object.width=Math.round((context.scale(object.width)/canvas.prevScale)*100)/100; }
+  if(object.height!=undefined){ object.height=Math.round((context.scale(object.height)/canvas.prevScale)*100)/100; }
+  if(object.size!=undefined){ object.size=Math.round((Math.round(context.scale(object.size)/canvas.prevScale))*100)/100; }
 }
 
 context.render=function(object,fill){
@@ -153,9 +147,6 @@ context.default=function(){
     _player.collisionRight.height=context.scale(63);
     _player.collisionBottom.y=(_player.base.y+context.scale(75))+_player.vy;
   }
-
-  scene.win=false;
-  scene.defeat=false;
 
   scene.generated=false;
 
@@ -378,9 +369,6 @@ context.reset=function(){
   context.setup(_corner.laser);
 
   context.setup(_spike);
-
-  context.setup(_sign.base);
-  context.setup(_sign.teacher);
 
   context.setup(_teacher.base);
   context.setup(_teacher.text);

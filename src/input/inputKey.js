@@ -159,7 +159,7 @@ window.addEventListener("keyup",function(event){
           _player.vy=_player.ivy;
         }
 
-        if(event.key=="Shift"&&_teacher.on&&_player.gun.on){
+        if((event.key=="e"||event.key=="E")&&_teacher.on&&_player.gun.on){
           if(global.sfx){
             // _audio.laser.load();
             // _audio.laser.play();

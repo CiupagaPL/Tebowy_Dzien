@@ -111,8 +111,7 @@ scene.levelRender=function(){
   if(_teacher.on){ _teacher.textRender(); }
 
   context.render(_ui.game,_ui.color0);
-  if(!_hud.icon.pause.hover||global.pause){ context.text(_hud.icon.pause,_hud.color0,_hud.icon.pause.value0); }
-  else{ context.text(_hud.icon.pause,_hud.color1,_hud.icon.pause.value0); }
+  context.text(_hud.icon.pause,_hud.color0,_hud.icon.pause.value0);
 
   context.text(_hud.level,_hud.color0,_hud.level.value0);
   context.text(_hud.score,_hud.color0,_hud.score.value0);
@@ -157,7 +156,7 @@ scene.levelRender=function(){
     if(_player.gun.timer>=context.time(60)&&!_player.gun.on&&_player.gun.power){ context.render(_hud.icon.water,_hud.icon.water.img4); }
   }
 
-  if(global.pauseAnimation&&!global.pauseChange&&global.pause&&_transition.timer==0&&scene.next!=1){
+  if(global.pauseAnimation&&!global.pauseChange&&global.pause&&_transition.timer==0&&scene.next!=1&&_player.hp>0&&_teacher.hp>0){
     if(!global.pauseChange){ context.render(_transition.base,_transition.base.color0); }
 
     if(_title.base.alpha==100){ context.render(_title.teb,_title.teb.img0); }
@@ -165,53 +164,29 @@ scene.levelRender=function(){
     context.render(_title.base,_title.base.img0);
 
     if(!global.currentTutorial&&!global.currentTeacher&&!global.currentReward){
-      if(!_button.start.hover){
-        context.render(_button.start.base,_button.start.base.img0);
-        context.text(_button.start.text,_button.color0,_button.start.text.value0);
-      } else{
-        context.render(_button.start.base,_button.start.base.img1);
-        context.text(_button.start.text,_button.color1,_button.start.text.value0);
-      }
+      if(_button.start.text.alpha==100){ context.render(_button.start.base,_button.start.base.img0); }
+      else{ context.render(_button.start.base,_button.start.base.img1); }
+      context.text(_button.start.text,_button.color0,_button.start.text.value0);
 
-      if(!_button.menu.hover){
-        context.render(_button.menu.base,_button.menu.base.img0);
-        context.text(_button.menu.text,_button.color0,_button.menu.text.value0);
-      } else{
-        context.render(_button.menu.base,_button.menu.base.img1);
-        context.text(_button.menu.text,_button.color1,_button.menu.text.value0);
-      }
+      if(_button.menu.text.alpha==100){ context.render(_button.menu.base,_button.menu.base.img0); }
+      else{ context.render(_button.menu.base,_button.menu.base.img1); }
+      context.text(_button.menu.text,_button.color0,_button.menu.text.value0);
 
-      if(!_button.restart.hover){
-        context.render(_button.restart.base,_button.restart.base.img0);
-        context.text(_button.restart.text,_button.color0,_button.restart.text.value0);
-      } else{
-        context.render(_button.restart.base,_button.restart.base.img1);
-        context.text(_button.restart.text,_button.color1,_button.restart.text.value0);
-      }
+      if(_button.restart.text.alpha==100){ context.render(_button.restart.base,_button.restart.base.img0); }
+      else{ context.render(_button.restart.base,_button.restart.base.img1); }
+      context.text(_button.restart.text,_button.color0,_button.restart.text.value0);
 
-      if(!_button.setting.hover){
-        context.render(_button.setting.base,_button.setting.base.img0);
-        context.text(_button.setting.text,_button.color0,_button.setting.text.value0);
-      } else{
-        context.render(_button.setting.base,_button.setting.base.img1);
-        context.text(_button.setting.text,_button.color1,_button.setting.text.value0);
-      }
+      if(_button.setting.text.alpha==100){ context.render(_button.setting.base,_button.setting.base.img0); }
+      else{ context.render(_button.setting.base,_button.setting.base.img1); }
+      context.text(_button.setting.text,_button.color0,_button.setting.text.value0);
 
-      if(!_button.about.hover){
-        context.render(_button.about.base,_button.about.base.img0);
-        context.text(_button.about.text,_button.color0,_button.about.text.value0);
-      } else{
-        context.render(_button.about.base,_button.about.base.img1);
-        context.text(_button.about.text,_button.color1,_button.about.text.value0);
-      }
+      if(_button.about.text.alpha==100){ context.render(_button.about.base,_button.about.base.img0); }
+      else{ context.render(_button.about.base,_button.about.base.img1); }
+      context.text(_button.about.text,_button.color0,_button.about.text.value0);
 
-      if(!_button.version.hover){
-        context.render(_button.version.base,_button.version.base.img0);
-        context.text(_button.version.text,_button.color0,_button.version.text.value0);
-      } else{
-        context.render(_button.version.base,_button.version.base.img1);
-        context.text(_button.version.text,_button.color1,_button.version.text.value0);
-      }
+      if(_button.version.text.alpha==100){ context.render(_button.version.base,_button.version.base.img0); }
+      else{ context.render(_button.version.base,_button.version.base.img1); }
+      context.text(_button.version.text,_button.color0,_button.version.text.value0);
 
       if(_button.setting.animation||_button.setting.on||_button.about.animation||_button.about.on||_button.version.animation||_button.version.on){
         context.render(_clipboard.base,_clipboard.base.img0);
@@ -300,10 +275,10 @@ scene.levelRender=function(){
         context.text(_blueprint.teacher.title,_blueprint.color0,_blueprint.teacher.title.value1);
         context.text(_blueprint.teacher.text,_blueprint.color0,_blueprint.teacher.text.value1);
       } else if(scene.value==11){
-        if(_boss.round==0){
+        if(_teacher.round==0){
           context.text(_blueprint.teacher.title,_blueprint.color0,_blueprint.teacher.title.valueAdd0);
           context.text(_blueprint.teacher.text,_blueprint.color0,_blueprint.teacher.text.valueAdd0);
-        } else if(_boss.round==1){
+        } else if(_teacher.round==1){
           context.text(_blueprint.teacher.title,_blueprint.color0,_blueprint.teacher.title.valueAdd1);
           context.text(_blueprint.teacher.text,_blueprint.color0,_blueprint.teacher.text.valueAdd1);
         } else{
@@ -314,18 +289,23 @@ scene.levelRender=function(){
     }
   }
 
-  if(scene.change){
-    console.log(_transition.timer,_transition.base.alpha);
-    
-    if(scene.change&&_player.hp==0){
-      // if(changeTimer<=10){ _html.style.backgroundColor=_background.color3; }
-      // if(changeTimer>10){ _html.style.backgroundColor=_background.color4; }
+  if(scene.change&&!global.restart&&scene.next!=1){
+    if(_player.hp==0){
+      if(_teacher.on){
+        html.classList.remove("black-red");
+        html.classList.add("red-black");
+      } else{
+        html.classList.remove("black-cyan");
+        html.classList.add("cyan-black");
+      }
 
       _transition.base.alpha+=context.time(8);
       context.render(_transition.base,_transition.base.color0);
-    } else if(!scene.win){
-      // if(_transition.timer<=50){ _html.style.backgroundColor=_background.color4; }
-      // if(_transition.timer>50){ _html.style.backgroundColor=_background.color3; }
+    } else if(_teacher.hp>0){
+      if(_transition.timer>=context.time(65)){
+        html.classList.remove("blue-black");
+        html.classList.add("black-cyan");
+      }
 
       if(_transition.timer>=context.time(65)){ _transition.base.alpha-=context.frame(8); }
       context.render(_transition.base,_transition.base.color0);
@@ -339,19 +319,30 @@ scene.levelRender=function(){
   }
 
   if(scene.next!=scene.value&&global.pauseChange||global.restart){
-    // _html.style.backgroundColor=_background.color4;
-
+    _transition.base.alpha+=context.frame(4);
     context.render(_transition.base,_transition.base.color0);
-  } if(global.pauseChange){
+  } else if(global.pauseChange&&!global.restart){
     if(!global.pauseAnimation){
-      // if(_transition.timer<=5){ _html.style.backgroundColor=_background.color4; }
-      // if(_transition.timer>5){ _html.style.backgroundColor=_background.color3; }
+      if(_teacher.on){
+        html.classList.remove("red-black");
+        html.classList.add("black-red");
+      } else{
+        html.classList.remove("cyan-black");
+        html.classList.add("black-cyan");
+      }
 
       _transition.base.alpha-=context.frame(4);
       context.render(_transition.base,_transition.base.color0);
     } else{
-      // if(_transition.timer<=10){ _html.style.backgroundColor=_background.color3; }
-      // if(_transition.timer>10){ _html.style.backgroundColor=_background.color4; }
+      if(_teacher.on){
+        html.classList.remove("cyan-red");
+        html.classList.remove("black-red");
+        html.classList.add("red-black");
+      } else{
+        html.classList.remove("red-black");
+        html.classList.remove("black-cyan");
+        html.classList.add("cyan-black");
+      }
 
       _transition.base.alpha+=context.frame(4);
       context.render(_transition.base,_transition.base.color0);

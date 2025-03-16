@@ -32,8 +32,8 @@ window.addEventListener("click",function(){
     }
 
     if(scene.value==1||global.pause){
-      if(context.collision(_button.start.base,mouse)&&!scene.blocked&&(scene.value==1||scene.value>=2&&
-         !global.currentTutorial&&!global.currentTeacher&&!global.currentReward)){
+      if((context.collision(_button.start.base,mouse)||context.collision(_button.start.text,mouse))&&!scene.blocked&&
+         (scene.value==1||scene.value>=2&&!global.currentTutorial&&!global.currentTeacher&&!global.currentReward)){
         scene.blocked=true;
         if(global.sfx){
           // _audio.click.load();
@@ -77,7 +77,7 @@ window.addEventListener("click",function(){
         }
       }
 
-      else if(context.collision(_button.level.base,mouse)&&scene.value==1){
+      else if((context.collision(_button.level.base,mouse)||context.collision(_button.level.text,mouse))&&scene.value==1){
         scene.blocked=true;
         if(global.sfx){
           // _audio.click.load();
@@ -105,8 +105,8 @@ window.addEventListener("click",function(){
         }
       }
 
-      else if(context.collision(_button.menu.base,mouse)&&scene.value>=2&&global.pause&&!global.currentTutorial&&
-         !global.currentTeacher&&!global.currentReward){
+      else if((context.collision(_button.menu.base,mouse)||context.collision(_button.menu.text,mouse))&&scene.value>=2&&
+              global.pause&&!global.currentTutorial&&!global.currentTeacher&&!global.currentReward){
         scene.blocked=true;
         if(global.sfx){
           // _audio.click.load();
@@ -128,7 +128,7 @@ window.addEventListener("click",function(){
         }
       }
 
-      else if(context.collision(_button.custom.base,mouse)&&scene.value==1){
+      else if((context.collision(_button.custom.base,mouse)||context.collision(_button.custom.text,mouse))&&scene.value==1){
         scene.blocked=true;
         if(global.sfx){
           // _audio.click.load();
@@ -156,8 +156,8 @@ window.addEventListener("click",function(){
         }
       }
 
-      else if(context.collision(_button.restart.base,mouse)&&global.pause&&!global.currentTutorial&&
-         !global.currentTeacher&&!global.currentReward){
+      else if((context.collision(_button.restart.base,mouse)||context.collision(_button.restart.text,mouse))&&
+              global.pause&&!global.currentTutorial&&!global.currentTeacher&&!global.currentReward){
         scene.blocked=true;
         if(global.sfx){
           // _audio.click.load();
@@ -171,11 +171,14 @@ window.addEventListener("click",function(){
           if(_button.setting.on){ _button.setting.animation=true; }
           else if(_button.about.on){ _button.about.animation=true; }
           else if(_button.version.on){ _button.version.animation=true; }
-        } else{ global.restart=true; }
+        } else{
+          global.restart=true;
+          scene.change=true;
+        }
       }
 
-      else if(context.collision(_button.setting.base,mouse)&&(scene.value==1||scene.value>=2&&global.pause&&
-         !global.currentTutorial&&!global.currentTeacher&&!global.currentReward)){
+      else if((context.collision(_button.setting.base,mouse)||context.collision(_button.setting.text,mouse))&&(scene.value==1||scene.value>=2&&
+              global.pause&&!global.currentTutorial&&!global.currentTeacher&&!global.currentReward)){
         scene.blocked=true;
         if(global.sfx){
           // _audio.click.load();
@@ -205,8 +208,8 @@ window.addEventListener("click",function(){
         }
       }
 
-      else if(context.collision(_button.about.base,mouse)&&(scene.value==1||scene.value>=2&&global.pause&&
-         !global.currentTutorial&&!global.currentTeacher&&!global.currentReward)){
+      else if((context.collision(_button.about.base,mouse)||context.collision(_button.about.text,mouse))&&(scene.value==1||scene.value>=2&&
+              global.pause&&!global.currentTutorial&&!global.currentTeacher&&!global.currentReward)){
         scene.blocked=true;
         if(global.sfx){
           // _audio.click.load();
@@ -236,8 +239,8 @@ window.addEventListener("click",function(){
         }
       }
 
-      else if(context.collision(_button.version.base,mouse)&&(scene.value==1||scene.value>=2&&global.pause&&
-         !global.currentTutorial&&!global.currentTeacher&&!global.currentReward)){
+      else if((context.collision(_button.version.base,mouse)||context.collision(_button.version.text,mouse))&&(scene.value==1||scene.value>=2&&
+              global.pause&&!global.currentTutorial&&!global.currentTeacher&&!global.currentReward)){
         scene.blocked=true;
         if(global.sfx){
           // _audio.click.load();
@@ -376,9 +379,13 @@ window.addEventListener("click",function(){
 
     if(_button.setting.on){
       if(context.collision(_clipboard.setting.sfx.base,mouse)){
-        if(global.sfx){ global.sfx=false; }
+        if(global.sfx){
+          global.sfx=false;
+          localStorage.setItem("sfx",false);
+        }
         else{
           global.sfx=true;
+          localStorage.setItem("sfx",true);
 
           // _audio.paper.load();
           // _audio.paper.play();
@@ -389,8 +396,14 @@ window.addEventListener("click",function(){
           // _audio.paper.play();
         }
 
-        if(global.music){ global.music=false; }
-        else{ global.music=true; }
+        if(global.music){
+          global.music=false;
+          localStorage.setItem("music",false);
+        }
+        else{
+          global.music=true;
+          localStorage.setItem("music",true);
+        }
       } else if(context.collision(_clipboard.setting.tutorial.base,mouse)){
         if(global.sfx){
           // _audio.paper.load();

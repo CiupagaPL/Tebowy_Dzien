@@ -1,7 +1,7 @@
 /*   ,-----,
- *   |     |   ,-------------------------------------------,
+ *   |     |   ,------------------------------------------,
  *   |     |   ( */*{ opacity:1; }/* pastebin.com/zdg35gef )
-*   (|-----|) < The project is licensed under MIT -^       |
+ *  (|-----|) < The project is licensed under MIT -^       |
  *  |\_____/|  "------------------------------------------"
  *  |       |    __---.
  *  ( o   o )   /      )
@@ -37,19 +37,62 @@
     opacity:0;
     visibility:hidden;
   }
-} @keyframes background{
+}
+
+@keyframes background{
   0%{ background-position:50%50%; }
   100%{ background-position:calc(50% + 6vw)calc(50% - 6vw); }
+} @keyframes blue-black{
+  0%{ background-color:#002f6d; }
+  100%{ background-color:#000000; }
+} @keyframes cyan-black{
+  0%{ background-color:#037aa2; }
+  100%{ background-color:#000000; }
+} @keyframes red-black{
+  0%{ background-color:#ff0002; }
+  100%{ background-color:#000000; }
+} @keyframes black-blue{
+  0%{ background-color:#000000; }
+  100%{ background-color:#002f6d; }
+} @keyframes black-cyan{
+  0%{ background-color:#000000; }
+  100%{ background-color:#037aa2; }
+} @keyframes black-red{
+  0%{ background-color:#000000; }
+  100%{ background-color:#ff0002; }
+} @keyframes cyan-red{
+  0%{ background-color:#037aa2; }
+  100%{ background-color:#ff0002; }
+} @keyframes blue-cyan{
+  0%{ background-color:#002f6d; }
+  100%{ background-color:#037aa2; }
+} @keyframes red-blue{
+  0%{ background-color:#ff0002; }
+  100%{ background-color:#002f6d; }
+} @keyframes blue-red{
+  0%{ background-color:#002f6d; }
+  100%{ background-color:#ff0002; }
 }
 
 html{
-  background-color:#002f6d;
+  background-color:#000000;
+  overflow:hidden;
+  user-select:none;
+  position:absolute;
+  width:100%;
+  height:100%;
+  top:-8px;
+  left:-8px;
+} body{
+  position:absolute;
+  height:100%;
+  width:100%;
+  top:-8px;
+  left:-8px;
   background-image:url("tex/icon/arrow.png");
   background-size:6vw;
   background-repeat:repeat;
   background-position:50%,50%;
-  overflow:hidden;
-  user-select:none;
   animation-fill-mode:both;
   image-rendering:pixelated;
   image-rendering:crisp-edges;
@@ -97,3 +140,14 @@ html{
 
 #render.show,#load.show,#error.show{ animation:show 1s forwards; }
 #render.hide,#load.hide,#error.hide{ animation:hide 0.5s forwards; }
+
+#html.blue-black{ animation:blue-black 1s forwards; }
+#html.cyan-black{ animation:cyan-black 1s forwards; }
+#html.red-black{ animation:red-black 1s forwards; }
+#html.black-blue{ animation:black-blue 1s forwards; }
+#html.black-cyan{ animation:black-cyan 1s forwards; }
+#html.black-red{ animation:black-red 1s forwards; }
+#html.cyan-red{ animation:cyan-red 0.2s forwards; }
+#html.blue-cyan{ animation:blue-cyan 0.2s forwards; }
+#html.red-blue{ animation:red-blue 0.2s forwards; }
+#html.blue-red{ animation:blue-red 0.2s forwards; }

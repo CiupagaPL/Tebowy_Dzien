@@ -65,9 +65,7 @@ canvas.check=function(){
     if(render.classList.contains("show")){
       render.classList.remove("show");
       render.classList.add("hide");
-    }
-
-    if(load.classList.contains("hide")){
+    } if(load.classList.contains("hide")){
       load.classList.add("show");
       load.classList.remove("hide");
     }
@@ -75,22 +73,29 @@ canvas.check=function(){
     error.classList.add("show");
     error.classList.remove("hide");
 
-    html.style.backgroundColor=_background.color2;
+    html.classList.remove("blue-black");
+    html.classList.remove("cyan-black");
+    html.classList.remove("red-black");
+    html.classList.remove("black-blue");
+    html.classList.remove("black-cyan");
+    html.classList.remove("black-red");
+    html.classList.remove("cyan-red");
+    html.classList.remove("red-blue");
+    html.classList.add("blue-red");
+
     canvas.error=true;
   } else{
     render.classList.add("show");
     render.classList.remove("hide");
-
     load.classList.remove("show");
     load.classList.add("hide");
 
     if(canvas.error){
       error.classList.remove("show");
       error.classList.add("hide");
-    }
-
-    html.style.backgroundColor=_background.color0;
-    canvas.error=false;
+      html.classList.remove("blue-red");
+      html.classList.add("red-blue");
+    } canvas.error=false;
   }
 }
 
@@ -105,16 +110,26 @@ canvas.animate=function(current){
     canvas.loop();
 	
 	  if(document.visibilityState=="visible"){ document.title="Tebowy Dzień: "+canvas.currentFps+"FPS"; }
-	  else{ document.title="Tebowy Dzień: Minimized"; }
+	  else{
+      document.title="Tebowy Dzień: Minimized";
+      global.pause=true;
+      global.pauseChange=true;
+    }
 
     if(!canvas.reset||current-canvas.reset>=500){
-      if(canvas.start){
+      if(document.visibilityState!="visible"){
+        canvas.fpsLimit=4;
+        canvas.first=false;
+        canvas.reset+=1000;
+      }
+
+      if(canvas.first){
         canvas.prevTimeScale=canvas.timeScale;
 
-        while((canvas.timeScale-0.1)*40>canvas.currentFps){ canvas.timeScale-=0.3; }
-        while((canvas.timeScale*40)-2<=canvas.currentFps){ canvas.timeScale+=0.1; }
+        while((canvas.timeScale-0.1)*40>canvas.currentFps){ canvas.timeScale-=0.1; }
+        while((canvas.timeScale*40)-2<=canvas.currentFps){ canvas.timeScale+=0.2; }
 
-        if(canvas.timeScale<0.2){ canvas.timeScale=0.2; }
+        if(canvas.timeScale<0.3){ canvas.timeScale=0.3; }
         if(canvas.timeScale>3.0){ canvas.timeScale=3.0; }
 
         canvas.fpsLimit=canvas.timeScale*40;
@@ -135,7 +150,10 @@ canvas.animate=function(current){
             _teacher.max=context.limit(_teacher.max);
           }
         }
-      } if(!canvas.start){ start=true; }
+      } else{
+        canvas.fpsLimit=120;
+        canvas.first=true;
+      }
 
       canvas.reset=current;
       canvas.countFps=0;
@@ -206,6 +224,6 @@ canvas.loop=function(){
       scene.levelUpdate();
     }
 
-    if(_info.enabled){ context.text(_info,_info.color0,_info.value0); }
+    if(!global.stable){ context.text(_info,_info.color0,_info.value0); }
   }
 }

@@ -139,20 +139,20 @@ const audio={
   teacher1_music:new Audio("sfx/music/teacher1.mp3"),
   teacher2_music:new Audio("sfx/music/teacher2.mp3"),
 
-  load1:new Audio("sfx/load1.mp3"),
-  load2:new Audio("sfx/load2.mp3"),
-  load3:new Audio("sfx/load3.mp3"),
-
-  click:new Audio("sfx/click.wav"),
-  die:new Audio("sfx/die.wav"),
-  hit:new Audio("sfx/hit.wav"),
-  jump:new Audio("sfx/jump.wav"),
-  laser:new Audio("sfx/laser.wav"),
-  paper:new Audio("sfx/paper.wav"),
-
-  teacherDefeat:new Audio("sfx/teacherDefeat.wav"),
-  teacherHit:new Audio("sfx/teacherHit.wav"),
-  teacherStart:new Audio("sfx/teacherStart.mp3"),
+  load_sfx:new Audio("sfx/load.mp3"),
+  click1_sfx:new Audio("sfx/click.mp3"),
+  click2_sfx:new Audio("sfx/clickAlt.mp3"),
+  click3_sfx:new Audio("sfx/clickStart.mp3"),
+  click4_sfx:new Audio("sfx/clickChange.mp3"),
+  jump_sfx:new Audio("sfx/jump.mp3"),
+  damage1_sfx:new Audio("sfx/damagePlayer.mp3"),
+  damage2_sfx:new Audio("sfx/damageTeacher.mp3"),
+  lost1_sfx:new Audio("sfx/lostPlayer.mp3"),
+  lost2_sfx:new Audio("sfx/lostTeacher.mp3"),
+  fire1_sfx:new Audio("sfx/firePlayer.mp3"),
+  fire2_sfx:new Audio("sfx/fireTeacher.mp3"),
+  laser_sfx:new Audio("sfx/laser.mp3"),
+  entrance_sfx:new Audio("sfx/entrance.mp3"),
 
   current:0,
 };
@@ -164,3 +164,17 @@ audio.level2_music.volume=0;
 audio.level3_music.volume=0;
 audio.teacher1_music.volume=0;
 audio.teacher2_music.volume=0;
+
+audio.click1_sfx.volume=0.5;
+audio.click2_sfx.volume=0.5;
+audio.click3_sfx.volume=0.5;
+audio.click4_sfx.volume=0.5;
+audio.jump_sfx.volume=0.35;
+audio.damage1_sfx.volume=0.5;
+audio.damage2_sfx.volume=0.5;
+audio.lost1_sfx.volume=0.5;
+audio.lost2_sfx.volume=0.5;
+audio.fire1_sfx.volume=0.5;
+audio.fire2_sfx.volume=0.35;
+audio.laser_sfx.volume=0.5;
+audio.entrance_sfx.volume=0.65;

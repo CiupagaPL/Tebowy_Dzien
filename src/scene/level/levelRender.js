@@ -48,13 +48,11 @@ scene.levelRender=function(){
 
       if(_currentPlatform.y<canvas.height+context.scale(32)&&_currentPlatform.y>=-context.scale(92)){
         context.render(_currentPlatform,_platform.img0);
-
         if(!global.pause){ _platform.update(); }
       }
 
       _currentPlatform.y+=scene.vy;
       _currentPlatform.x+=scene.vx;
-
       _platform.currentLenght+=1;
     }
 
@@ -72,9 +70,7 @@ scene.levelRender=function(){
           else if(_corner.timer>_corner.max+context.time(10)){ _currentCorner.laser.alpha-=context.frame(8); }
 
           context.render(_currentCorner.laser,_corner.color0);
-        }
-
-        if(!global.pause){ _corner.update(); }
+        } if(!global.pause&&_player.hp>0){ _corner.localUpdate(); }
       }
 
       if(_currentCorner.laser!=undefined){
@@ -92,13 +88,11 @@ scene.levelRender=function(){
 
       if(_currentSpike.y<canvas.height+context.scale(32)&&_currentSpike.y>=-context.scale(32)){
         context.render(_currentSpike,_spike.img0);
-
         if(!global.pause){ _spike.update(); }
       }
 
       _currentSpike.y+=scene.vy;
       _currentSpike.x+=scene.vx;
-
       _spike.currentLenght+=1;
     }
 

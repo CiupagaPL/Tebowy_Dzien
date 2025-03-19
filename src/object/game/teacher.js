@@ -50,14 +50,12 @@ _teacher.update=function(){
       html.classList.remove("black-cyan"); 
       html.classList.remove("black-red"); 
       html.classList.add("cyan-red");
-    }
-    if(scene.timer<context.time(60)){
+    } else if(scene.timer<context.time(60)){
       _player.cloud.y=canvas.height+_player.cloud.height;
       audio.current=0;
-    }
-    else if(scene.timer==context.time(60)&&global.sfx){
-      // _audio.bossStart.load();
-      // _audio.bossStart.play();
+    } else if(scene.timer==context.time(60)&&global.sfx){
+      audio.entrance_sfx.load();
+      audio.entrance_sfx.play();
     } else if(scene.timer>=context.time(60)&&scene.timer<context.time(99)){
       _teacher.base.x-=context.move(5);
       _teacher.cloud.x-=context.move(5);
@@ -147,12 +145,9 @@ _teacher.update=function(){
       _teacher.text.value0="-50 punktów\nz zachowania";
     }
 
-    if(global.sfx&&_teacher.hp>0){
-      // _audio.bossHit.load();
-      // _audio.bossHit.play();
-    } else if(_teacher.hp<=0){
-      // _audio.bossDie.load();
-      // _audio.bossDie.play();
+    if(global.sfx){
+      if(_teacher.hp>0){ audio.damage2_sfx.play(); }
+      else{ audio.lost2_sfx.play(); }
     }
 
     if(_teacher.hp>0){ _teacher.invisible=1; }

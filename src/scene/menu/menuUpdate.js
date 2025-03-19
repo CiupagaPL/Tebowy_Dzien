@@ -116,7 +116,7 @@ scene.menuUpdate=function(){
   _blueprint.update();
   _clipboard.update();
 
-  if(scene.auto&&!_clipboard.on&&!_button.level.on&&!_button.setting.on&&!_button.about.on&&!_button.custom.on){
+  if(scene.auto&&!_clipboard.on&&!_blueprint.on){
     scene.next=scene.nextAuto;
     scene.auto=false;
     scene.change=true;

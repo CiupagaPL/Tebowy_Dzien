@@ -50,15 +50,14 @@ _attack.update=function(){
       _player.hp-=25;
       _player.text.value0="-25 punktów\nz zachowania";
       _player.invisible=1;
-      if(global.sfx){
-        // _audio.hit.load();
-        // _audio.hit.play();
-      }
+      if(global.sfx){ audio.damage1_sfx.play(); }
     }
   }
 }
 
 _attack.handle=function(){
+  if(global.sfx){ audio.fire2_sfx.play(); }
+
   while(!_teacher.attack){
     _teacher.random=Math.floor(Math.random()*4);
 

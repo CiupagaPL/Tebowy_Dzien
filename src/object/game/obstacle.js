@@ -12,31 +12,29 @@
  *   | |    | | /
  *  (_(_)--(_(_) */
 
-_corner.update=function(){
+_corner.localUpdate=function(){
   if(_currentCorner.laser!=undefined){
     if(context.collision(_currentCorner.laser,_player.base)&&_player.invisible==0&&
        !global.currentTeacher&&_corner.timer>=_corner.max&&!_player.touched){
-      if(global.sfx){
-        // _audio.hit.load();
-        // _audio.hit.play();
-      }
-
       _player.hp-=25;
       _player.text.value0="-25 punktów\nz zachowania";
-      if(_player.hp>0){ _player.invisible=1; }
-      _player.touched=true;
+
+      if(_player.hp>0){
+        if(global.sfx){
+          audio.damage1_sfx.load();
+          audio.damage1_sfx.play();
+        } _player.invisible=1;
+      } _player.touched=true;
     }
   }
 
   if(context.collision(_currentCorner.base,_player.collisionLeft)&&!_player.touched&&_currentCorner.base.rotate!=2){
     _player.base.x+=context.move(4);
     _player.text.x+=context.move(4);
-
     _player.collisionTop.x+=context.move(4);
     _player.collisionBottom.x+=context.move(4);
     _player.collisionLeft.x+=context.move(4);
     _player.collisionRight.x+=context.move(4);
-
     _player.cloud.x+=context.move(4);
     _player.gun.x+=context.move(4);
 
@@ -44,16 +42,23 @@ _corner.update=function(){
   } if(context.collision(_currentCorner.base,_player.collisionRight)&&!_player.touched&&_currentCorner.base.rotate==2){
     _player.base.x-=context.move(4);
     _player.text.x-=context.move(4);
-
     _player.collisionTop.x-=context.move(4);
     _player.collisionBottom.x-=context.move(4);
     _player.collisionLeft.x-=context.move(4);
     _player.collisionRight.x-=context.move(4);
-
     _player.cloud.x-=context.move(4);
     _player.gun.x-=context.move(4);
 
     _player.touched=true;
+  }
+}
+
+_corner.globalUpdate=function(){
+  if(!global.pause&&_player.hp>0){
+    _corner.timer++;
+
+    if(_corner.timer==_corner.max&&global.sfx&&!_teacher.on){ audio.laser_sfx.play(); }
+    if(_corner.timer>=_corner.max+context.time(25)){ _corner.timer=0; }
   }
 }
 
@@ -102,13 +107,12 @@ _platform.update=function(){
 
 _spike.update=function(){
   if(context.collision(_currentSpike,_player.base)&&_player.invisible==0&&!global.currentTeacher){
-    if(global.sfx){
-      // _audio.hit.load();
-      // _audio.hit.play();
-    }
-
     _player.hp-=25;
     _player.text.value0="-25 punktów\nz zachowania";
-    if(_player.hp!=0){ _player.invisible=1; }
+
+    if(_player.hp!=0){
+      if(global.sfx){ audio.damage1_sfx.play(); }
+      _player.invisible=1;
+    }
   }
 }

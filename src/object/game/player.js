@@ -14,8 +14,7 @@
 
 _player.render=function(){
   if(_player.invisible>=1){
-    if(_player.invisible<(_player.max/2)-context.time(10)||_player.invisible<_player.max-context.time(10)&&
-       _player.invisible>_player.max/2){ _player.base.alpha-=context.frame(8); }
+    if(_player.invisible<_player.max/2){ _player.base.alpha-=context.frame(8); }
     else{ _player.base.alpha+=context.frame(8); }
   } else{ _player.base.alpha=100; }
 
@@ -44,6 +43,9 @@ _player.textRender=function(){
 
 _player.update=function(){
   if(!global.pause&&_player.hp>0){
+    if(_player.invisible>=_player.max){ _player.invisible=0; }
+    if(_player.invisible>1){ _player.invisible++; }
+
     _player.base.y+=_player.vy;
     _player.text.y+=_player.vy;
 

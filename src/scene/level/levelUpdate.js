@@ -83,20 +83,33 @@ scene.levelUpdate=function(){
       else{ audio.level3_music.volume=0; }
     }
   } else if((!global.pause||global.pause&&!global.pauseAnimation)&&global.music){
-      if(_teacher.on){
-        if(audio.teacher1_music.volume<0.25){ audio.teacher1_music.volume+=0.02; }
-        else{ audio.teacher1_music.volume=0.25; }
-        if(audio.teacher2_music.volume<0.1){ audio.teacher2_music.volume+=0.02; }
-        else{ audio.teacher2_music.volume=0.1; }
-      } else{
-        if(audio.level1_music.volume<0.25){ audio.level1_music.volume+=0.02; }
-        else{ audio.level1_music.volume=0.25; }
-        if(audio.level2_music.volume<0.075){ audio.level2_music.volume+=0.02; }
-        else{ audio.level2_music.volume=0.075; }
-        if(audio.level3_music.volume<0.075){ audio.level3_music.volume+=0.02; }
-        else{ audio.level3_music.volume=0.075; }
-      }
+    if(_teacher.on){
+      if(audio.teacher1_music.volume<0.25){ audio.teacher1_music.volume+=0.02; }
+      else{ audio.teacher1_music.volume=0.25; }
+      if(audio.teacher2_music.volume<0.1){ audio.teacher2_music.volume+=0.02; }
+      else{ audio.teacher2_music.volume=0.1; }
+    } else{
+      if(audio.level1_music.volume<0.25){ audio.level1_music.volume+=0.02; }
+      else{ audio.level1_music.volume=0.25; }
+      if(audio.level2_music.volume<0.075){ audio.level2_music.volume+=0.02; }
+      else{ audio.level2_music.volume=0.075; }
+      if(audio.level3_music.volume<0.075){ audio.level3_music.volume+=0.02; }
+      else{ audio.level3_music.volume=0.075; }
     }
+  }
+
+  _corner.globalUpdate();
+  _clipboard.update();
+  scene.generateLevel();
+
+  if(_teacher.on){
+    _teacher.update();
+    _attack.update();
+  }
+
+  _platform.currentLenght=0;
+  _corner.currentLenght=0;
+  _spike.currentLenght=0;
 
   if(_background.base.y>=canvas.height){ _background.base.y=_background.bottom.y-canvas.height; }
   if(_background.bottom.y>=canvas.height){ _background.bottom.y=_background.base.y-canvas.height; }
@@ -104,34 +117,14 @@ scene.levelUpdate=function(){
   _hud.level.value0="Poziom: "+Number(scene.value-1);
   _hud.score.value0="Wynik: "+scene.score;
 
-  _clipboard.update();
-
-  scene.generateLevel();
-
-  _platform.currentLenght=0;
-  _corner.currentLenght=0;
-  _spike.currentLenght=0;
-
-  if(!global.pause&&_player.hp>0){ _corner.timer++; }
-
-  if(_corner.timer==_corner.max&&!global.pause&&_player.hp>0&&global.sfx){
-    // _audio.laser.load();
-    // _audio.laser.play();
-  } if(_corner.timer>=_corner.max+context.time(25)){ _corner.timer=0; }
-
   if(_player.invisible!=0&&!global.pause&&_player.hp>0&&_player.invisible<_player.max){ _player.invisible++; }
   else if(_player.invisible>=_player.max){ _player.invisible=0; }
 
   if(!global.pause&&_teacher.invisible!=0&&_player.hp>0&&_teacher.invisible<_teacher.max){ _teacher.invisible++; }
   else if(_teacher.invisible>=_teacher.max){ _teacher.invisible=0; }
 
-  if(_teacher.on){
-    _teacher.update();
-    _attack.update();
-  }
-
   if(_player.hp==0&&!global.pause){
-    // if(global.sfx&&!scene.defeat){ _audio.die.play(); }
+    if(global.sfx){ audio.lost1_sfx.play(); }
 
     global.autoRestart=true;
     global.pause=true;

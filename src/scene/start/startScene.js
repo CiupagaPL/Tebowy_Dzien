@@ -17,7 +17,7 @@ else{ console.log("Grasz na wersji niestabilnej, pamiętaj by wszelkie błędy z
 html.classList.add("black-blue");
 
 scene.startRender=function(){
-  if(scene.timer<context.time(70)){
+  if(scene.timer<context.time(100)){
     context.render(_background.base,_background.color0);
     html.style.backgroundColor=_background.color0;
 
@@ -26,7 +26,7 @@ scene.startRender=function(){
     else if(scene.timer>context.time(35)){ _start.base.alpha+=context.frame(4); }
     context.render(_start.base,_start.base.img0);
   } else{
-    if(scene.timer>=context.time(70)&&scene.timer<context.time(90)){
+    if(scene.timer>=context.time(100)&&scene.timer<context.time(120)){
       context.render(_background.base,_background.color1);
 
       if(html.classList.contains("black-blue")){
@@ -56,26 +56,18 @@ scene.startRender=function(){
 scene.startUpdate=function(){
   scene.timer++;
 
-  if(scene.timer==context.time(72)&&global.sfx){
-    audio.load1.load();
-    audio.load1.play();
-  } else if(scene.timer==context.time(92)&&global.sfx){
-    audio.load2.load();
-    audio.load2.play();
-  } else if(scene.timer==context.time(112)){
-    if(global.sfx){
-      audio.load3.load();
-      audio.load3.play();
-    }
-
+  if(scene.timer==context.time(102)&&global.sfx){
+    audio.load_sfx.load();
+    audio.load_sfx.play();
+  } else if(scene.timer==context.time(140)){
     html.classList.remove("cyan-red");
     html.classList.add("red-blue");
 
 	  _background.base.alpha=100;
     scene.timer=0;
     scene.value=1;
-  } else if(scene.timer==context.time(65)){
+  } else if(scene.timer>=context.time(65)&&scene.timer<context.time(100)){
     scene.timer=0;
     _start.base.alpha=100;
-  } else if(scene.timer==context.time(90)){ _background.base.alpha=50; }
+  } else if(scene.timer==context.time(120)){ _background.base.alpha=50; }
 }

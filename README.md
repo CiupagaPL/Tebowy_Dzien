@@ -1,16 +1,14 @@
 ![banner](https://github.com/CiupagaPL/Tebowy_Dzien/blob/unstable/tex/banner.png)
-# TEBOWY DZIEŃ
+# TEBOWY DZIEŃ: [STABLE](https://github.com/CiupagaPL/Tebowy_Dzien/tree/stable); [UNSTABLE](https://github.com/CiupagaPL/Tebowy_Dzien/tree/unstable)
 
 ## Notka
 Gałęź ta zawiera wersje testowe, zwykle aktualizowane z dnia na dzień.
 Są one silnie niestabilne, dlatego nie zalecałbym przechodzić z nimi gry oraz tym bardziej **wersje te nie są przeznaczone na naszą domenę**.
 Przełącz się na gałęź stabilną aby znaleźć najnowsze najbezpieczniejsze wydania.
-> [!NOTE]
-> Na ten moment przez przepisywanie kodu aktualizacje występują **wiele** rzadziej.
 
 ## Status
 > Newest Version: **Unstable**;
-> Last Updated: **16-03-2025**;
+> Last Updated: **19-03-2025**;
 
 ## License
 **This project uses MIT License**. You can read about it in **LICENSE.md** file.<br>

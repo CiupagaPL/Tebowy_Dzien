@@ -40,18 +40,15 @@ window.addEventListener("keydown",function(event){
 
 window.addEventListener("keyup",function(event){
   if(!scene.blocked&&!canvas.error){
-    if(event.key=="Enter"&&scene.value==0&&!render.error&&scene.timer<context.time(70)){
-      scene.timer=context.time(70);
+    if(event.key=="Enter"&&scene.value==0&&!render.error&&scene.timer<context.time(100)){
+      scene.timer=context.time(100);
       _start.base.alpha=100;
     }
 
     else if(scene.value==1){
       if(event.key=="Enter"){
         scene.blocked=true;
-        if(global.sfx){
-          // _audio.click.load();
-          // _audio.click.play();
-        }
+        if(global.sfx){ audio.click3_sfx.play(); }
 
         if(_clipboard.on){
           scene.auto=true;
@@ -76,10 +73,7 @@ window.addEventListener("keyup",function(event){
 
       else if(event.key=="Escape"&&(_clipboard.on||_blueprint.on)){
         scene.blocked=true;
-        if(global.sfx){
-          // _audio.click.load();
-          // _audio.click.play();
-        }
+        if(global.sfx){ audio.click1_sfx.play(); }
 
         if(_clipboard.on){ _clipboard.close=true; }
         else if(_blueprint.on){ _blueprint.close=true; }
@@ -91,15 +85,10 @@ window.addEventListener("keyup",function(event){
       }
     } else{
       if(event.key=="Escape"){
+        if(global.sfx){ audio.click1_sfx.play(); }
+
         if(global.pause){
           scene.blocked=true;
-          if(global.sfx&&!_clipboard.on&&!global.currentTutorial&&!global.currentReward){
-            // _audio.click.load();
-            // _audio.click.play();
-          } else if(global.sfx&&(_clipboard.on||global.currentTutorial||global.currentReward)){
-            // _audio.paper.load();
-            // _audio.paper.play();
-          }
 
           if(_clipboard.on){
             global.autoUnpause=true;
@@ -113,11 +102,6 @@ window.addEventListener("keyup",function(event){
             global.pauseAnimation=false;
           }
         } else{
-          if(global.sfx){
-            // _audio.click.load();
-            // _audio.click.play();
-          }
-
           global.pauseChange=true;
           global.pauseAnimation=true;
         }
@@ -150,20 +134,14 @@ window.addEventListener("keyup",function(event){
 
         if((event.key==" "||event.key=="ArrowUp"||event.key=="w"||event.key=="W")&&
            _player.hp>0&&_player.grounded&&!_player.cloudFly){
-          if(global.sfx){
-            // _audio.jump.load();
-            // _audio.jump.play();
-          }
+          if(global.sfx){ audio.jump_sfx.play(); }
 
           _player.jumped=true;
           _player.vy=_player.ivy;
         }
 
         if((event.key=="e"||event.key=="E")&&_teacher.on&&_player.gun.on){
-          if(global.sfx){
-            // _audio.laser.load();
-            // _audio.laser.play();
-          }
+          if(global.sfx){ audio.fire1_sfx.play(); }
 
           _player.ammo.x=_player.base.x+context.scale(20);
           _player.ammo.y=_player.base.y+context.scale(20);

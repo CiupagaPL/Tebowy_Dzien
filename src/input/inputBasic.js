@@ -25,6 +25,11 @@ window.addEventListener("mousemove",function(event){
     if(context.collision(_title.base,mouse)||context.collision(_title.teb,mouse)){ _title.base.alpha=50; }
     else{ _title.base.alpha=100; }
 
+    if(context.collision(_footer.github,mouse)){ _footer.github.alpha=50; }
+    else{ _footer.github.alpha=100; }
+    if(context.collision(_footer.pastebin,mouse)){ _footer.pastebin.alpha=50; }
+    else{ _footer.pastebin.alpha=100; }
+
     if(scene.value==1||global.pause){
       if(context.collision(_button.start.base,mouse)||context.collision(_button.start.text,mouse)){ _button.start.text.alpha=50; }
       else{ _button.start.text.alpha=100; }

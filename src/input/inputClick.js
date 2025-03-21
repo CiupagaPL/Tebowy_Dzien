@@ -16,7 +16,13 @@ window.addEventListener("click",function(){
   if(!scene.blocked&&!canvas.error){
     if((context.collision(_title.base,mouse)||context.collision(_title.teb,mouse))&&(scene.value==1||scene.value>=2&&global.pause)){
       if(global.sfx){ audio.click1_sfx.play(); }
-      window.open("https://github.com/CiupagaPL/Tebowy_Dzien","_blank").focus();
+      window.open("https://teb.pl/oddzialy/d/torun","_blank").focus();
+    } if(context.collision(_footer.github,mouse)&&(scene.value==1||scene.value>=2&&global.pause)){
+      if(global.sfx){ audio.click1_sfx.play(); }
+      window.open("https://github.com/ciupagapl/tebowy_dzien","_blank").focus();
+    } if(context.collision(_footer.pastebin,mouse)&&(scene.value==1||scene.value>=2&&global.pause)){
+      if(global.sfx){ audio.click1_sfx.play(); }
+      window.open("https://pastebin.com/zdg35gef","_blank").focus();
     }
 
     if(context.collision(_start.base,mouse)&&scene.value==0&&!render.error&&scene.timer<context.time(100)){

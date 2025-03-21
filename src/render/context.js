@@ -112,17 +112,17 @@ context.default=function(){
   _title.base.y=context.scale(24);
   _title.teb.y=context.scale(24);
 
-  _button.start.base.y=context.scale(360-192);
+  _button.start.base.y=context.scale(360-204);
   _button.start.text.y=_button.start.base.y+context.scale(18);
-  _button.level.base.y=context.scale(360-128);
+  _button.level.base.y=context.scale(360-140);
   _button.level.text.y=_button.level.base.y+context.scale(18);
-  _button.custom.base.y=context.scale(360-64);
+  _button.custom.base.y=context.scale(360-76);
   _button.custom.text.y=_button.custom.base.y+context.scale(28);
-  _button.setting.base.y=context.scale(360-192);
+  _button.setting.base.y=context.scale(360-204);
   _button.setting.text.y=_button.setting.base.y+context.scale(28);
-  _button.about.base.y=context.scale(360-128);
+  _button.about.base.y=context.scale(360-140);
   _button.about.text.y=_button.about.base.y+context.scale(18);
-  _button.version.base.y=context.scale(360-64);
+  _button.version.base.y=context.scale(360-76);
   _button.version.text.y=_button.version.base.y+context.scale(18);
 
   _player.base.x=context.scale(64);
@@ -255,9 +255,19 @@ context.reset=function(){
   context.setup(_title.base);
   context.setup(_title.teb);
 
+  context.setup(_account.name);
+  context.setup(_account.profile);
+  context.setup(_account.background);
+
+  context.setup(_footer.version);
+  context.setup(_footer.github);
+  context.setup(_footer.pastebin);
+
   context.setup(_resolution);
 
-  context.setup(_ui.menu);
+  context.setup(_ui.menu.main);
+  context.setup(_ui.menu.left);
+  context.setup(_ui.menu.right);
   context.setup(_ui.game);
 
   context.setup(_hud.level);

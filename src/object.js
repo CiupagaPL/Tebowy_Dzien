@@ -108,7 +108,7 @@ const _start={
 const _title={
   base:{
     x:166,
-    y:24,
+    y:32,
 
     width:162,
     height:96,
@@ -117,7 +117,7 @@ const _title={
     alpha:100,
   }, teb:{
     x:64,
-    y:24,
+    y:32,
     
     width:96,
     height:96,
@@ -125,6 +125,65 @@ const _title={
     img0:Object.assign(new Image(),{src:"tex/ui/title/teb.png"}),
     img1:Object.assign(new Image(),{src:"tex/ui/title/tebOn.png"}),
   },
+
+  color0:"rgb(255,255,255)",
+};
+
+const _account={
+  name:{
+    x:52,
+    y:14,
+
+    value0:"Witaj, Graczu!",
+    size:16,
+  }, profile:{
+    x:324,
+    y:4,
+
+    width:16,
+    height:16,
+
+    img0:Object.assign(new Image(),{src:"tex/icon/profile.png"}),
+    alpha:100,
+  }, background:{
+    x:322,
+    y:2,
+
+    width:20,
+    height:20,
+  },
+
+  color0:"rgb(255,255,255)",
+}
+
+const _footer={
+  version:{
+    x:52,
+    y:354,
+
+    value0:"Gałęź Niestabilna: 21-03-2025",
+    size:16,
+  }, github:{
+    x:322,
+    y:338,
+
+    width:20,
+    height:20,
+
+    img0:Object.assign(new Image(),{src:"tex/icon/github.png"}),
+    alpha:100,
+  }, pastebin:{
+    x:298,
+    y:338,
+
+    width:20,
+    height:20,
+
+    img0:Object.assign(new Image(),{src:"tex/icon/pastebin.png"}),
+    alpha:100,
+  },
+
+  color0:"rgb(255,255,255)",
 };
 
 const _resolution={
@@ -141,13 +200,27 @@ const _resolution={
 
 const _ui={
   menu:{
-    x:48,
-    y:0,
+    main:{
+      x:48,
+      y:-2,
 
-    width:296,
-    height:360,
+      width:296,
+      height:364,
 
-	  alpha:75,
+	    alpha:75,
+    }, left:{
+      x:44,
+      y:-2,
+
+      width:4,
+      height:364,
+    }, right:{
+      x:344,
+      y:-2,
+
+      width:4,
+      height:364,
+    },
   }, game:{
     x:0,
     y:0,
@@ -159,6 +232,7 @@ const _ui={
   },
 
   color0:"rgb(0,0,55)",
+  color1:"rgb(255,255,255)",
 };
 
 const _hud={
@@ -273,7 +347,7 @@ const _button={
   start:{
     base:{
       x:64,
-      y:360-192,
+      y:360-204,
 
       width:42,
       height:42,
@@ -282,7 +356,7 @@ const _button={
       img1:Object.assign(new Image(),{src:"tex/ui/button/startOn.png"}),
     }, text:{
       x:64+48,
-      y:(360-192)+18,
+      y:(360-192)+6,
 
       width:54,
       line:2,
@@ -294,7 +368,7 @@ const _button={
   }, level:{
     base:{
       x:64,
-      y:360-128,
+      y:360-140,
 
       width:42,
       height:42,
@@ -303,7 +377,7 @@ const _button={
       img1:Object.assign(new Image(),{src:"tex/ui/button/levelOn.png"}),
     }, text:{
       x:64+48,
-      y:(360-128)+18,
+      y:(360-128)+6,
 
       width:54,
       line:2,
@@ -319,7 +393,7 @@ const _button={
   }, menu:{
     base:{
       x:64,
-      y:360-128,
+      y:360-140,
 
       width:42,
       height:42,
@@ -328,7 +402,7 @@ const _button={
       img1:Object.assign(new Image(),{src:"tex/ui/button/menuOn.png"}),
     }, text:{
       x:64+48,
-      y:(360-128)+18,
+      y:(360-128)+6,
 
       width:40,
       line:2,
@@ -340,7 +414,7 @@ const _button={
   }, custom:{
     base:{
       x:64,
-      y:360-64,
+      y:360-76,
 
       width:42,
       height:42,
@@ -349,7 +423,7 @@ const _button={
       img1:Object.assign(new Image(),{src:"tex/ui/button/customOn.png"}),
     }, text:{
       x:64+48,
-      y:(360-64)+28,
+      y:(360-64)+16,
 
       width:54,
       line:1,
@@ -365,7 +439,7 @@ const _button={
   }, restart:{
     base:{
       x:64,
-      y:360-64,
+      y:360-76,
 
       width:42,
       height:42,
@@ -374,7 +448,7 @@ const _button={
       img1:Object.assign(new Image(),{src:"tex/ui/button/restartOn.png"}),
     }, text:{
       x:64+48,
-      y:(360-64)+18,
+      y:(360-64)+6,
 
       width:42,
       line:2,
@@ -386,7 +460,7 @@ const _button={
   }, setting:{
     base:{
       x:(64+264)-42,
-      y:360-192,
+      y:360-204,
 
       width:42,
       height:42,
@@ -395,7 +469,7 @@ const _button={
       img1:Object.assign(new Image(),{src:"tex/ui/button/settingOn.png"}),
     }, text:{
       x:((64+264)-42)-48,
-      y:(360-192)+28,
+      y:(360-192)+16,
 
       width:42,
       line:1,
@@ -411,7 +485,7 @@ const _button={
   }, about:{
     base:{
       x:(64+264)-42,
-      y:360-128,
+      y:360-140,
 
       width:42,
       height:42,
@@ -420,7 +494,7 @@ const _button={
       img1:Object.assign(new Image(),{src:"tex/ui/button/aboutOn.png"}),
     }, text:{
       x:((64+264)-42)-60,
-      y:(360-128)+18,
+      y:(360-128)+6,
 
       width:54,
       line:2,
@@ -436,7 +510,7 @@ const _button={
   }, version:{
     base:{
       x:(64+264)-42,
-      y:360-64,
+      y:360-76,
 
       width:42,
       height:42,
@@ -445,12 +519,12 @@ const _button={
       img1:Object.assign(new Image(),{src:"tex/ui/button/versionOn.png"}),
     }, text:{
       x:((64+264)-42)-62,
-      y:(360-64)+18,
+      y:(360-64)+6,
 
       width:56,
       line:2,
 
-      value0:"   Unstable\n19-03-2025",
+      value0:"CCCCCCCC\nCCCCCCCC",
       size:16,
 	    alpha:100,
     },

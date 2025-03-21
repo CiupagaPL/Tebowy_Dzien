@@ -25,32 +25,37 @@ scene.menuRender=function(){
     context.render(_background.bottomLeft,_background.img0);
   } if(!scene.change){ html.style.backgroundColor=_background.color0; }
 
-  context.render(_ui.menu,_ui.color0);
+  context.render(_ui.menu.main,_ui.color0);
+  context.render(_ui.menu.left,_ui.color1);
+  context.render(_ui.menu.right,_ui.color1);
 
   if(_title.base.alpha==100){ context.render(_title.teb,_title.teb.img0); }
   else{ context.render(_title.teb,_title.teb.img1); }
   context.render(_title.base,_title.base.img0);
 
+  context.text(_account.name,_account.color0,_account.name.value0);
+  context.render(_account.background,_account.color0);
+  context.render(_account.profile,_account.profile.img0);
+
+  context.text(_footer.version,_footer.color0,_footer.version.value0);
+  context.render(_footer.github,_footer.github.img0);
+  context.render(_footer.pastebin,_footer.pastebin.img0);
+
   if(_button.start.text.alpha==100){ context.render(_button.start.base,_button.start.base.img0); }
   else{ context.render(_button.start.base,_button.start.base.img1); }
   context.text(_button.start.text,_button.color0,_button.start.text.value0);
-
   if(_button.level.text.alpha==100){ context.render(_button.level.base,_button.level.base.img0); }
   else{ context.render(_button.level.base,_button.level.base.img1); }
   context.text(_button.level.text,_button.color0,_button.level.text.value0);
-
   if(_button.custom.text.alpha==100){ context.render(_button.custom.base,_button.custom.base.img0); }
   else{ context.render(_button.custom.base,_button.custom.base.img1); }
   context.text(_button.custom.text,_button.color0,_button.custom.text.value0);
-
   if(_button.setting.text.alpha==100){ context.render(_button.setting.base,_button.setting.base.img0); }
   else{ context.render(_button.setting.base,_button.setting.base.img1); }
   context.text(_button.setting.text,_button.color0,_button.setting.text.value0);
-
   if(_button.about.text.alpha==100){ context.render(_button.about.base,_button.about.base.img0); }
   else{ context.render(_button.about.base,_button.about.base.img1); }
   context.text(_button.about.text,_button.color0,_button.about.text.value0);
-
   if(_button.version.text.alpha==100){ context.render(_button.version.base,_button.version.base.img0); }
   else{ context.render(_button.version.base,_button.version.base.img1); }
   context.text(_button.version.text,_button.color0,_button.version.text.value0);

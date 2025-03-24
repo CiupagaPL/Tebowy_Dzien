@@ -161,7 +161,7 @@ const _footer={
     x:52,
     y:354,
 
-    value0:"Gałęź Niestabilna: 23-03-2025",
+    value0:"Gałęź Niestabilna: 24-03-2025",
     size:16,
   }, github:{
     x:322,
@@ -1201,14 +1201,16 @@ const _platform={
 
   lenght:0,
   currentLenght:0,
-  load:13,
+  load:14,
   currentLoad:0,
   currentCount:0,
   level:0,
   lastLevel:0,
   random:0,
+  stage:2,
 
   img0:Object.assign(new Image(),{src:"tex/obj/platform.png"}),
+  color0:"rgb(0,0,0)",
 
   update:function(){},
 };

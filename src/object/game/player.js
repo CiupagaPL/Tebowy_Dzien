@@ -145,31 +145,9 @@ _player.lateUpdate=function(){
     }
   }
 
-  if(_player.base.x<=0){
-    _player.base.x+=context.move(4);
-    _player.text.x+=context.move(4);
-
-    _player.collisionTop.x+=context.move(4);
-    _player.collisionBottom.x+=context.move(4);
-    _player.collisionLeft.x+=context.move(4);
-    _player.collisionRight.x+=context.move(4);
-
-    _player.cloud.x+=context.move(4);
-    _player.gun.x+=context.move(4);
-  }
-
-  if(_player.base.x>=canvas.width-_player.base.width&&(scene.score!=_platform.load+1||_teacher.on)){
-    _player.base.x-=context.move(4);
-    _player.text.x-=context.move(4);
-
-    _player.collisionTop.x-=context.move(4);
-    _player.collisionBottom.x-=context.move(4);
-    _player.collisionLeft.x-=context.move(4);
-    _player.collisionRight.x-=context.move(4);
-
-    _player.cloud.x-=context.move(4);
-    _player.gun.x-=context.move(4);
-  }
+  if(_player.base.x<=context.scale(160)){ scene.vx=context.move(4); }
+  else if(_player.base.x>=context.scale(640-160)){ scene.vx=-context.move(4); }
+  else{ scene.vx=0; }
 
   if(_player.base.x>=canvas.width&&scene.score==_platform.load+1&&!_teacher.on){
     scene.vx-=canvas.width;

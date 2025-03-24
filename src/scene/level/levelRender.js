@@ -1,4 +1,4 @@
-/*   ,-----,
+/*   ,-----,l
  *   |     |    ,--------------------------------------,
  *   |     |   ( */"use strict"/* pastebin.com/zdg35gef )
  *  (|-----|) < The project is licensed under MIT -^    |
@@ -47,7 +47,8 @@ scene.levelRender=function(){
       _currentPlatform=_platform.array[_platform.currentLenght];
 
       if(_currentPlatform.y<canvas.height+context.scale(32)&&_currentPlatform.y>=-context.scale(92)){
-        context.render(_currentPlatform,_platform.img0);
+        if(_currentPlatform.stage==1){ context.render(_currentPlatform,_platform.img0); }
+        else{ context.render(_currentPlatform,_platform.color0); }
         if(!global.pause){ _platform.update(); }
       }
 

@@ -94,7 +94,7 @@ scene.menuUpdate=function(){
     _button.custom.base.y+=context.move(0.25);
     _button.custom.text.y+=context.move(0.25);
 
-    if(scene.timer==context.time(80)){ scene.timer=0; }
+    if(scene.timer>=context.time(80)){ scene.timer=0; }
   } else{
     _title.base.y-=context.move(0.25);
     _title.teb.y-=context.move(0.25);

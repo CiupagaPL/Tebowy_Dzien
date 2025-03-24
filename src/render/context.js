@@ -125,7 +125,7 @@ context.default=function(){
   _button.version.base.y=context.scale(360-76);
   _button.version.text.y=_button.version.base.y+context.scale(18);
 
-  _player.base.x=context.scale(64);
+  _player.base.x=context.scale(320)-(_player.base.width/2);
   _player.base.y=(canvas.height-context.scale(12))-_player.base.height;
 
   _player.collisionLeft.x=_player.base.x;
@@ -150,7 +150,7 @@ context.default=function(){
 
   scene.generated=false;
 
-  if(scene.value!=11){ _platform.load=13; }
+  if(scene.value!=11){ _platform.load=14; }
   else{ _platform.load=3; }
 
   _player.text.x=_player.base.x-context.scale(2);

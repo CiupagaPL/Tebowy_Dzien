@@ -28,6 +28,14 @@ _corner.localUpdate=function(){
     }
   }
 
+  if(_currentCorner.base.x>context.scale(640)){
+    _currentCorner.base.x-=context.scale(1280);
+    if(_currentCorner.laser!=undefined){ _currentCorner.laser.x-=context.scale(1280); }
+  } else if(_currentCorner.base.x+_currentCorner.base.width<0){
+    _currentCorner.base.x+=context.scale(1280);
+    if(_currentCorner.laser!=undefined){ _currentCorner.laser.x+=context.scale(1280); }
+  }
+
   if(context.collision(_currentCorner.base,_player.collisionLeft)&&!_player.touched&&_currentCorner.base.rotate!=2){
     _player.base.x+=context.move(4);
     _player.text.x+=context.move(4);
@@ -65,6 +73,9 @@ _corner.globalUpdate=function(){
 _platform.update=function(){
   _background.base.y+=scene.vy/72;
   _background.bottom.y+=scene.vy/72;
+
+  if(_currentPlatform.x>context.scale(640)){ _currentPlatform.x-=context.scale(1280); }
+  else if(_currentPlatform.x+_currentPlatform.width<0){ _currentPlatform.x+=context.scale(1280); }
 
   if(context.collision(_currentPlatform,_player.collisionTop)&&!_player.touched){
     _player.fly=true;

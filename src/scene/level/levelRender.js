@@ -13,10 +13,24 @@
  *  (_(_)--(_(_) */
 
 scene.levelRender=function(){
-  context.render(_background.base,_background.img2);
-  context.render(_background.bottom,_background.img3);
+  context.render(_background.base,_background.img4);
+  context.render(_background.bottom,_background.img4);
+  context.render(_background.left,_background.img5);
+  context.render(_background.bottomLeft,_background.img5);
 
   _player.render();
+
+  if(!_player.gun.power){ context.render(_player.gun,_player.gun.img0); }
+  else{ context.render(_player.gun,_player.gun.img1); }
+  if(!_player.ammo.power){ context.render(_player.ammo,_player.ammo.img0); }
+  else{ context.render(_player.ammo,_player.ammo.img1); }
+
+  // context.render(_locker.base,_locker.img2);
+  // context.render(_locker.bottom,_locker.img1);
+  // context.render(_locker.left,_locker.img1);
+  // context.render(_locker.bottomLeft,_locker.img2);
+
+  // context.render(_door.base,_door.img0);
 
   if(_teacher.on){
     _teacher.render();
@@ -32,12 +46,6 @@ scene.levelRender=function(){
 
     if(_player.left){ context.render(_player.cloud,_player.cloud.img0); }
     else{ context.render(_player.cloud,_player.cloud.img1); }
-
-    if(scene.timer>=context.time(99)&&!_player.gun.power||_teacher.round>=1&&!_player.gun.power){ context.render(_player.gun,_player.gun.img0); }
-    else if(_player.gun.power){ context.render(_player.gun,_player.gun.img1); }
-  
-    if(scene.timer>=context.time(99)&&!_player.ammo.power||_teacher.round>=1&&!_player.ammo.power){ context.render(_player.ammo,_player.ammo.img0); }
-    else if(_player.ammo.power){ context.render(_player.ammo,_player.ammo.img1); }
   }
 
   if(scene.generated){
@@ -46,9 +54,8 @@ scene.levelRender=function(){
     while(_platform.lenght>=_platform.currentLenght){
       _currentPlatform=_platform.array[_platform.currentLenght];
 
-      if(_currentPlatform.y<canvas.height+context.scale(32)&&_currentPlatform.y>=-context.scale(92)){
-        if(_currentPlatform.stage==1){ context.render(_currentPlatform,_platform.img0); }
-        else{ context.render(_currentPlatform,_platform.color0); }
+      if(_currentPlatform.y<canvas.height*2&&_currentPlatform.y>=-canvas.height*2){
+        context.render(_currentPlatform,_platform.img0);
         if(!global.pause){ _platform.update(); }
       }
 
@@ -126,6 +133,15 @@ scene.levelRender=function(){
   context.text(_ui.game.info.score,_ui.color1,_ui.game.info.score.value0);
   context.text(_ui.game.info.level,_ui.color1,_ui.game.info.level.value0);
 
+  context.render(_ui.game.ammo.background,_ui.color1);
+  context.render(_ui.game.ammo.main,_ui.color0);
+  if(_player.gun.on&&!_player.gun.power){ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img2); }
+  if(_player.gun.timer>=context.time(60)&&!_player.gun.on&&!_player.gun.power){ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img1); }
+  if(_player.gun.timer<context.time(60)){ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img0); }
+  if(_player.gun.on&&_player.gun.power){ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img4); }
+  if(_player.gun.timer>=context.time(60)&&!_player.gun.on&&_player.gun.power){ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img3); }
+  context.text(_ui.game.ammo.text,_ui.color1,_ui.game.ammo.text.value0);
+
   if(_teacher.on){
     context.render(_ui.game.teacher.background,_ui.color1);
     context.render(_ui.game.teacher.main,_ui.color0);
@@ -141,15 +157,6 @@ scene.levelRender=function(){
     else if(_teacher.hp==9){ context.render(_ui.game.teacher.heart,_ui.game.teacher.heart.img9); }
     else{ context.render(_ui.game.teacher.heart,_ui.game.teacher.heart.img10); }
     context.text(_ui.game.teacher.text,_ui.color1,_ui.game.teacher.text.value0);
-
-    context.render(_ui.game.ammo.background,_ui.color1);
-    context.render(_ui.game.ammo.main,_ui.color0);
-    if(_player.gun.on&&!_player.gun.power){ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img2); }
-    if(_player.gun.timer>=context.time(60)&&!_player.gun.on&&!_player.gun.power){ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img1); }
-    if(_player.gun.timer<context.time(60)){ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img0); }
-    if(_player.gun.on&&_player.gun.power){ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img4); }
-    if(_player.gun.timer>=context.time(60)&&!_player.gun.on&&_player.gun.power){ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img3); }
-    context.text(_ui.game.ammo.text,_ui.color1,_ui.game.ammo.text.value0);
   }
 
   if(global.pauseAnimation&&!global.pauseChange&&global.pause&&_transition.timer==0&&scene.next!=1&&_player.hp>0&&_teacher.hp>0){

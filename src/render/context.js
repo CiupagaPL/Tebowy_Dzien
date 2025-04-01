@@ -126,32 +126,22 @@ context.default=function(){
   _button.version.text.y=_button.version.base.y+context.scale(18);
 
   _player.base.x=context.scale(320)-(_player.base.width/2);
-  _player.base.y=(canvas.height-context.scale(12))-_player.base.height;
+  _player.base.y=(canvas.height-context.scale(32))-_player.base.height;
 
-  _player.collisionLeft.x=_player.base.x;
-  _player.collisionLeft.y=_player.base.y+context.scale(8);
-  _player.collisionRight.x=_player.base.x+context.scale(44);
-  _player.collisionRight.y=_player.base.y+context.scale(8);
-  _player.collisionTop.x=_player.base.x+context.scale(4);
-  _player.collisionTop.y=_player.base.y;
-  _player.collisionBottom.x=_player.base.x+context.scale(4);
-
-  if(_player.skin==0||_player.skin==2){
-    _player.base.height=context.scale(81);
-    _player.collisionLeft.height=context.scale(69);
-    _player.collisionRight.height=context.scale(69);
-    _player.collisionBottom.y=(_player.base.y+context.scale(81))+_player.vy;
-  } else if(_player.skin==1||_player.skin==3){
-    _player.base.height=context.scale(75);
-    _player.collisionLeft.height=context.scale(63);
-    _player.collisionRight.height=context.scale(63);
-    _player.collisionBottom.y=(_player.base.y+context.scale(75))+_player.vy;
-  }
+  _player.collisionLeft.x=_player.base.x+context.scale(4);
+  _player.collisionLeft.y=_player.base.y+context.scale(12);
+  _player.collisionRight.x=_player.base.x+context.scale(52);
+  _player.collisionRight.y=_player.base.y+context.scale(12);
+  _player.collisionTop.x=_player.base.x+context.scale(14);
+  _player.collisionTop.y=_player.base.y-context.scale(4);
+  _player.collisionBottom.x=_player.base.x+context.scale(12);
+  _player.collisionBottom.y=_player.base.y+context.scale(90);
 
   scene.generated=false;
 
   if(scene.value!=11){ _platform.load=14; }
   else{ _platform.load=3; }
+  _platform.stage=2;
 
   _player.text.x=_player.base.x-context.scale(2);
   _player.text.y=_player.base.y-context.scale(12);
@@ -187,14 +177,21 @@ context.default=function(){
   keyDown.up=false;
   keyDown.down=false;
 
+  if(scene.value<2){
+    _background.base.y=0;
+    _background.bottom.y=canvas.height;
+    _background.left.y=0;
+    _background.bottomLeft.y=canvas.height;
+  } else{
+    _background.base.y=-context.scale(12);
+    _background.bottom.y=canvas.height-context.scale(12);
+    _background.left.y=-context.scale(12);
+    _background.bottomLeft.y=canvas.height-context.scale(12);
+  }
   _background.base.x=0;
-  _background.base.y=0;
   _background.bottom.x=0;
-  _background.bottom.y=canvas.height;
   _background.left.x=-canvas.width;
-  _background.left.y=0;
   _background.bottomLeft.x=-canvas.width;
-  _background.bottomLeft.y=canvas.height;
 
   _attack.tebulinek.unused=true;
   _attack.object1.unused=true;
@@ -364,7 +361,7 @@ context.reset=function(){
   context.setup(_blueprint.teacher.text);
   
   context.setup(_player.base);
-  _player.ivy=-context.scale(12);
+  _player.ivy=-context.scale(14);
   _player.gravity=context.scale(0.5);
   context.setup(_player.text);
   context.setup(_player.cloud);
@@ -376,12 +373,19 @@ context.reset=function(){
   context.setup(_player.collisionLeft);
   context.setup(_player.collisionRight);
 
-  _platform.height=context.scale(12);
+  _platform.height=context.scale(14);
 
   context.setup(_corner.base);
   context.setup(_corner.laser);
 
   context.setup(_spike);
+
+  context.setup(_locker.base);
+  context.setup(_locker.bottom);
+  context.setup(_locker.left);
+  context.setup(_locker.bottomLeft);
+
+  context.setup(_door.base);
 
   context.setup(_teacher.base);
   context.setup(_teacher.text);

@@ -20,14 +20,10 @@ _player.render=function(){
 
   if(!_player.left){
     if(_player.skin==0){ context.render(_player.base,_player.base.img0); }
-    else if(_player.skin==1){ context.render(_player.base,_player.base.img1); }
-    else if(_player.skin==2){ context.render(_player.base,_player.base.img2); }
-    else{ context.render(_player.base,_player.base.img3); }
+    else{ context.render(_player.base,_player.base.img1); }
   } else{
     if(_player.skin==0){ context.render(_player.base,_player.base.img0Left); }
-    else if(_player.skin==1){ context.render(_player.base,_player.base.img1Left); }
-    else if(_player.skin==2){ context.render(_player.base,_player.base.img2Left); }
-    else{ context.render(_player.base,_player.base.img3Left); }
+    else{ context.render(_player.base,_player.base.img1Left); }
   }
 }
 
@@ -69,13 +65,6 @@ _player.update=function(){
 }
 
 _player.midUpdate=function(){
-  if(!global.pause&&_player.hp>0&&_player.base.y<canvas.height*3/8&&
-     _platform.array[_platform.lenght].y+context.scale(3)<0){ scene.vy=context.move(3); }
-
-  else if(!global.pause&&_player.hp>0&&_player.base.y+_player.base.height>canvas.height-context.scale(8)){ scene.vy=-context.move(3); }
-
-  else if(global.pause||_player.hp==0||_player.base.y>=canvas.height*3/8||_platform.array[_platform.lenght].y+context.scale(3)>0){ scene.vy=0; }
-
   if(!global.pause&&_player.hp>0){
     if(!_player.grounded&&!_player.cloudFly){
       _player.base.y+=scene.vy;
@@ -151,7 +140,7 @@ _player.lateUpdate=function(){
 
   if(_player.base.x>=canvas.width&&scene.score==_platform.load+1&&!_teacher.on){
     scene.vx-=canvas.width;
-    scene.vy=0;
+    // scene.vy=0;
 
     _platform.array[_platform.lenght-1].y=canvas.height-_platform.height;
 

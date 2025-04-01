@@ -111,8 +111,37 @@ scene.levelUpdate=function(){
   _corner.currentLenght=0;
   _spike.currentLenght=0;
 
+  if(_platform.move&&_player.hp>0&&!scene.pause){
+    if(_platform.up){ scene.vy=context.move(3); }
+    else{ scene.vy=-context.move(6); }
+  } else{ scene.vy=0; }
+
   if(_background.base.y>=canvas.height){ _background.base.y=_background.bottom.y-canvas.height; }
+  else if(_background.base.y+context.scale(360)<0){ _background.base.y=_background.bottom.y+canvas.height; }
   if(_background.bottom.y>=canvas.height){ _background.bottom.y=_background.base.y-canvas.height; }
+  else if(_background.bottom.y+context.scale(360)<0){ _background.bottom.y=_background.base.y+canvas.height; }
+  if(_background.left.y>=canvas.height){ _background.left.y=_background.bottomLeft.y-canvas.height; }
+  else if(_background.left.y+context.scale(360)<0){ _background.left.y=_background.bottomLeft.y+canvas.height; }
+  if(_background.bottomLeft.y>=canvas.height){ _background.bottomLeft.y=_background.left.y-canvas.height; }
+  else if(_background.bottomLeft.y+context.scale(360)<0){ _background.bottomLeft.y=_background.left.y+canvas.height; }
+
+  if(_background.base.x>context.scale(640)){ _background.base.x-=context.scale(1280); }
+  else if(_background.base.x+context.scale(640)<0){ _background.base.x+=context.scale(1280); }
+  if(_background.bottom.x>context.scale(640)){ _background.bottom.x-=context.scale(1280); }
+  else if(_background.bottom.x+context.scale(640)<0){ _background.bottom.x+=context.scale(1280); }
+  if(_background.left.x>context.scale(640)){ _background.left.x-=context.scale(1280); }
+  else if(_background.left.x+context.scale(640)<0){ _background.left.x+=context.scale(1280); }
+  if(_background.bottomLeft.x>context.scale(640)){ _background.bottomLeft.x-=context.scale(1280); }
+  else if(_background.bottomLeft.x+context.scale(640)<0){ _background.bottomLeft.x+=context.scale(1280); }
+
+  _background.base.y+=scene.vy;
+  _background.bottom.y+=scene.vy;
+  _background.left.y+=scene.vy;
+  _background.bottomLeft.y+=scene.vy;
+  _background.base.x+=scene.vx;
+  _background.bottom.x+=scene.vx;
+  _background.left.x+=scene.vx;
+  _background.bottomLeft.x+=scene.vx;
 
   _ui.game.hp.text.value0=_player.hp+"/5";
   _ui.game.info.score.value0="Wynik: "+scene.score;

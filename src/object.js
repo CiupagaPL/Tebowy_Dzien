@@ -19,7 +19,7 @@ const _background={
     x:0,
     y:0,
 	
-	alpha:75,
+	  alpha:75,
   }, bottom:{
     x:0,
     y:360,
@@ -40,6 +40,8 @@ const _background={
   img1:Object.assign(new Image(),{src:"tex/ui/background/1.png"}),
   img2:Object.assign(new Image(),{src:"tex/ui/background/2.png"}),
   img3:Object.assign(new Image(),{src:"tex/ui/background/3.png"}),
+  img4:Object.assign(new Image(),{src:"tex/ui/background/4.png"}),
+  img5:Object.assign(new Image(),{src:"tex/ui/background/5.png"}),
 };
 
 const _transition={
@@ -161,7 +163,7 @@ const _footer={
     x:52,
     y:354,
 
-    value0:"Gałęź Niestabilna: 24-03-2025",
+    value0:"Gałęź Niestabilna: 01-04-2025",
     size:16,
   }, github:{
     x:322,
@@ -254,7 +256,7 @@ const _ui={
         x:613,
         y:36,
 
-        value0:"5/5",
+        value0:"",
         size:12,
       },
     }, pause:{
@@ -321,13 +323,13 @@ const _ui={
         x:80,
         y:20,
 
-        value0:"Wynik: 00",
+        value0:"",
         size:14,
       }, level:{
         x:80,
         y:33,
 
-        value0:"Poziom: 00",
+        value0:"",
         size:14,
       },
     }, teacher:{
@@ -367,7 +369,7 @@ const _ui={
         x:150,
         y:36,
 
-        value0:"10/10",
+        value0:"",
         size:12,
       },
     }, ammo:{
@@ -825,16 +827,14 @@ const _blueprint={
     img0:Object.assign(new Image(),{src:"tex/ui/blueprint/blueprint0.png"}),
     img1:Object.assign(new Image(),{src:"tex/ui/blueprint/blueprint1.png"}),
   }, skin:{
-    x:(640+160)+42,
-    y:((360/2)-(240/2))+58,
+    x:(640+160)+40,
+    y:((360/2)-(240/2))+66,
 
-    width:72,
-    height:122,
+    width:80,
+    height:120,
 
-    img0:Object.assign(new Image(),{src:"tex/obj/player/boy0.png"}),
-    img1:Object.assign(new Image(),{src:"tex/obj/player/boy1.png"}),
-    img2:Object.assign(new Image(),{src:"tex/obj/player/girl0.png"}),
-    img3:Object.assign(new Image(),{src:"tex/obj/player/girl1.png"}),
+    img0:Object.assign(new Image(),{src:"tex/obj/player/boy.png"}),
+    img1:Object.assign(new Image(),{src:"tex/obj/player/girl.png"}),
   }, back:{
     x:(640+160)+124,
     y:((360/2)-(240/2))+6,
@@ -1005,7 +1005,7 @@ const _blueprint={
       x:(640+160)+68,
       y:((360/2)-(240/2))+200,
 
-      value0:"1/4",
+      value0:"1/2",
       size:20,
     },
   },
@@ -1075,17 +1075,13 @@ const _player={
     x:64,
     y:(360-12)-81,
 
-    width:48,
-    height:81,
+    width:64,
+    height:96,
 
-    img0:Object.assign(new Image(),{src:"tex/obj/player/boy0.png"}),
-    img1:Object.assign(new Image(),{src:"tex/obj/player/boy1.png"}),
-    img2:Object.assign(new Image(),{src:"tex/obj/player/girl0.png"}),
-    img3:Object.assign(new Image(),{src:"tex/obj/player/girl1.png"}),
-    img0Left:Object.assign(new Image(),{src:"tex/obj/player/boy0left.png"}),
-    img1Left:Object.assign(new Image(),{src:"tex/obj/player/boy1left.png"}),
-    img2Left:Object.assign(new Image(),{src:"tex/obj/player/girl0left.png"}),
-    img3Left:Object.assign(new Image(),{src:"tex/obj/player/girl1left.png"}),
+    img0:Object.assign(new Image(),{src:"tex/obj/player/boy.png"}),
+    img1:Object.assign(new Image(),{src:"tex/obj/player/girl.png"}),
+    img0Left:Object.assign(new Image(),{src:"tex/obj/player/boyleft.png"}),
+    img1Left:Object.assign(new Image(),{src:"tex/obj/player/girlleft.png"}),
     alpha:100,
   }, text:{
     x:0,
@@ -1143,26 +1139,26 @@ const _player={
     x:0,
     y:0,
 
-    width:40,
-    height:4,
+    width:36,
+    height:8,
   }, collisionBottom:{
     x:0,
     y:0,
 
-    width:40,
-    height:4,
+    width:42,
+    height:8,
   }, collisionLeft:{
     x:0,
     y:0,
 
-    width:4,
-    height:69,
+    width:8,
+    height:72,
   }, collisionRight:{
     x:0,
     y:0,
 
-    width:4,
-    height:69,
+    width:8,
+    height:72,
   },
 
   vx:0,
@@ -1197,7 +1193,7 @@ const _platform={
   ly:0,
 
   width:0,
-  height:12,
+  height:14,
 
   lenght:0,
   currentLenght:0,
@@ -1209,18 +1205,20 @@ const _platform={
   random:0,
   stage:2,
 
+  move:false,
+  up:false,
+
   img0:Object.assign(new Image(),{src:"tex/obj/platform.png"}),
-  color0:"rgb(0,0,0)",
 
   update:function(){},
 };
 
 const _corner={
   base:{
-    width:6,
-    height:12,
+    width:8,
+    height:14,
   }, laser:{
-    width:120,
+    width:117,
     height:6,
   },
 
@@ -1254,6 +1252,51 @@ const _spike={
   img0:Object.assign(new Image(),{src:"tex/obj/spike.png"}),
 
   update:function(){},
+};
+
+const _locker={
+  base:{
+    x:92,
+    y:360-180-4,
+
+    width:64,
+    height:92,
+  }, bottom:{
+    x:92,
+    y:360-180+80,
+
+    width:64,
+    height:92,
+  }, left:{
+    x:32,
+    y:360-180-4,
+
+    width:64,
+    height:92,
+  }, bottomLeft:{
+    x:32,
+    y:360-180+80,
+
+    width:64,
+    height:92,
+  },
+
+  img0:Object.assign(new Image(),{src:"tex/obj/locker/empty.png"}),
+  img1:Object.assign(new Image(),{src:"tex/obj/locker/blue.png"}),
+  img2:Object.assign(new Image(),{src:"tex/obj/locker/red.png"}),
+};
+
+const _door={
+  base:{
+    x:640-128,
+    y:360-180+25,
+
+    width:84,
+    height:144,
+  },
+
+  img0:Object.assign(new Image(),{src:"tex/obj/door/red.png"}),
+  img1:Object.assign(new Image(),{src:"tex/obj/door/blue.png"}),
 };
 
 const _teacher={

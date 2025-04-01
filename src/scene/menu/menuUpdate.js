@@ -46,14 +46,6 @@ scene.menuUpdate=function(){
     else{ audio.menu2_music.volume=0.15; }
   }
 
-  if(_player.skin==0||_player.skin==2){
-    _blueprint.skin.height=context.scale(122);
-    _blueprint.skin.y=_blueprint.base.y+context.scale(58);
-  } else if(_player.skin==1||_player.skin==3){
-    _blueprint.skin.height=context.scale(113);
-    _blueprint.skin.y=_blueprint.base.y+context.scale(67);
-  }
-
   _background.base.x+=context.move(16)/7;
   _background.base.y-=context.move(9)/7;
   _background.bottom.x+=context.move(16)/7;

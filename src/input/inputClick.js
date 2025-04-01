@@ -289,17 +289,13 @@ window.addEventListener("click",function(){
       } else if(context.collision(_blueprint.left,mouse)&&_button.custom.on){
         if(global.sfx){ audio.click1_sfx.play(); }
 
-        if(_player.skin>=1){
-          _player.skin--;
-          _blueprint.custom.text.value0=Number(_player.skin+1)+"/4";
-        }
+        _player.skin=0;
+        _blueprint.custom.text.value0=Number(_player.skin+1)+"/2";
       } else if(context.collision(_blueprint.right,mouse)&&_button.custom.on){
         if(global.sfx){ audio.click1_sfx.play(); }
 
-        if(_player.skin<=2){
-          _player.skin++;
-          _blueprint.custom.text.value0=Number(_player.skin+1)+"/4";
-        }
+        _player.skin=1;
+        _blueprint.custom.text.value0=Number(_player.skin+1)+"/2";
       }
     }
 

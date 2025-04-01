@@ -47,7 +47,7 @@ scene.cornerGenerator=function(){
         height:_corner.base.height,
       }, laser:{
         x:_platform.random+context.scale(4.5),
-        y:_currentPlatform.y+context.scale(3),
+        y:_currentPlatform.y+context.scale(4),
 
         width:_corner.laser.width,
         height:_corner.laser.height,
@@ -61,7 +61,7 @@ scene.cornerGenerator=function(){
 
     _currentCorner={
       base:{
-        x:(_platform.random+context.scale(128))-context.scale(5.5),
+        x:(_platform.random+context.scale(128))-context.scale(7.5),
         y:_currentPlatform.y,
 
         width:_corner.base.width,

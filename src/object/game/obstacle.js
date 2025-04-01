@@ -71,11 +71,19 @@ _corner.globalUpdate=function(){
 }
 
 _platform.update=function(){
-  _background.base.y+=scene.vy/72;
-  _background.bottom.y+=scene.vy/72;
-
   if(_currentPlatform.x>context.scale(640)){ _currentPlatform.x-=context.scale(1280); }
   else if(_currentPlatform.x+_currentPlatform.width<0){ _currentPlatform.x+=context.scale(1280); }
+
+  if(scene.score==_currentPlatform.level+1&&scene.score>0){
+    if(_currentPlatform.y<context.scale(254)||_currentPlatform.y>context.scale(274)){ _platform.move=true; }
+    else if(_currentPlatform.y>=context.scale(254)&&_currentPlatform.y<=context.scale(274)){ _platform.move=false; }
+    if(_currentPlatform.y<context.scale(254)){ _platform.up=true; }
+    else if(_currentPlatform.y<context.scale(274)){ _platform.up=false; }
+  } else if(scene.score==_currentPlatform.level+1&&scene.score==0){
+    if(_currentPlatform.y>context.scale(352)){ _platform.move=true; }
+    else{ _platform.move=false; }
+    _platform.up=false;
+  }
 
   if(context.collision(_currentPlatform,_player.collisionTop)&&!_player.touched){
     _player.fly=true;
@@ -85,11 +93,10 @@ _platform.update=function(){
       _player.base.y=_currentPlatform.y+context.scale(8);
       _player.text.y=_player.base.y-context.scale(12);
 
-      _player.collisionLeft.y=_player.base.y+context.scale(8);
-      _player.collisionRight.y=_player.base.y+context.scale(8);
-      _player.collisionTop.y=_player.base.y;
-      if(_player.skin==0||_player.skin==2){ _player.collisionBottom.y=(_player.base.y+context.scale(81))+_player.vy; }
-      else{ _player.collisionBottom.y=(_player.base.y+context.scale(75))+_player.vy; }
+      _player.collisionLeft.y=_player.base.y+context.scale(12);
+      _player.collisionRight.y=_player.base.y+context.scale(12);
+      _player.collisionTop.y=_player.base.y-context.scale(4);
+      _player.collisionBottom.y=_player.base.y+context.scale(90);
 
       _player.cloud.y=_player.base.y+_player.cloud.height;
       _player.gun.y=_player.base.y+context.scale(40);
@@ -101,11 +108,10 @@ _platform.update=function(){
       _player.base.y=_currentPlatform.y-_player.base.height;
       _player.text.y=_player.base.y-context.scale(12);
 
-      _player.collisionLeft.y=_player.base.y+context.scale(8);
-      _player.collisionRight.y=_player.base.y+context.scale(8);
-      _player.collisionTop.y=_player.base.y;
-      if(_player.skin==0||_player.skin==2){ _player.collisionBottom.y=(_player.base.y+context.scale(81))+_player.vy; }
-      else{ _player.collisionBottom.y=(_player.base.y+context.scale(75))+_player.vy; }
+      _player.collisionLeft.y=_player.base.y+context.scale(12);
+      _player.collisionRight.y=_player.base.y+context.scale(12);
+      _player.collisionTop.y=_player.base.y-context.scale(4);
+      _player.collisionBottom.y=_player.base.y+context.scale(90);
 
       _player.cloud.y=_player.base.y+_player.cloud.height;
       _player.gun.y=_player.base.y+context.scale(40);

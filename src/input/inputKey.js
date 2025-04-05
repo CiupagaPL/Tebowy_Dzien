@@ -140,20 +140,26 @@ window.addEventListener("keyup",function(event){
           _player.vy=_player.ivy;
         }
 
-        if((event.key=="e"||event.key=="E")&&_teacher.on&&_player.gun.on){
+        if((event.key=="r"||event.key=="R")){
+          _player.gun.timer=0;
+          _player.gun.type++;
+          if(_player.gun.type==3){ _player.gun.type=0; }
+        }
+
+        if((event.key=="e"||event.key=="E")&&(_player.gun.type==0&&_player.gun.timer>=context.time(90)||_player.gun.type==1&&_player.gun.timer>=context.time(120)&&
+           _player.gun.ammo1>0||_player.gun.type==2&&_player.gun.timer>=context.time(60)&&_player.gun.ammo2>0)){
           if(global.sfx){ audio.fire1_sfx.play(); }
 
-          _player.ammo.x=_player.base.x+context.scale(20);
-          _player.ammo.y=_player.base.y+context.scale(20);
+          _player.ammo.x=_player.base.x+context.scale(32);
+          _player.ammo.y=_player.base.y+context.scale(44);
+
           _player.ammo.unused=false;
-
           _player.gun.timer=0;
-          _player.gun.on=false;
-
-          if(_player.gun.power){
-            _player.ammo.power=true;
-            _player.gun.power=false;
-          }
+          if(!_player.left){ _player.ammo.left=false; }
+          else{ _player.ammo.left=true; }
+          _player.ammo.type=_player.gun.type;
+          if(_player.ammo.type==1){ _player.gun.ammo1--; }
+          else if(_player.ammo.type==2){ _player.gun.ammo2--; }
         }
       }
     }

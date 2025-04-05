@@ -14,16 +14,16 @@
 
 scene.menuRender=function(){
   if(!_background.change){
-    context.render(_background.base,_background.img0);
-    context.render(_background.bottom,_background.img1);
-    context.render(_background.left,_background.img0);
-    context.render(_background.bottomLeft,_background.img1);
+    context.render(_background.base,_background.img0Menu);
+    context.render(_background.bottom,_background.img1Menu);
+    context.render(_background.left,_background.img0Menu);
+    context.render(_background.bottomLeft,_background.img1Menu);
   } else{
-    context.render(_background.base,_background.img1);
-    context.render(_background.bottom,_background.img0);
-    context.render(_background.left,_background.img1);
-    context.render(_background.bottomLeft,_background.img0);
-  } if(!scene.change){ html.style.backgroundColor=_background.color0; }
+    context.render(_background.base,_background.img1Menu);
+    context.render(_background.bottom,_background.img0Menu);
+    context.render(_background.left,_background.img1Menu);
+    context.render(_background.bottomLeft,_background.img0Menu);
+  }
 
   context.render(_ui.menu.main,_ui.color0);
   context.render(_ui.menu.left,_ui.color1);

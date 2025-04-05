@@ -140,7 +140,7 @@ context.default=function(){
   scene.generated=false;
 
   if(scene.value!=11){ _platform.load=14; }
-  else{ _platform.load=3; }
+  else{ _platform.load=4; }
   _platform.stage=2;
 
   _player.text.x=_player.base.x-context.scale(2);
@@ -156,19 +156,16 @@ context.default=function(){
   _player.cloudFly=false;
   _player.left=false;
 
-  _player.gun.x=_player.base.x+context.scale(36);
-  _player.gun.y=_player.base.y+context.scale(40);
-  _player.gun.on=false;
-  _player.gun.power=false;
+  _player.gun.x=_player.base.x;
+  _player.gun.y=_player.base.y+context.scale(32);
   _player.gun.timer=0;
+  _player.gun.ammo1=10;
+  _player.gun.ammo2=10;
 
   _player.ammo.unused=true;
-  _player.ammo.power=false;
 
   _player.cloud.x=_player.base.x-context.scale(8);
   _player.cloud.y=_player.base.y+_player.cloud.height;
-  _player.gun.x=_player.base.x+context.scale(36);
-  _player.gun.y=_player.base.y+context.scale(40);
 
   scene.auto=false;
 
@@ -268,6 +265,12 @@ context.reset=function(){
   context.setup(_ui.game.hp.background);
   context.setup(_ui.game.hp.heart);
   context.setup(_ui.game.hp.text);
+  context.setup(_ui.game.ammo.main);
+  context.setup(_ui.game.ammo.background);
+  context.setup(_ui.game.ammo.iconMain);
+  context.setup(_ui.game.ammo.iconLeft);
+  context.setup(_ui.game.ammo.iconRight);
+  context.setup(_ui.game.ammo.text);
   context.setup(_ui.game.pause.main);
   context.setup(_ui.game.pause.background);
   context.setup(_ui.game.pause.icon);
@@ -282,10 +285,6 @@ context.reset=function(){
   context.setup(_ui.game.teacher.background);
   context.setup(_ui.game.teacher.heart);
   context.setup(_ui.game.teacher.text);
-  context.setup(_ui.game.ammo.main);
-  context.setup(_ui.game.ammo.background);
-  context.setup(_ui.game.ammo.icon);
-  context.setup(_ui.game.ammo.text);
 
   context.setup(_button.start.base);
   context.setup(_button.start.text);
@@ -323,13 +322,10 @@ context.reset=function(){
 
   context.setup(_clipboard.about.title);
   context.setup(_clipboard.about.text);
-
   context.setup(_clipboard.version.title);
   context.setup(_clipboard.version.text);
-
   context.setup(_clipboard.tutorial.title);
   context.setup(_clipboard.tutorial.text);
-
   context.setup(_clipboard.reward.title);
   context.setup(_clipboard.reward.text);
   context.setup(_clipboard.reward.icon);

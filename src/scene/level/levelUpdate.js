@@ -111,9 +111,9 @@ scene.levelUpdate=function(){
   _corner.currentLenght=0;
   _spike.currentLenght=0;
 
-  if(_platform.move&&_player.hp>0&&!scene.pause){
-    if(_platform.up){ scene.vy=context.move(3); }
-    else{ scene.vy=-context.move(6); }
+  if(_platform.move&&_player.hp>0&&!global.pause){
+    if(_platform.up){ scene.vy=context.move(4); }
+    else{ scene.vy=-context.move(4); }
   } else{ scene.vy=0; }
 
   if(_background.base.y>=canvas.height){ _background.base.y=_background.bottom.y-canvas.height; }
@@ -147,6 +147,9 @@ scene.levelUpdate=function(){
   _ui.game.info.score.value0="Wynik: "+scene.score;
   _ui.game.info.level.value0="Poziom: "+Number(scene.value-1);
   _ui.game.teacher.text.value0=_teacher.hp+"/10";
+  if(_player.gun.type==0){ _ui.game.ammo.text.value0="Inf"; }
+  else if(_player.gun.type==1){ _ui.game.ammo.text.value0=String(_player.gun.ammo1); }
+  else{ _ui.game.ammo.text.value0=String(_player.gun.ammo2); }
 
   if(_player.invisible!=0&&!global.pause&&_player.hp>0&&_player.invisible<_player.max){ _player.invisible++; }
   else if(_player.invisible>=_player.max){ _player.invisible=0; }
@@ -161,11 +164,6 @@ scene.levelUpdate=function(){
     global.pause=true;
     global.pauseAnimation=true;
     global.pauseChange=true;
-  }
-
-  if(scene.timer>=context.time(99)){
-    if(!_player.gun.on){ _player.gun.timer++; }
-    if(_player.gun.timer>=context.time(120)){ _player.gun.on=true; }
   }
 
   if(scene.auto&&!_clipboard.on&&!global.pauseChange){

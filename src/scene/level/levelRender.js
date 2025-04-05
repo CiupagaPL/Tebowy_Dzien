@@ -1,4 +1,4 @@
-/*   ,-----,l
+/*   ,-----,
  *   |     |    ,--------------------------------------,
  *   |     |   ( */"use strict"/* pastebin.com/zdg35gef )
  *  (|-----|) < The project is licensed under MIT -^    |
@@ -13,17 +13,12 @@
  *  (_(_)--(_(_) */
 
 scene.levelRender=function(){
-  context.render(_background.base,_background.img4);
-  context.render(_background.bottom,_background.img4);
-  context.render(_background.left,_background.img5);
-  context.render(_background.bottomLeft,_background.img5);
+  context.render(_background.base,_background.img0Level);
+  context.render(_background.bottom,_background.img1Level);
+  context.render(_background.left,_background.img0Level);
+  context.render(_background.bottomLeft,_background.img1Level);
 
   _player.render();
-
-  if(!_player.gun.power){ context.render(_player.gun,_player.gun.img0); }
-  else{ context.render(_player.gun,_player.gun.img1); }
-  if(!_player.ammo.power){ context.render(_player.ammo,_player.ammo.img0); }
-  else{ context.render(_player.ammo,_player.ammo.img1); }
 
   // context.render(_locker.base,_locker.img2);
   // context.render(_locker.bottom,_locker.img1);
@@ -121,6 +116,34 @@ scene.levelRender=function(){
   else{ context.render(_ui.game.hp.heart,_ui.game.hp.heart.img5); }
   context.text(_ui.game.hp.text,_ui.color1,_ui.game.hp.text.value0);
 
+  context.render(_ui.game.ammo.background,_ui.color1);
+  context.render(_ui.game.ammo.main,_ui.color0);
+  if(_player.gun.type==0){
+    if(_player.gun.timer<context.time(30)){ context.render(_ui.game.ammo.iconMain,_ui.game.ammo.iconMain.img0); }
+    else if(_player.gun.timer>=context.time(30)&&_player.gun.timer<context.time(60)){ context.render(_ui.game.ammo.iconMain,_ui.game.ammo.iconMain.img1Normal); }
+    else if(_player.gun.timer>=context.time(60)&&_player.gun.timer<context.time(90)){ context.render(_ui.game.ammo.iconMain,_ui.game.ammo.iconMain.img2Normal); }
+    else{ context.render(_ui.game.ammo.iconMain,_ui.game.ammo.iconMain.img3Normal); }
+
+    context.render(_ui.game.ammo.iconLeft,_ui.game.ammo.iconLeft.img2);
+    context.render(_ui.game.ammo.iconRight,_ui.game.ammo.iconRight.img1);
+  } else if(_player.gun.type==1){
+    if(_player.gun.timer<context.time(40)){ context.render(_ui.game.ammo.iconMain,_ui.game.ammo.iconMain.img0); }
+    else if(_player.gun.timer>=context.time(40)&&_player.gun.timer<context.time(80)){ context.render(_ui.game.ammo.iconMain,_ui.game.ammo.iconMain.img1Strong); }
+    else if(_player.gun.timer>=context.time(80)&&_player.gun.timer<context.time(120)){ context.render(_ui.game.ammo.iconMain,_ui.game.ammo.iconMain.img2Strong); }
+    else{ context.render(_ui.game.ammo.iconMain,_ui.game.ammo.iconMain.img3Strong); }
+
+    context.render(_ui.game.ammo.iconLeft,_ui.game.ammo.iconLeft.img0);
+    context.render(_ui.game.ammo.iconRight,_ui.game.ammo.iconRight.img2);
+  } else{
+    if(_player.gun.timer<context.time(20)){ context.render(_ui.game.ammo.iconMain,_ui.game.ammo.iconMain.img0); }
+    else if(_player.gun.timer>=context.time(20)&&_player.gun.timer<context.time(40)){ context.render(_ui.game.ammo.iconMain,_ui.game.ammo.iconMain.img1Fast); }
+    else if(_player.gun.timer>=context.time(40)&&_player.gun.timer<context.time(60)){ context.render(_ui.game.ammo.iconMain,_ui.game.ammo.iconMain.img2Fast); }
+    else{ context.render(_ui.game.ammo.iconMain,_ui.game.ammo.iconMain.img3Fast); }
+
+    context.render(_ui.game.ammo.iconLeft,_ui.game.ammo.iconLeft.img1);
+    context.render(_ui.game.ammo.iconRight,_ui.game.ammo.iconRight.img0);
+  } context.text(_ui.game.ammo.text,_ui.color1,_ui.game.ammo.text.value0);
+
   context.render(_ui.game.pause.background,_ui.color1);
   context.render(_ui.game.pause.main,_ui.color0);
   context.text(_ui.game.pause.icon,_ui.color1,_ui.game.pause.icon.value0);
@@ -132,15 +155,6 @@ scene.levelRender=function(){
   context.text(_ui.game.info.text,_ui.color1,_ui.game.info.text.value0);
   context.text(_ui.game.info.score,_ui.color1,_ui.game.info.score.value0);
   context.text(_ui.game.info.level,_ui.color1,_ui.game.info.level.value0);
-
-  context.render(_ui.game.ammo.background,_ui.color1);
-  context.render(_ui.game.ammo.main,_ui.color0);
-  if(_player.gun.on&&!_player.gun.power){ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img2); }
-  if(_player.gun.timer>=context.time(60)&&!_player.gun.on&&!_player.gun.power){ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img1); }
-  if(_player.gun.timer<context.time(60)){ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img0); }
-  if(_player.gun.on&&_player.gun.power){ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img4); }
-  if(_player.gun.timer>=context.time(60)&&!_player.gun.on&&_player.gun.power){ context.render(_ui.game.ammo.icon,_ui.game.ammo.icon.img3); }
-  context.text(_ui.game.ammo.text,_ui.color1,_ui.game.ammo.text.value0);
 
   if(_teacher.on){
     context.render(_ui.game.teacher.background,_ui.color1);

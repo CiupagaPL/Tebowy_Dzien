@@ -12,7 +12,7 @@
  *   | |    | | /
  *  (_(_)--(_(_) */
 
-let _currentPlatform=[],_currentSpike=[],_currentCorner=[];
+let _currentPlatform=[],_currentSpike=[],_currentCorner=[],_currentWall=[],_currentDecoration=[];
 
 const _background={
   base:{
@@ -161,7 +161,7 @@ const _footer={
     x:52,
     y:354,
 
-    value0:"Gałęź Niestabilna: 05-04-2025",
+    value0:"Gałęź Niestabilna: 09-04-2025",
     size:16,
   }, github:{
     x:322,
@@ -1249,21 +1249,13 @@ const _player={
 const _platform={
   array:[],
 
-  lx:0,
-  ly:0,
-
-  width:0,
-  height:14,
-
   lenght:0,
   currentLenght:0,
-  load:14,
+  load:15,
   currentLoad:0,
-  currentCount:0,
   level:0,
   lastLevel:0,
   random:0,
-  stage:2,
 
   move:false,
   up:false,
@@ -1274,14 +1266,6 @@ const _platform={
 };
 
 const _corner={
-  base:{
-    width:8,
-    height:14,
-  }, laser:{
-    width:117,
-    height:6,
-  },
-
   array:[],
 
   lenght:-1,
@@ -1293,14 +1277,13 @@ const _corner={
 
   color0:"rgb(255,255,255)",
 
-  update:function(){},
+  localUpdate:function(){},
+  globalUpdate:function(){},
 };
 
 const _spike={
   array:[],
 
-  width:16,
-  height:14,
   lenght:-1,
   currentLenght:0,
   random:0,
@@ -1314,49 +1297,79 @@ const _spike={
   update:function(){},
 };
 
+const _wall={
+  array:[],
+
+  width:68,
+  height:60,
+
+  lenght:-1,
+  currentLenght:0,
+  round:0,
+
+  img0:Object.assign(new Image(),{src:"tex/obj/map/wall/cyanOrange.png"}),
+  img1:Object.assign(new Image(),{src:"tex/obj/map/wall/orangeGreen.png"}),
+  img2:Object.assign(new Image(),{src:"tex/obj/map/wall/greenPurple.png"}),
+  img3:Object.assign(new Image(),{src:"tex/obj/map/wall/purpleCyan.png"}),
+  img0Alt:Object.assign(new Image(),{src:"tex/obj/map/wall/orangeCyan.png"}),
+  img1Alt:Object.assign(new Image(),{src:"tex/obj/map/wall/cyanPurple.png"}),
+  img2Alt:Object.assign(new Image(),{src:"tex/obj/map/wall/purpleGreen.png"}),
+  img3Alt:Object.assign(new Image(),{src:"tex/obj/map/wall/greenOrange.png"}),
+
+  update:function(){},
+};
+
 const _locker={
   base:{
-    x:92,
+    x:80,
     y:360-180-4,
 
-    width:64,
-    height:92,
+    width:52,
+    height:88,
   }, bottom:{
-    x:92,
+    x:80,
     y:360-180+80,
 
-    width:64,
-    height:92,
+    width:52,
+    height:88,
   }, left:{
     x:32,
     y:360-180-4,
 
-    width:64,
-    height:92,
+    width:52,
+    height:88,
   }, bottomLeft:{
     x:32,
     y:360-180+80,
 
-    width:64,
-    height:92,
+    width:52,
+    height:88,
   },
 
   img0:Object.assign(new Image(),{src:"tex/obj/map/locker/empty.png"}),
-  img1:Object.assign(new Image(),{src:"tex/obj/map/locker/blue.png"}),
+  img1:Object.assign(new Image(),{src:"tex/obj/map/locker/cyan.png"}),
   img2:Object.assign(new Image(),{src:"tex/obj/map/locker/red.png"}),
 };
 
-const _door={
-  base:{
-    x:640-128,
-    y:360-180+25,
+const _decoration={
+  array:[],
 
-    width:84,
-    height:144,
-  },
+  lenght:-1,
+  currentLenght:1,
+  current:0,
 
-  img0:Object.assign(new Image(),{src:"tex/obj/map/door/red.png"}),
-  img1:Object.assign(new Image(),{src:"tex/obj/map/door/blue.png"}),
+  color0:"rgb(140,140,196)",
+  img0Door:Object.assign(new Image(),{src:"tex/obj/map/door/orange.png"}),
+  img1Door:Object.assign(new Image(),{src:"tex/obj/map/door/green.png"}),
+  img2Door:Object.assign(new Image(),{src:"tex/obj/map/door/purple.png"}),
+  img3Door:Object.assign(new Image(),{src:"tex/obj/map/door/cyan.png"}),
+  img4Door:Object.assign(new Image(),{src:"tex/obj/map/door/red.png"}),
+  img0Board:Object.assign(new Image(),{src:"tex/obj/map/board/orange.png"}),
+  img1Board:Object.assign(new Image(),{src:"tex/obj/map/board/green.png"}),
+  img2Board:Object.assign(new Image(),{src:"tex/obj/map/board/purple.png"}),
+  img3Board:Object.assign(new Image(),{src:"tex/obj/map/board/cyan.png"}),
+
+  update:function(){},
 };
 
 const _teacher={

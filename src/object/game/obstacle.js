@@ -70,20 +70,44 @@ _corner.globalUpdate=function(){
   }
 }
 
+_wall.update=function(){
+  if(_currentWall.x>canvas.width){ _currentWall.x-=context.scale(1280); }
+  else if(_currentWall.x+_currentWall.width<0){ _currentWall.x+=context.scale(1280); }
+}
+
+_decoration.update=function(){
+  if(_currentDecoration.current==0){
+    if(_currentDecoration.base.x>canvas.width){
+      _currentDecoration.base.x-=context.scale(1280);
+      _currentDecoration.text.x-=context.scale(1280);
+    } else if(_currentDecoration.base.x+_currentDecoration.base.width<0){
+      _currentDecoration.base.x+=context.scale(1280);
+      _currentDecoration.text.x+=context.scale(1280);
+    }
+  } else{
+    if(_currentDecoration.x>canvas.width){ _currentDecoration.x-=context.scale(1280); }
+    else if(_currentDecoration.x+_currentDecoration.width<0){ _currentDecoration.x+=context.scale(1280); }
+  }
+}
+
 _platform.update=function(){
-  if(_currentPlatform.x>context.scale(640)){ _currentPlatform.x-=context.scale(1280); }
+  if(_currentPlatform.x>canvas.width){ _currentPlatform.x-=context.scale(1280); }
   else if(_currentPlatform.x+_currentPlatform.width<0){ _currentPlatform.x+=context.scale(1280); }
 
-  if(scene.score==_currentPlatform.level+1&&scene.score>0){
+  if(scene.score==_currentPlatform.level+1&&scene.score>0&&scene.score<_platform.load-1){
     if(_currentPlatform.y<context.scale(254)||_currentPlatform.y>context.scale(274)){ _platform.move=true; }
     else if(_currentPlatform.y>=context.scale(254)&&_currentPlatform.y<=context.scale(274)){ _platform.move=false; }
     if(_currentPlatform.y<context.scale(254)){ _platform.up=true; }
-    else if(_currentPlatform.y<context.scale(274)){ _platform.up=false; }
-  } else if(scene.score==_currentPlatform.level+1&&scene.score==0){
-    if(_currentPlatform.y>context.scale(352)){ _platform.move=true; }
+    else if(_currentPlatform.y>context.scale(274)){ _platform.up=false; }
+  } else if(scene.score==0){
+    if(_platform.array[0].y>context.scale(352)){ _platform.move=true; }
     else{ _platform.move=false; }
     _platform.up=false;
-  } if(_platform.array[(_platform.load*3)+4-1].y>-8){ if(_platform.up==true){ _platform.move=false; } }
+  } else if(scene.score==_platform.load-1){
+    if(_platform.array[_platform.load*3].y<context.scale(-4)){ _platform.move=true; }
+    else{ _platform.move=false; }
+    _platform.up=true;
+  }
 
   if(context.collision(_currentPlatform,_player.collisionTop)&&!_player.touched){
     _player.fly=true;

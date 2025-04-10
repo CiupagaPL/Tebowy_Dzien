@@ -12,24 +12,6 @@
  *   | |    | | /
  *  (_(_)--(_(_) */
 
-scene.lastPlatformGenerator=function(){
-  _currentPlatform={
-    x:0,
-    y:-(context.scale(128)*(_platform.load-1))-context.scale(36),
-
-    width:canvas.width,
-    height:_platform.height,
-
-    level:_platform.load+1,
-  };
-
-  _platform.array[_platform.lenght+1]=_currentPlatform;
-
-  // _platform.loop++;
-  // _platform.currentCount++;
-  _platform.lenght++;
-}
-
 scene.platformGenerator=function(){
   if(_platform.array[0]==null){
     _currentPlatform={
@@ -37,146 +19,128 @@ scene.platformGenerator=function(){
       y:canvas.height-context.scale(14),
 
       width:canvas.width,
-      height:_platform.height,
+      height:context.scale(14),
 
       level:-1,
-      stage:1,
     };
     _platform.array.push(_currentPlatform);
 
     _currentPlatform={
-      x:context.scale(640),
+      x:canvas.width,
       y:canvas.height-context.scale(14),
 
       width:canvas.width,
-      height:_platform.height,
+      height:context.scale(14),
 
       level:-1,
-      stage:2,
     };
     _platform.array.push(_currentPlatform);
-
-    // _platform.loop++;
-    // _platform.currentCount++;
     _platform.lenght+=2;
   }
 
-  if(_platform.stage==2&&_platform.currentLoad!=_platform.load){
+  if(scene.current<4&&_platform.currentLoad!=_platform.load){
     _currentPlatform={
-      x:context.scale(640),
-      y:(canvas.height-(context.scale(180)*_platform.currentLoad))-context.scale(194),
+      x:canvas.width,
+      y:(canvas.height-(context.scale(180)*(_platform.currentLoad-1)))-context.scale(194),
 
-      width:context.scale(640),
-      height:_platform.height,
+      width:canvas.width,
+      height:context.scale(14),
 
-      level:_platform.currentLoad,
-      stage:2,
+      level:_platform.currentLoad-1,
     };
     _platform.array.push(_currentPlatform);
     _platform.lenght++;
 
-    _platform.random=Math.floor(Math.random()*context.scale(512-64))+context.scale(32);
+    if(scene.current==0){ _platform.random=context.scale(18); }
+    else if(scene.current==1){ _platform.random=context.scale(18+160); }
+    else if(scene.current==2){ _platform.random=context.scale(18+320); }
 
-    _currentPlatform={
-      x:0,
-      y:(canvas.height-(context.scale(180)*_platform.currentLoad))-context.scale(194),
-
-      width:_platform.random,
-      height:_platform.height,
-
-      level:_platform.currentLoad,
-      stage:1,
-    };
-    _platform.array.push(_currentPlatform);
-    _platform.lenght++;
-
-    _currentPlatform={
-      x:_platform.random+context.scale(128),
-      y:(canvas.height-(context.scale(180)*_platform.currentLoad))-context.scale(194),
-
-      width:(context.scale(640)-_platform.random)-context.scale(128),
-      height:_platform.height,
-
-      level:_platform.currentLoad,
-      stage:1,
-    };
-    // if(_currentPlatform.level==_platform.load){ _currentPlatform.width+=canvas.width; }
-    _platform.array.push(_currentPlatform);
-    _platform.lenght++;
-    _platform.stage=1;
-  } else if(_platform.stage==1&&_platform.currentLoad!=_platform.load){
     _currentPlatform={
       x:0,
-      y:(canvas.height-(context.scale(180)*_platform.currentLoad))-context.scale(194),
-
-      width:context.scale(640),
-      height:_platform.height,
-
-      level:_platform.currentLoad,
-      stage:1,
-    };
-    _platform.array.push(_currentPlatform);
-    _platform.lenght++;
-
-    _platform.random=Math.floor(Math.random()*context.scale(512-64))+context.scale(32);
-
-    _currentPlatform={
-      x:context.scale(640),
-      y:(canvas.height-(context.scale(180)*_platform.currentLoad))-context.scale(194),
+      y:(canvas.height-(context.scale(180)*(_platform.currentLoad-1)))-context.scale(194),
 
       width:_platform.random,
-      height:_platform.height,
+      height:context.scale(14),
 
-      level:_platform.currentLoad,
-      stage:2,
+      level:_platform.currentLoad-1,
     };
     _platform.array.push(_currentPlatform);
     _platform.lenght++;
 
     _currentPlatform={
-      x:context.scale(640)+_platform.random+context.scale(128),
-      y:(canvas.height-(context.scale(180)*_platform.currentLoad))-context.scale(194),
+      x:_platform.random+context.scale(156),
+      y:(canvas.height-(context.scale(180)*(_platform.currentLoad-1)))-context.scale(194),
 
-      width:(context.scale(640)-_platform.random)-context.scale(128),
-      height:_platform.height,
+      width:(canvas.width-_platform.random)-context.scale(156),
+      height:context.scale(14),
 
-      level:_platform.currentLoad,
-      stage:2,
+      level:_platform.currentLoad-1,
     };
-    // if(_currentPlatform.level==_platform.load){ _currentPlatform.width+=canvas.width; }
     _platform.array.push(_currentPlatform);
     _platform.lenght++;
-    _platform.stage=2;
+  } else if(scene.current>=4&&_platform.currentLoad!=_platform.load){
+    _currentPlatform={
+      x:0,
+      y:(canvas.height-(context.scale(180)*(_platform.currentLoad-1)))-context.scale(194),
+
+      width:canvas.width,
+      height:context.scale(14),
+
+      level:_platform.currentLoad-1,
+    };
+    _platform.array.push(_currentPlatform);
+    _platform.lenght++;
+
+    if(scene.current==4){ _platform.random=context.scale(18+640); }
+    else if(scene.current==5){ _platform.random=context.scale(18+800); }
+    else if(scene.current==6){ _platform.random=context.scale(18+960); }
+
+    _currentPlatform={
+      x:canvas.width,
+      y:(canvas.height-(context.scale(180)*(_platform.currentLoad-1)))-context.scale(194),
+
+      width:_platform.random-canvas.width,
+      height:context.scale(14),
+
+      level:_platform.currentLoad-1,
+    };
+    _platform.array.push(_currentPlatform);
+    _platform.lenght++;
+
+    _currentPlatform={
+      x:_platform.random+context.scale(156),
+      y:(canvas.height-(context.scale(180)*(_platform.currentLoad-1)))-context.scale(194),
+
+      width:(canvas.width-(_platform.random-canvas.width))-context.scale(156),
+      height:context.scale(14),
+
+      level:_platform.currentLoad-1,
+    };
+    _platform.array.push(_currentPlatform);
+    _platform.lenght++;
   } else{
     _currentPlatform={
       x:0,
-      y:(canvas.height-(context.scale(180)*_platform.currentLoad))-context.scale(194),
+      y:(canvas.height-(context.scale(180)*(_platform.currentLoad-1)))-context.scale(194),
 
-      width:context.scale(640),
-      height:_platform.height,
+      width:canvas.width,
+      height:context.scale(14),
 
-      level:_platform.currentLoad,
-      stage:1,
+      level:_platform.currentLoad-1,
     };
     _platform.array.push(_currentPlatform);
     _platform.lenght++;
 
     _currentPlatform={
-      x:context.scale(640),
-      y:(canvas.height-(context.scale(180)*_platform.currentLoad))-context.scale(194),
+      x:canvas.width,
+      y:(canvas.height-(context.scale(180)*(_platform.currentLoad-1)))-context.scale(194),
 
-      width:context.scale(640),
-      height:_platform.height,
+      width:canvas.width,
+      height:context.scale(14),
 
-      level:_platform.currentLoad,
-      stage:2,
+      level:_platform.currentLoad-1,
     };
     _platform.array.push(_currentPlatform);
     _platform.lenght++;
   }
-
-  // _platform.lastx=_platform.random;
-  // _platform.lasty=_currentPlatform.y;
-  // _platform.loop++;
-  // _platform.currentCount++;
 }

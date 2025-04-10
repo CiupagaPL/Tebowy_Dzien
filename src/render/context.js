@@ -139,9 +139,16 @@ context.default=function(){
 
   scene.generated=false;
 
-  if(scene.value!=11){ _platform.load=14; }
-  else{ _platform.load=4; }
-  _platform.stage=2;
+  if(scene.value!=11){ _platform.load=15; }
+  else{ _platform.load=5; }
+
+  _wall.round=0;
+
+  scene.section1=0;
+  scene.section2=0;
+  scene.section3=0;
+  scene.section4=0;
+  scene.current=0;
 
   _player.text.x=_player.base.x-context.scale(2);
   _player.text.y=_player.base.y-context.scale(12);
@@ -180,10 +187,10 @@ context.default=function(){
     _background.left.y=0;
     _background.bottomLeft.y=canvas.height;
   } else{
-    _background.base.y=-context.scale(12);
-    _background.bottom.y=canvas.height-context.scale(12);
-    _background.left.y=-context.scale(12);
-    _background.bottomLeft.y=canvas.height-context.scale(12);
+    _background.base.y=-context.scale(16);
+    _background.bottom.y=canvas.height-context.scale(16);
+    _background.left.y=-context.scale(16);
+    _background.bottomLeft.y=canvas.height-context.scale(16);
   }
   _background.base.x=0;
   _background.bottom.x=0;
@@ -307,7 +314,6 @@ context.reset=function(){
   context.setup(_clipboard.back);
   context.setup(_clipboard.wide);
   context.setup(_clipboard.wideBack);
-
   context.setup(_clipboard.setting.title);
   context.setup(_clipboard.setting.sfx.base);
   context.setup(_clipboard.setting.music.base);
@@ -319,7 +325,6 @@ context.reset=function(){
   context.setup(_clipboard.setting.tutorial.text);
   context.setup(_clipboard.setting.teacher.text);
   context.setup(_clipboard.setting.addon.text);
-
   context.setup(_clipboard.about.title);
   context.setup(_clipboard.about.text);
   context.setup(_clipboard.version.title);
@@ -337,7 +342,6 @@ context.reset=function(){
   context.setup(_blueprint.right);
   context.setup(_blueprint.wide);
   context.setup(_blueprint.wideBack);
-
   context.setup(_blueprint.level.title);
   context.setup(_blueprint.level.button1);
   context.setup(_blueprint.level.button2);
@@ -349,10 +353,8 @@ context.reset=function(){
   context.setup(_blueprint.level.button8);
   context.setup(_blueprint.level.button9);
   context.setup(_blueprint.level.button10);
-
   context.setup(_blueprint.custom.title);
   context.setup(_blueprint.custom.text);
-
   context.setup(_blueprint.teacher.title);
   context.setup(_blueprint.teacher.text);
   
@@ -363,25 +365,16 @@ context.reset=function(){
   context.setup(_player.cloud);
   context.setup(_player.gun);
   context.setup(_player.ammo);
-
   context.setup(_player.collisionTop);
   context.setup(_player.collisionBottom);
   context.setup(_player.collisionLeft);
   context.setup(_player.collisionRight);
 
-  _platform.height=context.scale(14);
-
-  context.setup(_corner.base);
-  context.setup(_corner.laser);
-
-  context.setup(_spike);
-
+  context.setup(_wall);
   context.setup(_locker.base);
   context.setup(_locker.bottom);
   context.setup(_locker.left);
   context.setup(_locker.bottomLeft);
-
-  context.setup(_door.base);
 
   context.setup(_teacher.base);
   context.setup(_teacher.text);

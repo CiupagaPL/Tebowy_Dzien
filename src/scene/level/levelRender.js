@@ -18,14 +18,15 @@ scene.levelRender=function(){
   context.render(_background.left,_background.img0Level);
   context.render(_background.bottomLeft,_background.img1Level);
 
-  _player.render();
-
-  // context.render(_locker.base,_locker.img2);
+  // context.render(_locker.base,_locker.img1);
   // context.render(_locker.bottom,_locker.img1);
   // context.render(_locker.left,_locker.img1);
-  // context.render(_locker.bottomLeft,_locker.img2);
+  // context.render(_locker.bottomLeft,_locker.img1);
 
-  // context.render(_door.base,_door.img0);
+  // _locker.base.x+=scene.vx;
+  // _locker.bottom.x+=scene.vx;
+  // _locker.left.x+=scene.vx;
+  // _locker.bottomLeft.x+=scene.vx;
 
   if(_teacher.on){
     _teacher.render();
@@ -44,14 +45,47 @@ scene.levelRender=function(){
   }
 
   if(scene.generated){
+    while(_decoration.lenght>=_decoration.currentLenght){
+      _currentDecoration=_decoration.array[_decoration.currentLenght];
+
+      if(_currentDecoration.current==0&&_currentDecoration.base.y<canvas.height*1.5&&_currentDecoration.base.y>=-canvas.height*0.5&&
+         (_currentDecoration.base.x<context.scale(640+16)||_currentDecoration.base.x+_currentDecoration.base.width>-context.scale(16))){
+        if(_currentDecoration.type==0){ context.render(_currentDecoration.base,_decoration.img0Door); }
+        else if(_currentDecoration.type==1){ context.render(_currentDecoration.base,_decoration.img1Door); }
+        else if(_currentDecoration.type==2){ context.render(_currentDecoration.base,_decoration.img2Door); }
+        else if(_currentDecoration.type==3){ context.render(_currentDecoration.base,_decoration.img3Door); }
+        else{ context.render(_currentDecoration.base,_decoration.img4Door); }
+        context.text(_currentDecoration.text,_decoration.color0,_currentDecoration.text.value0);
+
+        if(!global.pause&&_player.hp>0){ _decoration.update(); }
+      } else if(_currentDecoration.current!=0&&_currentDecoration.y<canvas.height*1.5&&_currentDecoration.y>=-canvas.height*0.5&&
+         (_currentDecoration.x<context.scale(640+16)||_currentDecoration.x+_currentDecoration.width>-context.scale(16))){
+        if(_currentDecoration.type==0){ context.render(_currentDecoration,_decoration.img0Board); }
+        else if(_currentDecoration.type==1){ context.render(_currentDecoration,_decoration.img1Board); }
+        else if(_currentDecoration.type==2){ context.render(_currentDecoration,_decoration.img2Board); }
+        else{ context.render(_currentDecoration,_decoration.img3Board); }
+      }
+
+      if(_currentDecoration.current==0){
+        _currentDecoration.base.y+=scene.vy;
+        _currentDecoration.text.y+=scene.vy;
+        _currentDecoration.base.x+=scene.vx;
+        _currentDecoration.text.x+=scene.vx;
+      } else{
+        _currentDecoration.y+=scene.vy;
+        _currentDecoration.x+=scene.vx;
+      } _decoration.currentLenght+=1;
+    }
+
     _player.update();
+    _player.render();
 
     while(_platform.lenght>=_platform.currentLenght){
       _currentPlatform=_platform.array[_platform.currentLenght];
 
-      if(_currentPlatform.y<canvas.height*2&&_currentPlatform.y>=-canvas.height*2){
+      if(_currentPlatform.y<canvas.height*1.5&&_currentPlatform.y>=-canvas.height*0.5){
         context.render(_currentPlatform,_platform.img0);
-        if(!global.pause){ _platform.update(); }
+        if(!global.pause&&_player.hp>0){ _platform.update(); }
       }
 
       _currentPlatform.y+=scene.vy;
@@ -86,12 +120,34 @@ scene.levelRender=function(){
       _corner.currentLenght+=1;
     }
 
+    // while(_wall.lenght>=_wall.currentLenght){
+    //   _currentWall=_wall.array[_wall.currentLenght];
+
+    //   if(_currentWall.y<canvas.height*1.5&&_currentWall.y>=-canvas.height*0.5&&
+    //      (_currentWall.x<context.scale(640+16)||_currentWall.x+_currentWall.width>-context.scale(16))){
+    //     if(_currentWall.type==0){ context.render(_currentWall,_wall.img0); }
+    //     else if(_currentWall.type==1){ context.render(_currentWall,_wall.img1); }
+    //     else if(_currentWall.type==2){ context.render(_currentWall,_wall.img2); }
+    //     else if(_currentWall.type==3){ context.render(_currentWall,_wall.img3); }
+    //     else if(_currentWall.type==4){ context.render(_currentWall,_wall.img0Alt); }
+    //     else if(_currentWall.type==5){ context.render(_currentWall,_wall.img1Alt); }
+    //     else if(_currentWall.type==6){ context.render(_currentWall,_wall.img2Alt); }
+    //     else{ context.render(_currentWall,_wall.img3Alt); }
+
+    //     if(!global.pause&&_player.hp>0){ _wall.update(); }
+    //   }
+
+    //   _currentWall.y+=scene.vy;
+    //   _currentWall.x+=scene.vx;
+    //   _wall.currentLenght+=1;
+    // }
+
     while(_spike.lenght>=_spike.currentLenght){
       _currentSpike=_spike.array[_spike.currentLenght];
 
       if(_currentSpike.y<canvas.height+context.scale(32)&&_currentSpike.y>=-context.scale(32)){
         context.render(_currentSpike,_spike.img0);
-        if(!global.pause){ _spike.update(); }
+        if(!global.pause&&_player.hp>0){ _spike.update(); }
       }
 
       _currentSpike.y+=scene.vy;

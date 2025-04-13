@@ -18,10 +18,12 @@ scene.sectionGenerator=function(){
     scene.last=7;
   }
 
-  if(scene.current<=1){ scene.current=Math.floor(Math.random()*3)+4; }
-  else if(scene.current==2){ scene.current=Math.floor(Math.random()*2)+5; }
-  else if(scene.current==4){ scene.current=Math.floor(Math.random()*2); }
-  else if(scene.current>=5){ scene.current=Math.floor(Math.random()*3); }
+  if(_platform.currentLoad!=_platform.load){
+    if(scene.current<=1){ scene.current=Math.floor(Math.random()*3)+4; }
+    else if(scene.current==2){ scene.current=Math.floor(Math.random()*2)+5; }
+    else if(scene.current==4){ scene.current=Math.floor(Math.random()*2); }
+    else if(scene.current>=5){ scene.current=Math.floor(Math.random()*3); }
+  }
 
   scene.section1=0;
   scene.section2=0;
@@ -127,10 +129,10 @@ scene.sectionGenerator=function(){
       if(scene.section1==1){ 
         scene.type6=1;
         scene.section1++;
-      } else if(scene.section2==1){ 
+      } else if(scene.section2==1||scene.section2==2){ 
         scene.type6=2;
         scene.section2++;
-      } else if(scene.section3==1||scene.section3==2){ 
+      } else if(scene.section3==1){ 
         scene.type6=3;
         scene.section3++;
       } else if(scene.section4==1){ 
@@ -156,17 +158,15 @@ scene.sectionGenerator=function(){
     if(scene.section1==1){ 
       scene.type7=1;
       scene.section1++;
-    } else if(scene.section2==1){ 
+    } else if(scene.section2==1||scene.section2==2){ 
       scene.type7=2;
       scene.section2++;
-    } else if(scene.section3==1||scene.section3==2){ 
+    } else if(scene.section3==1){ 
       scene.type7=3;
       scene.section3++;
     } else if(scene.section4==1){ 
       scene.type7=4;
       scene.section4++;
     }
-  }
-
-  scene.last=scene.current;
+  } scene.last=scene.current;
 }

@@ -12,10 +12,10 @@
  *   | |    | | /
  *  (_(_)--(_(_) */
 
-_corner.localUpdate=function(){
+_corner.update=function(){
   if(_currentCorner.laser!=undefined){
     if(context.collision(_currentCorner.laser,_player.base)&&_player.invisible==0&&
-       !global.currentTeacher&&_corner.timer>=_corner.max&&!_player.touched){
+       !global.currentTeacher&&_corner.timer>=context.time(60)&&!_player.touched){
       _player.hp-=1;
       _player.text.value0="-25 punktów\nz zachowania";
 
@@ -28,7 +28,7 @@ _corner.localUpdate=function(){
     }
   }
 
-  if(_currentCorner.base.x>context.scale(640)){
+  if(_currentCorner.base.x>canvas.width){
     _currentCorner.base.x-=context.scale(1280);
     if(_currentCorner.laser!=undefined){ _currentCorner.laser.x-=context.scale(1280); }
   } else if(_currentCorner.base.x+_currentCorner.base.width<0){
@@ -61,12 +61,27 @@ _corner.localUpdate=function(){
   }
 }
 
-_corner.globalUpdate=function(){
-  if(!global.pause&&_player.hp>0){
-    _corner.timer++;
+_foreground.update=function(){
+  if(_currentForeground.x>canvas.width){ _currentForeground.x-=context.scale(1280); }
+  else if(_currentForeground.x+_currentForeground.width<0){ _currentForeground.x+=context.scale(1280); }
 
-    if(_corner.timer==_corner.max&&global.sfx&&!_teacher.on){ audio.laser_sfx.play(); }
-    if(_corner.timer>=_corner.max+context.time(25)){ _corner.timer=0; }
+  if(_currentForeground.score==scene.score&&!_currentForeground.on){
+    _currentForeground.on=true;
+    _currentForeground.change=true;
+  } else if(_currentForeground.score!=scene.score&&_currentForeground.on){
+    _currentForeground.on=false;
+    _currentForeground.change=true;
+  }
+
+  if(_currentForeground.change&&!_currentForeground.on){
+    if(_currentForeground.alpha<50){ _currentForeground.alpha+=context.time(2); }
+    else{
+      _currentForeground.alpha=50;
+      _currentForeground.change=false;
+    }
+  } else if(_currentForeground.change&&_currentForeground.on){
+    if(_currentForeground.alpha>0){ _currentForeground.alpha-=context.time(2); }
+    else{ _currentForeground.change=false; }
   }
 }
 
@@ -84,10 +99,29 @@ _decoration.update=function(){
       _currentDecoration.base.x+=context.scale(1280);
       _currentDecoration.text.x+=context.scale(1280);
     }
-  } else{
+  } else if(_currentDecoration.current==1){
     if(_currentDecoration.x>canvas.width){ _currentDecoration.x-=context.scale(1280); }
     else if(_currentDecoration.x+_currentDecoration.width<0){ _currentDecoration.x+=context.scale(1280); }
+  } else if(_currentDecoration.current==2){
+    if(_currentDecoration.light.x>canvas.width){
+      _currentDecoration.base.x-=context.scale(1280);
+      _currentDecoration.light.x-=context.scale(1280);
+    } else if(_currentDecoration.light.x+_currentDecoration.light.width<0){
+      _currentDecoration.base.x+=context.scale(1280);
+      _currentDecoration.light.x+=context.scale(1280);
+    }
   }
+}
+
+_locker.update=function(){
+  if(_currentLocker.base.x>canvas.width){ _currentLocker.base.x-=context.scale(1280); }
+  else if(_currentLocker.base.x+_currentLocker.base.width<0){ _currentLocker.base.x+=context.scale(1280); }
+  if(_currentLocker.bottom.x>canvas.width){ _currentLocker.bottom.x-=context.scale(1280); }
+  else if(_currentLocker.bottom.x+_currentLocker.bottom.width<0){ _currentLocker.bottom.x+=context.scale(1280); }
+  if(_currentLocker.left.x>canvas.width){ _currentLocker.left.x-=context.scale(1280); }
+  else if(_currentLocker.left.x+_currentLocker.left.width<0){ _currentLocker.left.x+=context.scale(1280); }
+  if(_currentLocker.bottomLeft.x>canvas.width){ _currentLocker.bottomLeft.x-=context.scale(1280); }
+  else if(_currentLocker.bottomLeft.x+_currentLocker.bottomLeft.width<0){ _currentLocker.bottomLeft.x+=context.scale(1280); }
 }
 
 _platform.update=function(){

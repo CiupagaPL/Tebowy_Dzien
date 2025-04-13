@@ -14,9 +14,12 @@
 
 _player.render=function(){
   if(_player.invisible>=1){
-    if(_player.invisible<_player.max/2){ _player.base.alpha-=context.frame(8); }
-    else{ _player.base.alpha+=context.frame(8); }
-  } else{ _player.base.alpha=100; }
+    if(_player.invisible<context.time(45)){ _player.base.alpha-=context.frame(8); }
+    else{
+      _player.base.alpha+=context.frame(8);
+      if(_player.base.alpha>=100){ _player.invisible=0; }
+    }
+  }
 
   if(!_player.ammo.unused){
     if(_player.ammo.type==0){ context.render(_player.ammo,_player.ammo.img0); }
@@ -97,8 +100,8 @@ _player.render=function(){
 
 _player.textRender=function(){
   if(_player.hp!=0&&_player.invisible!=0&&global.addon){
-    if(_player.invisible<_player.max-context.time(15)){ _player.text.alpha+=context.frame(8); }
-    else if(_player.invisible==_player.max-context.time(15)){ _player.text.alpha=100; }
+    if(_player.invisible<context.time(75)){ _player.text.alpha+=context.frame(8); }
+    else if(_player.invisible==context.time(75)){ _player.text.alpha=100; }
     else{ _player.text.alpha-=context.frame(8); }
 
     context.text(_player.text,_player.text.color0,_player.text.value0);
@@ -107,8 +110,7 @@ _player.textRender=function(){
 
 _player.update=function(){
   if(!global.pause&&_player.hp>0){
-    if(_player.invisible>=_player.max){ _player.invisible=0; }
-    if(_player.invisible>1){ _player.invisible++; }
+    if(_player.invisible>=1){ _player.invisible++; }
 
     _player.base.y+=_player.vy;
     _player.text.y+=_player.vy;

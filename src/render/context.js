@@ -112,17 +112,17 @@ context.default=function(){
   _title.base.y=context.scale(35);
   _title.teb.y=context.scale(35);
 
-  _button.start.base.y=context.scale(360-204);
+  _button.start.base.y=context.scale(156);
   _button.start.text.y=_button.start.base.y+context.scale(18);
-  _button.level.base.y=context.scale(360-140);
+  _button.level.base.y=context.scale(220);
   _button.level.text.y=_button.level.base.y+context.scale(18);
-  _button.custom.base.y=context.scale(360-76);
+  _button.custom.base.y=context.scale(284);
   _button.custom.text.y=_button.custom.base.y+context.scale(28);
-  _button.setting.base.y=context.scale(360-204);
+  _button.setting.base.y=context.scale(156);
   _button.setting.text.y=_button.setting.base.y+context.scale(28);
-  _button.about.base.y=context.scale(360-140);
+  _button.about.base.y=context.scale(220);
   _button.about.text.y=_button.about.base.y+context.scale(18);
-  _button.version.base.y=context.scale(360-76);
+  _button.version.base.y=context.scale(284);
   _button.version.text.y=_button.version.base.y+context.scale(18);
 
   _player.base.x=context.scale(320)-(_player.base.width/2);
@@ -220,20 +220,6 @@ context.default=function(){
   global.currentReward=false;
 
   _corner.timer=0;
-
-  if(scene.value>=2&&scene.value<=4){
-    _corner.max=context.time(120);
-    _player.max=context.time(90);
-    _spike.count=1;
-  } else if(scene.value>=5&&scene.value<=8){
-    _corner.max=context.time(90);
-    _player.max=context.time(75);
-    _spike.count=2;
-  } else if(scene.value>=9&&scene.value<=11){
-    _corner.max=context.time(60);
-    _player.max=context.time(60);
-    _spike.count=3;
-  }
 }
 
 context.reset=function(){
@@ -371,10 +357,6 @@ context.reset=function(){
   context.setup(_player.collisionRight);
 
   context.setup(_wall);
-  context.setup(_locker.base);
-  context.setup(_locker.bottom);
-  context.setup(_locker.left);
-  context.setup(_locker.bottomLeft);
 
   context.setup(_teacher.base);
   context.setup(_teacher.text);

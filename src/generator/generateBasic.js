@@ -18,9 +18,11 @@ scene.generateLevel=function(){
     if(_platform.currentLoad>=1){
       scene.platformGenerator();
       scene.cornerGenerator();
-      scene.spikeGenerator();
-      scene.wallGenerator();
+      scene.foregroundGenerator();
       scene.decorationGenerator();
+      scene.lockerGenerator();
+      scene.wallGenerator();
+      scene.spikeGenerator();
     }
 
     _platform.currentLoad+=1;
@@ -32,213 +34,62 @@ scene.resetLevel=function(){
   _platform.lenght=-1;
   _corner.array=[];
   _corner.lenght=-1;
-  _spike.array=[];
-  _spike.lenght=-1;
-  _wall.array=[];
-  _wall.lenght=-1;
+  _foreground.array=[];
+  _foreground.lenght=-1;
   _decoration.array=[];
   _decoration.lenght=-1;
+  _locker.array=[];
+  _locker.lenght=-1;
+  _wall.array=[];
+  _wall.lenght=-1;
+  _spike.array=[];
+  _spike.lenght=-1;
 
   _platform.currentLoad=0;
 }
 
-scene.wallGenerator=function(){
-  if(_wall.round==0){
-    _currentWall={
-      x:context.scale(-34),
-      y:_currentPlatform.y+context.scale(180)-context.scale(58),
+scene.foregroundGenerator=function(){
+  _currentForeground={
+    x:0,
+    y:_currentPlatform.y+context.scale(14),
 
-      width:_wall.width,
-      height:_wall.height,
+    width:canvas.width,
+    height:context.scale(166),
 
-      type:0,
-    };
-    _wall.array.push(_currentWall);
-    _wall.lenght++;
+    score:_platform.currentLoad-1,
 
-    _currentWall={
-      x:context.scale(126),
-      y:_currentPlatform.y+context.scale(180)-context.scale(58),
+    on:true,
+    change:false,
 
-      width:_wall.width,
-      height:_wall.height,
-
-      type:1,
-    };
-    _wall.array.push(_currentWall);
-    _wall.lenght++;
-    
-    _currentWall={
-      x:context.scale(286),
-      y:_currentPlatform.y+context.scale(180)-context.scale(58),
-
-      width:_wall.width,
-      height:_wall.height,
-
-      type:2,
-    };
-    _wall.array.push(_currentWall);
-    _wall.lenght++;
-
-    _currentWall={
-      x:context.scale(446),
-      y:_currentPlatform.y+context.scale(180)-context.scale(58),
-
-      width:_wall.width,
-      height:_wall.height,
-
-      type:3,
-    };
-    _wall.array.push(_currentWall);
-    _wall.lenght++;
-
-    _currentWall={
-      x:context.scale(606),
-      y:_currentPlatform.y+context.scale(180)-context.scale(58),
-
-      width:_wall.width,
-      height:_wall.height,
-
-      type:0,
-    };
-    _wall.array.push(_currentWall);
-    _wall.lenght++;
-
-    _currentWall={
-      x:context.scale(766),
-      y:_currentPlatform.y+context.scale(180)-context.scale(58),
-
-      width:_wall.width,
-      height:_wall.height,
-
-      type:1,
-    };
-    _wall.array.push(_currentWall);
-    _wall.lenght++;
-    
-    _currentWall={
-      x:context.scale(926),
-      y:_currentPlatform.y+context.scale(180)-context.scale(58),
-
-      width:_wall.width,
-      height:_wall.height,
-
-      type:2,
-    };
-    _wall.array.push(_currentWall);
-    _wall.lenght++;
-
-    _currentWall={
-      x:context.scale(1086),
-      y:_currentPlatform.y+context.scale(180)-context.scale(58),
-
-      width:_wall.width,
-      height:_wall.height,
-
-      type:3,
-    };
-    _wall.array.push(_currentWall);
-    _wall.lenght++;
-  } else{
-    _currentWall={
-      x:context.scale(-34),
-      y:_currentPlatform.y+context.scale(180)-context.scale(58),
-
-      width:_wall.width,
-      height:_wall.height,
-
-      type:4,
-    };
-    _wall.array.push(_currentWall);
-    _wall.lenght++;
-
-    _currentWall={
-      x:context.scale(126),
-      y:_currentPlatform.y+context.scale(180)-context.scale(58),
-
-      width:_wall.width,
-      height:_wall.height,
-
-      type:5,
-    };
-    _wall.array.push(_currentWall);
-    _wall.lenght++;
-    
-    _currentWall={
-      x:context.scale(286),
-      y:_currentPlatform.y+context.scale(180)-context.scale(58),
-
-      width:_wall.width,
-      height:_wall.height,
-
-      type:6,
-    };
-    _wall.array.push(_currentWall);
-    _wall.lenght++;
-
-    _currentWall={
-      x:context.scale(446),
-      y:_currentPlatform.y+context.scale(180)-context.scale(58),
-
-      width:_wall.width,
-      height:_wall.height,
-
-      type:7,
-    };
-    _wall.array.push(_currentWall);
-    _wall.lenght++;
-
-    _currentWall={
-      x:context.scale(606),
-      y:_currentPlatform.y+context.scale(180)-context.scale(58),
-
-      width:_wall.width,
-      height:_wall.height,
-
-      type:4,
-    };
-    _wall.array.push(_currentWall);
-    _wall.lenght++;
-
-    _currentWall={
-      x:context.scale(766),
-      y:_currentPlatform.y+context.scale(180)-context.scale(58),
-
-      width:_wall.width,
-      height:_wall.height,
-
-      type:5,
-    };
-    _wall.array.push(_currentWall);
-    _wall.lenght++;
-    
-    _currentWall={
-      x:context.scale(926),
-      y:_currentPlatform.y+context.scale(180)-context.scale(58),
-
-      width:_wall.width,
-      height:_wall.height,
-
-      type:6,
-    };
-    _wall.array.push(_currentWall);
-    _wall.lenght++;
-
-    _currentWall={
-      x:context.scale(1086),
-      y:_currentPlatform.y+context.scale(180)-context.scale(58),
-
-      width:_wall.width,
-      height:_wall.height,
-
-      type:7,
-    };
-    _wall.array.push(_currentWall);
-    _wall.lenght++;
+    alpha:50,
+  }; if(_platform.currentLoad==1){
+    _currentForeground.alpha=0;
+    _currentForeground.on=false;
   }
 
-  _wall.round++;
-  if(_wall.round==2){ _wall.round=0; }
+  _foreground.array.push(_currentForeground);
+  _foreground.lenght++;
+
+  _currentForeground={
+    x:canvas.width,
+    y:_currentPlatform.y+context.scale(14),
+
+    width:canvas.width,
+    height:context.scale(166),
+
+    score:_platform.currentLoad-1,
+
+    on:true,
+    change:false,
+
+    alpha:50,
+  }; if(_platform.currentLoad==1){
+    _currentForeground.alpha=0;
+    _currentForeground.on=false;
+  }
+
+  _foreground.array.push(_currentForeground);
+  _foreground.lenght++;
 }
 
 scene.cornerGenerator=function(){
@@ -271,8 +122,9 @@ scene.cornerGenerator=function(){
 
         width:context.scale(8),
         height:context.scale(14),
+
         rotation:180,
-      }, 
+      },
     };
 
     _corner.array.push(_currentCorner);

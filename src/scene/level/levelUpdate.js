@@ -98,7 +98,6 @@ scene.levelUpdate=function(){
     }
   }
 
-  _corner.globalUpdate();
   _clipboard.update();
   scene.generateLevel();
 
@@ -109,8 +108,10 @@ scene.levelUpdate=function(){
 
   _platform.currentLenght=0;
   _corner.currentLenght=0;
-  _wall.currentLenght=0;
+  _foreground.currentLenght=0;
   _decoration.currentLenght=0;
+  _locker.currentLenght=0;
+  _wall.currentLenght=0;
   _spike.currentLenght=0;
 
   if(_platform.move&&_player.hp>0&&!global.pause){

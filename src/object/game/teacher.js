@@ -14,7 +14,7 @@
 
 _teacher.render=function(){
   if(_teacher.invisible>=1){
-    if(_teacher.invisible<_teacher.max/2){ _teacher.base.alpha-=context.frame(8); }
+    if(_teacher.invisible<context.time(30)){ _teacher.base.alpha-=context.frame(8); }
     else{ _teacher.base.alpha+=context.frame(8); }
   } else{ _teacher.base.alpha=100; }
 
@@ -34,8 +34,8 @@ _teacher.render=function(){
 
 _teacher.textRender=function(){
   if(_teacher.hp!=0&&_teacher.invisible!=0&&global.addon){
-    if(_teacher.invisible<_teacher.max/2){ _teacher.text.alpha+=context.frame(8); }
-    else if(_teacher.invisible==_teacher.max/2){ _teacher.text.alpha=100; }
+    if(_teacher.invisible<context.time(30)){ _teacher.text.alpha+=context.frame(8); }
+    else if(_teacher.invisible==context.time(30)){ _teacher.text.alpha=100; }
     else{ _teacher.text.alpha-=context.frame(8); }
 
     context.text(_teacher.text,_teacher.text.color0,_teacher.text.value0);

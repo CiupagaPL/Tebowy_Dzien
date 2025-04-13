@@ -18,16 +18,6 @@ scene.levelRender=function(){
   context.render(_background.left,_background.img0Level);
   context.render(_background.bottomLeft,_background.img1Level);
 
-  // context.render(_locker.base,_locker.img1);
-  // context.render(_locker.bottom,_locker.img1);
-  // context.render(_locker.left,_locker.img1);
-  // context.render(_locker.bottomLeft,_locker.img1);
-
-  // _locker.base.x+=scene.vx;
-  // _locker.bottom.x+=scene.vx;
-  // _locker.left.x+=scene.vx;
-  // _locker.bottomLeft.x+=scene.vx;
-
   if(_teacher.on){
     _teacher.render();
 
@@ -58,12 +48,20 @@ scene.levelRender=function(){
         context.text(_currentDecoration.text,_decoration.color0,_currentDecoration.text.value0);
 
         if(!global.pause&&_player.hp>0){ _decoration.update(); }
-      } else if(_currentDecoration.current!=0&&_currentDecoration.y<canvas.height*1.5&&_currentDecoration.y>=-canvas.height*0.5&&
+      } else if(_currentDecoration.current==1&&_currentDecoration.y<canvas.height*1.5&&_currentDecoration.y>=-canvas.height*0.5&&
          (_currentDecoration.x<context.scale(640+16)||_currentDecoration.x+_currentDecoration.width>-context.scale(16))){
         if(_currentDecoration.type==0){ context.render(_currentDecoration,_decoration.img0Board); }
         else if(_currentDecoration.type==1){ context.render(_currentDecoration,_decoration.img1Board); }
         else if(_currentDecoration.type==2){ context.render(_currentDecoration,_decoration.img2Board); }
         else{ context.render(_currentDecoration,_decoration.img3Board); }
+
+        if(!global.pause&&_player.hp>0){ _decoration.update(); }
+      } else if(_currentDecoration.current==2&&_currentDecoration.light.y<canvas.height*1.5&&_currentDecoration.light.y>=-canvas.height*0.5&&
+         (_currentDecoration.light.x<context.scale(640+16)||_currentDecoration.light.x+_currentDecoration.light.width>-context.scale(16))){
+        context.render(_currentDecoration.base,"rgb(255,255,255)");
+        context.render(_currentDecoration.light,_decoration.img0Light);
+
+        if(!global.pause&&_player.hp>0){ _decoration.update(); }
       }
 
       if(_currentDecoration.current==0){
@@ -71,10 +69,58 @@ scene.levelRender=function(){
         _currentDecoration.text.y+=scene.vy;
         _currentDecoration.base.x+=scene.vx;
         _currentDecoration.text.x+=scene.vx;
-      } else{
+      } else if(_currentDecoration.current==1){
         _currentDecoration.y+=scene.vy;
         _currentDecoration.x+=scene.vx;
+      } else if(_currentDecoration.current==2){
+        _currentDecoration.base.y+=scene.vy;
+        _currentDecoration.light.y+=scene.vy;
+        _currentDecoration.base.x+=scene.vx;
+        _currentDecoration.light.x+=scene.vx;
       } _decoration.currentLenght+=1;
+    }
+
+    while(_locker.lenght>=_locker.currentLenght){
+      _currentLocker=_locker.array[_locker.currentLenght];
+
+      if(_currentLocker.base.y<canvas.height*1.5&&_currentLocker.base.y>=-canvas.height*0.5&&
+         (_currentLocker.base.x<context.scale(640+16)||_currentLocker.base.x+_currentLocker.base.width>-context.scale(16))){
+        if(_currentLocker.base.type==0){ context.render(_currentLocker.base,_locker.img1); }
+        else if(_currentLocker.base.type==1){ context.render(_currentLocker.base,_locker.img2); }
+        else if(_currentLocker.base.type==2){ context.render(_currentLocker.base,_locker.img3); }
+        else if(_currentLocker.base.type==3){ context.render(_currentLocker.base,_locker.img4); }
+        else{ context.render(_currentLocker.base,_locker.img0); }
+
+        if(_currentLocker.bottom.type==0){ context.render(_currentLocker.bottom,_locker.img1); }
+        else if(_currentLocker.bottom.type==1){ context.render(_currentLocker.bottom,_locker.img2); }
+        else if(_currentLocker.bottom.type==2){ context.render(_currentLocker.bottom,_locker.img3); }
+        else if(_currentLocker.bottom.type==3){ context.render(_currentLocker.bottom,_locker.img4); }
+        else{ context.render(_currentLocker.bottom,_locker.img0); }
+
+        if(_currentLocker.left.type==0){ context.render(_currentLocker.left,_locker.img1); }
+        else if(_currentLocker.left.type==1){ context.render(_currentLocker.left,_locker.img2); }
+        else if(_currentLocker.left.type==2){ context.render(_currentLocker.left,_locker.img3); }
+        else if(_currentLocker.left.type==3){ context.render(_currentLocker.left,_locker.img4); }
+        else{ context.render(_currentLocker.left,_locker.img0); }
+
+        if(_currentLocker.bottomLeft.type==0){ context.render(_currentLocker.bottomLeft,_locker.img1); }
+        else if(_currentLocker.bottomLeft.type==1){ context.render(_currentLocker.bottomLeft,_locker.img2); }
+        else if(_currentLocker.bottomLeft.type==2){ context.render(_currentLocker.bottomLeft,_locker.img3); }
+        else if(_currentLocker.bottomLeft.type==3){ context.render(_currentLocker.bottomLeft,_locker.img4); }
+        else{ context.render(_currentLocker.bottomLeft,_locker.img0); }
+
+        if(!global.pause&&_player.hp>0){ _locker.update(); }
+      }
+
+      _currentLocker.base.y+=scene.vy;
+      _currentLocker.bottom.y+=scene.vy;
+      _currentLocker.left.y+=scene.vy;
+      _currentLocker.bottomLeft.y+=scene.vy;
+      _currentLocker.base.x+=scene.vx;
+      _currentLocker.bottom.x+=scene.vx;
+      _currentLocker.left.x+=scene.vx;
+      _currentLocker.bottomLeft.x+=scene.vx;
+      _locker.currentLenght+=1;
     }
 
     _player.update();
@@ -91,33 +137,6 @@ scene.levelRender=function(){
       _currentPlatform.y+=scene.vy;
       _currentPlatform.x+=scene.vx;
       _platform.currentLenght+=1;
-    }
-
-    while(_corner.lenght>=_corner.currentLenght){
-      _currentCorner=_corner.array[_corner.currentLenght];
-
-      if(_currentCorner.base.y<canvas.height+context.scale(32)&&_currentCorner.base.y>=-context.scale(32)){
-        context.render(_currentCorner.base,_corner.img0);
-
-        if(_currentCorner.laser!=undefined){
-          if(_corner.timer>=_corner.max-context.time(20)&&_corner.timer<_corner.max-context.time(10)){ _currentCorner.laser.alpha+=context.frame(4); }
-          else if(_corner.timer==_corner.max-context.time(10)){ _currentCorner.laser.alpha=40; }
-          else if(_corner.timer>=_corner.max&&_corner.timer<_corner.max+context.time(10)){ _currentCorner.laser.alpha+=context.frame(6); }
-          else if(_corner.timer==_corner.max+context.time(10)){ _currentCorner.laser.alpha=100; }
-          else if(_corner.timer>_corner.max+context.time(10)){ _currentCorner.laser.alpha-=context.frame(8); }
-
-          context.render(_currentCorner.laser,_corner.color0);
-        } if(!global.pause&&_player.hp>0){ _corner.localUpdate(); }
-      }
-
-      if(_currentCorner.laser!=undefined){
-        _currentCorner.laser.y+=scene.vy;
-        _currentCorner.laser.x+=scene.vx;
-      }
-      _currentCorner.base.y+=scene.vy;
-      _currentCorner.base.x+=scene.vx;
-
-      _corner.currentLenght+=1;
     }
 
     // while(_wall.lenght>=_wall.currentLenght){
@@ -153,6 +172,48 @@ scene.levelRender=function(){
       _currentSpike.y+=scene.vy;
       _currentSpike.x+=scene.vx;
       _spike.currentLenght+=1;
+    }
+
+    while(_corner.lenght>=_corner.currentLenght){
+      _currentCorner=_corner.array[_corner.currentLenght];
+
+      if(_currentCorner.base.y<canvas.height+context.scale(180)&&_currentCorner.base.y>=-context.scale(180)){
+        context.render(_currentCorner.base,_corner.img0);
+
+        if(_currentCorner.laser!=undefined){
+          if(_corner.timer>=context.time(40)&&_corner.timer<context.time(50)){ _currentCorner.laser.alpha+=context.frame(4); }
+          else if(_corner.timer==context.time(50)){ _currentCorner.laser.alpha=50; }
+          else if(_corner.timer>=context.time(60)&&_corner.timer<context.time(70)){ _currentCorner.laser.alpha+=context.frame(6); }
+          else if(_corner.timer==context.time(70)){
+            if(!global.pause&&_player.hp>0){ audio.laser_sfx.play(); }
+            _currentCorner.laser.alpha=100;
+          } else if(_corner.timer>context.time(70)){
+            _currentCorner.laser.alpha-=context.frame(8);
+            if(_currentCorner.laser.alpha<=0){ _corner.timer=0; }
+          }
+
+          context.render(_currentCorner.laser,_corner.color0);
+        } if(!global.pause&&_player.hp>0){ _corner.update(); }
+      }
+
+      if(_currentCorner.laser!=undefined){
+        _currentCorner.laser.y+=scene.vy;
+        _currentCorner.laser.x+=scene.vx;
+      }
+      _currentCorner.base.y+=scene.vy;
+      _currentCorner.base.x+=scene.vx;
+      _corner.currentLenght+=1;
+    } if(!global.pause&&_player.hp>0){ _corner.timer++; }
+
+    while(_foreground.lenght>=_foreground.currentLenght){
+      _currentForeground=_foreground.array[_foreground.currentLenght];
+
+      context.render(_currentForeground,"rgb(0,0,55)");
+      if(!global.pause&&_player.hp>0){ _foreground.update(); }
+
+      _currentForeground.y+=scene.vy;
+      _currentForeground.x+=scene.vx;
+      _foreground.currentLenght+=1;
     }
 
     _player.midUpdate();

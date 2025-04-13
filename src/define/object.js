@@ -12,7 +12,8 @@
  *   | |    | | /
  *  (_(_)--(_(_) */
 
-let _currentPlatform=[],_currentSpike=[],_currentCorner=[],_currentWall=[],_currentDecoration=[];
+let _currentPlatform=[],_currentCorner=[],_currentForeground=[],_currentDecoration=[],
+    _currentLocker=[],_currentWall=[],_currentSpike=[];
 
 const _background={
   base:{
@@ -50,7 +51,7 @@ const _transition={
     color0:"rgb(0,0,25)",
     alpha:0,
   }, text:{
-    x:640-256,
+    x:384,
     y:96,
 
     value0:"",
@@ -83,7 +84,7 @@ const _info={
 
 const _start={
   base:{
-    x:640-256,
+    x:384,
     y:0,
 
     width:256,
@@ -95,7 +96,7 @@ const _start={
     alpha:100,
   }, arrow:{
     x:-92,
-    y:(360-256)-32,
+    y:72,
 
     width:384,
     height:384,
@@ -161,7 +162,7 @@ const _footer={
     x:52,
     y:354,
 
-    value0:"Gałęź Niestabilna: 09-04-2025",
+    value0:"Gałęź Niestabilna: 13-04-2025",
     size:16,
   }, github:{
     x:322,
@@ -187,8 +188,8 @@ const _footer={
 };
 
 const _resolution={
-  x:640-20,
-  y:360-20,
+  x:620,
+  y:340,
 
   width:16,
   height:16,
@@ -440,7 +441,7 @@ const _button={
   start:{
     base:{
       x:64,
-      y:360-204,
+      y:156,
 
       width:42,
       height:42,
@@ -448,8 +449,8 @@ const _button={
       img0:Object.assign(new Image(),{src:"tex/ui/menu/button/start.png"}),
       img1:Object.assign(new Image(),{src:"tex/ui/menu/button/startOn.png"}),
     }, text:{
-      x:64+48,
-      y:(360-192)+6,
+      x:112,
+      y:174,
 
       width:54,
       line:2,
@@ -461,7 +462,7 @@ const _button={
   }, level:{
     base:{
       x:64,
-      y:360-140,
+      y:220,
 
       width:42,
       height:42,
@@ -469,8 +470,8 @@ const _button={
       img0:Object.assign(new Image(),{src:"tex/ui/menu/button/level.png"}),
       img1:Object.assign(new Image(),{src:"tex/ui/menu/button/levelOn.png"}),
     }, text:{
-      x:64+48,
-      y:(360-128)+6,
+      x:112,
+      y:238,
 
       width:54,
       line:2,
@@ -486,7 +487,7 @@ const _button={
   }, menu:{
     base:{
       x:64,
-      y:360-140,
+      y:220,
 
       width:42,
       height:42,
@@ -494,8 +495,8 @@ const _button={
       img0:Object.assign(new Image(),{src:"tex/ui/menu/button/menu.png"}),
       img1:Object.assign(new Image(),{src:"tex/ui/menu/button/menuOn.png"}),
     }, text:{
-      x:64+48,
-      y:(360-128)+6,
+      x:112,
+      y:238,
 
       width:40,
       line:2,
@@ -507,7 +508,7 @@ const _button={
   }, custom:{
     base:{
       x:64,
-      y:360-76,
+      y:284,
 
       width:42,
       height:42,
@@ -515,8 +516,8 @@ const _button={
       img0:Object.assign(new Image(),{src:"tex/ui/menu/button/custom.png"}),
       img1:Object.assign(new Image(),{src:"tex/ui/menu/button/customOn.png"}),
     }, text:{
-      x:64+48,
-      y:(360-64)+16,
+      x:112,
+      y:312,
 
       width:54,
       line:1,
@@ -532,7 +533,7 @@ const _button={
   }, restart:{
     base:{
       x:64,
-      y:360-76,
+      y:284,
 
       width:42,
       height:42,
@@ -540,8 +541,8 @@ const _button={
       img0:Object.assign(new Image(),{src:"tex/ui/menu/button/restart.png"}),
       img1:Object.assign(new Image(),{src:"tex/ui/menu/button/restartOn.png"}),
     }, text:{
-      x:64+48,
-      y:(360-64)+6,
+      x:112,
+      y:302,
 
       width:42,
       line:2,
@@ -552,8 +553,8 @@ const _button={
     },
   }, setting:{
     base:{
-      x:(64+264)-42,
-      y:360-204,
+      x:286,
+      y:156,
 
       width:42,
       height:42,
@@ -561,8 +562,8 @@ const _button={
       img0:Object.assign(new Image(),{src:"tex/ui/menu/button/setting.png"}),
       img1:Object.assign(new Image(),{src:"tex/ui/menu/button/settingOn.png"}),
     }, text:{
-      x:((64+264)-42)-48,
-      y:(360-192)+16,
+      x:238,
+      y:184,
 
       width:42,
       line:1,
@@ -577,8 +578,8 @@ const _button={
     lateanimation:false,
   }, about:{
     base:{
-      x:(64+264)-42,
-      y:360-140,
+      x:286,
+      y:220,
 
       width:42,
       height:42,
@@ -586,8 +587,8 @@ const _button={
       img0:Object.assign(new Image(),{src:"tex/ui/menu/button/about.png"}),
       img1:Object.assign(new Image(),{src:"tex/ui/menu/button/aboutOn.png"}),
     }, text:{
-      x:((64+264)-42)-60,
-      y:(360-128)+6,
+      x:226,
+      y:238,
 
       width:54,
       line:2,
@@ -602,8 +603,8 @@ const _button={
     lateanimation:false,
   }, version:{
     base:{
-      x:(64+264)-42,
-      y:360-76,
+      x:286,
+      y:284,
 
       width:42,
       height:42,
@@ -611,8 +612,8 @@ const _button={
       img0:Object.assign(new Image(),{src:"tex/ui/menu/button/version.png"}),
       img1:Object.assign(new Image(),{src:"tex/ui/menu/button/versionOn.png"}),
     }, text:{
-      x:((64+264)-42)-62,
-      y:(360-64)+6,
+      x:224,
+      y:302,
 
       width:56,
       line:2,
@@ -628,16 +629,16 @@ const _button={
 
 const _clipboard={
   base:{
-    x:640+160,
-    y:(360/2)-(240/2),
+    x:800,
+    y:60,
 
     width:160,
     height:240,
 
     img0:Object.assign(new Image(),{src:"tex/ui/clipboard/base.png"}),
   }, back:{
-    x:(640+160)+(160-36),
-    y:((360/2)-(240/2))+4,
+    x:924,
+    y:64,
 
     width:32,
     height:32,
@@ -650,7 +651,7 @@ const _clipboard={
   },
 
   wide:{
-    x:64-2,
+    x:62,
     y:152,
 
     width:264,
@@ -658,7 +659,7 @@ const _clipboard={
 
     img0:Object.assign(new Image(),{src:"tex/ui/clipboard/wide.png"}),
   }, wideBack:{
-    x:(64-2)+234,
+    x:296,
     y:152,
 
     width:24,
@@ -673,77 +674,77 @@ const _clipboard={
 
   setting:{
     title:{
-      x:(640+160)+54,
-      y:((360/2)-(240/2))+60,
+      x:854,
+      y:120,
 
       value0:"Opcje",
       size:28,
     }, sfx:{
       base:{
-        x:(640+160)+24,
-        y:((360/2)-(240/2))+78,
+        x:824,
+        y:138,
 
         width:16,
         height:16,
       }, text:{
-        x:(640+160)+42,
-        y:((360/2)-(240/2))+91,
+        x:842,
+        y:151,
 
         value0:"Dźwięk",
         size:16,
       },
     }, music:{
       base:{
-        x:(640+160)+24,
-        y:((360/2)-(240/2))+108,
+        x:824,
+        y:168,
 
         width:16,
         height:16,
       }, text:{
-        x:(640+160)+42,
-        y:((360/2)-(240/2))+121,
+        x:842,
+        y:181,
 
         value0:"Muzyka",
         size:16,
       },
     }, tutorial:{
       base:{
-        x:(640+160)+24,
-        y:((360/2)-(240/2))+138,
+        x:824,
+        y:198,
 
         width:16,
         height:16,
       }, text:{
-        x:(640+160)+42,
-        y:((360/2)-(240/2))+151,
+        x:842,
+        y:211,
 
         value0:"Poradnik",
         size:16,
       },
     }, teacher:{
       base:{
-        x:(640+160)+24,
-        y:((360/2)-(240/2))+168,
+        x:824,
+        y:228,
 
         width:16,
         height:16,
       }, text:{
-        x:(640+160)+42,
-        y:((360/2)-(240/2))+181,
+        x:842,
+        y:241,
 
         value0:"Opis Nauczycieli",
         size:16,
       },
     }, addon:{
       base:{
-        x:(640+160)+24,
-        y:((360/2)-(240/2))+198,
+        x:824,
+        y:258,
 
         width:16,
         height:16,
       }, text:{
-        x:(640+160)+42,
-        y:((360/2)-(240/2))+211,
+        x:842,
+        y:271,
 
         value0:"Efekty Dodatkowe",
         size:16,
@@ -756,14 +757,14 @@ const _clipboard={
 
   about:{
     title:{
-      x:(640+160)+60,
-      y:((360/2)-(240/2))+60,
+      x:860,
+      y:120,
 
       value0:"Opis",
       size:28,
     }, text:{
-      x:(640+160)+24,
-      y:((360/2)-(240/2))+88,
+      x:824,
+      y:148,
 
       value0:"Gra TEBOWY DZIEŃ\nzostała stworzona\nz myślą o naszych\nuczniach. Mamy\nnadzieję, że sprawi\n"+
             "ona wiele uśmiechu\nna Waszych twarzach\ni radości z grania!\nPozdrawiamy :-D",
@@ -773,14 +774,14 @@ const _clipboard={
 
   version:{
     title:{
-      x:(640+160)+46,
-      y:((360/2)-(240/2))+60,
+      x:846,
+      y:120,
 
       value0:"Twórcy",
       size:28,
     }, text:{
-      x:(640+160)+24,
-      y:((360/2)-(240/2))+88,
+      x:824,
+      y:148,
 
       value0:"Nadzorowanie Projektu:\n> tom2edu\nPisanie Kodu:\n> Ciupaga\nDźwięk, Testowanie:\n> Ucheesename\nMuzyka:\n> M4RCIN-MJJ",
       size:15,
@@ -789,14 +790,14 @@ const _clipboard={
 
   tutorial:{
     title:{
-      x:(64-2)+82,
-      y:152+32,
+      x:144,
+      y:184,
 
       value0:"Poradnik",
       size:28,
     }, text:{
-      x:(64-2)+18,
-      y:152+50,
+      x:80,
+      y:202,
 
       value0:"Poruszaj się za pomocą [A]|[D] lub [Lewo]|[Prawo].\nPodskakuj za pomocą [W]|[Góra]|[Spacja]. Będąc\n"+
             "na chmurce do poruszania używaj [W]|[A]|[S]|[D] lub\n[Góra]|[Lewo]|[Dół]|[Prawo]. Strzelaj za pomocą\n"+
@@ -808,20 +809,20 @@ const _clipboard={
 
   reward:{
     title:{
-      x:(64-2)+62,
-      y:152+32,
+      x:124,
+      y:184,
 
       value0:"Gratulacje!",
       size:28,
     }, text:{
-      x:(64-2)+18,
-      y:152+50,
+      x:80,
+      y:202,
 
       value0:"Udało się Tobie przejść całą\ngrę. Mamy nadzieję że zabawa była\nudana i przy okazji nauczyciele\nwystępujący w grze nie będą straszni\njuż w realu >_o",
       size:12,
     }, icon:{
-      x:(64-2)+162,
-      y:152+12,
+      x:224,
+      y:164,
 
       width:24,
       height:24,
@@ -841,8 +842,8 @@ const _clipboard={
 
 const _blueprint={
   base:{
-    x:640+160,
-    y:(360/2)-(240/2),
+    x:800,
+    y:60,
 
     width:160,
     height:240,
@@ -850,8 +851,8 @@ const _blueprint={
     img0:Object.assign(new Image(),{src:"tex/ui/blueprint/0.png"}),
     img1:Object.assign(new Image(),{src:"tex/ui/blueprint/1.png"}),
   }, skin:{
-    x:(640+160)+44,
-    y:((360/2)-(240/2))+66,
+    x:844,
+    y:126,
 
     width:70,
     height:120,
@@ -859,8 +860,8 @@ const _blueprint={
     img0:Object.assign(new Image(),{src:"tex/obj/player/base/boy.png"}),
     img1:Object.assign(new Image(),{src:"tex/obj/player/base/girl.png"}),
   }, back:{
-    x:(640+160)+124,
-    y:((360/2)-(240/2))+6,
+    x:924,
+    y:66,
 
     width:28,
     height:28,
@@ -871,8 +872,8 @@ const _blueprint={
     img0:Object.assign(new Image(),{src:"tex/ui/blueprint/back.png"}),
     img1:Object.assign(new Image(),{src:"tex/ui/blueprint/backHover.png"}),
   }, left:{
-    x:(640+160)+8,
-    y:((360/2)-(240/2))+206,
+    x:808,
+    y:266,
 
     width:28,
     height:28,
@@ -882,8 +883,8 @@ const _blueprint={
     img0:Object.assign(new Image(),{src:"tex/ui/blueprint/back.png"}),
     img1:Object.assign(new Image(),{src:"tex/ui/blueprint/backHover.png"}),
   }, right:{
-    x:(640+160)+124,
-    y:((360/2)-(240/2))+206,
+    x:924,
+    y:266,
 
     width:28,
     height:28,
@@ -896,7 +897,7 @@ const _blueprint={
   },
 
   wide:{
-    x:64-2,
+    x:62,
     y:152,
 
     width:264,
@@ -904,8 +905,8 @@ const _blueprint={
 
     img0:Object.assign(new Image(),{src:"tex/ui/blueprint/wide.png"}),
   }, wideBack:{
-    x:(64-2)+238,
-    y:152+158,
+    x:300,
+    y:310,
 
     width:24,
     height:24,
@@ -919,14 +920,14 @@ const _blueprint={
 
   level:{
     title:{
-      x:(640+160)+42,
-      y:((360/2)-(240/2))+58,
+      x:842,
+      y:118,
 
       value0:"Poziomy",
       size:28,
     }, button1:{
-      x:(640+160)+20,
-      y:((360/2)-(240/2))+92,
+      x:820,
+      y:152,
 
       width:52,
       line:1,
@@ -934,8 +935,8 @@ const _blueprint={
       value0:"Poziom  1",
       size:18,
     }, button2:{
-      x:(640+160)+20,
-      y:((360/2)-(240/2))+120,
+      x:820,
+      y:180,
 
       width:52,
       line:1,
@@ -943,8 +944,8 @@ const _blueprint={
       value0:"Poziom  2",
       size:18,
     }, button3:{
-      x:(640+160)+20,
-      y:((360/2)-(240/2))+148,
+      x:820,
+      y:208,
 
       width:52,
       line:1,
@@ -952,8 +953,8 @@ const _blueprint={
       value0:"Poziom  3",
       size:18,
     }, button4:{
-      x:(640+160)+20,
-      y:((360/2)-(240/2))+176,
+      x:820,
+      y:236,
 
       width:52,
       line:1,
@@ -961,8 +962,8 @@ const _blueprint={
       value0:"Poziom  4",
       size:18,
     }, button5:{
-      x:(640+160)+20,
-      y:((360/2)-(240/2))+204,
+      x:820,
+      y:264,
 
       width:52,
       line:1,
@@ -970,8 +971,8 @@ const _blueprint={
       value0:"Poziom  5",
       size:18,
     }, button6:{
-      x:(640+160)+88,
-      y:((360/2)-(240/2))+92,
+      x:888,
+      y:152,
 
       width:52,
       line:1,
@@ -979,8 +980,8 @@ const _blueprint={
       value0:"Poziom  6",
       size:18,
     }, button7:{
-      x:(640+160)+88,
-      y:((360/2)-(240/2))+120,
+      x:888,
+      y:180,
 
       width:52,
       line:1,
@@ -988,8 +989,8 @@ const _blueprint={
       value0:"Poziom  7",
       size:18,
     }, button8:{
-      x:(640+160)+88,
-      y:((360/2)-(240/2))+148,
+      x:888,
+      y:208,
 
       width:52,
       line:1,
@@ -997,8 +998,8 @@ const _blueprint={
       value0:"Poziom  8",
       size:18,
     }, button9:{
-      x:(640+160)+88,
-      y:((360/2)-(240/2))+176,
+      x:888,
+      y:236,
 
       width:52,
       line:1,
@@ -1006,8 +1007,8 @@ const _blueprint={
       value0:"Poziom  9",
       size:18,
     }, button10:{
-      x:(640+160)+88,
-      y:((360/2)-(240/2))+204,
+      x:888,
+      y:264,
 
       width:52,
       line:1,
@@ -1019,14 +1020,14 @@ const _blueprint={
 
   custom:{
     title:{
-      x:(640+160)+50,
-      y:((360/2)-(240/2))+58,
+      x:850,
+      y:118,
 
       value0:"Postać",
       size:28,
     }, text:{
-      x:(640+160)+68,
-      y:((360/2)-(240/2))+200,
+      x:868,
+      y:260,
 
       value0:"1/2",
       size:20,
@@ -1035,8 +1036,8 @@ const _blueprint={
 
   teacher:{
     title:{
-      x:(64-2)+12,
-      y:152+24,
+      x:74,
+      y:176,
 
       value0:"Tomasz Staniszewski",
       value1:"Radosław Sass",
@@ -1051,8 +1052,8 @@ const _blueprint={
       valueAdd2:"Iwona Bury Sierzchuła",
       size:20,
     }, text:{
-      x:(64-2)+14,
-      y:152+64,
+      x:76,
+      y:216,
 
       value0:"Nauczyciel z pasją, zwany często\nPanem Gołębiem. Twórca Twojej\nplatformówki. "+
              "Dzięki niemu\npoznasz wszystkie tajniki aplikacji\nwebowych, desktopowych\ni mobilnych. Walka nie będzie łatwa.",
@@ -1095,8 +1096,8 @@ const _blueprint={
 
 const _player={
   base:{
-    x:64,
-    y:(360-12)-81,
+    x:0,
+    y:0,
 
     width:56,
     height:96,
@@ -1227,7 +1228,6 @@ const _player={
   gravity:0.5,
   upTimer:0,
   invisible:0,
-  max:60,
   skin:0,
   hp:5,
 
@@ -1271,15 +1271,22 @@ const _corner={
   lenght:-1,
   currentLenght:0,
   timer:0,
-  max:60,
 
   img0:Object.assign(new Image(),{src:"tex/obj/map/corner.png"}),
 
   color0:"rgb(255,255,255)",
 
-  localUpdate:function(){},
-  globalUpdate:function(){},
+  update:function(){},
 };
+
+const _foreground={
+  array:[],
+
+  lenght:-1,
+  currentLenght:0,
+
+  update:function(){},
+}
 
 const _spike={
   array:[],
@@ -1319,38 +1326,6 @@ const _wall={
   update:function(){},
 };
 
-const _locker={
-  base:{
-    x:80,
-    y:360-180-4,
-
-    width:52,
-    height:88,
-  }, bottom:{
-    x:80,
-    y:360-180+80,
-
-    width:52,
-    height:88,
-  }, left:{
-    x:32,
-    y:360-180-4,
-
-    width:52,
-    height:88,
-  }, bottomLeft:{
-    x:32,
-    y:360-180+80,
-
-    width:52,
-    height:88,
-  },
-
-  img0:Object.assign(new Image(),{src:"tex/obj/map/locker/empty.png"}),
-  img1:Object.assign(new Image(),{src:"tex/obj/map/locker/cyan.png"}),
-  img2:Object.assign(new Image(),{src:"tex/obj/map/locker/red.png"}),
-};
-
 const _decoration={
   array:[],
 
@@ -1368,6 +1343,23 @@ const _decoration={
   img1Board:Object.assign(new Image(),{src:"tex/obj/map/board/green.png"}),
   img2Board:Object.assign(new Image(),{src:"tex/obj/map/board/purple.png"}),
   img3Board:Object.assign(new Image(),{src:"tex/obj/map/board/cyan.png"}),
+  img0Light:Object.assign(new Image(),{src:"tex/obj/map/light.png"}),
+
+  update:function(){},
+};
+
+const _locker={
+  array:[],
+
+  lenght:-1,
+  currentLenght:1,
+  current:0,
+
+  img0:Object.assign(new Image(),{src:"tex/obj/map/locker/empty.png"}),
+  img1:Object.assign(new Image(),{src:"tex/obj/map/locker/decoration/orange.png"}),
+  img2:Object.assign(new Image(),{src:"tex/obj/map/locker/decoration/green.png"}),
+  img3:Object.assign(new Image(),{src:"tex/obj/map/locker/decoration/purple.png"}),
+  img4:Object.assign(new Image(),{src:"tex/obj/map/locker/decoration/cyan.png"}),
 
   update:function(){},
 };
@@ -1414,7 +1406,6 @@ const _teacher={
   invisible:0,
   random:0,
   round:0,
-  max:60,
   hp:10,
 
   load:false,

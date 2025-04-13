@@ -52,8 +52,8 @@ scene.platformGenerator=function(){
     _platform.lenght++;
 
     if(scene.current==0){ _platform.random=context.scale(18); }
-    else if(scene.current==1){ _platform.random=context.scale(18+160); }
-    else if(scene.current==2){ _platform.random=context.scale(18+320); }
+    else if(scene.current==1){ _platform.random=context.scale(178); }
+    else if(scene.current==2){ _platform.random=context.scale(338); }
 
     _currentPlatform={
       x:0,
@@ -91,9 +91,9 @@ scene.platformGenerator=function(){
     _platform.array.push(_currentPlatform);
     _platform.lenght++;
 
-    if(scene.current==4){ _platform.random=context.scale(18+640); }
-    else if(scene.current==5){ _platform.random=context.scale(18+800); }
-    else if(scene.current==6){ _platform.random=context.scale(18+960); }
+    if(scene.current==4){ _platform.random=context.scale(658); }
+    else if(scene.current==5){ _platform.random=context.scale(818); }
+    else if(scene.current==6){ _platform.random=context.scale(978); }
 
     _currentPlatform={
       x:canvas.width,

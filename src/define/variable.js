@@ -104,6 +104,7 @@ const scene={
   change:false,
   blocked:false,
   auto:false,
+  key:false,
 
   startRender:function(){},
   startUpdate:function(){},
@@ -116,9 +117,11 @@ const scene={
   sectionGenerator:function(){},
   platformGenerator:function(){}, 
   cornerGenerator:function(){}, 
-  spikeGenerator:function(){}, 
-  wallGenerator:function(){}, 
+  foregroundGenerator:function(){}, 
   decorationGenerator:function(){},
+  lockerGenerator:function(){},
+  teboxGenerator:function(){}, 
+  spikeGenerator:function(){},
 };
 
 const global={

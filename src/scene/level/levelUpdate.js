@@ -110,9 +110,26 @@ scene.levelUpdate=function(){
   _corner.currentLenght=0;
   _foreground.currentLenght=0;
   _decoration.currentLenght=0;
-  _locker.currentLenght=0;
-  _wall.currentLenght=0;
+  _tebox.currentLenght=0;
   _spike.currentLenght=0;
+
+  _loot.iy+=scene.vy;
+  _loot.y+=scene.vy;
+  _loot.x+=scene.vx;
+
+  if(_loot.current!=-1){
+    _loot.timer++;
+
+    if(_loot.timer<=context.time(30)){
+      _loot.y-=context.move(4);
+      if(_loot.timer>=context.time(15)){ _loot.alpha-=context.frame(10); }
+    } else{
+      _loot.y=_loot.iy;
+      _loot.timer=0;
+      _loot.alpha=0;
+      _loot.current=-1;
+    }
+  }
 
   if(_platform.move&&_player.hp>0&&!global.pause){
     if(_platform.up){ scene.vy=context.move(4); }
@@ -146,7 +163,7 @@ scene.levelUpdate=function(){
   _background.left.x+=scene.vx;
   _background.bottomLeft.x+=scene.vx;
 
-  _ui.game.hp.text.value0=_player.hp+"/5";
+  _ui.game.heart.text.value0=_player.hp+"/5";
   _ui.game.info.score.value0="Wynik: "+scene.score;
   _ui.game.info.level.value0="Poziom: "+Number(scene.value-1);
   _ui.game.teacher.text.value0=_teacher.hp+"/10";

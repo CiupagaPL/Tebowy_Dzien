@@ -20,11 +20,11 @@ scene.generateLevel=function(){
       scene.cornerGenerator();
       scene.foregroundGenerator();
       scene.decorationGenerator();
-      scene.lockerGenerator();
-      scene.wallGenerator();
+      scene.teboxGenerator();
       scene.spikeGenerator();
     }
 
+    scene.key=false;
     _platform.currentLoad+=1;
   } if(_platform.currentLoad>_platform.load){ scene.generated=true; }
 }
@@ -38,10 +38,8 @@ scene.resetLevel=function(){
   _foreground.lenght=-1;
   _decoration.array=[];
   _decoration.lenght=-1;
-  _locker.array=[];
-  _locker.lenght=-1;
-  _wall.array=[];
-  _wall.lenght=-1;
+  _tebox.array=[];
+  _tebox.lenght=-1;
   _spike.array=[];
   _spike.lenght=-1;
 
@@ -96,7 +94,7 @@ scene.cornerGenerator=function(){
   if(_platform.currentLoad!=_platform.load){
     _currentCorner={
       base:{
-        x:_platform.random-context.scale(0.5),
+        x:_platform.random-context.scale(2),
         y:_currentPlatform.y,
 
         width:context.scale(8),
@@ -105,7 +103,7 @@ scene.cornerGenerator=function(){
         x:_platform.random+context.scale(4.5),
         y:_currentPlatform.y+context.scale(4),
 
-        width:context.scale(145),
+        width:context.scale(148),
         height:context.scale(6),
 
         alpha:0,
@@ -124,7 +122,15 @@ scene.cornerGenerator=function(){
         height:context.scale(14),
 
         rotation:180,
-      },
+      }, lock:{
+        x:_platform.random+context.scale(4.5),
+        y:_currentPlatform.y,
+
+        width:context.scale(148),
+        height:context.scale(16),
+
+        alpha:100,
+      }
     };
 
     _corner.array.push(_currentCorner);

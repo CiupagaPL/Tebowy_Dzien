@@ -12,8 +12,7 @@
  *   | |    | | /
  *  (_(_)--(_(_) */
 
-let _currentPlatform=[],_currentCorner=[],_currentForeground=[],_currentDecoration=[],
-    _currentLocker=[],_currentWall=[],_currentSpike=[];
+let _currentPlatform=[],_currentCorner=[],_currentForeground=[],_currentDecoration=[],_currentTebox=[],_currentSpike=[];
 
 const _background={
   base:{
@@ -162,7 +161,7 @@ const _footer={
     x:52,
     y:354,
 
-    value0:"Gałęź Niestabilna: 13-04-2025",
+    value0:"Gałęź Niestabilna: 17-04-2025",
     size:16,
   }, github:{
     x:322,
@@ -223,7 +222,7 @@ const _ui={
       height:364,
     },
   }, game:{
-    hp:{
+    heart:{
       main:{
         x:604,
         y:6,
@@ -236,9 +235,7 @@ const _ui={
 
         width:36,
         height:36,
-
-        alpha:100,
-      }, heart:{
+      }, icon:{
         x:613,
         y:10,
 
@@ -271,8 +268,6 @@ const _ui={
 
         width:36,
         height:36,
-
-        alpha:100,
       }, iconMain:{
         x:576,
         y:10,
@@ -317,7 +312,38 @@ const _ui={
         value0:"",
         size:13,
       },
-    }, pause:{
+    }, key:{
+      main:{
+        x:604,
+        y:44,
+
+        width:32,
+        height:32,
+      }, background:{
+        x:602,
+        y:42,
+
+        width:36,
+        height:36,
+      }, icon:{
+        x:612,
+        y:47,
+
+        width:16,
+        height:16,
+
+        img0:Object.assign(new Image(),{src:"tex/ui/level/key/empty.png"}),
+        img1:Object.assign(new Image(),{src:"tex/ui/level/key/base.png"}),
+      }, text:{
+        x:610,
+        y:73,
+
+        value0:"Klucz",
+        size:12,
+      },
+    },
+
+    pause:{
       main:{
         x:6,
         y:6,
@@ -330,8 +356,6 @@ const _ui={
 
         width:36,
         height:36,
-
-        alpha:100,
       }, icon:{
         x:16,
         y:26,
@@ -361,8 +385,6 @@ const _ui={
 
         width:96,
         height:36,
-
-        alpha:100,
       }, icon:{
         x:50,
         y:8,
@@ -403,8 +425,6 @@ const _ui={
 
         width:36,
         height:36,
-
-        alpha:100,
       }, heart:{
         x:150,
         y:10,
@@ -801,7 +821,7 @@ const _clipboard={
 
       value0:"Poruszaj się za pomocą [A]|[D] lub [Lewo]|[Prawo].\nPodskakuj za pomocą [W]|[Góra]|[Spacja]. Będąc\n"+
             "na chmurce do poruszania używaj [W]|[A]|[S]|[D] lub\n[Góra]|[Lewo]|[Dół]|[Prawo]. Strzelaj za pomocą\n"+
-            "[E]. Zmień typ amunicji za pomocą [R]. Twoim celem\njest dostać się na górę poziomu i pokonać danego\n"+
+            "[Q]. Zmień typ amunicji za pomocą [R]. Używaj\nobiektów za pomocą [E]. Twoim celem jest\ndostać się na górę poziomu i pokonać danego\n"+
             "nauczyciela. Po drodze musisz omijać przeszkody\nw postaci kolców i laserów. W trudnej sytuacji\nużyj Tebulinka. Życzymy szczęścia!",
       size:12,
     },
@@ -1127,8 +1147,8 @@ const _player={
 
     timer:0,
     type:0,
-    ammo1:10,
-    ammo2:10,
+    ammo1:5,
+    ammo2:5,
 
     img0BoyNormal:Object.assign(new Image(),{src:"tex/obj/player/gun/boy/normal/0.png"}),
     img1BoyNormal:Object.assign(new Image(),{src:"tex/obj/player/gun/boy/normal/1.png"}),
@@ -1231,6 +1251,7 @@ const _player={
   skin:0,
   hp:5,
 
+  touchTebox:false,
   touched:false,
   active:false,
   grounded:false,
@@ -1242,7 +1263,6 @@ const _player={
   render:function(){},
   textRender:function(){},
   update:function(){},
-  midUpdate:function(){},
   lateUpdate:function(){},
 };
 
@@ -1273,7 +1293,7 @@ const _corner={
   timer:0,
 
   img0:Object.assign(new Image(),{src:"tex/obj/map/corner.png"}),
-
+  img1:Object.assign(new Image(),{src:"tex/obj/map/lock.png"}),
   color0:"rgb(255,255,255)",
 
   update:function(){},
@@ -1304,28 +1324,6 @@ const _spike={
   update:function(){},
 };
 
-const _wall={
-  array:[],
-
-  width:68,
-  height:60,
-
-  lenght:-1,
-  currentLenght:0,
-  round:0,
-
-  img0:Object.assign(new Image(),{src:"tex/obj/map/wall/cyanOrange.png"}),
-  img1:Object.assign(new Image(),{src:"tex/obj/map/wall/orangeGreen.png"}),
-  img2:Object.assign(new Image(),{src:"tex/obj/map/wall/greenPurple.png"}),
-  img3:Object.assign(new Image(),{src:"tex/obj/map/wall/purpleCyan.png"}),
-  img0Alt:Object.assign(new Image(),{src:"tex/obj/map/wall/orangeCyan.png"}),
-  img1Alt:Object.assign(new Image(),{src:"tex/obj/map/wall/cyanPurple.png"}),
-  img2Alt:Object.assign(new Image(),{src:"tex/obj/map/wall/purpleGreen.png"}),
-  img3Alt:Object.assign(new Image(),{src:"tex/obj/map/wall/greenOrange.png"}),
-
-  update:function(){},
-};
-
 const _decoration={
   array:[],
 
@@ -1344,25 +1342,48 @@ const _decoration={
   img2Board:Object.assign(new Image(),{src:"tex/obj/map/board/purple.png"}),
   img3Board:Object.assign(new Image(),{src:"tex/obj/map/board/cyan.png"}),
   img0Light:Object.assign(new Image(),{src:"tex/obj/map/light.png"}),
+  img0Locker:Object.assign(new Image(),{src:"tex/obj/map/locker/empty.png"}),
+  img1Locker:Object.assign(new Image(),{src:"tex/obj/map/locker/decoration/orange.png"}),
+  img2Locker:Object.assign(new Image(),{src:"tex/obj/map/locker/decoration/green.png"}),
+  img3Locker:Object.assign(new Image(),{src:"tex/obj/map/locker/decoration/purple.png"}),
+  img4Locker:Object.assign(new Image(),{src:"tex/obj/map/locker/decoration/cyan.png"}),
 
   update:function(){},
 };
 
-const _locker={
+const _tebox={
   array:[],
 
   lenght:-1,
   currentLenght:1,
-  current:0,
+  useLenght:-1,
+  first:-1,
+  second:-1,
+  third:-1,
 
-  img0:Object.assign(new Image(),{src:"tex/obj/map/locker/empty.png"}),
-  img1:Object.assign(new Image(),{src:"tex/obj/map/locker/decoration/orange.png"}),
-  img2:Object.assign(new Image(),{src:"tex/obj/map/locker/decoration/green.png"}),
-  img3:Object.assign(new Image(),{src:"tex/obj/map/locker/decoration/purple.png"}),
-  img4:Object.assign(new Image(),{src:"tex/obj/map/locker/decoration/cyan.png"}),
+  img0:Object.assign(new Image(),{src:"tex/obj/map/tebox/base/unActivated.png"}),
+  img1:Object.assign(new Image(),{src:"tex/obj/map/tebox/base/activated.png"}),
 
   update:function(){},
-};
+}
+
+const _loot={
+  x:0,
+  y:0,
+  iy:0,
+
+  width:21,
+  height:21,
+
+  current:-1,
+  timer:0,
+
+  img0:Object.assign(new Image(),{src:"tex/obj/map/tebox/loot/key.png"}),
+  img1:Object.assign(new Image(),{src:"tex/obj/map/tebox/loot/strong.png"}),
+  img2:Object.assign(new Image(),{src:"tex/obj/map/tebox/loot/fast.png"}),
+  img3:Object.assign(new Image(),{src:"tex/obj/map/tebox/loot/heart.png"}),
+  alpha:100,
+}
 
 const _teacher={
   base:{

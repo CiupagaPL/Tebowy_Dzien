@@ -87,8 +87,6 @@ html{
   position:absolute;
   height:100%;
   width:100%;
-  top:-8px;
-  left:-8px;
   background-image:url("tex/icon/general/arrow.png");
   background-size:6vw;
   background-repeat:repeat;

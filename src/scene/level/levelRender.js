@@ -45,19 +45,48 @@ scene.levelRender=function(){
         else if(_currentDecoration.type==2){ context.render(_currentDecoration.base,_decoration.img2Door); }
         else if(_currentDecoration.type==3){ context.render(_currentDecoration.base,_decoration.img3Door); }
         else{ context.render(_currentDecoration.base,_decoration.img4Door); }
-        context.text(_currentDecoration.text,_decoration.color0,_currentDecoration.text.value0);
+
+        if(_currentDecoration.text.value0!="Finał"){ context.text(_currentDecoration.text,_decoration.color0,_currentDecoration.text.value0); }
+        else{ context.text(_currentDecoration.text,"rgb(255,255,255)",_currentDecoration.text.value0); }
 
         if(!global.pause&&_player.hp>0){ _decoration.update(); }
-      } else if(_currentDecoration.current==1&&_currentDecoration.y<canvas.height*1.5&&_currentDecoration.y>=-canvas.height*0.5&&
-         (_currentDecoration.x<context.scale(640+16)||_currentDecoration.x+_currentDecoration.width>-context.scale(16))){
+      } else if(_currentDecoration.current==1&&_currentDecoration.base.y<canvas.height*1.5&&_currentDecoration.base.y>=-canvas.height*0.5&&
+			          (_currentDecoration.base.x<context.scale(640+32)||_currentDecoration.base.x+_currentDecoration.base.width>-context.scale(32))){
+        if(_currentDecoration.base.type==0){ context.render(_currentDecoration.base,_decoration.img1Locker); }
+          else if(_currentDecoration.base.type==1){ context.render(_currentDecoration.base,_decoration.img2Locker); }
+          else if(_currentDecoration.base.type==2){ context.render(_currentDecoration.base,_decoration.img3Locker); }
+          else if(_currentDecoration.base.type==3){ context.render(_currentDecoration.base,_decoration.img4Locker); }
+          else{ context.render(_currentDecoration.base,_decoration.img0Locker); }
+
+        if(_currentDecoration.bottom.type==0){ context.render(_currentDecoration.bottom,_decoration.img1Locker); }
+          else if(_currentDecoration.bottom.type==1){ context.render(_currentDecoration.bottom,_decoration.img2Locker); }
+          else if(_currentDecoration.bottom.type==2){ context.render(_currentDecoration.bottom,_decoration.img3Locker); }
+          else if(_currentDecoration.bottom.type==3){ context.render(_currentDecoration.bottom,_decoration.img4Locker); }
+          else{ context.render(_currentDecoration.bottom,_decoration.img0Locker); }
+
+        if(_currentDecoration.left.type==0){ context.render(_currentDecoration.left,_decoration.img1Locker); }
+          else if(_currentDecoration.left.type==1){ context.render(_currentDecoration.left,_decoration.img2Locker); }
+          else if(_currentDecoration.left.type==2){ context.render(_currentDecoration.left,_decoration.img3Locker); }
+          else if(_currentDecoration.left.type==3){ context.render(_currentDecoration.left,_decoration.img4Locker); }
+          else{ context.render(_currentDecoration.left,_decoration.img0Locker); }
+
+        if(_currentDecoration.bottomLeft.type==0){ context.render(_currentDecoration.bottomLeft,_decoration.img1Locker); }
+          else if(_currentDecoration.bottomLeft.type==1){ context.render(_currentDecoration.bottomLeft,_decoration.img2Locker); }
+          else if(_currentDecoration.bottomLeft.type==2){ context.render(_currentDecoration.bottomLeft,_decoration.img3Locker); }
+          else if(_currentDecoration.bottomLeft.type==3){ context.render(_currentDecoration.bottomLeft,_decoration.img4Locker); }
+          else{ context.render(_currentDecoration.bottomLeft,_decoration.img0Locker); }
+
+        if(!global.pause&&_player.hp>0){ _decoration.update(); }
+	  } else if(_currentDecoration.current==2&&_currentDecoration.y<canvas.height*1.5&&_currentDecoration.y>=-canvas.height*0.5&&
+			        (_currentDecoration.x<context.scale(640+16)||_currentDecoration.x+_currentDecoration.width>-context.scale(16))){
         if(_currentDecoration.type==0){ context.render(_currentDecoration,_decoration.img0Board); }
         else if(_currentDecoration.type==1){ context.render(_currentDecoration,_decoration.img1Board); }
         else if(_currentDecoration.type==2){ context.render(_currentDecoration,_decoration.img2Board); }
         else{ context.render(_currentDecoration,_decoration.img3Board); }
 
         if(!global.pause&&_player.hp>0){ _decoration.update(); }
-      } else if(_currentDecoration.current==2&&_currentDecoration.light.y<canvas.height*1.5&&_currentDecoration.light.y>=-canvas.height*0.5&&
-         (_currentDecoration.light.x<context.scale(640+16)||_currentDecoration.light.x+_currentDecoration.light.width>-context.scale(16))){
+      } else if(_currentDecoration.current==3&&_currentDecoration.light.y<canvas.height*1.5&&_currentDecoration.light.y>=-canvas.height*0.5&&
+			          (_currentDecoration.light.x<context.scale(640+16)||_currentDecoration.light.x+_currentDecoration.light.width>-context.scale(16))){
         context.render(_currentDecoration.base,"rgb(255,255,255)");
         context.render(_currentDecoration.light,_decoration.img0Light);
 
@@ -70,9 +99,18 @@ scene.levelRender=function(){
         _currentDecoration.base.x+=scene.vx;
         _currentDecoration.text.x+=scene.vx;
       } else if(_currentDecoration.current==1){
+        _currentDecoration.base.y+=scene.vy;
+        _currentDecoration.bottom.y+=scene.vy;
+        _currentDecoration.left.y+=scene.vy;
+        _currentDecoration.bottomLeft.y+=scene.vy;
+        _currentDecoration.base.x+=scene.vx;
+        _currentDecoration.bottom.x+=scene.vx;
+        _currentDecoration.left.x+=scene.vx;
+        _currentDecoration.bottomLeft.x+=scene.vx;
+      } else if(_currentDecoration.current==2){
         _currentDecoration.y+=scene.vy;
         _currentDecoration.x+=scene.vx;
-      } else if(_currentDecoration.current==2){
+      } else if(_currentDecoration.current==3){
         _currentDecoration.base.y+=scene.vy;
         _currentDecoration.light.y+=scene.vy;
         _currentDecoration.base.x+=scene.vx;
@@ -80,51 +118,28 @@ scene.levelRender=function(){
       } _decoration.currentLenght+=1;
     }
 
-    while(_locker.lenght>=_locker.currentLenght){
-      _currentLocker=_locker.array[_locker.currentLenght];
-
-      if(_currentLocker.base.y<canvas.height*1.5&&_currentLocker.base.y>=-canvas.height*0.5&&
-         (_currentLocker.base.x<context.scale(640+16)||_currentLocker.base.x+_currentLocker.base.width>-context.scale(16))){
-        if(_currentLocker.base.type==0){ context.render(_currentLocker.base,_locker.img1); }
-        else if(_currentLocker.base.type==1){ context.render(_currentLocker.base,_locker.img2); }
-        else if(_currentLocker.base.type==2){ context.render(_currentLocker.base,_locker.img3); }
-        else if(_currentLocker.base.type==3){ context.render(_currentLocker.base,_locker.img4); }
-        else{ context.render(_currentLocker.base,_locker.img0); }
-
-        if(_currentLocker.bottom.type==0){ context.render(_currentLocker.bottom,_locker.img1); }
-        else if(_currentLocker.bottom.type==1){ context.render(_currentLocker.bottom,_locker.img2); }
-        else if(_currentLocker.bottom.type==2){ context.render(_currentLocker.bottom,_locker.img3); }
-        else if(_currentLocker.bottom.type==3){ context.render(_currentLocker.bottom,_locker.img4); }
-        else{ context.render(_currentLocker.bottom,_locker.img0); }
-
-        if(_currentLocker.left.type==0){ context.render(_currentLocker.left,_locker.img1); }
-        else if(_currentLocker.left.type==1){ context.render(_currentLocker.left,_locker.img2); }
-        else if(_currentLocker.left.type==2){ context.render(_currentLocker.left,_locker.img3); }
-        else if(_currentLocker.left.type==3){ context.render(_currentLocker.left,_locker.img4); }
-        else{ context.render(_currentLocker.left,_locker.img0); }
-
-        if(_currentLocker.bottomLeft.type==0){ context.render(_currentLocker.bottomLeft,_locker.img1); }
-        else if(_currentLocker.bottomLeft.type==1){ context.render(_currentLocker.bottomLeft,_locker.img2); }
-        else if(_currentLocker.bottomLeft.type==2){ context.render(_currentLocker.bottomLeft,_locker.img3); }
-        else if(_currentLocker.bottomLeft.type==3){ context.render(_currentLocker.bottomLeft,_locker.img4); }
-        else{ context.render(_currentLocker.bottomLeft,_locker.img0); }
-
-        if(!global.pause&&_player.hp>0){ _locker.update(); }
-      }
-
-      _currentLocker.base.y+=scene.vy;
-      _currentLocker.bottom.y+=scene.vy;
-      _currentLocker.left.y+=scene.vy;
-      _currentLocker.bottomLeft.y+=scene.vy;
-      _currentLocker.base.x+=scene.vx;
-      _currentLocker.bottom.x+=scene.vx;
-      _currentLocker.left.x+=scene.vx;
-      _currentLocker.bottomLeft.x+=scene.vx;
-      _locker.currentLenght+=1;
-    }
-
     _player.update();
     _player.render();
+
+    if(_loot.current==0){ context.render(_loot,_loot.img0); }
+    else if(_loot.current==1){ context.render(_loot,_loot.img1); }
+    else if(_loot.current==2){ context.render(_loot,_loot.img2); }
+    else{ context.render(_loot,_loot.img3); }
+
+    while(_tebox.lenght>=_tebox.currentLenght){
+      _currentTebox=_tebox.array[_tebox.currentLenght];
+
+      if(_currentTebox.y<canvas.height*1.5&&_currentTebox.y>=-canvas.height*0.5){
+        if(_currentTebox.third!=-1||_tebox.useLenght==_tebox.currentLenght&&_tebox.third!=-1){ context.render(_currentTebox,_tebox.img1); }
+        else{ context.render(_currentTebox,_tebox.img0); }
+
+        if(!global.pause&&_player.hp>0){ _tebox.update(); }
+      }
+
+      _currentTebox.y+=scene.vy;
+      _currentTebox.x+=scene.vx;
+      _tebox.currentLenght+=1;
+    }
 
     while(_platform.lenght>=_platform.currentLenght){
       _currentPlatform=_platform.array[_platform.currentLenght];
@@ -138,28 +153,6 @@ scene.levelRender=function(){
       _currentPlatform.x+=scene.vx;
       _platform.currentLenght+=1;
     }
-
-    // while(_wall.lenght>=_wall.currentLenght){
-    //   _currentWall=_wall.array[_wall.currentLenght];
-
-    //   if(_currentWall.y<canvas.height*1.5&&_currentWall.y>=-canvas.height*0.5&&
-    //      (_currentWall.x<context.scale(640+16)||_currentWall.x+_currentWall.width>-context.scale(16))){
-    //     if(_currentWall.type==0){ context.render(_currentWall,_wall.img0); }
-    //     else if(_currentWall.type==1){ context.render(_currentWall,_wall.img1); }
-    //     else if(_currentWall.type==2){ context.render(_currentWall,_wall.img2); }
-    //     else if(_currentWall.type==3){ context.render(_currentWall,_wall.img3); }
-    //     else if(_currentWall.type==4){ context.render(_currentWall,_wall.img0Alt); }
-    //     else if(_currentWall.type==5){ context.render(_currentWall,_wall.img1Alt); }
-    //     else if(_currentWall.type==6){ context.render(_currentWall,_wall.img2Alt); }
-    //     else{ context.render(_currentWall,_wall.img3Alt); }
-
-    //     if(!global.pause&&_player.hp>0){ _wall.update(); }
-    //   }
-
-    //   _currentWall.y+=scene.vy;
-    //   _currentWall.x+=scene.vx;
-    //   _wall.currentLenght+=1;
-    // }
 
     while(_spike.lenght>=_spike.currentLenght){
       _currentSpike=_spike.array[_spike.currentLenght];
@@ -176,29 +169,18 @@ scene.levelRender=function(){
 
     while(_corner.lenght>=_corner.currentLenght){
       _currentCorner=_corner.array[_corner.currentLenght];
+      context.render(_currentCorner.base,_corner.img0);
+      if(_currentCorner.laser!=undefined){ context.render(_currentCorner.laser,_corner.color0); }
+      else if(_currentCorner.lock!=undefined){ context.render(_currentCorner.lock,_corner.img1); }
 
-      if(_currentCorner.base.y<canvas.height+context.scale(180)&&_currentCorner.base.y>=-context.scale(180)){
-        context.render(_currentCorner.base,_corner.img0);
-
-        if(_currentCorner.laser!=undefined){
-          if(_corner.timer>=context.time(40)&&_corner.timer<context.time(50)){ _currentCorner.laser.alpha+=context.frame(4); }
-          else if(_corner.timer==context.time(50)){ _currentCorner.laser.alpha=50; }
-          else if(_corner.timer>=context.time(60)&&_corner.timer<context.time(70)){ _currentCorner.laser.alpha+=context.frame(6); }
-          else if(_corner.timer==context.time(70)){
-            if(!global.pause&&_player.hp>0){ audio.laser_sfx.play(); }
-            _currentCorner.laser.alpha=100;
-          } else if(_corner.timer>context.time(70)){
-            _currentCorner.laser.alpha-=context.frame(8);
-            if(_currentCorner.laser.alpha<=0){ _corner.timer=0; }
-          }
-
-          context.render(_currentCorner.laser,_corner.color0);
-        } if(!global.pause&&_player.hp>0){ _corner.update(); }
-      }
+      if(!global.pause&&_player.hp>0){ _corner.update(); }
 
       if(_currentCorner.laser!=undefined){
         _currentCorner.laser.y+=scene.vy;
         _currentCorner.laser.x+=scene.vx;
+      } else if(_currentCorner.lock!=undefined){
+        _currentCorner.lock.y+=scene.vy;
+        _currentCorner.lock.x+=scene.vx;
       }
       _currentCorner.base.y+=scene.vy;
       _currentCorner.base.x+=scene.vx;
@@ -214,24 +196,21 @@ scene.levelRender=function(){
       _currentForeground.y+=scene.vy;
       _currentForeground.x+=scene.vx;
       _foreground.currentLenght+=1;
-    }
-
-    _player.midUpdate();
-    _player.lateUpdate();
+    } _player.lateUpdate();
   }
 
   _player.textRender();
   if(_teacher.on){ _teacher.textRender(); }
 
-  context.render(_ui.game.hp.background,_ui.color1);
-  context.render(_ui.game.hp.main,_ui.color0);
-  if(_player.hp==0){ context.render(_ui.game.hp.heart,_ui.game.hp.heart.img0); }
-  else if(_player.hp==1){ context.render(_ui.game.hp.heart,_ui.game.hp.heart.img1); }
-  else if(_player.hp==2){ context.render(_ui.game.hp.heart,_ui.game.hp.heart.img2); }
-  else if(_player.hp==3){ context.render(_ui.game.hp.heart,_ui.game.hp.heart.img3); }
-  else if(_player.hp==4){ context.render(_ui.game.hp.heart,_ui.game.hp.heart.img4); }
-  else{ context.render(_ui.game.hp.heart,_ui.game.hp.heart.img5); }
-  context.text(_ui.game.hp.text,_ui.color1,_ui.game.hp.text.value0);
+  context.render(_ui.game.heart.background,_ui.color1);
+  context.render(_ui.game.heart.main,_ui.color0);
+  if(_player.hp==0){ context.render(_ui.game.heart.icon,_ui.game.heart.icon.img0); }
+  else if(_player.hp==1){ context.render(_ui.game.heart.icon,_ui.game.heart.icon.img1); }
+  else if(_player.hp==2){ context.render(_ui.game.heart.icon,_ui.game.heart.icon.img2); }
+  else if(_player.hp==3){ context.render(_ui.game.heart.icon,_ui.game.heart.icon.img3); }
+  else if(_player.hp==4){ context.render(_ui.game.heart.icon,_ui.game.heart.icon.img4); }
+  else{ context.render(_ui.game.heart.icon,_ui.game.heart.icon.img5); }
+  context.text(_ui.game.heart.text,_ui.color1,_ui.game.heart.text.value0);
 
   context.render(_ui.game.ammo.background,_ui.color1);
   context.render(_ui.game.ammo.main,_ui.color0);
@@ -260,6 +239,12 @@ scene.levelRender=function(){
     context.render(_ui.game.ammo.iconLeft,_ui.game.ammo.iconLeft.img1);
     context.render(_ui.game.ammo.iconRight,_ui.game.ammo.iconRight.img0);
   } context.text(_ui.game.ammo.text,_ui.color1,_ui.game.ammo.text.value0);
+
+  context.render(_ui.game.key.background,_ui.color1);
+  context.render(_ui.game.key.main,_ui.color0);
+  if(!scene.key){ context.render(_ui.game.key.icon,_ui.game.key.icon.img0); }
+  else{ context.render(_ui.game.key.icon,_ui.game.key.icon.img1); }
+  context.text(_ui.game.key.text,_ui.color1,_ui.game.key.text.value0);
 
   context.render(_ui.game.pause.background,_ui.color1);
   context.render(_ui.game.pause.main,_ui.color0);

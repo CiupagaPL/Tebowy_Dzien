@@ -138,11 +138,10 @@ context.default=function(){
   _player.collisionBottom.y=_player.base.y+context.scale(90);
 
   scene.generated=false;
+  scene.key=false;
 
   if(scene.value!=11){ _platform.load=15; }
   else{ _platform.load=5; }
-
-  _wall.round=0;
 
   scene.section1=0;
   scene.section2=0;
@@ -166,8 +165,8 @@ context.default=function(){
   _player.gun.x=_player.base.x;
   _player.gun.y=_player.base.y+context.scale(32);
   _player.gun.timer=0;
-  _player.gun.ammo1=10;
-  _player.gun.ammo2=10;
+  _player.gun.ammo1=5;
+  _player.gun.ammo2=5;
 
   _player.ammo.unused=true;
 
@@ -254,15 +253,19 @@ context.reset=function(){
   context.setup(_ui.menu.main);
   context.setup(_ui.menu.left);
   context.setup(_ui.menu.right);
-  context.setup(_ui.game.hp.main);
-  context.setup(_ui.game.hp.background);
-  context.setup(_ui.game.hp.heart);
-  context.setup(_ui.game.hp.text);
+  context.setup(_ui.game.heart.main);
+  context.setup(_ui.game.heart.background);
+  context.setup(_ui.game.heart.icon);
+  context.setup(_ui.game.heart.text);
   context.setup(_ui.game.ammo.main);
   context.setup(_ui.game.ammo.background);
   context.setup(_ui.game.ammo.iconMain);
   context.setup(_ui.game.ammo.iconLeft);
   context.setup(_ui.game.ammo.iconRight);
+  context.setup(_ui.game.key.main);
+  context.setup(_ui.game.key.background);
+  context.setup(_ui.game.key.icon);
+  context.setup(_ui.game.key.text);
   context.setup(_ui.game.ammo.text);
   context.setup(_ui.game.pause.main);
   context.setup(_ui.game.pause.background);
@@ -356,7 +359,7 @@ context.reset=function(){
   context.setup(_player.collisionLeft);
   context.setup(_player.collisionRight);
 
-  context.setup(_wall);
+  context.setup(_loot);
 
   context.setup(_teacher.base);
   context.setup(_teacher.text);

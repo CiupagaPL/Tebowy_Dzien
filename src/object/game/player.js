@@ -136,11 +136,7 @@ _player.update=function(){
         _player.ammo.y=_player.ammo.height;
       }
     }
-  }
-}
 
-_player.midUpdate=function(){
-  if(!global.pause&&_player.hp>0){
     if(!_player.grounded&&!_player.cloudFly){
       _player.base.y+=scene.vy;
       _player.text.y+=scene.vy;

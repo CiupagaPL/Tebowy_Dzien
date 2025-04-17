@@ -146,7 +146,36 @@ window.addEventListener("keyup",function(event){
           if(_player.gun.type==3){ _player.gun.type=0; }
         }
 
-        if((event.key=="e"||event.key=="E")&&(_player.gun.type==0&&_player.gun.timer>=context.time(90)||_player.gun.type==1&&_player.gun.timer>=context.time(120)&&
+        if(_player.touchTebox&&(event.key=="e"||event.key=="E")&&_loot.timer==0){
+          if(_tebox.first!=-1){
+            _loot.current=_tebox.first;
+            if(_loot.current==3&&_player.hp==5){ _loot.current=Math.floor(Math.random()*2)+1; }
+
+            if(_loot.current==1&&_player.gun.ammo1<50){ _player.gun.ammo1++; }
+            else if(_loot.current==2&&_player.gun.ammo2<50){ _player.gun.ammo2++; }
+            else{ _player.hp++; }
+
+            _loot.alpha=100;
+            _tebox.first=-1;
+          } else if(_tebox.second!=-1){
+            _loot.current=_tebox.second;
+            if(_loot.current==1&&_player.gun.ammo1<50){ _player.gun.ammo1++; }
+            else if(_loot.current==2&&_player.gun.ammo2<50){ _player.gun.ammo2++; }
+
+            _loot.alpha=100;
+            _tebox.second=-1;
+          } else if(_tebox.third!=-1){
+            _loot.current=_tebox.third;
+            if(_loot.current==0){ scene.key=true; }
+            else if(_loot.current==1&&_player.gun.ammo1<50){ _player.gun.ammo1++; }
+            else if(_loot.current==2&&_player.gun.ammo2<50){ _player.gun.ammo2++; }
+
+            _loot.alpha=100;
+            _tebox.third=-1;
+          }
+        }
+
+        if((event.key=="q"||event.key=="Q")&&(_player.gun.type==0&&_player.gun.timer>=context.time(90)||_player.gun.type==1&&_player.gun.timer>=context.time(120)&&
            _player.gun.ammo1>0||_player.gun.type==2&&_player.gun.timer>=context.time(60)&&_player.gun.ammo2>0)){
           if(global.sfx){ audio.fire1_sfx.play(); }
 

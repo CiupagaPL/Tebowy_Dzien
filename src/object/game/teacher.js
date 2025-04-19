@@ -32,16 +32,6 @@ _teacher.render=function(){
   else{ context.render(_teacher.base,_teacher.base.imgAdd2); }
 }
 
-_teacher.textRender=function(){
-  if(_teacher.hp!=0&&_teacher.invisible!=0&&global.addon){
-    if(_teacher.invisible<context.time(30)){ _teacher.text.alpha+=context.frame(8); }
-    else if(_teacher.invisible==context.time(30)){ _teacher.text.alpha=100; }
-    else{ _teacher.text.alpha-=context.frame(8); }
-
-    context.text(_teacher.text,_teacher.text.color0,_teacher.text.value0);
-  }
-}
-
 _teacher.update=function(){
   if(!global.pause&&_player.hp!=0){
     scene.timer++;
@@ -137,13 +127,7 @@ _teacher.update=function(){
   }
 
   if(context.collision(_teacher.base,_player.ammo)&&_teacher.invisible==0){
-    if(!_player.ammo.power){
-      _teacher.hp-=1;
-      _teacher.text.value0="-25 punktów\nz zachowania";
-    } else{
-      _teacher.hp-=2;
-      _teacher.text.value0="-50 punktów\nz zachowania";
-    }
+    _teacher.hp-=1;
 
     if(global.sfx){
       if(_teacher.hp>0){ audio.damage2_sfx.play(); }

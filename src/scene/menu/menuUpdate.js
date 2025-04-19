@@ -64,9 +64,6 @@ scene.menuUpdate=function(){
     _background.left.y=-context.move(9)/7;
     _background.bottomLeft.x=(context.move(16)/7)-canvas.width;
     _background.bottomLeft.y=-(context.move(9)/7)+canvas.height;
-
-    if(_background.change){ _background.change=false; }
-    else{ _background.change=true; }
   }
 
   if(scene.timer<context.time(20)||scene.timer>=context.time(60)){

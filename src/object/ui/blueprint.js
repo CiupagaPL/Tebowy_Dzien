@@ -43,7 +43,7 @@ _blueprint.update=function(){
         _blueprint.left.x=_blueprint.base.x+context.scale(8);
         _blueprint.right.x=_blueprint.base.x+context.scale(124);
 
-        _blueprint.skin.x=_blueprint.base.x+context.scale(42);
+        _blueprint.skin.x=_blueprint.base.x+context.scale(46);
 
         _blueprint.level.title.x=_blueprint.base.x+context.scale(42);
         _blueprint.level.button1.x=_blueprint.base.x+context.scale(20);

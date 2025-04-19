@@ -45,7 +45,10 @@ window.addEventListener("click",function(){
       if((context.collision(_button.start.base,mouse)||context.collision(_button.start.text,mouse))&&!scene.blocked&&
          (scene.value==1||scene.value>=2&&!global.currentTutorial&&!global.currentTeacher&&!global.currentReward)){
         scene.blocked=true;
-        if(global.sfx){ audio.click3_sfx.play(); }
+        if(global.sfx){
+          if(scene.value==1){ audio.click3_sfx.play(); }
+          else{ audio.click1_sfx.play(); }
+        }
 
         if(scene.value==1){
           if(_clipboard.on){
@@ -377,12 +380,54 @@ window.addEventListener("click",function(){
       }
     }
 
-    if(context.collision(_ui.game.pause.background,mouse)&&!global.pause&&scene.value>=2){
-      if(global.sfx){ audio.click1_sfx.play(); }
+    if(scene.value>=2&&!global.pause&&_ui.show){
+      if(context.collision(_ui.game.heart.background,mouse)&&_ui.game.heart.icon.timer==0){
+        if(global.sfx){ audio.click2_sfx.play(); }
 
-      global.pause=true;
-      global.pauseChange=true;
-      global.pauseAnimation=true;
+        _ui.game.heart.icon.timer=1;
+        _ui.game.heart.icon.x-=context.scale(1);
+        _ui.game.heart.icon.y-=context.scale(1);
+        _ui.game.heart.icon.width=context.scale(16);
+        _ui.game.heart.icon.height=context.scale(16);
+      } if(context.collision(_ui.game.ammo.background,mouse)&&_ui.game.ammo.icon.timer==0){
+        if(global.sfx){ audio.click2_sfx.play(); }
+
+        _ui.game.ammo.icon.timer=1;
+        _ui.game.ammo.icon.x-=context.scale(1);
+        _ui.game.ammo.icon.y-=context.scale(1);
+        _ui.game.ammo.icon.width=context.scale(16);
+        _ui.game.ammo.icon.height=context.scale(16);
+      } if(context.collision(_ui.game.key.background,mouse)&&_ui.game.key.icon.timer==0){
+        if(global.sfx){ audio.click2_sfx.play(); }
+
+        _ui.game.key.icon.timer=1;
+        _ui.game.key.icon.x-=context.scale(1);
+        _ui.game.key.icon.y-=context.scale(1);
+        _ui.game.key.icon.width=context.scale(18);
+        _ui.game.key.icon.height=context.scale(18);
+      } if(context.collision(_ui.game.pause.background,mouse)&&_ui.game.pause.icon.timer==0){
+        if(global.sfx){ audio.click2_sfx.play(); }
+
+        global.pause=true;
+        global.pauseChange=true;
+        global.pauseAnimation=true;
+
+        _ui.game.pause.icon.timer=1;
+        _ui.game.pause.icon.size=context.scale(36);
+      } if(context.collision(_ui.game.info.background,mouse)&&_ui.game.info.icon.timer==0){
+        if(global.sfx){ audio.click2_sfx.play(); }
+
+        _ui.game.info.icon.timer=1;
+        _ui.game.info.icon.x-=context.scale(1);
+        _ui.game.info.icon.y-=context.scale(1);
+        _ui.game.info.icon.width=context.scale(22);
+        _ui.game.info.icon.height=context.scale(22);
+      } if(context.collision(_ui.game.notification.background,mouse)&&_ui.game.notification.icon.timer==0){
+        if(global.sfx){ audio.click2_sfx.play(); }
+
+        _ui.game.notification.icon.timer=1;
+        _ui.game.notification.icon.size=context.scale(30);
+      }
     }
   }
 });

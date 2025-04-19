@@ -24,7 +24,7 @@ _transition.sceneOff=function(){
 
     if(_player.hp==0){
       scene.next=scene.value;
-      _player.hp=150;
+      _player.hp=5;
     } scene.value=scene.next;
 
     _transition.base.alpha=100;

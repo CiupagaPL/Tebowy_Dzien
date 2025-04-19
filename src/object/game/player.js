@@ -98,23 +98,11 @@ _player.render=function(){
   }
 }
 
-_player.textRender=function(){
-  if(_player.hp!=0&&_player.invisible!=0&&global.addon){
-    if(_player.invisible<context.time(75)){ _player.text.alpha+=context.frame(8); }
-    else if(_player.invisible==context.time(75)){ _player.text.alpha=100; }
-    else{ _player.text.alpha-=context.frame(8); }
-
-    context.text(_player.text,_player.text.color0,_player.text.value0);
-  }
-}
-
 _player.update=function(){
   if(!global.pause&&_player.hp>0){
     if(_player.invisible>=1){ _player.invisible++; }
 
     _player.base.y+=_player.vy;
-    _player.text.y+=_player.vy;
-
     _player.collisionTop.y+=_player.vy;
     _player.collisionBottom.y+=_player.vy;
     _player.collisionLeft.y+=_player.vy;
@@ -139,8 +127,6 @@ _player.update=function(){
 
     if(!_player.grounded&&!_player.cloudFly){
       _player.base.y+=scene.vy;
-      _player.text.y+=scene.vy;
-
       _player.collisionTop.y+=scene.vy;
       _player.collisionBottom.y+=scene.vy;
       _player.collisionLeft.y+=scene.vy;
@@ -152,8 +138,6 @@ _player.update=function(){
     }
 
     _player.base.x+=scene.vx+_player.vx;
-    _player.text.x+=scene.vx+_player.vx;
-
     _player.collisionTop.x+=scene.vx+_player.vx;
     _player.collisionBottom.x+=scene.vx+_player.vx;
     _player.collisionLeft.x+=scene.vx+_player.vx;
@@ -172,8 +156,6 @@ _player.lateUpdate=function(){
   if(_player.cloudFly&&!global.pause&&_player.hp>0){
     if(_player.base.x+_player.base.width>=canvas.width*4/5){
       _player.base.x-=context.scale(4);
-      _player.text.x-=context.scale(4);
-
       _player.collisionTop.x-=context.scale(4);
       _player.collisionBottom.x-=context.scale(4);
       _player.collisionLeft.x-=context.scale(4);
@@ -185,8 +167,6 @@ _player.lateUpdate=function(){
 
     if(_player.base.y<=canvas.height*1/16){
       _player.base.y+=context.scale(4);
-      _player.text.y+=context.scale(4);
-
       _player.collisionTop.y+=context.scale(4);
       _player.collisionBottom.y+=context.scale(4);
       _player.collisionLeft.y+=context.scale(4);
@@ -198,8 +178,6 @@ _player.lateUpdate=function(){
 
     if(_player.base.y+_player.base.height>=canvas.height*15/16){
       _player.base.y-=context.scale(4);
-      _player.text.y-=context.scale(4);
-
       _player.collisionTop.y-=context.scale(4);
       _player.collisionBottom.y-=context.scale(4);
       _player.collisionLeft.y-=context.scale(4);
@@ -221,8 +199,6 @@ _player.lateUpdate=function(){
     _platform.array[_platform.lenght-1].y=canvas.height-_platform.height;
 
     _player.base.y=_platform.array[_platform.lenght-1].y-_player.base.height;
-    _player.text.y=_player.base.y-context.scale(12);
-
     _player.collisionLeft.y=_player.base.y+context.scale(8);
     _player.collisionRight.y=_player.base.y+context.scale(8);
     _player.collisionTop.y=_player.base.y;

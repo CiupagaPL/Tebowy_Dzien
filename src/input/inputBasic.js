@@ -29,6 +29,8 @@ window.addEventListener("mousemove",function(event){
     else{ _footer.github.alpha=100; }
     if(context.collision(_footer.pastebin,mouse)){ _footer.pastebin.alpha=50; }
     else{ _footer.pastebin.alpha=100; }
+    if(context.collision(_account.background,mouse)){ _account.background.alpha=50; }
+    else{ _account.background.alpha=100; }
 
     if(scene.value==1||global.pause){
       if(context.collision(_button.start.base,mouse)||context.collision(_button.start.text,mouse)){ _button.start.text.alpha=50; }
@@ -47,6 +49,29 @@ window.addEventListener("mousemove",function(event){
       else{ _button.about.text.alpha=100; }
       if(context.collision(_button.version.base,mouse)||context.collision(_button.version.text,mouse)){ _button.version.text.alpha=50; }
       else{ _button.version.text.alpha=100; }
+
+      if(scene.value==1){
+        if(context.collision(_blueprint.level.button1,mouse)){ _blueprint.level.button1.alpha=50; }
+        else{ _blueprint.level.button1.alpha=100; }
+        if(context.collision(_blueprint.level.button2,mouse)){ _blueprint.level.button2.alpha=50; }
+        else{ _blueprint.level.button2.alpha=100; }
+        if(context.collision(_blueprint.level.button3,mouse)){ _blueprint.level.button3.alpha=50; }
+        else{ _blueprint.level.button3.alpha=100; }
+        if(context.collision(_blueprint.level.button4,mouse)){ _blueprint.level.button4.alpha=50; }
+        else{ _blueprint.level.button4.alpha=100; }
+        if(context.collision(_blueprint.level.button5,mouse)){ _blueprint.level.button5.alpha=50; }
+        else{ _blueprint.level.button5.alpha=100; }
+        if(context.collision(_blueprint.level.button6,mouse)){ _blueprint.level.button6.alpha=50; }
+        else{ _blueprint.level.button6.alpha=100; }
+        if(context.collision(_blueprint.level.button7,mouse)){ _blueprint.level.button7.alpha=50; }
+        else{ _blueprint.level.button7.alpha=100; }
+        if(context.collision(_blueprint.level.button8,mouse)){ _blueprint.level.button8.alpha=50; }
+        else{ _blueprint.level.button8.alpha=100; }
+        if(context.collision(_blueprint.level.button9,mouse)){ _blueprint.level.button9.alpha=50; }
+        else{ _blueprint.level.button9.alpha=100; }
+        if(context.collision(_blueprint.level.button10,mouse)){ _blueprint.level.button10.alpha=50; }
+        else{ _blueprint.level.button10.alpha=100; }
+      }
     } else{
       if(context.collision(_ui.game.heart.background,mouse)){ _ui.game.heart.background.alpha=50; }
       else{ _ui.game.heart.background.alpha=100; }
@@ -58,6 +83,8 @@ window.addEventListener("mousemove",function(event){
       else{ _ui.game.pause.background.alpha=100; }
       if(context.collision(_ui.game.info.background,mouse)){ _ui.game.info.background.alpha=50; }
       else{ _ui.game.info.background.alpha=100; }
+      if(context.collision(_ui.game.notification.background,mouse)){ _ui.game.notification.background.alpha=50; }
+      else{ _ui.game.notification.background.alpha=100; }
       if(context.collision(_ui.game.teacher.background,mouse)){ _ui.game.teacher.background.alpha=50; }
       else{ _ui.game.teacher.background.alpha=100; }
     }

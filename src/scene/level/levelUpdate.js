@@ -99,6 +99,7 @@ scene.levelUpdate=function(){
   }
 
   _clipboard.update();
+  _ui.update();
   scene.generateLevel();
 
   if(_teacher.on){
@@ -117,7 +118,7 @@ scene.levelUpdate=function(){
   _loot.y+=scene.vy;
   _loot.x+=scene.vx;
 
-  if(_loot.current!=-1){
+  if(_loot.current!=-1&&!global.pause&&_player.hp>0){
     _loot.timer++;
 
     if(_loot.timer<=context.time(30)){
@@ -165,11 +166,25 @@ scene.levelUpdate=function(){
 
   _ui.game.heart.text.value0=_player.hp+"/5";
   _ui.game.info.score.value0="Wynik: "+scene.score;
-  _ui.game.info.level.value0="Poziom: "+Number(scene.value-1);
+  if(scene.value<=10){ _ui.game.info.level.value0="Poziom: 0"+Number(scene.value-1); }
+  else{ _ui.game.info.level.value0="Poziom: "+Number(scene.value-1); }
   _ui.game.teacher.text.value0=_teacher.hp+"/10";
-  if(_player.gun.type==0){ _ui.game.ammo.text.value0="Inf"; }
-  else if(_player.gun.type==1){ _ui.game.ammo.text.value0=String(_player.gun.ammo1); }
-  else{ _ui.game.ammo.text.value0=String(_player.gun.ammo2); }
+  if(_player.gun.type==0){
+    _ui.game.ammo.text.value0="∞";
+    _ui.game.ammo.text.size=context.scale(16);
+    _ui.game.ammo.text.x=context.scale(577);
+  } else if(_player.gun.type==1){
+    _ui.game.ammo.text.value0=String(_player.gun.ammo1);
+    _ui.game.ammo.text.size=context.scale(13);
+    if(_player.gun.ammo1<=9&&_player.gun.ammo1!=1){ _ui.game.ammo.text.x=context.scale(580); }
+    else if(_player.gun.ammo1==1){ _ui.game.ammo.text.x=context.scale(581); }
+    else if(_player.gun.ammo1>9){ _ui.game.ammo.text.x=context.scale(578); }
+  } else{
+    _ui.game.ammo.text.value0=String(_player.gun.ammo2);
+    if(_player.gun.ammo2<=9&&_player.gun.ammo2!=1){ _ui.game.ammo.text.x=context.scale(580); }
+    else if(_player.gun.ammo2==1){ _ui.game.ammo.text.x=context.scale(581); }
+    else if(_player.gun.ammo2>9){ _ui.game.ammo.text.x=context.scale(578); }
+  }
 
   if(_player.invisible!=0&&!global.pause&&_player.hp>0&&_player.invisible<_player.max){ _player.invisible++; }
   else if(_player.invisible>=_player.max){ _player.invisible=0; }

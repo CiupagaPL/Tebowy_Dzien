@@ -73,7 +73,7 @@ window.addEventListener("keyup",function(event){
 
       else if(event.key=="Escape"&&(_clipboard.on||_blueprint.on)){
         scene.blocked=true;
-        if(global.sfx){ audio.click1_sfx.play(); }
+        if(global.sfx){ audio.click2_sfx.play(); }
 
         if(_clipboard.on){ _clipboard.close=true; }
         else if(_blueprint.on){ _blueprint.close=true; }
@@ -153,7 +153,10 @@ window.addEventListener("keyup",function(event){
 
             if(_loot.current==1&&_player.gun.ammo1<50){ _player.gun.ammo1++; }
             else if(_loot.current==2&&_player.gun.ammo2<50){ _player.gun.ammo2++; }
-            else{ _player.hp++; }
+            else{
+              _player.hp++;
+              _player.heal=true;
+            }
 
             _loot.alpha=100;
             _tebox.first=-1;

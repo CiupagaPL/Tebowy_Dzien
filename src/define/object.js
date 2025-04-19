@@ -31,15 +31,11 @@ const _background={
     y:360,
   },
 
-  change:false,
-
   color0:"rgb(0,47,109)",
   color1:"rgb(3,122,162)",
   color2:"rgb(228,0,2)",
-  img0Menu:Object.assign(new Image(),{src:"tex/back/menu0.png"}),
-  img1Menu:Object.assign(new Image(),{src:"tex/back/menu1.png"}),
-  img0Level:Object.assign(new Image(),{src:"tex/back/level0.png"}),
-  img1Level:Object.assign(new Image(),{src:"tex/back/level1.png"}),
+  img0Menu:Object.assign(new Image(),{src:"tex/back/menu.png"}),
+  imgLevel:Object.assign(new Image(),{src:"tex/back/level.png"}),
 };
 
 const _transition={
@@ -161,7 +157,7 @@ const _footer={
     x:52,
     y:354,
 
-    value0:"Gałęź Niestabilna: 17-04-2025",
+    value0:"Gałęź Niestabilna: 19-04-2025",
     size:16,
   }, github:{
     x:322,
@@ -241,8 +237,10 @@ const _ui={
 
         width:14,
         height:14,
+        
+        timer:0,
 
-        img0:Object.assign(new Image(),{src:"tex/ui/level/heart/0.png"}),
+        img0:Object.assign(new Image(),{src:"tex/ui/level/0.png"}),
         img1:Object.assign(new Image(),{src:"tex/ui/level/heart/player/1.png"}),
         img2:Object.assign(new Image(),{src:"tex/ui/level/heart/player/2.png"}),
         img3:Object.assign(new Image(),{src:"tex/ui/level/heart/player/3.png"}),
@@ -268,49 +266,37 @@ const _ui={
 
         width:36,
         height:36,
-      }, iconMain:{
-        x:576,
+      }, icon:{
+        x:575,
         y:10,
 
-        width:12,
-        height:12,
+        width:14,
+        height:14,
+        
+        timer:0,
 
-        img0:Object.assign(new Image(),{src:"tex/ui/level/ammo/0.png"}),
+        img0:Object.assign(new Image(),{src:"tex/ui/level/0.png"}),
         img1Normal:Object.assign(new Image(),{src:"tex/ui/level/ammo/normal/1.png"}),
         img2Normal:Object.assign(new Image(),{src:"tex/ui/level/ammo/normal/2.png"}),
         img3Normal:Object.assign(new Image(),{src:"tex/ui/level/ammo/normal/3.png"}),
+        img4Normal:Object.assign(new Image(),{src:"tex/ui/level/ammo/normal/4.png"}),
+        img5Normal:Object.assign(new Image(),{src:"tex/ui/level/ammo/normal/5.png"}),
         img1Strong:Object.assign(new Image(),{src:"tex/ui/level/ammo/strong/1.png"}),
         img2Strong:Object.assign(new Image(),{src:"tex/ui/level/ammo/strong/2.png"}),
         img3Strong:Object.assign(new Image(),{src:"tex/ui/level/ammo/strong/3.png"}),
+        img4Strong:Object.assign(new Image(),{src:"tex/ui/level/ammo/strong/4.png"}),
+        img5Strong:Object.assign(new Image(),{src:"tex/ui/level/ammo/strong/5.png"}),
         img1Fast:Object.assign(new Image(),{src:"tex/ui/level/ammo/fast/1.png"}),
         img2Fast:Object.assign(new Image(),{src:"tex/ui/level/ammo/fast/2.png"}),
         img3Fast:Object.assign(new Image(),{src:"tex/ui/level/ammo/fast/3.png"}),
-      }, iconLeft:{
-        x:573,
-        y:19,
-
-        width:7,
-        height:7,
-
-        img0:Object.assign(new Image(),{src:"tex/ui/level/ammo/normal/3.png"}),
-        img1:Object.assign(new Image(),{src:"tex/ui/level/ammo/strong/3.png"}),
-        img2:Object.assign(new Image(),{src:"tex/ui/level/ammo/fast/3.png"}),
-      }, iconRight:{
-        x:584,
-        y:19,
-
-        width:7,
-        height:7,
-
-        img0:Object.assign(new Image(),{src:"tex/ui/level/ammo/normal/3.png"}),
-        img1:Object.assign(new Image(),{src:"tex/ui/level/ammo/strong/3.png"}),
-        img2:Object.assign(new Image(),{src:"tex/ui/level/ammo/fast/3.png"}),
+        img4Fast:Object.assign(new Image(),{src:"tex/ui/level/ammo/fast/4.png"}),
+        img5Fast:Object.assign(new Image(),{src:"tex/ui/level/ammo/fast/5.png"}),
       }, text:{
-        x:579,
+        x:577,
         y:35,
 
         value0:"",
-        size:13,
+        size:16,
       },
     }, key:{
       main:{
@@ -331,6 +317,8 @@ const _ui={
 
         width:16,
         height:16,
+        
+        timer:0,
 
         img0:Object.assign(new Image(),{src:"tex/ui/level/key/empty.png"}),
         img1:Object.assign(new Image(),{src:"tex/ui/level/key/base.png"}),
@@ -341,9 +329,7 @@ const _ui={
         value0:"Klucz",
         size:12,
       },
-    },
-
-    pause:{
+    }, pause:{
       main:{
         x:6,
         y:6,
@@ -362,6 +348,7 @@ const _ui={
 
         width:12,
         line:1,
+        timer:0,
 
         value0:"ıı",
         size:34,
@@ -391,6 +378,8 @@ const _ui={
 
         width:20,
         height:20,
+        
+        timer:0,
 
         img0:Object.assign(new Image(),{src:"tex/icon/general/iconL.png"}),
       }, text:{
@@ -400,17 +389,59 @@ const _ui={
         value0:"Status",
         size:12,
       }, score:{
-        x:80,
-        y:20,
+        x:78,
+        y:16,
 
         value0:"",
-        size:14,
+        size:13,
       }, level:{
-        x:80,
-        y:33,
+        x:78,
+        y:26,
 
         value0:"",
-        size:14,
+        size:13,
+      }, time:{
+        x:78,
+        y:36,
+
+        value0:"Czas: 0s",
+        size:13,
+      },
+    }, notification:{
+      main:{
+        x:-132,
+        y:44,
+
+        width:130,
+        height:32,
+      }, background:{
+        x:-134,
+        y:42,
+
+        width:134,
+        height:36,
+      }, icon:{
+        x:-120,
+        y:64,
+
+        width:12,
+        line:1,
+        timer:0,
+
+        value0:"!",
+        size:28,
+      }, text:{
+        x:-124,
+        y:73,
+
+        value0:"Info",
+        size:12,
+      }, info:{
+        x:-100,
+        y:56,
+
+        value0:"",
+        size:12,
       },
     }, teacher:{
       main:{
@@ -425,14 +456,16 @@ const _ui={
 
         width:36,
         height:36,
-      }, heart:{
+      }, icon:{
         x:150,
         y:10,
 
         width:14,
         height:14,
 
-        img0:Object.assign(new Image(),{src:"tex/ui/level/heart/0.png"}),
+        timer:0,
+
+        img0:Object.assign(new Image(),{src:"tex/ui/level/0.png"}),
         img1:Object.assign(new Image(),{src:"tex/ui/level/heart/teacher/1.png"}),
         img2:Object.assign(new Image(),{src:"tex/ui/level/heart/teacher/2.png"}),
         img3:Object.assign(new Image(),{src:"tex/ui/level/heart/teacher/3.png"}),
@@ -453,8 +486,16 @@ const _ui={
     },
   },
 
-  color0:"rgb(0,0,55)",
+  time:0,
+  elapsed:0,
+
+  show:true,
+  message:false,
+
+  color0:"rgb(0,0,65)",
   color1:"rgb(255,255,255)",
+
+  update:function(){},
 };
 
 const _button={
@@ -472,10 +513,10 @@ const _button={
       x:112,
       y:174,
 
-      width:54,
+      width:56,
       line:2,
 
-      value0:"Rozpocznij\nPoziom: 01",
+      value0:"Rozpocznij\nNową Grę",
       size:16,
 	    alpha:100,
     },
@@ -493,10 +534,10 @@ const _button={
       x:112,
       y:238,
 
-      width:54,
+      width:42,
       line:2,
 
-      value0:"Selektor\nPoziomów",
+      value0:"Wybierz\nPoziom",
       size:16,
 	    alpha:100,
     },
@@ -518,10 +559,10 @@ const _button={
       x:112,
       y:238,
 
-      width:40,
+      width:46,
       line:2,
 
-      value0:"Menu\nGłówne",
+      value0:"Przejdź\nDo Menu",
       size:16,
 	    alpha:100,
     },
@@ -537,13 +578,13 @@ const _button={
       img1:Object.assign(new Image(),{src:"tex/ui/menu/button/customOn.png"}),
     }, text:{
       x:112,
-      y:312,
+      y:302,
 
-      width:54,
-      line:1,
+      width:42,
+      line:2,
 
-      value0:"Postać",
-      size:24,
+      value0:"Wybierz\nPostać",
+      size:16,
 	    alpha:100,
     },
 
@@ -632,13 +673,13 @@ const _button={
       img0:Object.assign(new Image(),{src:"tex/ui/menu/button/version.png"}),
       img1:Object.assign(new Image(),{src:"tex/ui/menu/button/versionOn.png"}),
     }, text:{
-      x:224,
+      x:230,
       y:302,
 
-      width:56,
+      width:58,
       line:2,
 
-      value0:"CCCCCCCC\nCCCCCCCC",
+      value0:"Na Temat\n Twórców",
       size:16,
 	    alpha:100,
     },
@@ -694,10 +735,10 @@ const _clipboard={
 
   setting:{
     title:{
-      x:854,
+      x:830,
       y:120,
 
-      value0:"Opcje",
+      value0:"Ustawienia",
       size:28,
     }, sfx:{
       base:{
@@ -784,11 +825,11 @@ const _clipboard={
       size:28,
     }, text:{
       x:824,
-      y:148,
+      y:138,
 
       value0:"Gra TEBOWY DZIEŃ\nzostała stworzona\nz myślą o naszych\nuczniach. Mamy\nnadzieję, że sprawi\n"+
-            "ona wiele uśmiechu\nna Waszych twarzach\ni radości z grania!\nPozdrawiamy :-D",
-      size:15,
+             "ona wiele uśmiechu\nna Waszych twarzach\ni radości z grania!\n\nOd TEBowiczów\nDla TEBowiczów <3",
+      size:14,
     },
   },
 
@@ -801,10 +842,11 @@ const _clipboard={
       size:28,
     }, text:{
       x:824,
-      y:148,
+      y:138,
 
-      value0:"Nadzorowanie Projektu:\n> tom2edu\nPisanie Kodu:\n> Ciupaga\nDźwięk, Testowanie:\n> Ucheesename\nMuzyka:\n> M4RCIN-MJJ",
-      size:15,
+      value0:"Inicjator Projektu,\nPomysłodawca:\n> tom2edu\nProgramista, Twórca\nWiększości Tekstur:\n> Ciupaga\n"+
+             "Twórca Dźwięków, Alpha\ni Beta Tester:\n> Ucheesename\nStwórca Muzyki:\n> M4RCIN-MJJ",
+      size:14,
     },
   },
 
@@ -871,7 +913,7 @@ const _blueprint={
     img0:Object.assign(new Image(),{src:"tex/ui/blueprint/0.png"}),
     img1:Object.assign(new Image(),{src:"tex/ui/blueprint/1.png"}),
   }, skin:{
-    x:844,
+    x:846,
     y:126,
 
     width:70,
@@ -954,6 +996,7 @@ const _blueprint={
 
       value0:"Poziom  1",
       size:18,
+      alpha:100,
     }, button2:{
       x:820,
       y:180,
@@ -963,6 +1006,7 @@ const _blueprint={
 
       value0:"Poziom  2",
       size:18,
+      alpha:100,
     }, button3:{
       x:820,
       y:208,
@@ -972,6 +1016,7 @@ const _blueprint={
 
       value0:"Poziom  3",
       size:18,
+      alpha:100,
     }, button4:{
       x:820,
       y:236,
@@ -981,6 +1026,7 @@ const _blueprint={
       
       value0:"Poziom  4",
       size:18,
+      alpha:100,
     }, button5:{
       x:820,
       y:264,
@@ -990,6 +1036,7 @@ const _blueprint={
       
       value0:"Poziom  5",
       size:18,
+      alpha:100,
     }, button6:{
       x:888,
       y:152,
@@ -999,6 +1046,7 @@ const _blueprint={
       
       value0:"Poziom  6",
       size:18,
+      alpha:100,
     }, button7:{
       x:888,
       y:180,
@@ -1008,6 +1056,7 @@ const _blueprint={
       
       value0:"Poziom  7",
       size:18,
+      alpha:100,
     }, button8:{
       x:888,
       y:208,
@@ -1017,6 +1066,7 @@ const _blueprint={
       
       value0:"Poziom  8",
       size:18,
+      alpha:100,
     }, button9:{
       x:888,
       y:236,
@@ -1026,6 +1076,7 @@ const _blueprint={
       
       value0:"Poziom  9",
       size:18,
+      alpha:100,
     }, button10:{
       x:888,
       y:264,
@@ -1035,6 +1086,7 @@ const _blueprint={
       
       value0:"Poziom 10",
       size:18,
+      alpha:100,
     },
   },
 
@@ -1043,7 +1095,7 @@ const _blueprint={
       x:850,
       y:118,
 
-      value0:"Postać",
+      value0:"Skórka",
       size:28,
     }, text:{
       x:868,
@@ -1127,18 +1179,7 @@ const _player={
     img0Left:Object.assign(new Image(),{src:"tex/obj/player/base/boyLeft.png"}),
     img1Left:Object.assign(new Image(),{src:"tex/obj/player/base/girlLeft.png"}),
     alpha:100,
-  }, text:{
-    x:0,
-    y:0,
-
-    value0:"",
-    size:12,
-
-    color0:"rgb(225,255,255)",
-    alpha:0,
-  },
-
-  gun:{
+  }, gun:{
     x:0,
     y:0,
 
@@ -1201,9 +1242,7 @@ const _player={
     img0:Object.assign(new Image(),{src:"tex/obj/player/ammo/normal.png"}),
     img1:Object.assign(new Image(),{src:"tex/obj/player/ammo/strong.png"}),
     img2:Object.assign(new Image(),{src:"tex/obj/player/ammo/fast.png"}),
-  },
-
-  cloud:{
+  }, cloud:{
     x:0,
     y:0,
 
@@ -1214,9 +1253,7 @@ const _player={
 
     img0:Object.assign(new Image(),{src:"tex/obj/cloud/left.png"}),
     img1:Object.assign(new Image(),{src:"tex/obj/cloud/right.png"}),
-  },
-
-  collisionTop:{
+  }, collisionTop:{
     x:0,
     y:0,
 
@@ -1259,9 +1296,10 @@ const _player={
   fly:false,
   cloudFly:false,
   left:false,
+  damage:false,
+  heal:false,
 
   render:function(){},
-  textRender:function(){},
   update:function(){},
   lateUpdate:function(){},
 };
@@ -1404,17 +1442,7 @@ const _teacher={
     imgAdd0:Object.assign(new Image(),{src:"tex/obj/teacher/base/WZ.png"}),
     imgAdd1:Object.assign(new Image(),{src:"tex/obj/teacher/base/AN.png"}),
     imgAdd2:Object.assign(new Image(),{src:"tex/obj/teacher/base/ISB.png"}),
-  }, text:{
-    x:0,
-    y:0,
-
-    value0:"",
-    size:12,
-
-    color0:"rgb(225,255,255)",
-  },
-
-  cloud:{
+  }, cloud:{
     x:0,
     y:0,
 
@@ -1434,7 +1462,6 @@ const _teacher={
   on:false,
 
   render:function(){},
-  textRender:function(){},
   update:function(){},
 };
 

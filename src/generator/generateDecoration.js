@@ -277,9 +277,7 @@ scene.decorationGenerator=function(){
     _decoration.array.push(_currentDecoration);
     _decoration.lenght++;
     _decoration.current++;
-  }
-
-  _decoration.current=1;
+  } _decoration.current=1;
 
   if(scene.type0==2){
     _currentDecoration={
@@ -1093,5 +1091,5 @@ scene.decorationGenerator=function(){
 
     _decoration.array.push(_currentDecoration);
     _decoration.lenght++;
-  }
+  } _decoration.current=1;
 }

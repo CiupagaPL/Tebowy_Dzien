@@ -40,7 +40,7 @@ _clipboard.update=function(){
         _clipboard.base.x=context.scale(640+160);
         _clipboard.back.x=_clipboard.base.x+context.scale(160-36);
 
-        _clipboard.setting.title.x=_clipboard.base.x+context.scale(54);
+        _clipboard.setting.title.x=_clipboard.base.x+context.scale(30);
         _clipboard.setting.sfx.base.x=_clipboard.base.x+context.scale(24);
         _clipboard.setting.music.base.x=_clipboard.base.x+context.scale(24);
         _clipboard.setting.tutorial.base.x=_clipboard.base.x+context.scale(24);

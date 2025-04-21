@@ -41,28 +41,54 @@ const _background={
 const _transition={
   base:{
     x:0,
+    y:-718,
+  }, top:{
+    x:0,
+    y:-1076,
+  }, bottom:{
+    x:0,
+    y:-360,
+  }, overlay:{
+    x:0,
     y:0,
 
-    color0:"rgb(0,0,25)",
     alpha:0,
   }, text:{
-    x:384,
-    y:96,
+    x:0,
+    y:-550,
 
+    size:48,
     value0:"",
-    size:64,
-
-    color0:"rgb(255,255,255)",
-    alpha:0,
   },
 
-  timer:0,
+  color0:"rgb(0,27,69)",
+  img0:Object.assign(new Image(),{src:"tex/ui/transition/top.png"}),
+  img1:Object.assign(new Image(),{src:"tex/ui/transition/bottom.png"}),
 
   sceneOff:function(){},
   sceneOn:function(){},
   pauseOff:function(){},
   pauseOn:function(){},
-  pauseEnd:function(){},
+};
+
+const _indicator={
+  x:616,
+  y:336,
+
+  width:20,
+  height:20,
+
+  timer:0,
+
+  img0Resolution:Object.assign(new Image(),{src:"tex/ui/indicator/max.png"}),
+  img1Resolution:Object.assign(new Image(),{src:"tex/ui/indicator/min.png"}),
+  img0:Object.assign(new Image(),{src:"tex/ui/indicator/0.png"}),
+  img1:Object.assign(new Image(),{src:"tex/ui/indicator/1.png"}),
+  img2:Object.assign(new Image(),{src:"tex/ui/indicator/2.png"}),
+  img3:Object.assign(new Image(),{src:"tex/ui/indicator/3.png"}),
+  img4:Object.assign(new Image(),{src:"tex/ui/indicator/4.png"}),
+  img5:Object.assign(new Image(),{src:"tex/ui/indicator/5.png"}),
+  alpha:100,
 };
 
 const _info={
@@ -157,7 +183,7 @@ const _footer={
     x:52,
     y:354,
 
-    value0:"Gałęź Niestabilna: 19-04-2025",
+    value0:"Gałęź Niestabilna: 21-04-2025",
     size:16,
   }, github:{
     x:322,
@@ -180,18 +206,6 @@ const _footer={
   },
 
   color0:"rgb(255,255,255)",
-};
-
-const _resolution={
-  x:620,
-  y:340,
-
-  width:16,
-  height:16,
-
-  img0:Object.assign(new Image(),{src:"tex/ui/general/max.png"}),
-  img1:Object.assign(new Image(),{src:"tex/ui/general/min.png"}),
-  alpha:100,
 };
 
 const _ui={
@@ -845,7 +859,7 @@ const _clipboard={
       y:138,
 
       value0:"Inicjator Projektu,\nPomysłodawca:\n> tom2edu\nProgramista, Twórca\nWiększości Tekstur:\n> Ciupaga\n"+
-             "Twórca Dźwięków, Alpha\ni Beta Tester:\n> Ucheesename\nStwórca Muzyki:\n> M4RCIN-MJJ",
+             "Twórca Dźwięków, Alpha\ni Beta Tester:\n> Ucheesename\nTwórca Muzyki:\n> M4RCIN-MJJ",
       size:14,
     },
   },

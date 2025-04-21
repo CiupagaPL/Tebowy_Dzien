@@ -18,8 +18,8 @@ window.addEventListener("mousemove",function(event){
   mouse.x=event.clientX-((window.innerWidth-canvas.width)/2);
   mouse.y=event.clientY-((window.innerHeight-canvas.height)/2);
 
-  if(context.collision(_resolution,mouse)){ _resolution.alpha=50; }
-  else{ _resolution.alpha=100; }
+  if(context.collision(_indicator,mouse)&&!scene.change&&scene.value<2){ _indicator.alpha=50; }
+  else{ _indicator.alpha=100; }
 
   if(scene.value>=1){
     if(context.collision(_title.base,mouse)||context.collision(_title.teb,mouse)){ _title.base.alpha=50; }

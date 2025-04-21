@@ -1,4 +1,4 @@
-![banner](https://github.com/CiupagaPL/Tebowy_Dzien/blob/unstable/tex/icon/banner.png)
+![banner](https://github.com/CiupagaPL/CiupagaPL/blob/main/src/tebowy_dzien.png)
 # TEBOWY DZIEŃ: [STABLE](https://github.com/CiupagaPL/Tebowy_Dzien/tree/stable); [UNSTABLE](https://github.com/CiupagaPL/Tebowy_Dzien/tree/unstable)
 
 ## Notka
@@ -8,7 +8,7 @@ Przełącz się na gałęź stabilną aby znaleźć najnowsze najbezpieczniejsze
 
 ## Status
 > Newest Version: **Unstable**;
-> Last Updated: **19-04-2025**;
+> Last Updated: **21-04-2025**;
 
 ## License
 **This project uses MIT License**. You can read about it in **LICENSE.md** file.<br>

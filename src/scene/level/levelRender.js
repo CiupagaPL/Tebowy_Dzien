@@ -276,8 +276,8 @@ scene.levelRender=function(){
     context.text(_ui.game.teacher.text,_ui.color1,_ui.game.teacher.text.value0);
   }
 
-  if(global.pauseAnimation&&!global.pauseChange&&global.pause&&_transition.timer==0&&scene.next!=1&&_player.hp>0&&_teacher.hp>0){
-    if(!global.pauseChange){ context.render(_transition.base,_transition.base.color0); }
+  if(global.pauseAnimation&&(!global.pauseChange||scene.next!=scene.value)&&global.pause&&_player.hp>0&&!global.gameLoad&&!global.restart){
+    context.render(_transition.overlay,_transition.color0);
 
     context.render(_ui.menu.main,_ui.color0);
     context.render(_ui.menu.left,_ui.color1);
@@ -410,7 +410,7 @@ scene.levelRender=function(){
     }
   }
 
-  if(scene.change&&!global.restart&&scene.next!=1){
+  if(scene.change&&scene.next!=1){
     if(_player.hp==0){
       if(_teacher.on){
         html.classList.remove("black-red");
@@ -419,29 +419,38 @@ scene.levelRender=function(){
         html.classList.remove("black-cyan");
         html.classList.add("cyan-black");
       }
-
-      _transition.base.alpha+=context.time(8);
-      context.render(_transition.base,_transition.base.color0);
-    } else if(_teacher.hp>0){
-      if(_transition.timer>=context.time(65)){
-        html.classList.remove("blue-black");
-        html.classList.add("black-cyan");
-      }
-
-      if(_transition.timer>=context.time(65)){ _transition.base.alpha-=context.frame(8); }
-      context.render(_transition.base,_transition.base.color0);
-
-      if(_transition.timer<context.time(65)){ context.render(_start.arrow,_start.arrow.img0); }
-
-      if(_transition.timer<context.time(10)){ _transition.text.alpha+=context.frame(8); }
-      else if(_transition.timer>=context.time(55)){ _transition.text.alpha-=context.frame(8); }
-      context.text(_transition.text,_transition.text.color0,_transition.text.value0);
+    } else if(_teacher.hp>0&&_transition.base.y>=canvas.height*1.5){
+      html.classList.remove("blue-black");
+      html.classList.add("black-cyan");
     }
+
+    context.render(_transition.base,_transition.color0);
+    context.render(_transition.top,_transition.img0);
+    context.render(_transition.bottom,_transition.img1);
+    context.text(_transition.text,"rgb(255,255,255)",_transition.text.value0);
+
+    if(_indicator.timer<context.time(5)){ context.render(_indicator,_indicator.img0); }
+    else if(_indicator.timer>=context.time(5)&&_indicator.timer<context.time(10)){ context.render(_indicator,_indicator.img1); }
+    else if(_indicator.timer>=context.time(10)&&_indicator.timer<context.time(15)){ context.render(_indicator,_indicator.img2); }
+    else if(_indicator.timer>=context.time(15)&&_indicator.timer<context.time(20)){ context.render(_indicator,_indicator.img3); }
+    else if(_indicator.timer>=context.time(20)&&_indicator.timer<context.time(25)){ context.render(_indicator,_indicator.img4); }
+    else if(_indicator.timer>=context.time(25)&&_indicator.timer<context.time(30)){ context.render(_indicator,_indicator.img5); }
+    else{ context.render(_indicator,_indicator.img0Resolution); }
   }
 
   if(scene.next!=scene.value&&global.pauseChange||global.restart){
-    _transition.base.alpha+=context.frame(4);
-    context.render(_transition.base,_transition.base.color0);
+    context.render(_transition.base,_transition.color0);
+    context.render(_transition.top,_transition.img0);
+    context.render(_transition.bottom,_transition.img1);
+    context.text(_transition.text,"rgb(255,255,255)",_transition.text.value0);
+
+    if(_indicator.timer<context.time(5)){ context.render(_indicator,_indicator.img0); }
+    else if(_indicator.timer>=context.time(5)&&_indicator.timer<context.time(10)){ context.render(_indicator,_indicator.img1); }
+    else if(_indicator.timer>=context.time(10)&&_indicator.timer<context.time(15)){ context.render(_indicator,_indicator.img2); }
+    else if(_indicator.timer>=context.time(15)&&_indicator.timer<context.time(20)){ context.render(_indicator,_indicator.img3); }
+    else if(_indicator.timer>=context.time(20)&&_indicator.timer<context.time(25)){ context.render(_indicator,_indicator.img4); }
+    else if(_indicator.timer>=context.time(25)&&_indicator.timer<context.time(30)){ context.render(_indicator,_indicator.img5); }
+    else{ context.render(_indicator,_indicator.img0Resolution); }
   } else if(global.pauseChange&&!global.restart){
     if(!global.pauseAnimation){
       if(_teacher.on){
@@ -451,10 +460,7 @@ scene.levelRender=function(){
         html.classList.remove("cyan-black");
         html.classList.add("black-cyan");
       }
-
-      _transition.base.alpha-=context.frame(4);
-      context.render(_transition.base,_transition.base.color0);
-    } else{
+    } else if(!global.currentTutorial){
       if(_teacher.on){
         html.classList.remove("cyan-red");
         html.classList.remove("black-red");
@@ -464,9 +470,6 @@ scene.levelRender=function(){
         html.classList.remove("black-cyan");
         html.classList.add("cyan-black");
       }
-
-      _transition.base.alpha+=context.frame(4);
-      context.render(_transition.base,_transition.base.color0);
-    }
+    } context.render(_transition.overlay,_transition.color0);
   }
 }

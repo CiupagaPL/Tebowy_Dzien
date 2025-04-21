@@ -30,7 +30,7 @@ window.addEventListener("click",function(){
       _start.base.alpha=100;
     }
 
-    if(context.collision(_resolution,mouse)&&(scene.value<=1||scene.value>=2&&global.pause)){
+    if(context.collision(_indicator,mouse)&&scene.value<2&&!scene.change){
       if(global.sfx){ audio.click1_sfx.play(); }
 
       if(document.fullscreenElement){ document.exitFullscreen(); }

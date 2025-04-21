@@ -215,13 +215,11 @@ scene.levelUpdate=function(){
     _player.hp=5;
   }
 
-  if(scene.next!=scene.value&&global.pauseChange||global.restart){ _transition.pauseEnd(); }
-  if(global.pauseChange){
+  if(scene.next!=scene.value&&global.pauseChange){ _transition.sceneOff(); }
+  else if(global.pauseChange){
     if(!global.pauseAnimation){ _transition.pauseOff(); }
     else{ _transition.pauseOn(); }
-  }
-
-  if(scene.change&&_player.hp>0&&scene.next==scene.value){ _transition.sceneOn(); }
+  } if(scene.change&&_player.hp>0&&scene.next==scene.value){ _transition.sceneOn(); }
   else if(_teacher.hp==0&&!global.pause){
     if(scene.value<11){ scene.nextAuto=scene.value+1; }
     else{

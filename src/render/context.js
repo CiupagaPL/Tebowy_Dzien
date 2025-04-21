@@ -213,11 +213,15 @@ context.reset=function(){
   context.setup(_background.bottom);
   context.setup(_background.left);
   context.setup(_background.bottomLeft);
+
   context.setup(_transition.base);
+  context.setup(_transition.top);
+  context.setup(_transition.bottom);
+  context.setup(_transition.overlay);
   context.setup(_transition.text);
 
+  context.setup(_indicator);
   context.setup(_info);
-  context.setup(_resolution);
   context.setup(_start.base);
   context.setup(_start.arrow);
 

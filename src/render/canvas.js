@@ -176,13 +176,13 @@ canvas.loop=function(){
     context.reset();
     canvas.check();
 
-    if(scene.value>=2&&scene.next!=1&&!scene.change){
+    if(scene.value>=2||scene.change){
       scene.value=1;
+      scene.next=1;
 
       global.menuLoad=true;
+      global.gameLoad=false;
       scene.change=true;
-      _transition.base.alpha=100;
-      _transition.text.alpha=100;
 
       _clipboard.on=false;
       _button.level.on=false;
@@ -196,10 +196,9 @@ canvas.loop=function(){
       _button.custom.on=false;
       _button.custom.animation=false;
 
-      if(scene.value==1){ _transition.text.value0="   Menu"; }
-      else{ _transition.text.value0="Poziom "+Number(scene.value-1); }
-
-      _transition.timer=0;
+      _transition.base.y=context.scale(2);
+      _transition.top.y=-canvas.height+context.scale(4);
+      _transition.bottom.y=canvas.height;
     }
 
     html.style.animationPlayState="running";

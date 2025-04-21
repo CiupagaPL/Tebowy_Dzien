@@ -321,8 +321,28 @@ scene.decorationGenerator=function(){
         type:0,
 
         active:false,
+      }, first:{
+        x:0,
+        y:0,
+
+        width:context.scale(12),
+        height:context.scale(80),
+
+        type:0,
+
+        active:false,
+      }, second:{
+        x:0,
+        y:0,
+
+        width:context.scale(12),
+        height:context.scale(80),
+
+        type:0,
+
+        active:false,
       },
-	  
+
 	    current:1,
     };
 
@@ -335,11 +355,22 @@ scene.decorationGenerator=function(){
     while(_currentDecoration.bottom.type==_currentDecoration.base.type){ _currentDecoration.bottom.type=Math.floor(Math.random()*4); }
     _currentDecoration.left.type=_currentDecoration.bottom.type;
 
-    _decoration.current=Math.floor(Math.random()*4);
-    if(_decoration.current==1){ _currentDecoration.base.type=5; }
-    else if(_decoration.current==2){ _currentDecoration.bottom.type=5; }
-    else if(_decoration.current==3){ _currentDecoration.left.type=5; }
-    else{ _currentDecoration.bottomLeft.type=5; }
+    _decoration.current=Math.floor(Math.random()*2);
+    if(_decoration.current==1){
+      _currentDecoration.base.type=5;
+      _currentDecoration.bottomLeft.type=5;
+      _currentDecoration.first.x=0;
+      _currentDecoration.first.y=0;
+      _currentDecoration.second.x=0;
+      _currentDecoration.second.y=0;
+    } else{
+      _currentDecoration.bottom.type=5;
+      _currentDecoration.left.type=5;
+      _currentDecoration.first.x=0;
+      _currentDecoration.first.y=0;
+      _currentDecoration.second.x=0;
+      _currentDecoration.second.y=0;
+    }
 
     _decoration.array.push(_currentDecoration);
     _decoration.lenght++;
@@ -386,7 +417,7 @@ scene.decorationGenerator=function(){
 
         active:false,
       },
-	  
+
 	    current:1,
     };
 
@@ -399,11 +430,14 @@ scene.decorationGenerator=function(){
     while(_currentDecoration.bottom.type==_currentDecoration.base.type){ _currentDecoration.bottom.type=Math.floor(Math.random()*4); }
     _currentDecoration.left.type=_currentDecoration.bottom.type;
 
-    _decoration.current=Math.floor(Math.random()*4);
-    if(_decoration.current==1){ _currentDecoration.base.type=5; }
-    else if(_decoration.current==2){ _currentDecoration.bottom.type=5; }
-    else if(_decoration.current==3){ _currentDecoration.left.type=5; }
-    else{ _currentDecoration.bottomLeft.type=5; }
+    _decoration.current=Math.floor(Math.random()*2);
+    if(_decoration.current==1){
+      _currentDecoration.base.type=5;
+      _currentDecoration.bottomLeft.type=5;
+    } else{
+      _currentDecoration.bottom.type=5;
+      _currentDecoration.left.type=5;
+    }
 
     _decoration.array.push(_currentDecoration);
     _decoration.lenght++;
@@ -450,7 +484,7 @@ scene.decorationGenerator=function(){
 
         active:false,
       },
-	  
+
 	    current:1,
     };
 
@@ -463,11 +497,14 @@ scene.decorationGenerator=function(){
     while(_currentDecoration.bottom.type==_currentDecoration.base.type){ _currentDecoration.bottom.type=Math.floor(Math.random()*4); }
     _currentDecoration.left.type=_currentDecoration.bottom.type;
 
-    _decoration.current=Math.floor(Math.random()*4);
-    if(_decoration.current==1){ _currentDecoration.base.type=5; }
-    else if(_decoration.current==2){ _currentDecoration.bottom.type=5; }
-    else if(_decoration.current==3){ _currentDecoration.left.type=5; }
-    else{ _currentDecoration.bottomLeft.type=5; }
+    _decoration.current=Math.floor(Math.random()*2);
+    if(_decoration.current==1){
+      _currentDecoration.base.type=5;
+      _currentDecoration.bottomLeft.type=5;
+    } else{
+      _currentDecoration.bottom.type=5;
+      _currentDecoration.left.type=5;
+    }
 
     _decoration.array.push(_currentDecoration);
     _decoration.lenght++;
@@ -514,7 +551,7 @@ scene.decorationGenerator=function(){
 
         active:false,
       },
-	  
+
 	    current:1,
     };
 
@@ -527,11 +564,14 @@ scene.decorationGenerator=function(){
     while(_currentDecoration.bottom.type==_currentDecoration.base.type){ _currentDecoration.bottom.type=Math.floor(Math.random()*4); }
     _currentDecoration.left.type=_currentDecoration.bottom.type;
 
-    _decoration.current=Math.floor(Math.random()*4);
-    if(_decoration.current==1){ _currentDecoration.base.type=5; }
-    else if(_decoration.current==2){ _currentDecoration.bottom.type=5; }
-    else if(_decoration.current==3){ _currentDecoration.left.type=5; }
-    else{ _currentDecoration.bottomLeft.type=5; }
+    _decoration.current=Math.floor(Math.random()*2);
+    if(_decoration.current==1){
+      _currentDecoration.base.type=5;
+      _currentDecoration.bottomLeft.type=5;
+    } else{
+      _currentDecoration.bottom.type=5;
+      _currentDecoration.left.type=5;
+    }
 
     _decoration.array.push(_currentDecoration);
     _decoration.lenght++;
@@ -578,7 +618,7 @@ scene.decorationGenerator=function(){
 
         active:false,
       },
-	  
+
 	    current:1,
     };
 
@@ -591,11 +631,14 @@ scene.decorationGenerator=function(){
     while(_currentDecoration.bottom.type==_currentDecoration.base.type){ _currentDecoration.bottom.type=Math.floor(Math.random()*4); }
     _currentDecoration.left.type=_currentDecoration.bottom.type;
 
-    _decoration.current=Math.floor(Math.random()*4);
-    if(_decoration.current==1){ _currentDecoration.base.type=5; }
-    else if(_decoration.current==2){ _currentDecoration.bottom.type=5; }
-    else if(_decoration.current==3){ _currentDecoration.left.type=5; }
-    else{ _currentDecoration.bottomLeft.type=5; }
+    _decoration.current=Math.floor(Math.random()*2);
+    if(_decoration.current==1){
+      _currentDecoration.base.type=5;
+      _currentDecoration.bottomLeft.type=5;
+    } else{
+      _currentDecoration.bottom.type=5;
+      _currentDecoration.left.type=5;
+    }
 
     _decoration.array.push(_currentDecoration);
     _decoration.lenght++;
@@ -642,7 +685,7 @@ scene.decorationGenerator=function(){
 
         active:false,
       },
-	  
+
 	    current:1,
     };
 
@@ -655,11 +698,14 @@ scene.decorationGenerator=function(){
     while(_currentDecoration.bottom.type==_currentDecoration.base.type){ _currentDecoration.bottom.type=Math.floor(Math.random()*4); }
     _currentDecoration.left.type=_currentDecoration.bottom.type;
 
-    _decoration.current=Math.floor(Math.random()*4);
-    if(_decoration.current==1){ _currentDecoration.base.type=5; }
-    else if(_decoration.current==2){ _currentDecoration.bottom.type=5; }
-    else if(_decoration.current==3){ _currentDecoration.left.type=5; }
-    else{ _currentDecoration.bottomLeft.type=5; }
+    _decoration.current=Math.floor(Math.random()*2);
+    if(_decoration.current==1){
+      _currentDecoration.base.type=5;
+      _currentDecoration.bottomLeft.type=5;
+    } else{
+      _currentDecoration.bottom.type=5;
+      _currentDecoration.left.type=5;
+    }
 
     _decoration.array.push(_currentDecoration);
     _decoration.lenght++;
@@ -706,7 +752,7 @@ scene.decorationGenerator=function(){
 
         active:false,
       },
-	  
+
 	    current:1,
     };
 
@@ -719,11 +765,14 @@ scene.decorationGenerator=function(){
     while(_currentDecoration.bottom.type==_currentDecoration.base.type){ _currentDecoration.bottom.type=Math.floor(Math.random()*4); }
     _currentDecoration.left.type=_currentDecoration.bottom.type;
 
-    _decoration.current=Math.floor(Math.random()*4);
-    if(_decoration.current==1){ _currentDecoration.base.type=5; }
-    else if(_decoration.current==2){ _currentDecoration.bottom.type=5; }
-    else if(_decoration.current==3){ _currentDecoration.left.type=5; }
-    else{ _currentDecoration.bottomLeft.type=5; }
+    _decoration.current=Math.floor(Math.random()*2);
+    if(_decoration.current==1){
+      _currentDecoration.base.type=5;
+      _currentDecoration.bottomLeft.type=5;
+    } else{
+      _currentDecoration.bottom.type=5;
+      _currentDecoration.left.type=5;
+    }
 
     _decoration.array.push(_currentDecoration);
     _decoration.lenght++;
@@ -770,7 +819,7 @@ scene.decorationGenerator=function(){
 
         active:false,
       },
-	  
+
 	    current:1,
     };
 
@@ -783,11 +832,14 @@ scene.decorationGenerator=function(){
     while(_currentDecoration.bottom.type==_currentDecoration.base.type){ _currentDecoration.bottom.type=Math.floor(Math.random()*4); }
     _currentDecoration.left.type=_currentDecoration.bottom.type;
 
-    _decoration.current=Math.floor(Math.random()*4);
-    if(_decoration.current==1){ _currentDecoration.base.type=5; }
-    else if(_decoration.current==2){ _currentDecoration.bottom.type=5; }
-    else if(_decoration.current==3){ _currentDecoration.left.type=5; }
-    else{ _currentDecoration.bottomLeft.type=5; }
+    _decoration.current=Math.floor(Math.random()*2);
+    if(_decoration.current==1){
+      _currentDecoration.base.type=5;
+      _currentDecoration.bottomLeft.type=5;
+    } else{
+      _currentDecoration.bottom.type=5;
+      _currentDecoration.left.type=5;
+    }
 
     _decoration.array.push(_currentDecoration);
     _decoration.lenght++;

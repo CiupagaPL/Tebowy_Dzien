@@ -32,25 +32,19 @@ scene.startRender=function(){
       if(html.classList.contains("black-blue")){
         html.classList.remove("black-blue");
         html.classList.add("blue-cyan");
-      }
-
-      context.render(_start.base,_start.base.img1);
+      } context.render(_start.base,_start.base.img1);
     } else{
       context.render(_background.base,_background.color2);
 
       if(html.classList.contains("blue-cyan")){
         html.classList.remove("blue-cyan");
         html.classList.add("cyan-red");
-      }
-
-      context.render(_start.base,_start.base.img2);
+      } context.render(_start.base,_start.base.img2);
     }
-  }
+  } context.render(_start.arrow,_start.arrow.img0);
 
-  context.render(_start.arrow,_start.arrow.img0);
-
-  if(!document.fullscreenElement){ context.render(_resolution,_resolution.img0); }
-  else{ context.render(_resolution,_resolution.img1); }
+  if(!document.fullscreenElement){ context.render(_indicator,_indicator.img0Resolution); }
+  else{ context.render(_indicator,_indicator.img1Resolution); }
 }
 
 scene.startUpdate=function(){

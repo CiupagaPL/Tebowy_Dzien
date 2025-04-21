@@ -13,39 +13,81 @@
  *  (_(_)--(_(_) */
 
 _transition.sceneOff=function(){
-  _transition.timer++;
   scene.blocked=true;
   scene.change=true;
+  _indicator.timer++;
+  _indicator.alpha=100;
+  if(_indicator.timer>=context.time(35)){ _indicator.timer=0; }
 
-  if(_transition.timer==context.time(15)){
-    _transition.timer=0;
+  _transition.base.y+=context.move(20);
+  _transition.top.y+=context.move(20);
+  _transition.bottom.y+=context.move(20);
+  _transition.text.y+=context.move(20);
+
+  if(scene.next==1){
+    _transition.text.value0="Menu Główne";
+    _transition.text.x=context.scale(225);
+  } else{
+    if(scene.next<=10){ _transition.text.value0="Poziom 0"+String(Number(scene.next-1)); }
+    else{ _transition.text.value0="Poziom "+String(Number(scene.next-1)); } 
+    _transition.text.x=context.scale(250);
+  }
+
+  if(_transition.base.y>=context.scale(8)){
+    _transition.base.y=context.scale(2);
+    _transition.top.y=-canvas.height+context.scale(4);
+    _transition.bottom.y=canvas.height;
+    _transition.text.y=context.scale(175);
+
     scene.timer=0;
     audio.current=0;
 
-    if(_player.hp==0){
-      scene.next=scene.value;
-      _player.hp=5;
-    } scene.value=scene.next;
-
-    _transition.base.alpha=100;
-    if(scene.value==1){ _transition.text.value0="   Menu"; }
-    else{ _transition.text.value0="Poziom "+Number(scene.value-1); }
+    if(scene.value==1){
+      global.gameLoad=true;
+      if(_player.hp==0){
+        scene.next=scene.value;
+        _player.hp=5;
+      } scene.value=scene.next;
+    } else{
+      global.pause=false;
+      global.pauseChange=false;
+      global.changeScene=true;
+      global.autoScene=false;
+      global.menuLoad=true;
+      scene.value=scene.next;
+      _transition.overlay.alpha=0;
+    }
   }
 }
 
 _transition.sceneOn=function(){
-  _transition.timer++;
   global.pause=true;
+  _indicator.timer++;
+  _indicator.alpha=100;
+  if(_indicator.timer>=context.time(35)){ _indicator.timer=0; }
 
-  if(_transition.timer==1){
+  if(_transition.base.y>=-context.scale(8)&&_transition.base.y<context.scale(8)){
     scene.resetLevel();
     context.default();
     scene.generateLevel();
-  } else if(_transition.timer==context.time(75)){
-    _transition.timer=0;
+  }
+
+  _transition.base.y+=context.move(20);
+  _transition.top.y+=context.move(20);
+  _transition.bottom.y+=context.move(20);
+  _transition.text.y+=context.move(20);
+
+  if(_transition.top.y>=context.scale(290)&&scene.value>=2){ _indicator.alpha=0; }
+  if(_transition.top.y>=context.scale(340)){
+    _transition.base.y=-(canvas.height*2)+context.scale(2);
+    _transition.top.y=-(canvas.height*3)+context.scale(4);
+    _transition.bottom.y=-canvas.height;
+    _transition.text.y=-context.scale(550);
+
     scene.change=false;
     scene.blocked=false;
     audio.current=0;
+    _indicator.timer=0;
 
     if(scene.value==1){ global.menuLoad=false; }
     else{
@@ -60,18 +102,19 @@ _transition.sceneOn=function(){
         global.autoUnpause=false;
         global.currentTutorial=false;
       }
+      global.gameLoad=false;
+      global.restart=false;
+      global.autoRestart=false;
+      _transition.overlay.alpha=0;
     }
   }
 }
 
 _transition.pauseOff=function(){
-  _transition.timer++;
   scene.blocked=true;
+  _transition.overlay.alpha-=context.frame(5);
 
-  if(_transition.timer==context.time(10)){
-    _transition.timer=0;
-    _transition.base.alpha=0;
-
+  if(_transition.overlay.alpha<=0){
     scene.blocked=false;
     global.pauseChange=false;
     global.pause=false;
@@ -84,13 +127,11 @@ _transition.pauseOff=function(){
 }
 
 _transition.pauseOn=function(){
-  _transition.timer++;
   scene.blocked=true;
   global.pause=true;
+  _transition.overlay.alpha+=context.frame(5);
 
-  if(_transition.timer==context.time(10)){
-    _transition.timer=0;
-
+  if(_transition.overlay.alpha>=60){
     scene.blocked=false;
     global.pauseChange=false;
     keyDown.up=false;
@@ -99,31 +140,7 @@ _transition.pauseOn=function(){
     keyDown.right=false;
 
     _player.vx=0;
-    _transition.base.alpha=50;
+    _transition.overlay.alpha=60;
     if(_player.cloud){ _player.vy=0; }
-  }
-}
-
-_transition.pauseEnd=function(){
-  _transition.timer++;
-  scene.blocked=true;
-
-  if(_transition.timer==context.time(30)){
-    _transition.timer=0;
-    scene.timer=0;
-    audio.current=0;
-
-    global.pause=false;
-    global.pauseChange=false;
-    global.changeScene=true;
-    global.autoScene=false;
-    if(scene.next==1){ global.menuLoad=true; }
-    global.restart=false;
-    global.autoRestart=false;
-
-    scene.value=scene.next;
-
-    if(scene.value==1){ _transition.text.value0="   Menu"; }
-    else{ _transition.text.value0="Poziom "+Number(scene.value-1); }
   }
 }

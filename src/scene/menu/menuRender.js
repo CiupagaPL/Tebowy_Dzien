@@ -132,27 +132,26 @@ scene.menuRender=function(){
       html.classList.remove("red-blue");
       html.classList.remove("black-blue");
       html.classList.add("blue-black");
-
-      _transition.base.alpha+=context.frame(8);
-      context.render(_transition.base,_transition.base.color0);
     } else{
-      if(_transition.timer>=context.time(65)){
-        html.classList.remove("cyan-black");
-        html.classList.remove("red-black");
-        html.classList.add("black-blue");
-
-        _transition.base.alpha-=context.frame(8);
-      }
-      context.render(_transition.base,_transition.base.color0);
-
-      if(_transition.timer<context.time(65)){ context.render(_start.arrow,_start.arrow.img0); }
-
-      if(_transition.timer<context.time(10)){ _transition.text.alpha+=context.frame(8); }
-      else if(_transition.timer>=context.time(55)){ _transition.text.alpha-=context.frame(8); }
-      context.text(_transition.text,_transition.text.color0,_transition.text.value0);
+      html.classList.remove("cyan-black");
+      html.classList.remove("red-black");
+      html.classList.add("black-blue");
     }
-  }
 
-  if(!document.fullscreenElement){ context.render(_resolution,_resolution.img0); }
-  else{ context.render(_resolution,_resolution.img1); }
+    context.render(_transition.base,_transition.color0);
+    context.render(_transition.top,_transition.img0);
+    context.render(_transition.bottom,_transition.img1);
+    context.text(_transition.text,"rgb(255,255,255)",_transition.text.value0);
+
+    if(_indicator.timer<context.time(5)){ context.render(_indicator,_indicator.img0); }
+    else if(_indicator.timer>=context.time(5)&&_indicator.timer<context.time(10)){ context.render(_indicator,_indicator.img1); }
+    else if(_indicator.timer>=context.time(10)&&_indicator.timer<context.time(15)){ context.render(_indicator,_indicator.img2); }
+    else if(_indicator.timer>=context.time(15)&&_indicator.timer<context.time(20)){ context.render(_indicator,_indicator.img3); }
+    else if(_indicator.timer>=context.time(20)&&_indicator.timer<context.time(25)){ context.render(_indicator,_indicator.img4); }
+    else if(_indicator.timer>=context.time(25)&&_indicator.timer<context.time(30)){ context.render(_indicator,_indicator.img5); }
+    else{ context.render(_indicator,_indicator.img0Resolution); }
+  } else{
+    if(!document.fullscreenElement){ context.render(_indicator,_indicator.img0Resolution); }
+    else{ context.render(_indicator,_indicator.img1Resolution); }
+  }
 }

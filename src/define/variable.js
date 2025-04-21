@@ -133,6 +133,7 @@ const global={
   autoUnpause:false,
   autoRestart:false,
   menuLoad:false,
+  gameLoad:false,
   currentTutorial:false,
   currentTeacher:false,
   currentReward:false,

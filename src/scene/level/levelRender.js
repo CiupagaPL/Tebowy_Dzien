@@ -385,7 +385,7 @@ scene.levelRender=function(){
   }
 
   if(scene.change&&scene.next!=1||scene.change&&_teacher.round>=2){
-    if(!html.classList.contains("blue-red")&&!html.classList.contains("black-red")){
+    if(!canvas.error){
       if(_player.hp==0||_teacher.hp==0||global.load){
         if(scene.teacher){
           html.classList.remove("black-red");
@@ -413,8 +413,8 @@ scene.levelRender=function(){
     else if(_indicator.timer>=context.time(20)&&_indicator.timer<context.time(25)){ context.render(_indicator,_indicator.img4); }
     else if(_indicator.timer>=context.time(25)&&_indicator.timer<context.time(30)){ context.render(_indicator,_indicator.img5); }
     else{ context.render(_indicator,_indicator.img0Resolution); }
-  } if(scene.next!=scene.value&&global.pauseChange||global.restart||scene.load){
-    if(!html.classList.contains("blue-red")&&!html.classList.contains("black-red")){
+  } if(scene.next!=scene.value&&global.pauseChange||scene.load){
+    if(!canvas.error){
       if(scene.teacher){
         html.classList.remove("cyan-black");
         html.classList.add("black-red");
@@ -436,8 +436,8 @@ scene.levelRender=function(){
     else if(_indicator.timer>=context.time(20)&&_indicator.timer<context.time(25)){ context.render(_indicator,_indicator.img4); }
     else if(_indicator.timer>=context.time(25)&&_indicator.timer<context.time(30)){ context.render(_indicator,_indicator.img5); }
     else{ context.render(_indicator,_indicator.img0Resolution); }
-  } else if(global.pauseChange&&!global.restart){
-    if(!html.classList.contains("blue-red")&&!html.classList.contains("black-red")){
+  } else if(global.pauseChange){
+    if(!canvas.error){
       if(!global.pauseAnimation){
         if(scene.teacher){
           html.classList.remove("red-black");
@@ -446,7 +446,7 @@ scene.levelRender=function(){
           html.classList.remove("cyan-black");
           html.classList.add("black-cyan");
         }
-      } else if(!global.currentTutorial){
+      } else{
         if(scene.teacher){
           html.classList.remove("cyan-red");
           html.classList.remove("black-red");

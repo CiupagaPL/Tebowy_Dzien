@@ -117,7 +117,7 @@ scene.menuRender=function(){
   }
 
   if(scene.change){
-    if(!html.classList.contains("blue-red")&&!html.classList.contains("black-red")){
+    if(!canvas.error){
       if(!global.menuLoad){
         html.classList.remove("red-blue");
         html.classList.remove("black-blue");

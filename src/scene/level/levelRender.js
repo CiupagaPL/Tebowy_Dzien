@@ -385,73 +385,77 @@ scene.levelRender=function(){
   }
 
   if(scene.change&&scene.next!=1||scene.change&&_teacher.round>=2){
-    if(_player.hp==0||_teacher.hp==0||global.load){
-      if(scene.teacher){
-        html.classList.remove("black-red");
-        html.classList.add("red-black");
-      } else{
-        html.classList.remove("black-cyan");
-        html.classList.add("cyan-black");
-      }
-    } else if(_transition.base.y>=canvas.height*1.5){
-      html.classList.remove("blue-black");
-      html.classList.remove("red-black");
-      html.classList.add("black-cyan");
-    }
-
-    context.render(_transition.base,_transition.color0);
-    context.render(_transition.top,_transition.img0);
-    context.render(_transition.bottom,_transition.img1);
-    context.text(_transition.text,"rgb(255,255,255)",_transition.text.value0);
-
-    if(_indicator.timer<context.time(5)){ context.render(_indicator,_indicator.img0); }
-    else if(_indicator.timer>=context.time(5)&&_indicator.timer<context.time(10)){ context.render(_indicator,_indicator.img1); }
-    else if(_indicator.timer>=context.time(10)&&_indicator.timer<context.time(15)){ context.render(_indicator,_indicator.img2); }
-    else if(_indicator.timer>=context.time(15)&&_indicator.timer<context.time(20)){ context.render(_indicator,_indicator.img3); }
-    else if(_indicator.timer>=context.time(20)&&_indicator.timer<context.time(25)){ context.render(_indicator,_indicator.img4); }
-    else if(_indicator.timer>=context.time(25)&&_indicator.timer<context.time(30)){ context.render(_indicator,_indicator.img5); }
-    else{ context.render(_indicator,_indicator.img0Resolution); }
-  } if(scene.next!=scene.value&&global.pauseChange||global.restart||scene.load){
-    if(scene.load){
-      if(scene.teacher){
-        html.classList.remove("cyan-black");
-        html.classList.add("black-red");
-      } else{
-        html.classList.remove("black-cyan");
-        html.classList.add("cyan-black");
-      }
-    }
-
-    context.render(_transition.base,_transition.color0);
-    context.render(_transition.top,_transition.img0);
-    context.render(_transition.bottom,_transition.img1);
-    context.text(_transition.text,"rgb(255,255,255)",_transition.text.value0);
-
-    if(_indicator.timer<context.time(5)){ context.render(_indicator,_indicator.img0); }
-    else if(_indicator.timer>=context.time(5)&&_indicator.timer<context.time(10)){ context.render(_indicator,_indicator.img1); }
-    else if(_indicator.timer>=context.time(10)&&_indicator.timer<context.time(15)){ context.render(_indicator,_indicator.img2); }
-    else if(_indicator.timer>=context.time(15)&&_indicator.timer<context.time(20)){ context.render(_indicator,_indicator.img3); }
-    else if(_indicator.timer>=context.time(20)&&_indicator.timer<context.time(25)){ context.render(_indicator,_indicator.img4); }
-    else if(_indicator.timer>=context.time(25)&&_indicator.timer<context.time(30)){ context.render(_indicator,_indicator.img5); }
-    else{ context.render(_indicator,_indicator.img0Resolution); }
-  } else if(global.pauseChange&&!global.restart){
-    if(!global.pauseAnimation){
-      if(scene.teacher){
+    if(!canvas.error){
+      if(_player.hp==0||_teacher.hp==0||global.load){
+        if(scene.teacher){
+          html.classList.remove("black-red");
+          html.classList.add("red-black");
+        } else{
+          html.classList.remove("black-cyan");
+          html.classList.add("cyan-black");
+        }
+      } else if(_transition.base.y>=canvas.height*1.5){
+        html.classList.remove("blue-black");
         html.classList.remove("red-black");
-        html.classList.add("black-red");
-      } else{
-        html.classList.remove("cyan-black");
         html.classList.add("black-cyan");
       }
-    } else if(!global.currentTutorial){
+    }
+
+    context.render(_transition.base,_transition.color0);
+    context.render(_transition.top,_transition.img0);
+    context.render(_transition.bottom,_transition.img1);
+    context.text(_transition.text,"rgb(255,255,255)",_transition.text.value0);
+
+    if(_indicator.timer<context.time(5)){ context.render(_indicator,_indicator.img0); }
+    else if(_indicator.timer>=context.time(5)&&_indicator.timer<context.time(10)){ context.render(_indicator,_indicator.img1); }
+    else if(_indicator.timer>=context.time(10)&&_indicator.timer<context.time(15)){ context.render(_indicator,_indicator.img2); }
+    else if(_indicator.timer>=context.time(15)&&_indicator.timer<context.time(20)){ context.render(_indicator,_indicator.img3); }
+    else if(_indicator.timer>=context.time(20)&&_indicator.timer<context.time(25)){ context.render(_indicator,_indicator.img4); }
+    else if(_indicator.timer>=context.time(25)&&_indicator.timer<context.time(30)){ context.render(_indicator,_indicator.img5); }
+    else{ context.render(_indicator,_indicator.img0Resolution); }
+  } if(scene.next!=scene.value&&global.pauseChange||scene.load){
+    if(!canvas.error){
       if(scene.teacher){
-        html.classList.remove("cyan-red");
-        html.classList.remove("black-red");
-        html.classList.add("red-black");
+        html.classList.remove("cyan-black");
+        html.classList.add("black-red");
       } else{
-        html.classList.remove("red-black");
         html.classList.remove("black-cyan");
         html.classList.add("cyan-black");
+      }
+    }
+
+    context.render(_transition.base,_transition.color0);
+    context.render(_transition.top,_transition.img0);
+    context.render(_transition.bottom,_transition.img1);
+    context.text(_transition.text,"rgb(255,255,255)",_transition.text.value0);
+
+    if(_indicator.timer<context.time(5)){ context.render(_indicator,_indicator.img0); }
+    else if(_indicator.timer>=context.time(5)&&_indicator.timer<context.time(10)){ context.render(_indicator,_indicator.img1); }
+    else if(_indicator.timer>=context.time(10)&&_indicator.timer<context.time(15)){ context.render(_indicator,_indicator.img2); }
+    else if(_indicator.timer>=context.time(15)&&_indicator.timer<context.time(20)){ context.render(_indicator,_indicator.img3); }
+    else if(_indicator.timer>=context.time(20)&&_indicator.timer<context.time(25)){ context.render(_indicator,_indicator.img4); }
+    else if(_indicator.timer>=context.time(25)&&_indicator.timer<context.time(30)){ context.render(_indicator,_indicator.img5); }
+    else{ context.render(_indicator,_indicator.img0Resolution); }
+  } else if(global.pauseChange){
+    if(!canvas.error){
+      if(!global.pauseAnimation){
+        if(scene.teacher){
+          html.classList.remove("red-black");
+          html.classList.add("black-red");
+        } else{
+          html.classList.remove("cyan-black");
+          html.classList.add("black-cyan");
+        }
+      } else{
+        if(scene.teacher){
+          html.classList.remove("cyan-red");
+          html.classList.remove("black-red");
+          html.classList.add("red-black");
+        } else{
+          html.classList.remove("red-black");
+          html.classList.remove("black-cyan");
+          html.classList.add("cyan-black");
+        }
       }
     } context.render(_transition.overlay,_transition.color0);
   }

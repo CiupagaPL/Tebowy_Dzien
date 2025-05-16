@@ -84,21 +84,21 @@ scene.levelUpdate=function(){
   _tebox.currentLenght=0;
   _spike.currentLenght=0;
 
-  _loot.iy+=scene.vy;
-  _loot.y+=scene.vy;
-  _loot.x+=scene.vx;
+  _tebox.loot.iy+=scene.vy;
+  _tebox.loot.y+=scene.vy;
+  _tebox.loot.x+=scene.vx;
 
-  if(_loot.current!=-1&&!global.pause&&_player.hp>0){
-    _loot.timer++;
+  if(_tebox.loot.current!=-1&&!global.pause&&_player.hp>0){
+    _tebox.loot.time++;
 
-    if(_loot.timer<=context.time(30)){
-      _loot.y-=context.move(4);
-      if(_loot.timer>=context.time(15)){ _loot.alpha-=context.frame(10); }
+    if(_tebox.loot.time<=context.time(30)){
+      _tebox.loot.y-=context.move(4);
+      if(_tebox.loot.time>=context.time(15)){ _tebox.loot.alpha-=context.frame(10); }
     } else{
-      _loot.y=_loot.iy;
-      _loot.timer=0;
-      _loot.alpha=0;
-      _loot.current=-1;
+      _tebox.loot.y=_tebox.loot.iy;
+      _tebox.loot.time=0;
+      _tebox.loot.alpha=0;
+      _tebox.loot.current=-1;
     }
   }
 
@@ -107,7 +107,7 @@ scene.levelUpdate=function(){
     else{ scene.vy=-context.move(4); }
   } else{ scene.vy=0; }
 
-  if(_corner.timer==context.time(70)&&!scene.teacher&&!global.pause&&_player.hp>0&&global.sfx){
+  if(_corner.time==context.time(70)&&!scene.teacher&&!global.pause&&_player.hp>0&&global.sfx){
     if(audio.laser==0){
       audio.laser_sfx.play();
       audio.laser++;

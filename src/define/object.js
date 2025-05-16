@@ -14,6 +14,26 @@
 
 let _currentPlatform=[],_currentCorner=[],_currentForeground=[],_currentDecoration=[],_currentTebox=[],_currentSpike=[];
 
+const _mouse={
+  base:{
+    x:0,
+    y:0,
+
+    width:12,
+    height:12,
+  }, collision:{
+    x:0,
+    y:0,
+
+    width:2,
+    height:8,
+  },
+  
+  use:false,
+
+  img:Object.assign(new Image(),{src:"tex/icon/general/mouse.png"}),
+};
+
 const _background={
   base:{
     x:0,
@@ -175,7 +195,7 @@ const _footer={
     x:52,
     y:354,
 
-    value:"Gałęź Niestabilna: 15-05-2025",
+    value:"Gałęź Niestabilna: 16-05-2025",
     size:16,
   }, github:{
     x:318,
@@ -633,7 +653,6 @@ const _ui={
 
   time:0,
   elapsed:0,
-
   show:true,
   message:false,
 
@@ -836,7 +855,7 @@ const _clipboard={
     width:160,
     height:240,
 
-    img0:Object.assign(new Image(),{src:"tex/ui/clipboard/base.png"}),
+    img:Object.assign(new Image(),{src:"tex/ui/clipboard/base.png"}),
   }, back:{
     x:924,
     y:64,
@@ -847,8 +866,8 @@ const _clipboard={
 
     hover:false,
 
-    img0:Object.assign(new Image(),{src:"tex/ui/clipboard/back.png"}),
-    img1:Object.assign(new Image(),{src:"tex/ui/clipboard/backHover.png"}),
+    imgOn:Object.assign(new Image(),{src:"tex/ui/clipboard/backHover.png"}),
+    imgOff:Object.assign(new Image(),{src:"tex/ui/clipboard/back.png"}),
   }, icon:{
     x:820,
     y:104,
@@ -856,9 +875,9 @@ const _clipboard={
     width:16,
     height:16,
 
-    img0:Object.assign(new Image(),{src:"tex/icon/decoration/setting.png"}),
-    img1:Object.assign(new Image(),{src:"tex/icon/decoration/info.png"}),
-    img2:Object.assign(new Image(),{src:"tex/icon/decoration/general1.png"}),
+    imgSet:Object.assign(new Image(),{src:"tex/icon/decoration/setting.png"}),
+    imgInfo:Object.assign(new Image(),{src:"tex/icon/decoration/info.png"}),
+    imgGen:Object.assign(new Image(),{src:"tex/icon/decoration/general1.png"}),
   }, title:{
     x:844,
     y:120,
@@ -888,7 +907,7 @@ const _clipboard={
         x:842,
         y:151,
 
-        value0:"Dźwięk",
+        value:"Dźwięk",
         size:16,
       },
     }, music:{
@@ -902,13 +921,13 @@ const _clipboard={
         x:842,
         y:181,
 
-        value0:"Muzyka",
+        value:"Muzyka",
         size:16,
       },
     },
 
-    img0:Object.assign(new Image(),{src:"tex/ui/clipboard/unChecked.png"}),
-    img1:Object.assign(new Image(),{src:"tex/ui/clipboard/checked.png"}),
+    imgOn:Object.assign(new Image(),{src:"tex/ui/clipboard/checked.png"}),
+    imgOff:Object.assign(new Image(),{src:"tex/ui/clipboard/unChecked.png"}),
   },
 
   on:false,
@@ -926,8 +945,7 @@ const _blueprint={
     width:160,
     height:240,
 
-    img0:Object.assign(new Image(),{src:"tex/ui/blueprint/0.png"}),
-    img1:Object.assign(new Image(),{src:"tex/ui/blueprint/1.png"}),
+    img:Object.assign(new Image(),{src:"tex/ui/blueprint/base.png"}),
   }, skin:{
     x:846,
     y:132,
@@ -935,8 +953,8 @@ const _blueprint={
     width:70,
     height:120,
 
-    img0:Object.assign(new Image(),{src:"tex/obj/player/base/boy.png"}),
-    img1:Object.assign(new Image(),{src:"tex/obj/player/base/girl.png"}),
+    imgBoy:Object.assign(new Image(),{src:"tex/obj/player/base/boy.png"}),
+    imgGirl:Object.assign(new Image(),{src:"tex/obj/player/base/girl.png"}),
   }, back:{
     x:924,
     y:66,
@@ -947,8 +965,8 @@ const _blueprint={
 
     hover:false,
 
-    img0:Object.assign(new Image(),{src:"tex/ui/blueprint/back.png"}),
-    img1:Object.assign(new Image(),{src:"tex/ui/blueprint/backHover.png"}),
+    imgOn:Object.assign(new Image(),{src:"tex/ui/blueprint/backHover.png"}),
+    imgOff:Object.assign(new Image(),{src:"tex/ui/blueprint/back.png"}),
   }, left:{
     x:808,
     y:266,
@@ -958,8 +976,8 @@ const _blueprint={
 
     hover:false,
 
-    img0:Object.assign(new Image(),{src:"tex/ui/blueprint/back.png"}),
-    img1:Object.assign(new Image(),{src:"tex/ui/blueprint/backHover.png"}),
+    imgOn:Object.assign(new Image(),{src:"tex/ui/blueprint/backHover.png"}),
+    imgOff:Object.assign(new Image(),{src:"tex/ui/blueprint/back.png"}),
   }, right:{
     x:924,
     y:266,
@@ -970,8 +988,8 @@ const _blueprint={
 
     hover:false,
 
-    img0:Object.assign(new Image(),{src:"tex/ui/blueprint/back.png"}),
-    img1:Object.assign(new Image(),{src:"tex/ui/blueprint/backHover.png"}),
+    imgOn:Object.assign(new Image(),{src:"tex/ui/blueprint/backHover.png"}),
+    imgOff:Object.assign(new Image(),{src:"tex/ui/blueprint/back.png"}),
   }, title:{
     x:842,
     y:120,
@@ -983,7 +1001,7 @@ const _blueprint={
     x:868,
     y:284,
 
-    value0:"1/2",
+    value:"1/2",
     size:20,
   }, icon:{
     x:820,
@@ -992,97 +1010,97 @@ const _blueprint={
     width:16,
     height:16,
 
-    img0:Object.assign(new Image(),{src:"tex/icon/decoration/level.png"}),
-    img1:Object.assign(new Image(),{src:"tex/icon/decoration/skin.png"}),
+    imgLvl:Object.assign(new Image(),{src:"tex/icon/decoration/level.png"}),
+    imgSkin:Object.assign(new Image(),{src:"tex/icon/decoration/skin.png"}),
   }, level:{
     button1:{
       x:820,
-      y:152,
+      y:142,
 
       width:58,
       line:1,
 
-      value0:"Poziom 01",
+      value:"Poziom 01",
       size:18,
       alpha:100,
     }, button2:{
       x:820,
-      y:180,
+      y:170,
 
       width:58,
       line:1,
 
-      value0:"Poziom 02",
+      value:"Poziom 02",
       size:18,
       alpha:100,
     }, button3:{
       x:820,
-      y:208,
+      y:198,
 
       width:58,
       line:1,
 
-      value0:"Poziom 03",
+      value:"Poziom 03",
       size:18,
       alpha:100,
     }, button4:{
       x:820,
-      y:236,
+      y:226,
 
       width:58,
       line:1,
       
-      value0:"Poziom 04",
+      value:"Poziom 04",
       size:18,
       alpha:100,
     }, button5:{
       x:820,
-      y:264,
+      y:254,
 
       width:58,
       line:1,
       
-      value0:"Poziom 05",
+      value:"Poziom 05",
       size:18,
       alpha:100,
     }, button6:{
-      x:888,
-      y:152,
+      x:886,
+      y:142,
 
       width:58,
       line:1,
       
-      value0:"Poziom 06",
+      value:"Poziom 06",
       size:18,
       alpha:100,
     }, button7:{
-      x:888,
-      y:180,
+      x:886,
+      y:170,
 
       width:58,
       line:1,
       
-      value0:"Poziom 07",
+      value:"Poziom 07",
       size:18,
       alpha:100,
     }, button8:{
-      x:888,
-      y:208,
+      x:886,
+      y:198,
 
       width:58,
       line:1,
       
-      value0:"Poziom 08",
+      value:"Poziom 08",
       size:18,
       alpha:100,
     }, buttonF:{
-      x:902,
-      y:264,
+      x:900,
+      y:254,
 
       width:28,
       line:1,
       
-      value0:"Finał",
+      value:"Finał",
       size:18,
       alpha:100,
     },
@@ -1103,10 +1121,10 @@ const _player={
     width:56,
     height:96,
 
-    img0:Object.assign(new Image(),{src:"tex/obj/player/base/boy.png"}),
-    img1:Object.assign(new Image(),{src:"tex/obj/player/base/girl.png"}),
-    img0Left:Object.assign(new Image(),{src:"tex/obj/player/base/boyLeft.png"}),
-    img1Left:Object.assign(new Image(),{src:"tex/obj/player/base/girlLeft.png"}),
+    imgBoy:Object.assign(new Image(),{src:"tex/obj/player/base/boy.png"}),
+    imgGirl:Object.assign(new Image(),{src:"tex/obj/player/base/girl.png"}),
+    imgBoyLeft:Object.assign(new Image(),{src:"tex/obj/player/base/boyLeft.png"}),
+    imgGirlLeft:Object.assign(new Image(),{src:"tex/obj/player/base/girlLeft.png"}),
     alpha:100,
   }, gun:{
     x:0,
@@ -1115,7 +1133,7 @@ const _player={
     width:56,
     height:40,
 
-    timer:0,
+    time:0,
     type:0,
     ammo1:5,
     ammo2:5,
@@ -1164,13 +1182,12 @@ const _player={
     height:10,
 
     type:0,
-
     unused:true,
     left:false,
-  
-    img0:Object.assign(new Image(),{src:"tex/obj/player/ammo/normal.png"}),
-    img1:Object.assign(new Image(),{src:"tex/obj/player/ammo/strong.png"}),
-    img2:Object.assign(new Image(),{src:"tex/obj/player/ammo/fast.png"}),
+
+    imgNormal:Object.assign(new Image(),{src:"tex/obj/player/ammo/normal.png"}),
+    imgStrong:Object.assign(new Image(),{src:"tex/obj/player/ammo/strong.png"}),
+    imgFast:Object.assign(new Image(),{src:"tex/obj/player/ammo/fast.png"}),
   }, cloud:{
     x:0,
     y:0,
@@ -1180,10 +1197,10 @@ const _player={
 
     on:false,
 
-    img0:Object.assign(new Image(),{src:"tex/obj/player/cloud/normal/left.png"}),
-    img1:Object.assign(new Image(),{src:"tex/obj/player/cloud/normal/right.png"}),
-    img0Lose:Object.assign(new Image(),{src:"tex/obj/player/cloud/defeat/left.png"}),
-    img1Lose:Object.assign(new Image(),{src:"tex/obj/player/cloud/defeat/right.png"}),
+    img:Object.assign(new Image(),{src:"tex/obj/player/cloud/normal/right.png"}),
+    imgLeft:Object.assign(new Image(),{src:"tex/obj/player/cloud/normal/left.png"}),
+    imgLost:Object.assign(new Image(),{src:"tex/obj/player/cloud/defeat/right.png"}),
+    imgLostLeft:Object.assign(new Image(),{src:"tex/obj/player/cloud/defeat/left.png"}),
   }, action:{
     x:0,
     y:0,
@@ -1193,8 +1210,8 @@ const _player={
 
     current:-1,
 
-    img0:Object.assign(new Image(),{src:"tex/icon/action/key.png"}),
-    img1:Object.assign(new Image(),{src:"tex/icon/action/use.png"}),
+    imgKey:Object.assign(new Image(),{src:"tex/icon/action/key.png"}),
+    imgUse:Object.assign(new Image(),{src:"tex/icon/action/use.png"}),
     alpha:75,
   }, collisionTop:{
     x:0,
@@ -1230,7 +1247,6 @@ const _player={
   invisible:0,
   skin:0,
   hp:5,
-
   touchTebox:false,
   touchDoor:false,
   touchLock:false,
@@ -1258,11 +1274,10 @@ const _platform={
   level:0,
   lastLevel:0,
   random:0,
-
   move:false,
   up:false,
 
-  img0:Object.assign(new Image(),{src:"tex/obj/map/general/platform.png"}),
+  img:Object.assign(new Image(),{src:"tex/obj/map/general/platform.png"}),
 
   update:function(){},
 };
@@ -1273,11 +1288,10 @@ const _corner={
   lenght:-1,
   currentLenght:0,
   useLenght:-1,
-  timer:0,
+  time:0,
 
-  img0:Object.assign(new Image(),{src:"tex/obj/map/general/corner.png"}),
-  img1:Object.assign(new Image(),{src:"tex/obj/map/general/lock.png"}),
-  color0:"rgb(255,255,255)",
+  imgCorner:Object.assign(new Image(),{src:"tex/obj/map/general/corner.png"}),
+  imgLock:Object.assign(new Image(),{src:"tex/obj/map/general/lock.png"}),
 
   update:function(){},
 };
@@ -1289,7 +1303,7 @@ const _foreground={
   currentLenght:0,
 
   update:function(){},
-}
+};
 
 const _spike={
   array:[],
@@ -1298,7 +1312,7 @@ const _spike={
   currentLenght:0,
   current:0,
 
-  img0:Object.assign(new Image(),{src:"tex/obj/map/general/spike.png"}),
+  img:Object.assign(new Image(),{src:"tex/obj/map/general/spike.png"}),
 
   update:function(){},
 };
@@ -1310,7 +1324,6 @@ const _decoration={
   currentLenght:1,
   current:0,
 
-  color0:"rgb(140,140,196)",
   img0Door:Object.assign(new Image(),{src:"tex/obj/map/door/orange.png"}),
   img1Door:Object.assign(new Image(),{src:"tex/obj/map/door/green.png"}),
   img2Door:Object.assign(new Image(),{src:"tex/obj/map/door/purple.png"}),
@@ -1335,38 +1348,39 @@ const _decoration={
 };
 
 const _tebox={
+  base:{
+    first:-1,
+    second:-1,
+    third:-1,
+
+    imgOn:Object.assign(new Image(),{src:"tex/obj/map/tebox/base/activated.png"}),
+    imgOff:Object.assign(new Image(),{src:"tex/obj/map/tebox/base/unActivated.png"}),
+  }, loot:{
+    x:0,
+    y:0,
+    iy:0,
+
+    width:21,
+    height:21,
+
+    current:-1,
+    time:0,
+
+    imgKey:Object.assign(new Image(),{src:"tex/obj/map/tebox/loot/key.png"}),
+    imgStrong:Object.assign(new Image(),{src:"tex/obj/map/tebox/loot/strong.png"}),
+    imgFast:Object.assign(new Image(),{src:"tex/obj/map/tebox/loot/fast.png"}),
+    imgHeart:Object.assign(new Image(),{src:"tex/obj/map/tebox/loot/heart.png"}),
+    alpha:100,
+  },
+
   array:[],
 
   lenght:-1,
   currentLenght:1,
   useLenght:-1,
-  first:-1,
-  second:-1,
-  third:-1,
-
-  img0:Object.assign(new Image(),{src:"tex/obj/map/tebox/base/unActivated.png"}),
-  img1:Object.assign(new Image(),{src:"tex/obj/map/tebox/base/activated.png"}),
 
   update:function(){},
-}
-
-const _loot={
-  x:0,
-  y:0,
-  iy:0,
-
-  width:21,
-  height:21,
-
-  current:-1,
-  timer:0,
-
-  img0:Object.assign(new Image(),{src:"tex/obj/map/tebox/loot/key.png"}),
-  img1:Object.assign(new Image(),{src:"tex/obj/map/tebox/loot/strong.png"}),
-  img2:Object.assign(new Image(),{src:"tex/obj/map/tebox/loot/fast.png"}),
-  img3:Object.assign(new Image(),{src:"tex/obj/map/tebox/loot/heart.png"}),
-  alpha:100,
-}
+};
 
 const _teacher={
   base:{
@@ -1449,7 +1463,6 @@ const _attack={
     rotation:0,
 
     current:0,
-
     unused:true,
     left:true,
     touch:false,
@@ -1466,7 +1479,6 @@ const _attack={
     rotation:0,
 
     current:0,
-
     unused:true,
     left:true,
     touch:false,

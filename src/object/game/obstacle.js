@@ -124,21 +124,21 @@ _tebox.update=function(){
 
   if(context.collision(_currentTebox,_player.base)&&!_player.touchTebox){
     _player.touchTebox=true;
-    _tebox.first=_currentTebox.first;
-    _tebox.second=_currentTebox.second;
-    _tebox.third=_currentTebox.third;
+    _tebox.base.first=_currentTebox.first;
+    _tebox.base.second=_currentTebox.second;
+    _tebox.base.third=_currentTebox.third;
     _currentTebox.first=-1;
     _currentTebox.second=-1;
     _currentTebox.third=-1;
     _tebox.useLenght=_tebox.currentLenght;
-    _loot.x=_currentTebox.x+context.scale(15);
-    _loot.y=_currentTebox.y+_loot.height;
-    _loot.iy=_currentTebox.y+_loot.height;
+    _tebox.loot.x=_currentTebox.x+context.scale(15);
+    _tebox.loot.y=_currentTebox.y+_tebox.loot.height;
+    _tebox.loot.iy=_currentTebox.y+_tebox.loot.height;
   } else if(!context.collision(_currentTebox,_player.base)&&_tebox.currentLenght==_tebox.useLenght){
     _player.touchTebox=false;
-    _currentTebox.first=_tebox.first;
-    _currentTebox.second=_tebox.second;
-    _currentTebox.third=_tebox.third;
+    _currentTebox.first=_tebox.base.first;
+    _currentTebox.second=_tebox.base.second;
+    _currentTebox.third=_tebox.base.third;
     _tebox.useLenght=-1;
   }
 }
@@ -246,7 +246,7 @@ _corner.update=function(){
     if(_currentCorner.laser.x>canvas.width){ _currentCorner.laser.x-=context.scale(1280); }
     else if(_currentCorner.laser.x+_currentCorner.laser.width<0){ _currentCorner.laser.x+=context.scale(1280); }
 
-    if(context.collision(_currentCorner.laser,_player.base)&&_player.invisible==0&&_corner.timer>=context.time(60)&&!_player.touched){
+    if(context.collision(_currentCorner.laser,_player.base)&&_player.invisible==0&&_corner.time>=context.time(60)&&!_player.touched){
       _player.hp-=1;
       _player.damage=true;
       _player.invisible=1;
@@ -261,13 +261,13 @@ _corner.update=function(){
       }
     }
 
-    if(_corner.timer>=context.time(40)&&_corner.timer<context.time(50)){ _currentCorner.laser.alpha+=context.frame(4); }
-    else if(_corner.timer==context.time(50)){ _currentCorner.laser.alpha=50; }
-    else if(_corner.timer>=context.time(60)&&_corner.timer<context.time(70)){ _currentCorner.laser.alpha+=context.frame(6); }
-    else if(_corner.timer==context.time(70)){ _currentCorner.laser.alpha=100; }
-    else if(_corner.timer>context.time(70)){
+    if(_corner.time>=context.time(40)&&_corner.time<context.time(50)){ _currentCorner.laser.alpha+=context.frame(4); }
+    else if(_corner.time==context.time(50)){ _currentCorner.laser.alpha=50; }
+    else if(_corner.time>=context.time(60)&&_corner.time<context.time(70)){ _currentCorner.laser.alpha+=context.frame(6); }
+    else if(_corner.time==context.time(70)){ _currentCorner.laser.alpha=100; }
+    else if(_corner.time>context.time(70)){
       _currentCorner.laser.alpha-=context.frame(8);
-      if(_currentCorner.laser.alpha<=0){ _corner.timer=0; }
+      if(_currentCorner.laser.alpha<=0){ _corner.time=0; }
     }
   }
 

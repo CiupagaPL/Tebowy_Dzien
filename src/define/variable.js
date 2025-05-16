@@ -24,7 +24,6 @@ const render=document.getElementById("render",{
 const context=render.getContext("2d",{
   alpha:true,
   willReadFrequently:true,
-
   powerPreference:"high-performance",
 
   collision:function(){},
@@ -39,14 +38,6 @@ const context=render.getContext("2d",{
   default:function(){},
   reset:function(){},
 });
-
-const mouse={
-  x:0,
-  y:0,
-
-  width:4,
-  height:4,
-};
 
 const canvas={
   width:640,

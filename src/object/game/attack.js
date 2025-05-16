@@ -60,16 +60,16 @@ _attack.update=function(){
 
     if((context.collision(_player.base,_attack.tebulinek)||context.collision(_player.cloud,_attack.tebulinek))&&!_attack.tebulinek.touch&&!_attack.tebulinek.unused){
       if(global.sfx){ audio.chest_sfx.play(); }
-      _loot.x=_attack.tebulinek.x+context.scale(15);
-      _loot.y=_attack.tebulinek.y+_loot.height;
-      _loot.alpha=100;
+      _tebox.loot.x=_attack.tebulinek.x+context.scale(15);
+      _tebox.loot.y=_attack.tebulinek.y+_tebox.loot.height;
+      _tebox.loot.alpha=100;
 
-      if(_player.hp>=4){ _loot.current=Math.floor(Math.random()*3); }
-      else{ _loot.current=Math.floor(Math.random()*6); }
+      if(_player.hp>=4){ _tebox.loot.current=Math.floor(Math.random()*3); }
+      else{ _tebox.loot.current=Math.floor(Math.random()*6); }
 
-      if(_loot.current==1){ _player.gun.ammo1++; }
-      else if(_loot.current==2||_loot.current==0){
-        _loot.current=2;
+      if(_tebox.loot.current==1){ _player.gun.ammo1++; }
+      else if(_tebox.loot.current==2||_tebox.loot.current==0){
+        _tebox.loot.current=2;
         _player.gun.ammo2++;
       } else{
         _player.hp++;

@@ -201,7 +201,7 @@ context.default=function(){
   _player.heal=false;
   _player.touchTebox=false;
 
-  _corner.timer=0;
+  _corner.time=0;
 
   _ui.elapsed=0;
   _ui.game.info.time.value0="Czas: 0s";
@@ -212,8 +212,8 @@ context.default=function(){
   _ui.game.notification.info.x=-context.scale(100);
 
   _tebox.useLenght=-1;
-  _loot.current=-1;
-  _loot.timer=0;
+  _tebox.loot.current=-1;
+  _tebox.loot.time=0;
 
   _teacher.base.y=context.scale(188);
   _teacher.base.x=canvas.width+_teacher.base.width+context.scale(40);
@@ -233,8 +233,8 @@ context.default=function(){
 }
 
 context.reset=function(){
-  mouse.width=context.scale(4);
-  mouse.height=context.scale(4);
+  context.setup(_mouse.base);
+  context.setup(_mouse.collision);
 
   context.setup(_background.base);
   context.setup(_background.bottom);
@@ -359,7 +359,7 @@ context.reset=function(){
   context.setup(_player.collisionLeft);
   context.setup(_player.collisionRight);
 
-  context.setup(_loot);
+  context.setup(_tebox.loot);
 
   context.setup(_teacher.base);
   context.setup(_teacher.cloud);

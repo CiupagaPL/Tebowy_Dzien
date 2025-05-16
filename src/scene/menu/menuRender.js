@@ -55,64 +55,61 @@ scene.menuRender=function(){
   context.text(_button.about1.text,"rgb(255,255,255)",_button.about1.text.value);
 
   if(_button.setting.animation||_button.setting.on||_button.about0.animation||_button.about0.on||_button.about1.animation||_button.about1.on){
-    context.render(_clipboard.base,_clipboard.base.img0);
-    if(!_clipboard.back.hover){ context.render(_clipboard.back,_clipboard.back.img0); }
-    else{ context.render(_clipboard.back,_clipboard.back.img1); }
+    context.render(_clipboard.base,_clipboard.base.img);
+    if(_clipboard.back.hover){ context.render(_clipboard.back,_clipboard.back.imgOn); }
+    else{ context.render(_clipboard.back,_clipboard.back.imgOff); }
 
     if(_button.setting.animation||_button.setting.on){
       context.text(_clipboard.title,"rgb(0,0,0)",_clipboard.title.value0);
-      context.render(_clipboard.icon,_clipboard.icon.img0);
+      context.render(_clipboard.icon,_clipboard.icon.imgSet);
 
-      if(!global.sfx){ context.render(_clipboard.setting.sfx.base,_clipboard.setting.img0); }
-      else{ context.render(_clipboard.setting.sfx.base,_clipboard.setting.img1); }
-      context.text(_clipboard.setting.sfx.text,"rgb(0,0,0)",_clipboard.setting.sfx.text.value0);
-      if(!global.music){ context.render(_clipboard.setting.music.base,_clipboard.setting.img0); }
-      else{ context.render(_clipboard.setting.music.base,_clipboard.setting.img1); }
-      context.text(_clipboard.setting.music.text,"rgb(0,0,0)",_clipboard.setting.music.text.value0);
+      if(!global.sfx){ context.render(_clipboard.setting.sfx.base,_clipboard.setting.imgOff); }
+      else{ context.render(_clipboard.setting.sfx.base,_clipboard.setting.imgOn); }
+      context.text(_clipboard.setting.sfx.text,"rgb(0,0,0)",_clipboard.setting.sfx.text.value);
+      if(!global.music){ context.render(_clipboard.setting.music.base,_clipboard.setting.imgOff); }
+      else{ context.render(_clipboard.setting.music.base,_clipboard.setting.imgOn); }
+      context.text(_clipboard.setting.music.text,"rgb(0,0,0)",_clipboard.setting.music.text.value);
     } else if(_button.about0.animation||_button.about0.on){
-      context.render(_clipboard.icon,_clipboard.icon.img1);
+      context.render(_clipboard.icon,_clipboard.icon.imgInfo);
       context.text(_clipboard.title,"rgb(0,0,0)",_clipboard.title.value1);
       context.text(_clipboard.text,"rgb(0,0,0)",_clipboard.text.value0);
     } else if(_button.about1.animation||_button.about1.on){
-      context.render(_clipboard.icon,_clipboard.icon.img2);
+      context.render(_clipboard.icon,_clipboard.icon.imgGen);
       context.text(_clipboard.title,"rgb(0,0,0)",_clipboard.title.value2);
       context.text(_clipboard.text,"rgb(0,0,0)",_clipboard.text.value1);
     }
   }
 
   if(_button.level.animation||_button.level.on||_button.custom.animation||_button.custom.on){
-    if(_button.custom.on||_button.custom.animation){ context.render(_blueprint.base,_blueprint.base.img0); }
-    else if(_button.level.on||_button.level.animation){ context.render(_blueprint.base,_blueprint.base.img1); }
-    if(!_blueprint.back.hover){ context.render(_blueprint.back,_blueprint.back.img0); }
-    else{ context.render(_blueprint.back,_blueprint.back.img1); }
+    context.render(_blueprint.base,_blueprint.base.img);
+    if(!_blueprint.back.hover){ context.render(_blueprint.back,_blueprint.back.imgOff); }
+    else{ context.render(_blueprint.back,_blueprint.back.imgOn); }
 
     if(_button.level.animation||_button.level.on){
       context.text(_blueprint.title,"rgb(255,255,255)",_blueprint.title.value0);
-      context.render(_blueprint.icon,_blueprint.icon.img0);
+      context.render(_blueprint.icon,_blueprint.icon.imgLvl);
 
-      context.text(_blueprint.level.button1,"rgb(255,255,255)",_blueprint.level.button1.value0);
-      context.text(_blueprint.level.button2,"rgb(255,255,255)",_blueprint.level.button2.value0);
-      context.text(_blueprint.level.button3,"rgb(255,255,255)",_blueprint.level.button3.value0);
-      context.text(_blueprint.level.button4,"rgb(255,255,255)",_blueprint.level.button4.value0);
-      context.text(_blueprint.level.button5,"rgb(255,255,255)",_blueprint.level.button5.value0);
-      context.text(_blueprint.level.button6,"rgb(255,255,255)",_blueprint.level.button6.value0);
-      context.text(_blueprint.level.button7,"rgb(255,255,255)",_blueprint.level.button7.value0);
-      context.text(_blueprint.level.button8,"rgb(255,255,255)",_blueprint.level.button8.value0);
-      context.text(_blueprint.level.buttonF,"rgb(255,255,255)",_blueprint.level.buttonF.value0);
+      context.text(_blueprint.level.button1,"rgb(255,255,255)",_blueprint.level.button1.value);
+      context.text(_blueprint.level.button2,"rgb(255,255,255)",_blueprint.level.button2.value);
+      context.text(_blueprint.level.button3,"rgb(255,255,255)",_blueprint.level.button3.value);
+      context.text(_blueprint.level.button4,"rgb(255,255,255)",_blueprint.level.button4.value);
+      context.text(_blueprint.level.button5,"rgb(255,255,255)",_blueprint.level.button5.value);
+      context.text(_blueprint.level.button6,"rgb(255,255,255)",_blueprint.level.button6.value);
+      context.text(_blueprint.level.button7,"rgb(255,255,255)",_blueprint.level.button7.value);
+      context.text(_blueprint.level.button8,"rgb(255,255,255)",_blueprint.level.button8.value);
+      context.text(_blueprint.level.buttonF,"rgb(255,255,255)",_blueprint.level.buttonF.value);
     } else if(_button.custom.animation||_button.custom.on){
       context.text(_blueprint.title,"rgb(255,255,255)",_blueprint.title.value1);
-      context.text(_blueprint.text,"rgb(255,255,255)",_blueprint.text.value0);
-      context.render(_blueprint.icon,_blueprint.icon.img1);
+      context.text(_blueprint.text,"rgb(255,255,255)",_blueprint.text.value);
+      context.render(_blueprint.icon,_blueprint.icon.imgSkin);
 
-      if(_player.skin==0){ context.render(_blueprint.skin,_blueprint.skin.img0); }
-      else if(_player.skin==1){ context.render(_blueprint.skin,_blueprint.skin.img1); }
-      else if(_player.skin==2){ context.render(_blueprint.skin,_blueprint.skin.img2); }
-      else{ context.render(_blueprint.skin,_blueprint.skin.img3); }
+      if(_player.skin==0){ context.render(_blueprint.skin,_blueprint.skin.imgBoy); }
+      else{ context.render(_blueprint.skin,_blueprint.skin.imgGirl); }
 
-      if(!_blueprint.left.hover){ context.render(_blueprint.left,_blueprint.left.img0); }
-      else{ context.render(_blueprint.left,_blueprint.left.img1); }
-      if(!_blueprint.right.hover){ context.render(_blueprint.right,_blueprint.right.img0); }
-      else{ context.render(_blueprint.right,_blueprint.right.img1); }
+      if(!_blueprint.left.hover){ context.render(_blueprint.left,_blueprint.left.imgOff); }
+      else{ context.render(_blueprint.left,_blueprint.left.imgOn); }
+      if(!_blueprint.right.hover){ context.render(_blueprint.right,_blueprint.right.imgOff); }
+      else{ context.render(_blueprint.right,_blueprint.right.imgOn); }
     }
   }
 

@@ -21,8 +21,6 @@ canvas.setup=function(){
     canvas.prevScale=canvas.scale;
     canvas.scale=Math.floor((canvas.width/640||canvas.height/360)*100)/100;
 
-    context.imageSmoothingEnabled=false;
-
     render.style.borderTop=0;
     render.style.borderBottom=0;
     render.style.borderLeft=context.scale(4)+"px solid white";
@@ -35,8 +33,6 @@ canvas.setup=function(){
     render.width=canvas.width;
     render.height=canvas.height;
 
-    context.imageSmoothingEnabled=false;
-
     canvas.prevScale=canvas.scale;
     canvas.scale=Math.floor((canvas.width/640||canvas.height/360)*100)/100;
     render.style.borderTop=context.scale(4)+"px solid white";
@@ -45,9 +41,9 @@ canvas.setup=function(){
     render.style.borderRight=0;
     render.style.left=((window.innerWidth-canvas.width)/2)+"px";
     render.style.top=((window.innerHeight-canvas.height)/2)-context.scale(4)+"px";
-  }
+  } context.imageSmoothingEnabled=false;
 
-  render.style.boxShadow=0+"px "+0+"px "+context.scale(8)+"px "+context.scale(2)+"px white";
+  render.style.boxShadow="0 0 "+context.scale(8)+"px "+context.scale(2)+"px white";
   render.style.width=canvas.width+"px";
   render.style.height=canvas.height+"px";
 }
@@ -127,18 +123,18 @@ canvas.animate=function(current){
         canvas.fpsLimit=canvas.timeScale*40;
         scene.timer=context.limit(scene.timer);
 
-        _transition.timer=context.limit(_transition.timer);
         _indicator.time=context.limit(_indicator.time);
 
         if(scene.value>=2){
           _player.invisible=context.limit(_player.invisible);
           _player.upTimer=context.limit(_player.upTimer);
+          _player.gun.timer=context.limit(_player.gun.timer);
 
-          _loot.timer=context.limit(_loot.timer);
-          _teacher.invisible=context.limit(_teacher.invisible);
+          _tebox.loot.time=context.limit(_tebox.loot.time);
+          _corner.time=context.limit(_corner.time);
 
-          _corner.timer=context.limit(_corner.timer);
           _ui.elapsed=context.limit(_ui.elapsed);
+          _teacher.invisible=context.limit(_teacher.invisible);
 
           if(_player.vx!=0){
             if(_player.left){ _player.vx=-context.move(4); }
@@ -236,5 +232,6 @@ canvas.loop=function(){
       scene.levelRender();
       scene.levelUpdate();
     } if(!global.stable){ context.text(_info,"rgb(255,255,255)",_info.value); }
+    if(_mouse.use){ context.render(_mouse.base,_mouse.img); }
   }
 }

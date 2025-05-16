@@ -151,55 +151,55 @@ window.addEventListener("keyup",function(event){
         }
 
         if((event.key=="r"||event.key=="R")){
-          _player.gun.timer=0;
+          _player.gun.time=0;
           _player.gun.type++;
           if(_player.gun.type==3){ _player.gun.type=0; }
         }
 
-        if(_player.touchTebox&&(event.key=="e"||event.key=="E")&&_loot.timer==0){
-          if(_tebox.first!=-1){
+        if(_player.touchTebox&&(event.key=="e"||event.key=="E")&&_tebox.loot.time==0){
+          if(_tebox.base.first!=-1){
             if(global.sfx){ audio.chest_sfx.play(); }
 
-            _loot.current=_tebox.first;
-            if(_loot.current==3&&_player.hp>=4){ _loot.current=Math.floor(Math.random()*3); }
-            else if(_loot.current==3&&_player.hp<4){ _loot.current=Math.floor(Math.random()*6); }
+            _tebox.loot.current=_tebox.base.first;
+            if(_tebox.loot.current==3&&_player.hp>=4){ _tebox.loot.current=Math.floor(Math.random()*3); }
+            else if(_tebox.loot.current==3&&_player.hp<4){ _tebox.loot.current=Math.floor(Math.random()*6); }
 
-            if(_loot.current==1){ _player.gun.ammo1++; }
-            else if(_loot.current==2||_loot.current==0){
-              _loot.current=2;
+            if(_tebox.loot.current==1){ _player.gun.ammo1++; }
+            else if(_tebox.loot.current==2||_tebox.loot.current==0){
+              _tebox.loot.current=2;
               _player.gun.ammo2++;
             } else{
               _player.hp++;
               _player.heal=true;
             }
 
-            _loot.alpha=100;
-            _tebox.first=-1;
-          } else if(_tebox.second!=-1){
+            _tebox.loot.alpha=100;
+            _tebox.base.first=-1;
+          } else if(_tebox.base.second!=-1){
             if(global.sfx){ audio.chest_sfx.play(); }
 
-            _loot.current=_tebox.second;
-            if(_loot.current==1){ _player.gun.ammo1++; }
-            else if(_loot.current==2||_loot.current==0){
-              _loot.current=2;
+            _tebox.loot.current=_tebox.base.second;
+            if(_tebox.loot.current==1){ _player.gun.ammo1++; }
+            else if(_tebox.loot.current==2||_tebox.loot.current==0){
+              _tebox.loot.current=2;
               _player.gun.ammo2++;
             }
 
-            _loot.alpha=100;
-            _tebox.second=-1;
-          } else if(_tebox.third!=-1){
+            _tebox.loot.alpha=100;
+            _tebox.base.second=-1;
+          } else if(_tebox.base.third!=-1){
             if(global.sfx){ audio.chest_sfx.play(); }
 
-            _loot.current=_tebox.third;
-            if(_loot.current!=0){
-              if(_loot.current==1&&_player.gun.ammo1-10>_player.gun.ammo2){ _loot.current=2 }
-              else if(_loot.current==2&&_player.gun.ammo2-10>_player.gun.ammo1){ _loot.current=1; }
-            } if(_loot.current==0){ scene.key=true; }
-            else if(_loot.current==1){ _player.gun.ammo1++; }
-            else if(_loot.current==2){ _player.gun.ammo2++; }
+            _tebox.loot.current=_tebox.base.third;
+            if(_tebox.loot.current!=0){
+              if(_tebox.loot.current==1&&_player.gun.ammo1-10>_player.gun.ammo2){ _tebox.loot.current=2 }
+              else if(_tebox.loot.current==2&&_player.gun.ammo2-10>_player.gun.ammo1){ _tebox.loot.current=1; }
+            } if(_tebox.loot.current==0){ scene.key=true; }
+            else if(_tebox.loot.current==1){ _player.gun.ammo1++; }
+            else if(_tebox.loot.current==2){ _player.gun.ammo2++; }
 
-            _loot.alpha=100;
-            _tebox.third=-1;
+            _tebox.loot.alpha=100;
+            _tebox.base.third=-1;
           }
         }
 
@@ -222,8 +222,8 @@ window.addEventListener("keyup",function(event){
           _player.gun.y=_player.base.y+context.scale(32);
         }
 
-        if((event.key=="q"||event.key=="Q")&&(_player.gun.type==0&&_player.gun.timer>=context.time(90)||_player.gun.type==1&&_player.gun.timer>=context.time(120)&&
-           _player.gun.ammo1>0||_player.gun.type==2&&_player.gun.timer>=context.time(60)&&_player.gun.ammo2>0)&&(!scene.teacher||scene.teacher&&scene.timer>=context.time(100))){
+        if((event.key=="q"||event.key=="Q")&&(_player.gun.type==0&&_player.gun.time>=context.time(90)||_player.gun.type==1&&_player.gun.time>=context.time(120)&&
+           _player.gun.ammo1>0||_player.gun.type==2&&_player.gun.time>=context.time(60)&&_player.gun.ammo2>0)&&(!scene.teacher||scene.teacher&&scene.timer>=context.time(100))){
           if(global.sfx){
             if(audio.fire1==0){
               audio.fire1_sfx.play();
@@ -238,7 +238,7 @@ window.addEventListener("keyup",function(event){
           _player.ammo.y=_player.base.y+context.scale(44);
 
           _player.ammo.unused=false;
-          _player.gun.timer=0;
+          _player.gun.time=0;
           if(!_player.left){ _player.ammo.left=false; }
           else{ _player.ammo.left=true; }
           _player.ammo.type=_player.gun.type;

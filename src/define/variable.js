@@ -17,15 +17,18 @@ const body=document.getElementById("body");
 const load=document.getElementById("load");
 const error=document.getElementById("error");
 const render=document.getElementById("render",{
-  width:"0px",
-  height:"0px",
+  width:0,
+  height:0,
 });
 
 const context=render.getContext("2d",{
   alpha:true,
   willReadFrequently:true,
-
   powerPreference:"high-performance",
+  imageSmoothingEnabled:false,
+  mozImageSmoothingEnabled:false,
+  webkitImageSmoothingEnabled:false,
+  imageSmoothingQuality:"low",
 
   collision:function(){},
   scale:function(){},
@@ -39,14 +42,6 @@ const context=render.getContext("2d",{
   default:function(){},
   reset:function(){},
 });
-
-const mouse={
-  x:0,
-  y:0,
-
-  width:4,
-  height:4,
-};
 
 const canvas={
   width:640,
@@ -63,7 +58,6 @@ const canvas={
   then:0,
   elapsed:0,
   reset:0,
-
   error:false,
   resize:true,
   first:false,
@@ -83,7 +77,7 @@ const scene={
   value:0,
   next:0,
   nextAuto:0,
-  timer:0,
+  time:0,
   score:0,
   current:0,
   type0:0,
@@ -100,14 +94,14 @@ const scene={
   section4:0,
   last:-1,
   count:10,
-
-  generated:false,
+  generate:false,
   change:false,
-  blocked:false,
+  block:false,
   auto:false,
   key:false,
   teacher:false,
   load:false,
+  win:false,
 
   startRender:function(){},
   startUpdate:function(){},
@@ -133,7 +127,6 @@ const global={
   pauseChange:false,
   pauseAnimation:false,
   restart:false,
-  autoUnpause:false,
   autoRestart:false,
   load:false,
   menuLoad:false,
@@ -141,6 +134,14 @@ const global={
   currentTutorial:false,
   currentTeacher:false,
   currentReward:false,
+  teboxNotification:false,
+  teboxActivate:false,
+  laserNotification:false,
+  lockerActivate:false,
+  lockNotification:false,
+  lockActivate:false,
+  doorNotification:false,
+  doorActivate:false,
   sfx:localStorage.getItem("sfx"),
   music:localStorage.getItem("music"),
   tutorial:true,
@@ -158,13 +159,20 @@ const keyDown={
 };
 
 const audio={
+  current:0,
+  jump:0,
+  damage1:0,
+  damage2:0,
+  fire1:0,
+  fire2:0,
+  laser:0,
+
   menu1_music:new Audio("sfx/music/menu1.mp3"),
   menu2_music:new Audio("sfx/music/menu2.mp3"),
   level1_music:new Audio("sfx/music/level1.mp3"),
   level2_music:new Audio("sfx/music/level2.mp3"),
   level3_music:new Audio("sfx/music/level3.mp3"),
   teacher_music:new Audio("sfx/music/teacher.mp3"),
-
   load_sfx:new Audio("sfx/general/load.mp3"),
   click1_sfx:new Audio("sfx/general/click.mp3"),
   click2_sfx:new Audio("sfx/general/clickAlt.mp3"),
@@ -189,14 +197,6 @@ const audio={
   unlock_sfx:new Audio("sfx/level/unlock.mp3"),
   locker_sfx:new Audio("sfx/level/locker.mp3"),
   entrance_sfx:new Audio("sfx/teacher/entrance.mp3"),
-
-  current:0,
-  jump:0,
-  damage1:0,
-  damage2:0,
-  fire1:0,
-  fire2:0,
-  laser:0,
 };
 
 audio.menu1_music.volume=0.25;

@@ -34,10 +34,10 @@ scene.spikeGenerator=function(){
         height:context.scale(28),
         rotation:180,
 
-        score:_platform.currentLoad-1,
-
+        level:_platform.currentLoad-1,
         active:false,
-        disable:false,
+
+        alpha:100,
       };
     }
 
@@ -64,10 +64,10 @@ scene.spikeGenerator=function(){
         height:context.scale(28),
         rotation:180,
 
-        score:_platform.currentLoad-1,
-
+        level:_platform.currentLoad-1,
         active:false,
-        disable:false,
+
+        alpha:100,
       };
     }
 
@@ -94,10 +94,10 @@ scene.spikeGenerator=function(){
         height:context.scale(28),
         rotation:180,
 
-        score:_platform.currentLoad-1,
-
+        level:_platform.currentLoad-1,
         active:false,
-        disable:false,
+
+        alpha:100,
       };
     }
 
@@ -124,10 +124,10 @@ scene.spikeGenerator=function(){
         height:context.scale(28),
         rotation:180,
 
-        score:_platform.currentLoad-1,
-
+        level:_platform.currentLoad-1,
         active:false,
-        disable:false,
+
+        alpha:100,
       };
     }
 
@@ -154,10 +154,10 @@ scene.spikeGenerator=function(){
         height:context.scale(28),
         rotation:180,
 
-        score:_platform.currentLoad-1,
-
+        level:_platform.currentLoad-1,
         active:false,
-        disable:false,
+
+        alpha:100,
       };
     }
 
@@ -184,10 +184,10 @@ scene.spikeGenerator=function(){
         height:context.scale(28),
         rotation:180,
 
-        score:_platform.currentLoad-1,
-
+        level:_platform.currentLoad-1,
         active:false,
-        disable:false,
+
+        alpha:100,
       };
     }
 
@@ -214,10 +214,10 @@ scene.spikeGenerator=function(){
         height:context.scale(28),
         rotation:180,
 
-        score:_platform.currentLoad-1,
-
+        level:_platform.currentLoad-1,
         active:false,
-        disable:false,
+
+        alpha:100,
       };
     }
 
@@ -244,10 +244,10 @@ scene.spikeGenerator=function(){
         height:context.scale(28),
         rotation:180,
 
-        score:_platform.currentLoad-1,
-
+        level:_platform.currentLoad-1,
         active:false,
-        disable:false,
+
+        alpha:100,
       };
     }
 

@@ -2,13 +2,17 @@
 # TEBOWY DZIEŃ: [STABLE](https://github.com/CiupagaPL/Tebowy_Dzien/tree/stable); [UNSTABLE](https://github.com/CiupagaPL/Tebowy_Dzien/tree/unstable)
 
 ## Notka [PL]
-Wielką satysfakcję daje ukończenie pół rocznej pracy, uwierzcie mi ;-))
-Najnowsza Beta zmienia niemalże wszystkie aspekty gry i otwiera drogę na wiele bogatszy dalszy rozwój.
-W trakcie pracy nad tą wersją byłem w stanie przepisać cały kod i przygotować go pod wiele nowych zmian.
+### Podstawowe
+Pierwsza Beta **TEBowego Dnia** mocno zmieniła rozgrywkę, o ile zostawiła za sobą wiele problemów.
+Patche same w sobie były nie wystarczające.
+Nowa Beta zajęła się wszystkimi obecnymi problemami oraz brakującymi wcześniej dodatkami.
+### Przyszłość Projektu
+Na ten moment skupie się tylko i wyłącznie na drobnych poprawkach i wypoczynku.
+Do regularnej pracy nad projektem wrócę po jakimś czasie :-PP
 
 ## Status
-> Newest Version: **Beta (B)1.002**;
-> Last Updated: **30-04-2025**;
+> Newest Version: **Beta (B)1.010**;
+> Last Updated: **24-05-2025**;
 
 ## License
 **This project uses MIT License**. You can read about it in **LICENSE.md** file.<br>

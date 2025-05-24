@@ -27,7 +27,7 @@ scene.decorationGenerator=function(){
         x:context.scale(66),
         y:_currentPlatform.y+context.scale(82),
 
-        value0:"L"+String(_platform.currentLoad-1)+"0"+_decoration.current,
+        value:"L"+String(_platform.currentLoad-1)+"0"+_decoration.current,
         size:context.scale(20),
       },
 
@@ -41,8 +41,7 @@ scene.decorationGenerator=function(){
     else if(_platform.currentLoad==12){ _currentDecoration.text.x-=context.scale(1); }
     if(_platform.currentLoad==_platform.load){
       _currentDecoration.type=4;
-      _currentDecoration.text.value0="Finał";
-      _currentDecoration.text.x=context.scale(63);
+      delete(_currentDecoration.text);
     }
 
     _decoration.array.push(_currentDecoration);
@@ -60,7 +59,7 @@ scene.decorationGenerator=function(){
         x:context.scale(226),
         y:_currentPlatform.y+context.scale(82),
 
-        value0:"L"+String(_platform.currentLoad-1)+"0"+_decoration.current,
+        value:"L"+String(_platform.currentLoad-1)+"0"+_decoration.current,
         size:context.scale(20),
       },
 
@@ -74,8 +73,7 @@ scene.decorationGenerator=function(){
     else if(_platform.currentLoad==12){ _currentDecoration.text.x-=context.scale(1); }
     if(_platform.currentLoad==_platform.load){
       _currentDecoration.type=4;
-      _currentDecoration.text.value0="Finał";
-      _currentDecoration.text.x=context.scale(223);
+      delete(_currentDecoration.text);
     }
 
     _decoration.array.push(_currentDecoration);
@@ -93,7 +91,7 @@ scene.decorationGenerator=function(){
         x:context.scale(386),
         y:_currentPlatform.y+context.scale(82),
 
-        value0:"L"+String(_platform.currentLoad-1)+"0"+_decoration.current,
+        value:"L"+String(_platform.currentLoad-1)+"0"+_decoration.current,
         size:context.scale(20),
       },
 
@@ -107,8 +105,7 @@ scene.decorationGenerator=function(){
     else if(_platform.currentLoad==12){ _currentDecoration.text.x-=context.scale(1); }
     if(_platform.currentLoad==_platform.load){
       _currentDecoration.type=4;
-      _currentDecoration.text.value0="Finał";
-      _currentDecoration.text.x=context.scale(383);
+      delete(_currentDecoration.text);
     }
 
     _decoration.array.push(_currentDecoration);
@@ -126,7 +123,7 @@ scene.decorationGenerator=function(){
         x:context.scale(546),
         y:_currentPlatform.y+context.scale(82),
 
-        value0:"L"+String(_platform.currentLoad-1)+"0"+_decoration.current,
+        value:"L"+String(_platform.currentLoad-1)+"0"+_decoration.current,
         size:context.scale(20),
       },
 
@@ -140,8 +137,7 @@ scene.decorationGenerator=function(){
     else if(_platform.currentLoad==12){ _currentDecoration.text.x-=context.scale(1); }
     if(_platform.currentLoad==_platform.load){
       _currentDecoration.type=4;
-      _currentDecoration.text.value0="Finał";
-      _currentDecoration.text.x=context.scale(543);
+      delete(_currentDecoration.text);
     }
 
     _decoration.array.push(_currentDecoration);
@@ -159,7 +155,7 @@ scene.decorationGenerator=function(){
         x:context.scale(706),
         y:_currentPlatform.y+context.scale(82),
 
-        value0:"L"+String(_platform.currentLoad-1)+"0"+_decoration.current,
+        value:"L"+String(_platform.currentLoad-1)+"0"+_decoration.current,
         size:context.scale(20),
       },
 
@@ -173,8 +169,7 @@ scene.decorationGenerator=function(){
     else if(_platform.currentLoad==12){ _currentDecoration.text.x-=context.scale(1); }
     if(_platform.currentLoad==_platform.load){
       _currentDecoration.type=4;
-      _currentDecoration.text.value0="Finał";
-      _currentDecoration.text.x=context.scale(703);
+      delete(_currentDecoration.text);
     }
 
     _decoration.array.push(_currentDecoration);
@@ -192,7 +187,7 @@ scene.decorationGenerator=function(){
         x:context.scale(866),
         y:_currentPlatform.y+context.scale(82),
 
-        value0:"L"+String(_platform.currentLoad-1)+"0"+_decoration.current,
+        value:"L"+String(_platform.currentLoad-1)+"0"+_decoration.current,
         size:context.scale(20),
       },
 
@@ -206,8 +201,7 @@ scene.decorationGenerator=function(){
     else if(_platform.currentLoad==12){ _currentDecoration.text.x-=context.scale(1); }
     if(_platform.currentLoad==_platform.load){
       _currentDecoration.type=4;
-      _currentDecoration.text.value0="Finał";
-      _currentDecoration.text.x=context.scale(863);
+      delete(_currentDecoration.text);
     }
 
     _decoration.array.push(_currentDecoration);
@@ -225,7 +219,7 @@ scene.decorationGenerator=function(){
         x:context.scale(1026),
         y:_currentPlatform.y+context.scale(82),
 
-        value0:"L"+String(_platform.currentLoad-1)+"0"+_decoration.current,
+        value:"L"+String(_platform.currentLoad-1)+"0"+_decoration.current,
         size:context.scale(20),
       },
 
@@ -239,8 +233,7 @@ scene.decorationGenerator=function(){
     else if(_platform.currentLoad==12){ _currentDecoration.text.x-=context.scale(1); }
     if(_platform.currentLoad==_platform.load){
       _currentDecoration.type=4;
-      _currentDecoration.text.value0="Finał";
-      _currentDecoration.text.x=context.scale(1023);
+      delete(_currentDecoration.text);
     }
 
     _decoration.array.push(_currentDecoration);
@@ -258,7 +251,7 @@ scene.decorationGenerator=function(){
         x:context.scale(1186),
         y:_currentPlatform.y+context.scale(82),
 
-        value0:"L"+String(_platform.currentLoad-1)+"0"+_decoration.current,
+        value:"L"+String(_platform.currentLoad-1)+"0"+_decoration.current,
         size:context.scale(20),
       },
 
@@ -272,8 +265,7 @@ scene.decorationGenerator=function(){
     else if(_platform.currentLoad==12){ _currentDecoration.text.x-=context.scale(1); }
     if(_platform.currentLoad==_platform.load){
       _currentDecoration.type=4;
-      _currentDecoration.text.value0="Finał";
-      _currentDecoration.text.x=context.scale(1183);
+      delete(_currentDecoration.text);
     }
 
     _decoration.array.push(_currentDecoration);
@@ -291,8 +283,6 @@ scene.decorationGenerator=function(){
         height:context.scale(80),
 
         type:0,
-
-        active:false,
       }, bottom:{
         x:context.scale(78),
         y:_currentPlatform.y+context.scale(24),
@@ -301,8 +291,6 @@ scene.decorationGenerator=function(){
         height:context.scale(80),
 
         type:0,
-
-        active:false,
       }, left:{
         x:context.scale(30),
         y:_currentPlatform.y+context.scale(100),
@@ -311,8 +299,6 @@ scene.decorationGenerator=function(){
         height:context.scale(80),
 
         type:0,
-
-        active:false,
       }, bottomLeft:{
         x:context.scale(30),
         y:_currentPlatform.y+context.scale(24),
@@ -321,8 +307,6 @@ scene.decorationGenerator=function(){
         height:context.scale(80),
 
         type:0,
-
-        active:false,
       }, first:{
         x:0,
         y:0,
@@ -331,8 +315,6 @@ scene.decorationGenerator=function(){
         height:context.scale(88),
 
         type:0,
-
-        active:true,
       }, second:{
         x:0,
         y:0,
@@ -341,8 +323,6 @@ scene.decorationGenerator=function(){
         height:context.scale(88),
 
         type:0,
-
-        active:true,
       }, current:1,
     };
 
@@ -419,8 +399,6 @@ scene.decorationGenerator=function(){
         height:context.scale(88),
 
         type:0,
-
-        active:true,
       }, second:{
         x:0,
         y:0,
@@ -429,8 +407,6 @@ scene.decorationGenerator=function(){
         height:context.scale(88),
 
         type:0,
-
-        active:true,
       }, current:1,
     };
 
@@ -507,8 +483,6 @@ scene.decorationGenerator=function(){
         height:context.scale(88),
 
         type:0,
-
-        active:true,
       }, second:{
         x:0,
         y:0,
@@ -517,8 +491,6 @@ scene.decorationGenerator=function(){
         height:context.scale(88),
 
         type:0,
-
-        active:true,
       }, current:1,
     };
 
@@ -595,8 +567,6 @@ scene.decorationGenerator=function(){
         height:context.scale(88),
 
         type:0,
-
-        active:true,
       }, second:{
         x:0,
         y:0,
@@ -605,8 +575,6 @@ scene.decorationGenerator=function(){
         height:context.scale(88),
 
         type:0,
-
-        active:true,
       }, current:1,
     };
 
@@ -683,8 +651,6 @@ scene.decorationGenerator=function(){
         height:context.scale(88),
 
         type:0,
-
-        active:true,
       }, second:{
         x:0,
         y:0,
@@ -693,8 +659,6 @@ scene.decorationGenerator=function(){
         height:context.scale(88),
 
         type:0,
-
-        active:true,
       }, current:1,
     };
 
@@ -771,8 +735,6 @@ scene.decorationGenerator=function(){
         height:context.scale(88),
 
         type:0,
-
-        active:true,
       }, second:{
         x:0,
         y:0,
@@ -781,8 +743,6 @@ scene.decorationGenerator=function(){
         height:context.scale(88),
 
         type:0,
-
-        active:true,
       }, current:1,
     };
 
@@ -859,8 +819,6 @@ scene.decorationGenerator=function(){
         height:context.scale(88),
 
         type:0,
-
-        active:true,
       }, second:{
         x:0,
         y:0,
@@ -869,8 +827,6 @@ scene.decorationGenerator=function(){
         height:context.scale(88),
 
         type:0,
-
-        active:true,
       }, current:1,
     };
 
@@ -947,8 +903,6 @@ scene.decorationGenerator=function(){
         height:context.scale(88),
 
         type:0,
-
-        active:true,
       }, second:{
         x:0,
         y:0,
@@ -957,8 +911,6 @@ scene.decorationGenerator=function(){
         height:context.scale(88),
 
         type:0,
-
-        active:true,
       }, current:1,
     };
 
@@ -1118,16 +1070,14 @@ scene.decorationGenerator=function(){
         width:context.scale(68),
         height:context.scale(5),
       }, light:{
-        x:context.scale(10),
+        x:context.scale(14),
         y:_currentPlatform.y+context.scale(18),
 
-        width:context.scale(176),
-        height:context.scale(164),
+        width:context.scale(168),
+        height:context.scale(168),
 
         alpha:25,
-      },
-
-      current:3,
+      }, current:3,
     };
 
     _decoration.array.push(_currentDecoration);
@@ -1141,16 +1091,14 @@ scene.decorationGenerator=function(){
         width:context.scale(68),
         height:context.scale(5),
       }, light:{
-        x:context.scale(170),
+        x:context.scale(174),
         y:_currentPlatform.y+context.scale(18),
 
-        width:context.scale(176),
-        height:context.scale(164),
+        width:context.scale(168),
+        height:context.scale(168),
 
         alpha:25,
-      },
-
-      current:3,
+      }, current:3,
     };
 
     _decoration.array.push(_currentDecoration);
@@ -1164,16 +1112,14 @@ scene.decorationGenerator=function(){
         width:context.scale(68),
         height:context.scale(5),
       }, light:{
-        x:context.scale(330),
+        x:context.scale(334),
         y:_currentPlatform.y+context.scale(18),
 
-        width:context.scale(176),
-        height:context.scale(164),
+        width:context.scale(168),
+        height:context.scale(168),
 
         alpha:25,
-      },
-
-      current:3,
+      }, current:3,
     };
 
     _decoration.array.push(_currentDecoration);
@@ -1187,16 +1133,14 @@ scene.decorationGenerator=function(){
         width:context.scale(68),
         height:context.scale(5),
       }, light:{
-        x:context.scale(490),
+        x:context.scale(494),
         y:_currentPlatform.y+context.scale(18),
 
-        width:context.scale(176),
-        height:context.scale(164),
+        width:context.scale(168),
+        height:context.scale(168),
 
         alpha:25,
-      },
-
-      current:3,
+      }, current:3,
     };
 
     _decoration.array.push(_currentDecoration);
@@ -1210,16 +1154,14 @@ scene.decorationGenerator=function(){
         width:context.scale(68),
         height:context.scale(5),
       }, light:{
-        x:context.scale(650),
+        x:context.scale(654),
         y:_currentPlatform.y+context.scale(18),
 
-        width:context.scale(176),
-        height:context.scale(164),
+        width:context.scale(168),
+        height:context.scale(168),
 
         alpha:25,
-      },
-
-      current:3,
+      }, current:3,
     };
 
     _decoration.array.push(_currentDecoration);
@@ -1233,16 +1175,14 @@ scene.decorationGenerator=function(){
         width:context.scale(68),
         height:context.scale(5),
       }, light:{
-        x:context.scale(810),
+        x:context.scale(814),
         y:_currentPlatform.y+context.scale(18),
 
-        width:context.scale(176),
-        height:context.scale(164),
+        width:context.scale(168),
+        height:context.scale(168),
 
         alpha:25,
-      },
-
-      current:3,
+      }, current:3,
     };
 
     _decoration.array.push(_currentDecoration);
@@ -1256,16 +1196,14 @@ scene.decorationGenerator=function(){
         width:context.scale(68),
         height:context.scale(5),
       }, light:{
-        x:context.scale(970),
+        x:context.scale(974),
         y:_currentPlatform.y+context.scale(18),
 
-        width:context.scale(176),
-        height:context.scale(164),
+        width:context.scale(168),
+        height:context.scale(168),
 
         alpha:25,
-      },
-
-      current:3,
+      }, current:3,
     };
 
     _decoration.array.push(_currentDecoration);
@@ -1279,16 +1217,14 @@ scene.decorationGenerator=function(){
         width:context.scale(68),
         height:context.scale(5),
       }, light:{
-        x:context.scale(1130),
+        x:context.scale(1134),
         y:_currentPlatform.y+context.scale(18),
 
-        width:context.scale(176),
-        height:context.scale(164),
+        width:context.scale(168),
+        height:context.scale(168),
 
         alpha:25,
-      },
-
-      current:3,
+      }, current:3,
     };
 
     _decoration.array.push(_currentDecoration);

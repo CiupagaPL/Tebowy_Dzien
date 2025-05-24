@@ -29,7 +29,7 @@ context.collision=function(object0,object1){
 context.scale=function(value){ return value*canvas.scale; }
 context.time=function(value){ return Math.round(value*canvas.timeScale); }
 context.frame=function(value){ return Math.round(value/canvas.timeScale); }
-context.move=function(value){ return Math.floor(((value*canvas.scale)/canvas.timeScale)*100)/100; }
+context.move=function(value){ return Math.floor((context.scale(value)/canvas.timeScale)*100)/100; }
 context.limit=function(value){ return Math.round(Math.floor(((value*canvas.timeScale)/canvas.prevTimeScale)*100)/100); }
 
 context.setup=function(object){
@@ -114,12 +114,12 @@ context.default=function(){
   _button.custom.text.y=context.scale(296);
   _button.setting.base.y=context.scale(150);
   _button.setting.text.y=context.scale(178);
-  _button.about.base.y=context.scale(214);
-  _button.about.text.y=context.scale(232);
-  _button.version.base.y=context.scale(278);
-  _button.version.text.y=context.scale(296);
-  if(scene.value==1){ _button.start.text.value0="Rozpocznij\nNową Grę"; }
-  else{ _button.start.text.value0="Kontynuuj\nRozgrywkę"; }
+  _button.about0.base.y=context.scale(214);
+  _button.about0.text.y=context.scale(232);
+  _button.about1.base.y=context.scale(278);
+  _button.about1.text.y=context.scale(296);
+  if(scene.value==1){ _button.start.text.value="Rozpocznij\nNową Grę"; }
+  else{ _button.start.text.value="Kontynuuj\nRozgrywkę"; }
 
   if(scene.value<2){
     _background.base.y=0;
@@ -143,16 +143,17 @@ context.default=function(){
   scene.section4=0;
   scene.current=0;
   scene.score=0;
-  scene.timer=0;
+  scene.time=0;
   scene.load=false;
   scene.teacher=false;
-  scene.generated=false;
+  scene.generate=false;
   scene.key=false;
   scene.auto=false;
   scene.boss=false;
+  scene.win=false;
 
-  if(scene.value!=scene.count){ _platform.load=11; }
-  else{ _platform.load=6; }
+  if(scene.value!=scene.count){ _platform.load=6; }
+  else{ _platform.load=11; }
 
   audio.jump=0;
   audio.damage1=0;
@@ -182,26 +183,28 @@ context.default=function(){
   _player.collisionBottom.x=_player.base.x+context.scale(12);
   _player.collisionBottom.y=_player.base.y+context.scale(90);
   _player.invisible=0;
-  _player.vx=0;
-  _player.vy=0;
+  _player.base.vx=0;
+  _player.base.vy=0;
   _player.hp=5;
   _player.base.alpha=100;
   _player.cloud.on=false;
   _player.left=false;
   _player.gun.x=_player.base.x;
   _player.gun.y=_player.base.y+context.scale(32);
-  _player.gun.timer=0;
+  _player.gun.time=0;
   _player.gun.type=0;
-  _player.gun.ammo1=5;
-  _player.gun.ammo2=5;
+  _player.gun.ammo1=0;
+  _player.gun.ammo2=0;
   _player.ammo.unused=true;
   _player.cloud.x=(canvas.width/2)-(_player.cloud.width/2);
   _player.cloud.y=context.scale(220);
   _player.damage=false;
   _player.heal=false;
   _player.touchTebox=false;
+  _player.touchDoor=false;
+  _player.touchLock=false;
 
-  _corner.timer=0;
+  _corner.time=0;
 
   _ui.elapsed=0;
   _ui.game.info.time.value0="Czas: 0s";
@@ -212,29 +215,31 @@ context.default=function(){
   _ui.game.notification.info.x=-context.scale(100);
 
   _tebox.useLenght=-1;
-  _loot.current=-1;
-  _loot.timer=0;
+  _tebox.loot.time=0;
+  _tebox.base.loop=0;
+  _tebox.base.ammo=false;
+  _tebox.base.hp=false;
+  _tebox.base.key=false;
 
   _teacher.base.y=context.scale(188);
   _teacher.base.x=canvas.width+_teacher.base.width+context.scale(40);
   _teacher.hp=30;
-  _teacher.timer=0;
   _teacher.round=0;
   _teacher.cloud.y=context.scale(274);
   _teacher.cloud.x=canvas.width+_teacher.base.width+context.scale(30);
   _teacher.left=true;
 
-  _attack.tebulinek.unused=true;
-  _attack.object0.unused=true;
-  _attack.object1.unused=true;
+  _attack.tebulinek.use=false;
+  _attack.object0.current=-1;
+  _attack.object1.current=-1;
   _attack.tebulinek.alpha=100;
   _attack.object0.alpha=100;
   _attack.object1.alpha=100;
 }
 
 context.reset=function(){
-  mouse.width=context.scale(4);
-  mouse.height=context.scale(4);
+  context.setup(_mouse.base);
+  context.setup(_mouse.collision);
 
   context.setup(_background.base);
   context.setup(_background.bottom);
@@ -314,10 +319,11 @@ context.reset=function(){
   context.setup(_button.restart.text);
   context.setup(_button.setting.base);
   context.setup(_button.setting.text);
-  context.setup(_button.about.base);
-  context.setup(_button.about.text);
-  context.setup(_button.version.base);
-  context.setup(_button.version.text);
+  context.setup(_button.about0.base);
+  context.setup(_button.about0.text);
+  context.setup(_button.about1.base);
+  context.setup(_button.about1.text);
+  context.setup(_button.overlay);
 
   context.setup(_clipboard.base);
   context.setup(_clipboard.back);
@@ -348,8 +354,8 @@ context.reset=function(){
   context.setup(_blueprint.level.buttonF);
 
   context.setup(_player.base);
-  _player.ivy=-context.scale(13.5);
-  _player.gravity=context.scale(0.5);
+  _player.base.ivy=-context.scale(13.5);
+  _player.base.gravity=context.scale(0.5);
   context.setup(_player.cloud);
   context.setup(_player.gun);
   context.setup(_player.ammo);
@@ -359,7 +365,7 @@ context.reset=function(){
   context.setup(_player.collisionLeft);
   context.setup(_player.collisionRight);
 
-  context.setup(_loot);
+  context.setup(_tebox.loot);
 
   context.setup(_teacher.base);
   context.setup(_teacher.cloud);

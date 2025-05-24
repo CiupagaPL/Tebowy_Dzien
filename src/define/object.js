@@ -14,6 +14,24 @@
 
 let _currentPlatform=[],_currentCorner=[],_currentForeground=[],_currentDecoration=[],_currentTebox=[],_currentSpike=[];
 
+const _mouse={
+  base:{
+    x:0,
+    y:0,
+
+    width:12,
+    height:12,
+  }, collision:{
+    x:0,
+    y:0,
+
+    width:2,
+    height:8,
+  }, use:false,
+
+  img:Object.assign(new Image(),{src:"tex/icon/general/mouse.png"}),
+};
+
 const _background={
   base:{
     x:0,
@@ -31,9 +49,6 @@ const _background={
     y:360,
   },
 
-  color0:"rgb(0,47,109)",
-  color1:"rgb(3,122,162)",
-  color2:"rgb(228,0,2)",
   imgMenu:Object.assign(new Image(),{src:"tex/back/menu.png"}),
   imgLevel:Object.assign(new Image(),{src:"tex/back/level.png"}),
   imgTeacher:Object.assign(new Image(),{src:"tex/back/teacher.png"}),
@@ -59,12 +74,11 @@ const _transition={
     y:-550,
 
     size:48,
-    value0:"",
+    value:"",
   },
 
-  color0:"rgb(0,27,69)",
-  img0:Object.assign(new Image(),{src:"tex/ui/transition/top.png"}),
-  img1:Object.assign(new Image(),{src:"tex/ui/transition/bottom.png"}),
+  imgTop:Object.assign(new Image(),{src:"tex/ui/transition/top.png"}),
+  imgBottom:Object.assign(new Image(),{src:"tex/ui/transition/bottom.png"}),
 
   sceneOff:function(){},
   sceneOn:function(){},
@@ -79,10 +93,10 @@ const _indicator={
   width:20,
   height:20,
 
-  timer:0,
+  time:0,
 
-  img0Resolution:Object.assign(new Image(),{src:"tex/ui/indicator/max.png"}),
-  img1Resolution:Object.assign(new Image(),{src:"tex/ui/indicator/min.png"}),
+  imgMax:Object.assign(new Image(),{src:"tex/ui/indicator/max.png"}),
+  imgMin:Object.assign(new Image(),{src:"tex/ui/indicator/min.png"}),
   img0:Object.assign(new Image(),{src:"tex/ui/indicator/0.png"}),
   img1:Object.assign(new Image(),{src:"tex/ui/indicator/1.png"}),
   img2:Object.assign(new Image(),{src:"tex/ui/indicator/2.png"}),
@@ -96,11 +110,9 @@ const _info={
   x:64,
   y:128,
 
-  value0:"Wersja Niestabilna",
+  value:"Wersja Niestabilna",
   size:80,
   rotation:25,
-
-  color0:"rgb(255,255,255)",
   alpha:50,
 }
 
@@ -112,9 +124,9 @@ const _start={
     width:256,
     height:256,
 
-    img0:Object.assign(new Image(),{src:"tex/ui/menu/teb/base.png"}),
-    img1:Object.assign(new Image(),{src:"tex/ui/menu/teb/lic.png"}),
-    img2:Object.assign(new Image(),{src:"tex/ui/menu/teb/tech.png"}),
+    imgBase:Object.assign(new Image(),{src:"tex/ui/menu/teb/base.png"}),
+    imgLic:Object.assign(new Image(),{src:"tex/ui/menu/teb/lic.png"}),
+    imgTech:Object.assign(new Image(),{src:"tex/ui/menu/teb/tech.png"}),
     alpha:100,
   }, arrow:{
     x:-92,
@@ -123,7 +135,7 @@ const _start={
     width:384,
     height:384,
 
-    img0:Object.assign(new Image(),{src:"tex/icon/menu/hugeArrow.png"}),
+    img:Object.assign(new Image(),{src:"tex/icon/menu/hugeArrow.png"}),
     alpha:25,
   },
 };
@@ -136,7 +148,7 @@ const _title={
     width:162,
     height:96,
 
-    img0:Object.assign(new Image(),{src:"tex/ui/menu/title/text.png"}),
+    img:Object.assign(new Image(),{src:"tex/ui/menu/title/text.png"}),
     alpha:100,
   }, teb:{
     x:64,
@@ -145,11 +157,9 @@ const _title={
     width:96,
     height:96,
 
-    img0:Object.assign(new Image(),{src:"tex/ui/menu/title/teb.png"}),
-    img1:Object.assign(new Image(),{src:"tex/ui/menu/title/tebHover.png"}),
+    imgOn:Object.assign(new Image(),{src:"tex/ui/menu/title/TEBOn.png"}),
+    imgOff:Object.assign(new Image(),{src:"tex/ui/menu/title/TEBOff.png"}),
   },
-
-  color0:"rgb(255,255,255)",
 };
 
 const _account={
@@ -157,7 +167,7 @@ const _account={
     x:52,
     y:14,
 
-    value0:"Witaj Graczu!",
+    value:"Witaj Graczu!",
     size:16,
   }, profile:{
     x:320,
@@ -175,15 +185,15 @@ const _account={
 
     width:24,
     height:24,
-  }, color0:"rgb(255,255,255)",
-}
+  },
+};
 
 const _footer={
   version:{
     x:52,
     y:354,
 
-    value0:"Wersja: Beta (B)1.002",
+    value:"Wersja: Beta (B)1.010",
     size:16,
   }, github:{
     x:318,
@@ -192,7 +202,6 @@ const _footer={
     width:24,
     height:24,
 
-    img0:Object.assign(new Image(),{src:"tex/icon/menu/github.png"}),
     alpha:100,
   }, pastebin:{
     x:292,
@@ -201,18 +210,20 @@ const _footer={
     width:24,
     height:24,
 
-    img0:Object.assign(new Image(),{src:"tex/icon/menu/pastebin.png"}),
     alpha:100,
   }, next:{
     x:318,
-    y:338-28,
+    y:310,
 
     width:24,
     height:18,
 
-    img0:Object.assign(new Image(),{src:"tex/icon/menu/next.png"}),
     alpha:100,
-  }, color0:"rgb(255,255,255)",
+  },
+
+  imgGit:Object.assign(new Image(),{src:"tex/icon/menu/github.png"}),
+  imgPaste:Object.assign(new Image(),{src:"tex/icon/menu/pastebin.png"}),
+  imgNext:Object.assign(new Image(),{src:"tex/icon/menu/next.png"}),
 };
 
 const _description={
@@ -345,9 +356,9 @@ const _description={
     width:16,
     height:16,
 
-    img0:Object.assign(new Image(),{src:"tex/icon/decoration/general0.png"}),
-    img1:Object.assign(new Image(),{src:"tex/icon/decoration/win.png"}),
-    img2:Object.assign(new Image(),{src:"tex/icon/decoration/fight.png"}),
+    imgGen:Object.assign(new Image(),{src:"tex/icon/decoration/general0.png"}),
+    imgWin:Object.assign(new Image(),{src:"tex/icon/decoration/win.png"}),
+    imgFight:Object.assign(new Image(),{src:"tex/icon/decoration/fight.png"}),
   },
 };
 
@@ -394,8 +405,8 @@ const _ui={
 
         width:14,
         height:14,
-        
-        timer:0,
+
+        time:0,
 
         img0:Object.assign(new Image(),{src:"tex/ui/level/0.png"}),
         img1:Object.assign(new Image(),{src:"tex/ui/level/heart/player/1.png"}),
@@ -407,7 +418,7 @@ const _ui={
         x:613,
         y:36,
 
-        value0:"",
+        value:"",
         size:12,
       },
     }, ammo:{
@@ -429,8 +440,8 @@ const _ui={
 
         width:14,
         height:14,
-        
-        timer:0,
+
+        time:0,
 
         img0:Object.assign(new Image(),{src:"tex/ui/level/0.png"}),
         img1Normal:Object.assign(new Image(),{src:"tex/ui/level/ammo/normal/1.png"}),
@@ -452,7 +463,7 @@ const _ui={
         x:577,
         y:35,
 
-        value0:"",
+        value:"",
         size:16,
       },
     }, key:{
@@ -474,16 +485,16 @@ const _ui={
 
         width:16,
         height:16,
-        
-        timer:0,
 
-        img0:Object.assign(new Image(),{src:"tex/ui/level/key/empty.png"}),
-        img1:Object.assign(new Image(),{src:"tex/ui/level/key/base.png"}),
+        time:0,
+
+        imgOn:Object.assign(new Image(),{src:"tex/ui/level/key/base.png"}),
+        imgOff:Object.assign(new Image(),{src:"tex/ui/level/key/empty.png"}),
       }, text:{
         x:610,
         y:73,
 
-        value0:"Klucz",
+        value:"Klucz",
         size:12,
       },
     }, pause:{
@@ -505,15 +516,14 @@ const _ui={
 
         width:12,
         line:1,
-        timer:0,
 
-        value0:"ıı",
+        value:"ıı",
         size:34,
       }, text:{
         x:10,
         y:36,
 
-        value0:"Pauza",
+        value:"Pauza",
         size:12,
       },
     }, info:{
@@ -535,33 +545,33 @@ const _ui={
 
         width:20,
         height:20,
-        
-        timer:0,
 
-        img0:Object.assign(new Image(),{src:"tex/icon/general/iconL.png"}),
+        time:0,
+
+        img:Object.assign(new Image(),{src:"tex/icon/general/iconL.png"}),
       }, text:{
         x:48,
         y:36,
 
-        value0:"Status",
+        value:"Status",
         size:12,
       }, score:{
         x:78,
         y:16,
 
-        value0:"",
+        value:"",
         size:13,
       }, level:{
         x:78,
         y:26,
 
-        value0:"",
+        value:"",
         size:13,
       }, time:{
         x:78,
         y:36,
 
-        value0:"Czas: 0s",
+        value:"Czas: 0s",
         size:13,
       },
     }, notification:{
@@ -583,21 +593,22 @@ const _ui={
 
         width:12,
         line:1,
-        timer:0,
 
-        value0:"!",
+        time:0,
+
+        value:"!",
         size:28,
       }, text:{
         x:-124,
         y:73,
 
-        value0:"Info",
+        value:"Info",
         size:12,
       }, info:{
-        x:-100,
+        x:-104,
         y:56,
 
-        value0:"",
+        value:"",
         size:12,
       },
     }, teacher:{
@@ -620,7 +631,7 @@ const _ui={
         width:14,
         height:14,
 
-        timer:0,
+        time:0,
 
         img0:Object.assign(new Image(),{src:"tex/ui/level/0.png"}),
         img1:Object.assign(new Image(),{src:"tex/ui/level/heart/teacher/1.png"}),
@@ -632,7 +643,7 @@ const _ui={
         x:610,
         y:73,
 
-        value0:"",
+        value:"",
         size:12,
       },
     },
@@ -640,13 +651,12 @@ const _ui={
 
   time:0,
   elapsed:0,
-
   show:true,
   message:false,
 
-  color0:"rgb(0,0,65)",
-  color1:"rgb(255,255,255)",
-
+  levelRender:function(){},
+  render:function(){},
+  infoRender:function(){},
   update:function(){},
 };
 
@@ -659,8 +669,7 @@ const _button={
       width:42,
       height:42,
 
-      img0:Object.assign(new Image(),{src:"tex/ui/menu/button/start.png"}),
-      img1:Object.assign(new Image(),{src:"tex/ui/menu/button/startOn.png"}),
+      img:Object.assign(new Image(),{src:"tex/ui/menu/button/start.png"}),
     }, text:{
       x:112,
       y:168,
@@ -668,7 +677,7 @@ const _button={
       width:56,
       line:2,
 
-      value0:"Rozpocznij\nNową Grę",
+      value:"Rozpocznij\nNową Grę",
       size:16,
 	    alpha:100,
     },
@@ -680,8 +689,7 @@ const _button={
       width:42,
       height:42,
 
-      img0:Object.assign(new Image(),{src:"tex/ui/menu/button/level.png"}),
-      img1:Object.assign(new Image(),{src:"tex/ui/menu/button/levelOn.png"}),
+      img:Object.assign(new Image(),{src:"tex/ui/menu/button/level.png"}),
     }, text:{
       x:112,
       y:232,
@@ -689,7 +697,7 @@ const _button={
       width:42,
       line:2,
 
-      value0:"Wybierz\nPoziom",
+      value:"Wybierz\nPoziom",
       size:16,
 	    alpha:100,
     },
@@ -705,8 +713,7 @@ const _button={
       width:42,
       height:42,
 
-      img0:Object.assign(new Image(),{src:"tex/ui/menu/button/menu.png"}),
-      img1:Object.assign(new Image(),{src:"tex/ui/menu/button/menuOn.png"}),
+      img:Object.assign(new Image(),{src:"tex/ui/menu/button/menu.png"}),
     }, text:{
       x:112,
       y:232,
@@ -714,7 +721,7 @@ const _button={
       width:46,
       line:2,
 
-      value0:"Przejdź\nDo Menu",
+      value:"Przejdź\nDo Menu",
       size:16,
 	    alpha:100,
     },
@@ -726,8 +733,7 @@ const _button={
       width:42,
       height:42,
 
-      img0:Object.assign(new Image(),{src:"tex/ui/menu/button/custom.png"}),
-      img1:Object.assign(new Image(),{src:"tex/ui/menu/button/customOn.png"}),
+      img:Object.assign(new Image(),{src:"tex/ui/menu/button/custom.png"}),
     }, text:{
       x:112,
       y:296,
@@ -735,7 +741,7 @@ const _button={
       width:42,
       line:2,
 
-      value0:"Wybierz\nPostać",
+      value:"Wybierz\nPostać",
       size:16,
 	    alpha:100,
     },
@@ -751,8 +757,7 @@ const _button={
       width:42,
       height:42,
 
-      img0:Object.assign(new Image(),{src:"tex/ui/menu/button/restart.png"}),
-      img1:Object.assign(new Image(),{src:"tex/ui/menu/button/restartOn.png"}),
+      img:Object.assign(new Image(),{src:"tex/ui/menu/button/restart.png"}),
     }, text:{
       x:112,
       y:296,
@@ -760,7 +765,7 @@ const _button={
       width:42,
       line:2,
 
-      value0:"Powtórz\nPoziom",
+      value:"Powtórz\nPoziom",
       size:16,
 	    alpha:100,
     },
@@ -772,8 +777,7 @@ const _button={
       width:42,
       height:42,
 
-      img0:Object.assign(new Image(),{src:"tex/ui/menu/button/setting.png"}),
-      img1:Object.assign(new Image(),{src:"tex/ui/menu/button/settingOn.png"}),
+      img:Object.assign(new Image(),{src:"tex/ui/menu/button/setting.png"}),
     }, text:{
       x:238,
       y:178,
@@ -781,7 +785,7 @@ const _button={
       width:42,
       line:1,
 
-      value0:"Opcje",
+      value:"Opcje",
       size:24,
 	    alpha:100,
     },
@@ -789,7 +793,7 @@ const _button={
     on:false,
     animation:false,
     lateanimation:false,
-  }, about:{
+  }, about0:{
     base:{
       x:286,
       y:214,
@@ -797,8 +801,7 @@ const _button={
       width:42,
       height:42,
 
-      img0:Object.assign(new Image(),{src:"tex/ui/menu/button/about.png"}),
-      img1:Object.assign(new Image(),{src:"tex/ui/menu/button/aboutOn.png"}),
+      img:Object.assign(new Image(),{src:"tex/ui/menu/button/about.png"}),
     }, text:{
       x:226,
       y:232,
@@ -806,15 +809,15 @@ const _button={
       width:54,
       line:2,
 
-      value0:" Na Temat\nRozgrywki",
+      value:" Na Temat\nRozgrywki",
       size:16,
 	    alpha:100,
     },
-	
+
     on:false,
     animation:false,
     lateanimation:false,
-  }, version:{
+  }, about1:{
     base:{
       x:286,
       y:278,
@@ -822,8 +825,7 @@ const _button={
       width:42,
       height:42,
 
-      img0:Object.assign(new Image(),{src:"tex/ui/menu/button/version.png"}),
-      img1:Object.assign(new Image(),{src:"tex/ui/menu/button/versionOn.png"}),
+      img:Object.assign(new Image(),{src:"tex/ui/menu/button/version.png"}),
     }, text:{
       x:230,
       y:296,
@@ -831,13 +833,21 @@ const _button={
       width:58,
       line:2,
 
-      value0:"Na Temat\n Twórców",
+      value:"Na Temat\n Twórców",
       size:16,
 	    alpha:100,
     },
-  },
+  }, overlay:{
+    x:0,
+    y:0,
 
-  color0:"rgb(255,255,255)",
+    width:42,
+    height:42,
+
+    type:-1,
+
+    img:Object.assign(new Image(),{src:"tex/ui/menu/button/overlay.png"}),
+  },
 };
 
 const _clipboard={
@@ -848,7 +858,7 @@ const _clipboard={
     width:160,
     height:240,
 
-    img0:Object.assign(new Image(),{src:"tex/ui/clipboard/base.png"}),
+    img:Object.assign(new Image(),{src:"tex/ui/clipboard/base.png"}),
   }, back:{
     x:924,
     y:64,
@@ -859,8 +869,8 @@ const _clipboard={
 
     hover:false,
 
-    img0:Object.assign(new Image(),{src:"tex/ui/clipboard/back.png"}),
-    img1:Object.assign(new Image(),{src:"tex/ui/clipboard/backHover.png"}),
+    imgOn:Object.assign(new Image(),{src:"tex/ui/clipboard/backOn.png"}),
+    imgOff:Object.assign(new Image(),{src:"tex/ui/clipboard/backOff.png"}),
   }, icon:{
     x:820,
     y:104,
@@ -868,9 +878,9 @@ const _clipboard={
     width:16,
     height:16,
 
-    img0:Object.assign(new Image(),{src:"tex/icon/decoration/setting.png"}),
-    img1:Object.assign(new Image(),{src:"tex/icon/decoration/info.png"}),
-    img2:Object.assign(new Image(),{src:"tex/icon/decoration/general1.png"}),
+    imgSet:Object.assign(new Image(),{src:"tex/icon/decoration/setting.png"}),
+    imgInfo:Object.assign(new Image(),{src:"tex/icon/decoration/info.png"}),
+    imgGen:Object.assign(new Image(),{src:"tex/icon/decoration/general1.png"}),
   }, title:{
     x:844,
     y:120,
@@ -900,7 +910,7 @@ const _clipboard={
         x:842,
         y:151,
 
-        value0:"Dźwięk",
+        value:"Dźwięk",
         size:16,
       },
     }, music:{
@@ -914,19 +924,20 @@ const _clipboard={
         x:842,
         y:181,
 
-        value0:"Muzyka",
+        value:"Muzyka",
         size:16,
       },
     },
 
-    img0:Object.assign(new Image(),{src:"tex/ui/clipboard/unChecked.png"}),
-    img1:Object.assign(new Image(),{src:"tex/ui/clipboard/checked.png"}),
+    imgOn:Object.assign(new Image(),{src:"tex/ui/clipboard/checkOn.png"}),
+    imgOff:Object.assign(new Image(),{src:"tex/ui/clipboard/checkOff.png"}),
   },
 
   on:false,
   close:false,
   change:false,
 
+  render:function(){},
   update:function(){},
 };
 
@@ -938,8 +949,7 @@ const _blueprint={
     width:160,
     height:240,
 
-    img0:Object.assign(new Image(),{src:"tex/ui/blueprint/0.png"}),
-    img1:Object.assign(new Image(),{src:"tex/ui/blueprint/1.png"}),
+    img:Object.assign(new Image(),{src:"tex/ui/blueprint/base.png"}),
   }, skin:{
     x:846,
     y:132,
@@ -947,8 +957,8 @@ const _blueprint={
     width:70,
     height:120,
 
-    img0:Object.assign(new Image(),{src:"tex/obj/player/base/boy.png"}),
-    img1:Object.assign(new Image(),{src:"tex/obj/player/base/girl.png"}),
+    imgBoy:Object.assign(new Image(),{src:"tex/obj/player/base/boy.png"}),
+    imgGirl:Object.assign(new Image(),{src:"tex/obj/player/base/girl.png"}),
   }, back:{
     x:924,
     y:66,
@@ -959,8 +969,8 @@ const _blueprint={
 
     hover:false,
 
-    img0:Object.assign(new Image(),{src:"tex/ui/blueprint/back.png"}),
-    img1:Object.assign(new Image(),{src:"tex/ui/blueprint/backHover.png"}),
+    imgOn:Object.assign(new Image(),{src:"tex/ui/blueprint/backOn.png"}),
+    imgOff:Object.assign(new Image(),{src:"tex/ui/blueprint/backOff.png"}),
   }, left:{
     x:808,
     y:266,
@@ -970,8 +980,8 @@ const _blueprint={
 
     hover:false,
 
-    img0:Object.assign(new Image(),{src:"tex/ui/blueprint/back.png"}),
-    img1:Object.assign(new Image(),{src:"tex/ui/blueprint/backHover.png"}),
+    imgOn:Object.assign(new Image(),{src:"tex/ui/blueprint/backOn.png"}),
+    imgOff:Object.assign(new Image(),{src:"tex/ui/blueprint/backOff.png"}),
   }, right:{
     x:924,
     y:266,
@@ -982,8 +992,8 @@ const _blueprint={
 
     hover:false,
 
-    img0:Object.assign(new Image(),{src:"tex/ui/blueprint/back.png"}),
-    img1:Object.assign(new Image(),{src:"tex/ui/blueprint/backHover.png"}),
+    imgOn:Object.assign(new Image(),{src:"tex/ui/blueprint/backOn.png"}),
+    imgOff:Object.assign(new Image(),{src:"tex/ui/blueprint/backOff.png"}),
   }, title:{
     x:842,
     y:120,
@@ -995,7 +1005,7 @@ const _blueprint={
     x:868,
     y:284,
 
-    value0:"1/2",
+    value:"1/2",
     size:20,
   }, icon:{
     x:820,
@@ -1004,97 +1014,97 @@ const _blueprint={
     width:16,
     height:16,
 
-    img0:Object.assign(new Image(),{src:"tex/icon/decoration/level.png"}),
-    img1:Object.assign(new Image(),{src:"tex/icon/decoration/skin.png"}),
+    imgLvl:Object.assign(new Image(),{src:"tex/icon/decoration/level.png"}),
+    imgSkin:Object.assign(new Image(),{src:"tex/icon/decoration/skin.png"}),
   }, level:{
     button1:{
       x:820,
-      y:152,
+      y:142,
 
       width:58,
       line:1,
 
-      value0:"Poziom 01",
+      value:"Poziom 01",
       size:18,
       alpha:100,
     }, button2:{
       x:820,
-      y:180,
+      y:170,
 
       width:58,
       line:1,
 
-      value0:"Poziom 02",
+      value:"Poziom 02",
       size:18,
       alpha:100,
     }, button3:{
       x:820,
-      y:208,
+      y:198,
 
       width:58,
       line:1,
 
-      value0:"Poziom 03",
+      value:"Poziom 03",
       size:18,
       alpha:100,
     }, button4:{
       x:820,
-      y:236,
+      y:226,
 
       width:58,
       line:1,
       
-      value0:"Poziom 04",
+      value:"Poziom 04",
       size:18,
       alpha:100,
     }, button5:{
       x:820,
-      y:264,
+      y:254,
 
       width:58,
       line:1,
       
-      value0:"Poziom 05",
+      value:"Poziom 05",
       size:18,
       alpha:100,
     }, button6:{
-      x:888,
-      y:152,
+      x:886,
+      y:142,
 
       width:58,
       line:1,
       
-      value0:"Poziom 06",
+      value:"Poziom 06",
       size:18,
       alpha:100,
     }, button7:{
-      x:888,
-      y:180,
+      x:886,
+      y:170,
 
       width:58,
       line:1,
       
-      value0:"Poziom 07",
+      value:"Poziom 07",
       size:18,
       alpha:100,
     }, button8:{
-      x:888,
-      y:208,
+      x:886,
+      y:198,
 
       width:58,
       line:1,
       
-      value0:"Poziom 08",
+      value:"Poziom 08",
       size:18,
       alpha:100,
     }, buttonF:{
-      x:902,
-      y:264,
+      x:900,
+      y:254,
 
       width:28,
       line:1,
       
-      value0:"Finał",
+      value:"Finał",
       size:18,
       alpha:100,
     },
@@ -1104,6 +1114,7 @@ const _blueprint={
   close:false,
   change:false,
 
+  render:function(){},
   update:function(){},
 };
 
@@ -1111,14 +1122,19 @@ const _player={
   base:{
     x:0,
     y:0,
+    vx:0,
+    vy:0,
+    ivy:-12,
 
     width:56,
     height:96,
 
-    img0:Object.assign(new Image(),{src:"tex/obj/player/base/boy.png"}),
-    img1:Object.assign(new Image(),{src:"tex/obj/player/base/girl.png"}),
-    img0Left:Object.assign(new Image(),{src:"tex/obj/player/base/boyLeft.png"}),
-    img1Left:Object.assign(new Image(),{src:"tex/obj/player/base/girlLeft.png"}),
+    gravity:0.5,
+
+    imgBoy:Object.assign(new Image(),{src:"tex/obj/player/base/boy.png"}),
+    imgGirl:Object.assign(new Image(),{src:"tex/obj/player/base/girl.png"}),
+    imgBoyLeft:Object.assign(new Image(),{src:"tex/obj/player/base/boyLeft.png"}),
+    imgGirlLeft:Object.assign(new Image(),{src:"tex/obj/player/base/girlLeft.png"}),
     alpha:100,
   }, gun:{
     x:0,
@@ -1127,7 +1143,7 @@ const _player={
     width:56,
     height:40,
 
-    timer:0,
+    time:0,
     type:0,
     ammo1:5,
     ammo2:5,
@@ -1176,13 +1192,12 @@ const _player={
     height:10,
 
     type:0,
-
     unused:true,
     left:false,
-  
-    img0:Object.assign(new Image(),{src:"tex/obj/player/ammo/normal.png"}),
-    img1:Object.assign(new Image(),{src:"tex/obj/player/ammo/strong.png"}),
-    img2:Object.assign(new Image(),{src:"tex/obj/player/ammo/fast.png"}),
+
+    imgNormal:Object.assign(new Image(),{src:"tex/obj/player/ammo/normal.png"}),
+    imgStrong:Object.assign(new Image(),{src:"tex/obj/player/ammo/strong.png"}),
+    imgFast:Object.assign(new Image(),{src:"tex/obj/player/ammo/fast.png"}),
   }, cloud:{
     x:0,
     y:0,
@@ -1192,10 +1207,10 @@ const _player={
 
     on:false,
 
-    img0:Object.assign(new Image(),{src:"tex/obj/player/cloud/normal/left.png"}),
-    img1:Object.assign(new Image(),{src:"tex/obj/player/cloud/normal/right.png"}),
-    img0Lose:Object.assign(new Image(),{src:"tex/obj/player/cloud/defeat/left.png"}),
-    img1Lose:Object.assign(new Image(),{src:"tex/obj/player/cloud/defeat/right.png"}),
+    img:Object.assign(new Image(),{src:"tex/obj/player/cloud/normal/right.png"}),
+    imgLeft:Object.assign(new Image(),{src:"tex/obj/player/cloud/normal/left.png"}),
+    imgLost:Object.assign(new Image(),{src:"tex/obj/player/cloud/defeat/right.png"}),
+    imgLostLeft:Object.assign(new Image(),{src:"tex/obj/player/cloud/defeat/left.png"}),
   }, action:{
     x:0,
     y:0,
@@ -1203,10 +1218,11 @@ const _player={
     width:20,
     height:16,
 
+    time:0,
     current:-1,
 
-    img0:Object.assign(new Image(),{src:"tex/icon/action/key.png"}),
-    img1:Object.assign(new Image(),{src:"tex/icon/action/use.png"}),
+    imgKey:Object.assign(new Image(),{src:"tex/icon/action/key.png"}),
+    imgUse:Object.assign(new Image(),{src:"tex/icon/action/use.png"}),
     alpha:75,
   }, collisionTop:{
     x:0,
@@ -1234,22 +1250,17 @@ const _player={
     height:72,
   },
 
-  vx:0,
-  vy:0,
-  ivy:-12,
-  gravity:0.5,
-  upTimer:0,
+  upTime:0,
   invisible:0,
   skin:0,
   hp:5,
-
   touchTebox:false,
   touchDoor:false,
   touchLock:false,
-  touched:false,
+  touchGround:false,
+  touchCorner:false,
   active:false,
-  grounded:false,
-  jumped:false,
+  ground:false,
   fly:false,
   left:false,
   damage:false,
@@ -1270,11 +1281,10 @@ const _platform={
   level:0,
   lastLevel:0,
   random:0,
-
   move:false,
   up:false,
 
-  img0:Object.assign(new Image(),{src:"tex/obj/map/general/platform.png"}),
+  img:Object.assign(new Image(),{src:"tex/obj/map/general/platform.png"}),
 
   update:function(){},
 };
@@ -1284,12 +1294,12 @@ const _corner={
 
   lenght:-1,
   currentLenght:0,
-  useLenght:-1,
-  timer:0,
+  useLenghtLock:-1,
+  useLenghtLaser:-1,
+  time:0,
 
-  img0:Object.assign(new Image(),{src:"tex/obj/map/general/corner.png"}),
-  img1:Object.assign(new Image(),{src:"tex/obj/map/general/lock.png"}),
-  color0:"rgb(255,255,255)",
+  imgCorner:Object.assign(new Image(),{src:"tex/obj/map/general/corner.png"}),
+  imgLock:Object.assign(new Image(),{src:"tex/obj/map/general/lock.png"}),
 
   update:function(){},
 };
@@ -1301,7 +1311,7 @@ const _foreground={
   currentLenght:0,
 
   update:function(){},
-}
+};
 
 const _spike={
   array:[],
@@ -1310,7 +1320,7 @@ const _spike={
   currentLenght:0,
   current:0,
 
-  img0:Object.assign(new Image(),{src:"tex/obj/map/general/spike.png"}),
+  img:Object.assign(new Image(),{src:"tex/obj/map/general/spike.png"}),
 
   update:function(){},
 };
@@ -1322,7 +1332,6 @@ const _decoration={
   currentLenght:1,
   current:0,
 
-  color0:"rgb(140,140,196)",
   img0Door:Object.assign(new Image(),{src:"tex/obj/map/door/orange.png"}),
   img1Door:Object.assign(new Image(),{src:"tex/obj/map/door/green.png"}),
   img2Door:Object.assign(new Image(),{src:"tex/obj/map/door/purple.png"}),
@@ -1347,38 +1356,43 @@ const _decoration={
 };
 
 const _tebox={
+  base:{
+    ammo1:-1,
+    ammo2:-1,
+    loop:0,
+    ammo:false,
+    hp:false,
+    key:false,
+
+    imgOn:Object.assign(new Image(),{src:"tex/obj/map/tebox/baseOn.png"}),
+    imgOff:Object.assign(new Image(),{src:"tex/obj/map/tebox/baseOff.png"}),
+  }, loot:{
+    x:0,
+    y:0,
+    iy:0,
+
+    width:24,
+    height:24,
+
+    time:0,
+
+    imgStrong:Object.assign(new Image(),{src:"tex/obj/map/tebox/loot/strong.png"}),
+    imgStrongFast:Object.assign(new Image(),{src:"tex/obj/map/tebox/loot/strongFast.png"}),
+    imgFast:Object.assign(new Image(),{src:"tex/obj/map/tebox/loot/fast.png"}),
+    imgFastStrong:Object.assign(new Image(),{src:"tex/obj/map/tebox/loot/fastStrong.png"}),
+    imgKey:Object.assign(new Image(),{src:"tex/obj/map/tebox/loot/key.png"}),
+    imgHp:Object.assign(new Image(),{src:"tex/obj/map/tebox/loot/heart.png"}),
+    alpha:0,
+  },
+
   array:[],
 
   lenght:-1,
   currentLenght:1,
   useLenght:-1,
-  first:-1,
-  second:-1,
-  third:-1,
-
-  img0:Object.assign(new Image(),{src:"tex/obj/map/tebox/base/unActivated.png"}),
-  img1:Object.assign(new Image(),{src:"tex/obj/map/tebox/base/activated.png"}),
 
   update:function(){},
-}
-
-const _loot={
-  x:0,
-  y:0,
-  iy:0,
-
-  width:21,
-  height:21,
-
-  current:-1,
-  timer:0,
-
-  img0:Object.assign(new Image(),{src:"tex/obj/map/tebox/loot/key.png"}),
-  img1:Object.assign(new Image(),{src:"tex/obj/map/tebox/loot/strong.png"}),
-  img2:Object.assign(new Image(),{src:"tex/obj/map/tebox/loot/fast.png"}),
-  img3:Object.assign(new Image(),{src:"tex/obj/map/tebox/loot/heart.png"}),
-  alpha:100,
-}
+};
 
 const _teacher={
   base:{
@@ -1446,11 +1460,11 @@ const _attack={
     height:48,
     rotation:0,
 
-    unused:true,
+    use:false,
     left:true,
     touch:false,
 
-    img0:Object.assign(new Image(),{src:"tex/obj/teacher/attack/tebulinek.png"}),
+    img:Object.assign(new Image(),{src:"tex/obj/teacher/attack/TEBulinek.png"}),
     alpha:100,
   }, object0:{
     x:0,
@@ -1460,14 +1474,11 @@ const _attack={
     height:48,
     rotation:0,
 
-    current:0,
-
-    unused:true,
+    current:-1,
     left:true,
-    touch:false,
 
-    img0Computer:Object.assign(new Image(),{src:"tex/obj/teacher/attack/computer.png"}),
-    img0Keyboard:Object.assign(new Image(),{src:"tex/obj/teacher/attack/keyboard.png"}),
+    imgComputer:Object.assign(new Image(),{src:"tex/obj/teacher/attack/computer.png"}),
+    imgKeyboard:Object.assign(new Image(),{src:"tex/obj/teacher/attack/keyboard.png"}),
     alpha:100,
   }, object1:{
     x:0,
@@ -1477,17 +1488,15 @@ const _attack={
     height:48,
     rotation:0,
 
-    current:0,
-
-    unused:true,
+    current:-1,
     left:true,
-    touch:false,
 
-    img0Coffe:Object.assign(new Image(),{src:"tex/obj/teacher/attack/coffe.png"}),
-    img0Pigeon:Object.assign(new Image(),{src:"tex/obj/teacher/attack/pigeon.png"}),
+    imgCoffe:Object.assign(new Image(),{src:"tex/obj/teacher/attack/coffe.png"}),
+    imgPigeon:Object.assign(new Image(),{src:"tex/obj/teacher/attack/pigeon.png"}),
     alpha:100,
   },
 
+  render:function(){},
   update:function(){},
   handle:function(){},
 };

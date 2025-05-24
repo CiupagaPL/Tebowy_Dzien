@@ -21,8 +21,6 @@ canvas.setup=function(){
     canvas.prevScale=canvas.scale;
     canvas.scale=Math.floor((canvas.width/640||canvas.height/360)*100)/100;
 
-    context.imageSmoothingEnabled=false;
-
     render.style.borderTop=0;
     render.style.borderBottom=0;
     render.style.borderLeft=context.scale(4)+"px solid white";
@@ -35,8 +33,6 @@ canvas.setup=function(){
     render.width=canvas.width;
     render.height=canvas.height;
 
-    context.imageSmoothingEnabled=false;
-
     canvas.prevScale=canvas.scale;
     canvas.scale=Math.floor((canvas.width/640||canvas.height/360)*100)/100;
     render.style.borderTop=context.scale(4)+"px solid white";
@@ -46,8 +42,12 @@ canvas.setup=function(){
     render.style.left=((window.innerWidth-canvas.width)/2)+"px";
     render.style.top=((window.innerHeight-canvas.height)/2)-context.scale(4)+"px";
   }
+  context.imageSmoothingEnabled=false;
+  context.mozImageSmoothingEnabled=false;
+  context.webkitImageSmoothingEnabled=false;
+  context.imageSmoothingQuality="low";
 
-  render.style.boxShadow=0+"px "+0+"px "+context.scale(8)+"px "+context.scale(2)+"px white";
+  render.style.boxShadow="0 0 "+context.scale(8)+"px "+context.scale(2)+"px white";
   render.style.width=canvas.width+"px";
   render.style.height=canvas.height+"px";
 }
@@ -102,7 +102,7 @@ canvas.animate=function(current){
     canvas.currentFps=Math.round(1000/((current-canvas.start)/++canvas.countFps));
 
     canvas.loop();
-	
+
 	  if(document.visibilityState=="visible"){ document.title="TEBowy Dzień: "+canvas.currentFps+"FPS"; }
 	  else{
       global.pause=true;
@@ -121,26 +121,30 @@ canvas.animate=function(current){
 
         while((canvas.timeScale-0.1)*40>canvas.currentFps){ canvas.timeScale-=0.1; }
         while((canvas.timeScale*40)-2<=canvas.currentFps){ canvas.timeScale+=0.1; }
-
         if(canvas.timeScale<0.3){ canvas.timeScale=0.3; }
-        if(canvas.timeScale>3.0){ canvas.timeScale=3.0; }
+        else if(canvas.timeScale>3.0){ canvas.timeScale=3.0; }
 
         canvas.fpsLimit=canvas.timeScale*40;
-        scene.timer=context.limit(scene.timer);
+        scene.time=context.limit(scene.time);
 
-        _transition.timer=context.limit(_transition.timer);
+        _indicator.time=context.limit(_indicator.time);
 
         if(scene.value>=2){
           _player.invisible=context.limit(_player.invisible);
-          _player.upTimer=context.limit(_player.upTimer);
+          _player.upTime=context.limit(_player.upTime);
+          _player.gun.time=context.limit(_player.gun.time);
+          _player.action.time=context.limit(_player.action.time);
+
+          _tebox.loot.time=context.limit(_tebox.loot.time);
+          _corner.time=context.limit(_corner.time);
+
+          _ui.time=context.limit(_ui.time);
+          _ui.elapsed=context.limit(_ui.elapsed);
           _teacher.invisible=context.limit(_teacher.invisible);
 
-          _corner.timer=context.limit(_corner.timer);
-          _ui.elapsed=context.limit(_ui.elapsed);
-
-          if(_player.vx!=0){
-            if(_player.left){ _player.vx=-context.move(4); }
-            else{ _player.vx=context.move(4); }
+          if(_player.base.vx!=0){
+            if(_player.left){ _player.base.vx=-context.move(4); }
+            else{ _player.base.vx=context.move(4); }
           }
         }
       } else{
@@ -161,6 +165,7 @@ canvas.startAnimating=function(){
 
   canvas.animate();
 }
+
 canvas.startAnimating();
 
 canvas.loop=function(){
@@ -185,14 +190,14 @@ canvas.loop=function(){
       _clipboard.on=false;
       _button.level.on=false;
       _button.level.animation=false;
-      _button.setting.on=false;
-      _button.setting.animation=false;
-      _button.about.on=false;
-      _button.about.animation=false;
-      _button.version.on=false;
-      _button.version.animation=false;
       _button.custom.on=false;
       _button.custom.animation=false;
+      _button.setting.on=false;
+      _button.setting.animation=false;
+      _button.about0.on=false;
+      _button.about0.animation=false;
+      _button.about1.on=false;
+      _button.about1.animation=false;
 
       html.classList.add("blue-black");
       html.classList.remove("cyan-black");
@@ -211,7 +216,6 @@ canvas.loop=function(){
 
       _transition.text.value0="Menu Główne";
       _transition.text.x=context.scale(225);
-
       _transition.base.y=context.scale(2);
       _transition.top.y=-canvas.height+context.scale(4);
       _transition.bottom.y=canvas.height;
@@ -233,8 +237,7 @@ canvas.loop=function(){
     } else{
       scene.levelRender();
       scene.levelUpdate();
-    }
-
-    if(!global.stable){ context.text(_info,_info.color0,_info.value0); }
+    } if(!global.stable){ context.text(_info,"rgb(255,255,255)",_info.value); }
+    if(_mouse.use){ context.render(_mouse.base,_mouse.img); }
   }
 }

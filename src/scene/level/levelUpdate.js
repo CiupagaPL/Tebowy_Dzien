@@ -14,7 +14,7 @@
 
 scene.levelUpdate=function(){
   if(global.music&&!scene.change&&!scene.blocked&&!global.pause){
-    if(scene.teacher&&scene.timer>=context.time(60)){
+    if(scene.teacher&&scene.time>=context.time(60)){
       if(audio.teacher_music.currentTime>audio.teacher_music.duration-0.2){
         audio.teacher_music.load();
         audio.teacher_music.play();
@@ -84,21 +84,20 @@ scene.levelUpdate=function(){
   _tebox.currentLenght=0;
   _spike.currentLenght=0;
 
-  _loot.iy+=scene.vy;
-  _loot.y+=scene.vy;
-  _loot.x+=scene.vx;
+  _tebox.loot.iy+=scene.vy;
+  _tebox.loot.y+=scene.vy;
+  _tebox.loot.x+=scene.vx;
 
-  if(_loot.current!=-1&&!global.pause&&_player.hp>0){
-    _loot.timer++;
+  if((_tebox.loot.alpha!=0||_tebox.loot.time>=1)&&!global.pause&&_player.hp>0){
+    _tebox.loot.time++;
 
-    if(_loot.timer<=context.time(30)){
-      _loot.y-=context.move(4);
-      if(_loot.timer>=context.time(15)){ _loot.alpha-=context.frame(10); }
+    if(_tebox.loot.time<=context.time(40)){
+      _tebox.loot.y-=context.move(4);
+      if(_tebox.loot.time>=context.time(25)){ _tebox.loot.alpha-=context.frame(10); }
     } else{
-      _loot.y=_loot.iy;
-      _loot.timer=0;
-      _loot.alpha=0;
-      _loot.current=-1;
+      _tebox.loot.y=_tebox.loot.iy;
+      _tebox.loot.time=0;
+      _tebox.loot.alpha=0;
     }
   }
 
@@ -107,7 +106,7 @@ scene.levelUpdate=function(){
     else{ scene.vy=-context.move(4); }
   } else{ scene.vy=0; }
 
-  if(_corner.timer==context.time(70)&&!scene.teacher&&!global.pause&&_player.hp>0&&global.sfx){
+  if(_corner.time==context.time(20)&&!scene.teacher&&!global.pause&&_player.hp>0&&global.sfx){
     if(audio.laser==0){
       audio.laser_sfx.play();
       audio.laser++;
@@ -146,31 +145,6 @@ scene.levelUpdate=function(){
     _background.bottomLeft.x+=scene.vx;
   }
 
-  _ui.game.heart.text.value0=_player.hp+"/5";
-  _ui.game.info.score.value0="Wynik: "+scene.score;
-  if(scene.value<=10&&scene.value!=scene.count){ _ui.game.info.level.value0="Poziom: 0"+Number(scene.value-1); }
-  else if(scene.value>10&&scene.value!=scene.count){ _ui.game.info.level.value0="Poziom: "+Number(scene.value-1); }
-  else{ _ui.game.info.level.value0="Finał"; }
-  if(_teacher.hp<10){ _ui.game.teacher.text.x=context.scale(611); }
-  else{ _ui.game.teacher.text.x=context.scale(609); }
-  _ui.game.teacher.text.value0=_teacher.hp+"/30";
-  if(_player.gun.type==0){
-    _ui.game.ammo.text.value0="∞";
-    _ui.game.ammo.text.size=context.scale(16);
-    _ui.game.ammo.text.x=context.scale(577);
-  } else if(_player.gun.type==1){
-    _ui.game.ammo.text.value0=String(_player.gun.ammo1);
-    _ui.game.ammo.text.size=context.scale(13);
-    if(_player.gun.ammo1<=9&&_player.gun.ammo1!=1){ _ui.game.ammo.text.x=context.scale(580); }
-    else if(_player.gun.ammo1==1){ _ui.game.ammo.text.x=context.scale(581); }
-    else if(_player.gun.ammo1>9){ _ui.game.ammo.text.x=context.scale(578); }
-  } else{
-    _ui.game.ammo.text.value0=String(_player.gun.ammo2);
-    if(_player.gun.ammo2<=9&&_player.gun.ammo2!=1){ _ui.game.ammo.text.x=context.scale(580); }
-    else if(_player.gun.ammo2==1){ _ui.game.ammo.text.x=context.scale(581); }
-    else if(_player.gun.ammo2>9){ _ui.game.ammo.text.x=context.scale(578); }
-  }
-
   if(_player.hp==0&&!global.pause){
     if(global.sfx){ audio.lost1_sfx.play(); }
     global.restart=true;
@@ -183,9 +157,6 @@ scene.levelUpdate=function(){
     scene.change=true;
     global.pauseAnimation=false;
     global.pauseChange=true;
-  } if(global.autoUnpause&&!_clipboard.on){
-    global.pauseChange=true;
-    global.pauseAnimation=false;
   } if(global.autoRestart&&!_clipboard.on&&!global.pauseChange){
     global.restart=true;
     scene.change=true;
@@ -195,7 +166,7 @@ scene.levelUpdate=function(){
     if(!global.pauseAnimation){ _transition.pauseOff(); }
     else{ _transition.pauseOn(); }
   } if(scene.change&&_player.hp>0&&scene.next==scene.value||scene.load){ _transition.sceneOn(); }
-  else if(_teacher.hp==0&&!global.pause&&(scene.timer>=context.time(380)&&scene.value!=scene.count||scene.timer>=context.time(390)&&scene.value==scene.count)){
+  else if(_teacher.hp==0&&!global.pause&&(scene.time>=context.time(380)&&scene.value!=scene.count||scene.time>=context.time(390)&&scene.value==scene.count)){
     if(scene.value<scene.count){ scene.nextAuto=scene.value+1; }
     else{
       scene.nextAuto=1;

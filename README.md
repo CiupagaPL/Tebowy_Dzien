@@ -3,19 +3,16 @@
 
 ## Notka [PL]
 ### Podstawowe
-Gałęź ta zawiera wersje testowe, które są często aktualizowane.
-Zawartość tych wersji silnie różni się od wydań stabilnych, zawierając wszelakie nadchodzące zmiany.
-Są one mocno niestabilne, dlatego spodziewać się możecie dużej ilości błędów.
-**Wersje te nie są przeznaczone na naszą domenę**.
-Przełącz się na gałęź stabilną aby znaleźć najnowsze oficjalne wydania.
-### Cel
-Obecne wydania niestabilne są przygotowaniem do nowej wersji stabilnej **Beta (B)1.010**.
-Dojdzie w niej do wielu poprawek w kodzie jak i w samej grze oraz do kilku dodatków i zmian balansowych.
-Głównym jej celem jest ułatwienie rozgrywki i przygotowanie gry do kolejnego dłuższego czasu bez aktualizacji.
+Pierwsza Beta **TEBowego Dnia** mocno zmieniła rozgrywkę, o ile zostawiła za sobą wiele problemów.
+Patche same w sobie były nie wystarczające.
+Nowa Beta zajęła się wszystkimi obecnymi problemami oraz brakującymi wcześniej dodatkami.
+### Przyszłość Projektu
+Na ten moment skupie się tylko i wyłącznie na drobnych poprawkach i wypoczynku.
+Do regularnej pracy nad projektem wrócę po jakimś czasie :-PP
 
 ## Status
-> Newest Version: **Unstable(U)**;
-> Last Updated: **23-05-2025**;
+> Newest Version: **Beta (B)1.010**;
+> Last Updated: **24-05-2025**;
 
 ## License
 **This project uses MIT License**. You can read about it in **LICENSE.md** file.<br>

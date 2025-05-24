@@ -101,6 +101,7 @@ const scene={
   key:false,
   teacher:false,
   load:false,
+  win:false,
 
   startRender:function(){},
   startUpdate:function(){},
@@ -121,7 +122,7 @@ const scene={
 };
 
 const global={
-  stable:false,
+  stable:true,
   pause:false,
   pauseChange:false,
   pauseAnimation:false,

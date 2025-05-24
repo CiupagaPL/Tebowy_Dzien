@@ -99,6 +99,7 @@ window.addEventListener("keyup",function(event){
           } else{
             global.pauseChange=true;
             global.pauseAnimation=false;
+            if(global.currentReward){ scene.win=true; }
           }
         } else if(_ui.show){
           if(global.sfx){ audio.click1_sfx.play(); }

@@ -57,6 +57,7 @@ _transition.sceneOff=function(){
       global.changeScene=true;
       global.autoScene=false;
       global.menuLoad=true;
+      scene.win=false;
       scene.value=scene.next;
       _transition.overlay.alpha=0;
     }

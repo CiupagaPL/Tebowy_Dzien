@@ -150,6 +150,7 @@ context.default=function(){
   scene.key=false;
   scene.auto=false;
   scene.boss=false;
+  scene.win=false;
 
   if(scene.value!=scene.count){ _platform.load=6; }
   else{ _platform.load=11; }

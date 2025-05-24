@@ -245,7 +245,7 @@ scene.levelRender=function(){
     else if(_indicator.time>=context.time(20)&&_indicator.time<context.time(25)){ context.render(_indicator,_indicator.img4); }
     else if(_indicator.time>=context.time(25)&&_indicator.time<context.time(30)){ context.render(_indicator,_indicator.img5); }
     else{ context.render(_indicator,_indicator.imgMax); }
-  } if(scene.next!=scene.value&&global.pauseChange||scene.load){
+  } if((scene.next!=scene.value&&global.pauseChange||scene.load)&&!scene.win){
     if(!canvas.error){
       if(scene.teacher){
         html.classList.remove("cyan-black");
@@ -268,7 +268,7 @@ scene.levelRender=function(){
     else if(_indicator.time>=context.time(20)&&_indicator.time<context.time(25)){ context.render(_indicator,_indicator.img4); }
     else if(_indicator.time>=context.time(25)&&_indicator.time<context.time(30)){ context.render(_indicator,_indicator.img5); }
     else{ context.render(_indicator,_indicator.imgMax); }
-  } else if(global.pauseChange){
+  } else if(global.pauseChange&&!scene.win){
     if(!canvas.error){
       if(!global.pauseAnimation){
         if(scene.teacher){

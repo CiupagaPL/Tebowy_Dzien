@@ -275,6 +275,7 @@ window.addEventListener("click",function(){
 
       global.pauseChange=true;
       global.pauseAnimation=false;
+      if(global.currentReward){ scene.win=true; }
     }
 
     if(context.collision(_account.background,_mouse.collision)&&(scene.value==1||scene.value>=2&&global.pause)){ if(global.sfx){ audio.click1_sfx.play(); } }

@@ -193,7 +193,7 @@ const _footer={
     x:52,
     y:354,
 
-    value:"Gałęź Niestabilna: 23-05-2025",
+    value:"Wersja: Beta (B)1.010",
     size:16,
   }, github:{
     x:318,
@@ -1371,8 +1371,8 @@ const _tebox={
     y:0,
     iy:0,
 
-    width:28,
-    height:28,
+    width:24,
+    height:24,
 
     time:0,
 

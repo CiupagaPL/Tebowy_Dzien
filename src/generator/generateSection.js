@@ -114,15 +114,15 @@ scene.sectionGenerator=function(){
     if(scene.section1==0){ 
       scene.type6=1;
       scene.section1++;
-    } else if(scene.section2==0){ 
-      scene.type6=2;
-      scene.section2++;
-    } else if(scene.section3==0){ 
-      scene.type6=3;
-      scene.section3++;
     } else if(scene.section4==0){
       scene.type6=4;
       scene.section4++;
+    } else if(scene.section2==0){
+      scene.type6=2;
+      scene.section2++;
+    } else if(scene.section3==0){
+      scene.type6=3;
+      scene.section3++;
     } else{
       if(scene.section1==1&&_platform.currentLoad!=_platform.load){
         scene.type6=1;
@@ -130,7 +130,7 @@ scene.sectionGenerator=function(){
       } else if(scene.section2==1||scene.section2==2){
         scene.type6=2;
         scene.section2++;
-      } else if(scene.section3==1||scene.section3==2){ 
+      } else if(scene.section3==1||scene.section3==2){
         scene.type6=3;
         scene.section3++;
       }
@@ -140,15 +140,15 @@ scene.sectionGenerator=function(){
   if(scene.section1==0){ 
     scene.type7=1;
     scene.section1++;
-  } else if(scene.section2==0){ 
-    scene.type7=2;
-    scene.section2++;
-  } else if(scene.section3==0){ 
-    scene.type7=3;
-    scene.section3++;
   } else if(scene.section4==0){
     scene.type7=4;
     scene.section4++;
+  } else if(scene.section2==0){
+    scene.type7=2;
+    scene.section2++;
+  } else if(scene.section3==0){
+    scene.type7=3;
+    scene.section3++;
   } else{
     if(scene.section1==1&&_platform.currentLoad!=_platform.load){ 
       scene.type7=1;

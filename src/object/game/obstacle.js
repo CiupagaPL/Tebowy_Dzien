@@ -161,7 +161,7 @@ _tebox.update=function(){
     _tebox.base.ammo1=-1;
     _tebox.base.ammo2=-1;
     _tebox.useLenght=_tebox.currentLenght;
-    _tebox.loot.x=_currentTebox.x+context.scale(10);
+    _tebox.loot.x=_currentTebox.x+context.scale(13);
     _tebox.loot.y=_currentTebox.y+_tebox.loot.height;
     _tebox.loot.iy=_currentTebox.y+_tebox.loot.height;
   } else if(!context.collision(_currentTebox,_player.base)&&_tebox.currentLenght==_tebox.useLenght){

@@ -116,7 +116,7 @@ _teacher.update=function(){
       } else{
         _teacher.base.x-=context.move(6);
         _teacher.cloud.x-=context.move(6);
-      }
+      } if(scene.value!=scene.count){ scene.win=true; }
     } else if(scene.time==context.time(385)&&scene.value==scene.count&&_teacher.round==2){
       global.pause=true;
       global.pauseChange=true;
@@ -133,9 +133,6 @@ _teacher.update=function(){
       _teacher.base.x=canvas.width+_teacher.base.width+context.scale(40);
       _teacher.cloud.y=context.scale(274);
       _teacher.cloud.x=canvas.width+_teacher.base.width+context.scale(30);
-    } else if(scene.time==context.time(390)&&scene.value==scene.count&&_teacher.round==2&&!global.pause){
-      scene.win=true;
-      global.currentReward=false;
     }
   } if(_teacher.hp==0&&scene.time<context.time(350)){ scene.time=context.time(350); }
 
